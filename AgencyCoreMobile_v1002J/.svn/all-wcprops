@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/Mobile/!svn/ver/53/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J
+END
+main.m
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/Mobile/!svn/ver/41/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/main.m
+END
+AppDelegate.h
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Mobile/!svn/ver/50/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/AppDelegate.h
+END
+Default@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/Mobile/!svn/ver/41/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/Default@2x.png
+END
+iPad.storyboard
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/Mobile/!svn/ver/54/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/iPad.storyboard
+END
+AppDelegate.m
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/Mobile/!svn/ver/54/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/AppDelegate.m
+END
+Default.png
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/Mobile/!svn/ver/41/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/Default.png
+END
+Default-568h@2x.png
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/Mobile/!svn/ver/41/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/Default-568h@2x.png
+END
+iPhone.storyboard
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/Mobile/!svn/ver/54/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/iPhone.storyboard
+END
+AgencyCoreMobile_v1002J-Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/Mobile/!svn/ver/54/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J-Info.plist
+END
+AgencyCoreMobile_v1002J-Prefix.pch
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/Mobile/!svn/ver/54/trunk/AgencyCore/iOS_app/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J/AgencyCoreMobile_v1002J-Prefix.pch
+END
