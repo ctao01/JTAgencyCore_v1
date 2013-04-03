@@ -11,12 +11,6 @@
 #import "InitialSlidingViewController.h"
 #import "AppDelegate.h"
 
-#define LOGINFIELD_VIEW_TAG 6001
-#define LOGO_VIEW_TAG 6002
-#define SIGN_IN_BTN_TAG 6003
-#define PASSWORD_LABEL_TAG 6004
-#define PASSWORD_BTN_TAG 6004
-
 @interface LogInViewController ()
 {
     LoginFieldView * loginFieldView;
@@ -50,14 +44,14 @@
         btnLogIn.center = CGPointMake(self.view.center.x, 260.0f);
         [btnLogIn setBackgroundImage:[[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)]forState:UIControlStateNormal];
         [btnLogIn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnLogIn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
+        [btnLogIn.titleLabel setFont:ACFontDefaultBold16];
         [btnLogIn setTitle:@"Sign In" forState:UIControlStateNormal];
         [btnLogIn addTarget:self action:@selector(userSignIn) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnLogIn];
         
         UILabel * pwdLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 20.0f)];
         [pwdLabel setFrame:CGRectOffset(pwdLabel.frame, 0.0f, 290.0f)];
-        [pwdLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12.0f]];
+        [pwdLabel setFont:ACFontDefaultBold12];
         [pwdLabel setTextColor:[UIColor blackColor]];
         [pwdLabel setText:@"Forgot Password ?"];
         [pwdLabel setTextAlignment:NSTextAlignmentCenter];
@@ -83,12 +77,6 @@
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
-//    UIView * view1 = [self.view viewWithTag:LOGINFIELD_VIEW_TAG];
-//    UIView * view2 = [self.view viewWithTag:LOGO_VIEW_TAG];
-//    UIView * view3 = [self.view viewWithTag:SSI];
-//    UIView * view4 = [self.view viewWithTag:LOGO_VIEW_TAG];
-
-    
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
         for (UIView * subview in self.view.subviews)

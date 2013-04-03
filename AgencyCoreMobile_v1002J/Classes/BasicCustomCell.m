@@ -26,7 +26,7 @@
         [self.contentView addSubview:self.dataLabel];
         
         for (UILabel * label in self.contentView.subviews)
-            label.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
+            label.font = ACFontDefault14;
     }
     return self;
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D0D0AD9170A273700EE110D /* agencycore_icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0AD8170A273700EE110D /* agencycore_icon_iPad.png */; };
 		3D0D0ADB170A273B00EE110D /* agencycore_icon_iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */; };
+		3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B09170C686400EE110D /* MenuViewController.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -49,7 +50,6 @@
 		3D768D5616FA1E9F0000165A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4016FA1E9F0000165A /* HomeViewController.m */; };
 		3D768D5716FA1E9F0000165A /* InitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */; };
 		3D768D5816FA1E9F0000165A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4416FA1E9F0000165A /* LogInViewController.m */; };
-		3D768D5916FA1E9F0000165A /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4616FA1E9F0000165A /* MenuViewController.m */; };
 		3D768D5A16FA1E9F0000165A /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */; };
 		3D768D5B16FA1E9F0000165A /* MessageNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4A16FA1E9F0000165A /* MessageNavgationViewController.m */; };
 		3D768D5C16FA1E9F0000165A /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4C16FA1E9F0000165A /* MessagesViewController.m */; };
@@ -159,6 +159,8 @@
 		3D0D0AD8170A273700EE110D /* agencycore_icon_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agencycore_icon_iPad.png; sourceTree = "<group>"; };
 		3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "agencycore_icon_iPad@2x.png"; sourceTree = "<group>"; };
 		3D0D0ADC170A2B6100EE110D /* AgecyCoreGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgecyCoreGlobal.h; sourceTree = "<group>"; };
+		3D0D0B08170C685800EE110D /* MessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectField.h; path = Classes/MessageSubjectField.h; sourceTree = "<group>"; };
+		3D0D0B09170C686400EE110D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Classes/MenuViewController.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -220,7 +222,6 @@
 		3D768D4316FA1E9F0000165A /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = Classes/LogInViewController.h; sourceTree = "<group>"; };
 		3D768D4416FA1E9F0000165A /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = Classes/LogInViewController.m; sourceTree = "<group>"; };
 		3D768D4516FA1E9F0000165A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Classes/MenuViewController.h; sourceTree = "<group>"; };
-		3D768D4616FA1E9F0000165A /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Classes/MenuViewController.m; sourceTree = "<group>"; };
 		3D768D4716FA1E9F0000165A /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageDetailViewController.h; path = Classes/MessageDetailViewController.h; sourceTree = "<group>"; };
 		3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageDetailViewController.m; path = Classes/MessageDetailViewController.m; sourceTree = "<group>"; };
 		3D768D4916FA1E9F0000165A /* MessageNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageNavgationViewController.h; path = Classes/MessageNavgationViewController.h; sourceTree = "<group>"; };
@@ -253,7 +254,6 @@
 		3D768D8D16FA5FCE0000165A /* UIImage+ImageWithUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithUIView.m"; sourceTree = "<group>"; };
 		3DBE75EF16FB5820001755FE /* MessageComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageComposer.h; path = Classes/MessageComposer.h; sourceTree = "<group>"; };
 		3DBE75F016FB5820001755FE /* MessageComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageComposer.m; path = Classes/MessageComposer.m; sourceTree = "<group>"; };
-		3DBE75F216FB584E001755FE /* MessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectField.h; path = Classes/MessageSubjectField.h; sourceTree = "<group>"; };
 		3DBE75F316FB584E001755FE /* MessageSubjectField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageSubjectField.m; path = Classes/MessageSubjectField.m; sourceTree = "<group>"; };
 		3DBE75F616FB58A2001755FE /* TITokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TITokenField.h; sourceTree = "<group>"; };
 		3DBE75F716FB58A2001755FE /* TITokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TITokenField.m; sourceTree = "<group>"; };
@@ -412,6 +412,7 @@
 		3D46C40C1700DF8F00E4A112 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				3D0D0B09170C686400EE110D /* MenuViewController.m */,
 				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
 				3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */,
 				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
@@ -419,7 +420,6 @@
 				3D768D4116FA1E9F0000165A /* InitialSlidingViewController.h */,
 				3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */,
 				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
-				3D768D4616FA1E9F0000165A /* MenuViewController.m */,
 				3D46C4101700E44900E4A112 /* RootViewController.h */,
 				3D46C4111700E44900E4A112 /* RootViewController.m */,
 			);
@@ -650,7 +650,7 @@
 		3D768D3016FA1E500000165A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3DBE75F216FB584E001755FE /* MessageSubjectField.h */,
+				3D0D0B08170C685800EE110D /* MessageSubjectField.h */,
 				3DBE75F316FB584E001755FE /* MessageSubjectField.m */,
 				3D768D3116FA1E6F0000165A /* LoginFieldView.h */,
 				3D768D3216FA1E6F0000165A /* LoginFieldView.m */,
@@ -978,7 +978,6 @@
 				3D768D5616FA1E9F0000165A /* HomeViewController.m in Sources */,
 				3D768D5716FA1E9F0000165A /* InitialSlidingViewController.m in Sources */,
 				3D768D5816FA1E9F0000165A /* LogInViewController.m in Sources */,
-				3D768D5916FA1E9F0000165A /* MenuViewController.m in Sources */,
 				3D768D5A16FA1E9F0000165A /* MessageDetailViewController.m in Sources */,
 				3D768D5B16FA1E9F0000165A /* MessageNavgationViewController.m in Sources */,
 				3D768D5C16FA1E9F0000165A /* MessagesViewController.m in Sources */,
@@ -1050,6 +1049,7 @@
 				3DFD32A21705FE36001536D0 /* UIScrollview+TKCategory.m in Sources */,
 				3DFD32A31705FE36001536D0 /* UIView+TKCategory.m in Sources */,
 				3DFD32A71705FED0001536D0 /* CalendarMonthViewController.m in Sources */,
+				3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

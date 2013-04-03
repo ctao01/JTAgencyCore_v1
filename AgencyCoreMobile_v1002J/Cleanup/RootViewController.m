@@ -13,6 +13,9 @@
 //#import "ABPadLockScreenController.h"
 #import "KKPasscodeLock.h"
 
+#define AGENCYCORE_LOGIN_VIEW_TAG 20001
+#define AGENCYCORE_LOCKEDSCREEN_VIEW_TAG 30001
+
 @interface RootViewController ()
 
 @end
@@ -26,7 +29,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         NSLog(@"%@",NSStringFromCGRect(self.view.frame));
         
-    UIView * view = [self.view viewWithTag:20000];
+    UIView * view = [self.view viewWithTag:AGENCYCORE_LOGIN_VIEW_TAG];
     if ([view respondsToSelector:@selector(removeFromSuperview)])
         [view removeFromSuperview];
     
@@ -43,7 +46,7 @@
         _currentViewController = (UINavigationController*)nc;
         _currentViewController.view.frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height);
     }
-    _currentViewController.view.tag = 20000;
+    _currentViewController.view.tag = AGENCYCORE_LOGIN_VIEW_TAG;
     _currentViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
    
     if ([self.view respondsToSelector:@selector(addSubview:)])
@@ -61,7 +64,7 @@
        self.lockedViewController = [[LockScreenViewController alloc]init];
        
        self.lockedViewController.view.frame = [[UIScreen mainScreen]bounds];
-       self.lockedViewController.view.tag = 30000;
+       self.lockedViewController.view.tag = AGENCYCORE_LOCKEDSCREEN_VIEW_TAG;
        [self.view addSubview:self.lockedViewController.view];
    }
 }
@@ -69,7 +72,7 @@
 - (void) removeLockedScreen
 {
     NSLog(@"removeLockedScreen");
-    UIView * view = [self.view viewWithTag:30000];
+    UIView * view = [self.view viewWithTag:AGENCYCORE_LOCKEDSCREEN_VIEW_TAG];
     if ([view respondsToSelector:@selector(removeFromSuperview)])
         [view removeFromSuperview];
 }

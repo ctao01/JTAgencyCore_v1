@@ -16,7 +16,7 @@
     if (self) {
         UILabel * subjectLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, 60, 25) ];
         [subjectLabel setText:@"Subject:"];
-        [subjectLabel setFont:[UIFont fontWithName:@"Helvetica" size:14]];
+        [subjectLabel setFont:ACFontDefault14];
         [subjectLabel setTextColor:[UIColor grayColor]];
         [subjectLabel setTextAlignment:NSTextAlignmentRight];
         self.leftView = subjectLabel;

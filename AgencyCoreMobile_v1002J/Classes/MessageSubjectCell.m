@@ -16,16 +16,16 @@
     if (self) {
         self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20.0f, 2.0f, 80.0f, 44.0f)];
         self.titleLabel.textColor = [UIColor grayColor];
-        self.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
+        self.titleLabel.font = ACFontDefault16;
 
         
         self.subjectLabel = [[UILabel alloc]initWithFrame:CGRectMake(105.0f, 2.0f, 220.0f, 44.0f)];
         self.subjectLabel.textColor = [UIColor blackColor];
-        self.subjectLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0f];
+        self.subjectLabel.font = ACFontDefaultBold16;
         
         self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(105.0f, 36.0f, 220.0f, 20.0f)];
         self.updatedLabel.textColor = [UIColor grayColor];
-        self.updatedLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0f];
+        self.updatedLabel.font = ACFontDefault12;
         
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.subjectLabel];

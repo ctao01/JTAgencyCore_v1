@@ -52,7 +52,7 @@
     textView.text = message;
     textView.editable = NO;
     CGRect textFrame = textView.frame;
-    textView.contentSize = [message sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14.0f]
+    textView.contentSize = [message sizeWithFont:ACFontDefault14
                                constrainedToSize:CGSizeMake(self.tableView.frame.size.width, self.tableView.frame.size.height - 44 * 3)
                                    lineBreakMode:UIViewAutoresizingFlexibleHeight];
     

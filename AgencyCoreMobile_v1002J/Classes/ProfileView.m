@@ -45,7 +45,7 @@
         {
             accountCell.titleLabel.text = @"Name";
             accountCell.dataLabel.text = @"Edem Jimbo";
-            accountCell.dataLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0f];
+            accountCell.dataLabel.font = ACFontDefaultBold14;
         }
             break;
         case 1:

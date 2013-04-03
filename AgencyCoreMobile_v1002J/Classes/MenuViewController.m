@@ -50,7 +50,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
   }
     cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:16.0f];
+    cell.textLabel.font = ACFontDefault16;
     if (indexPath.row == 0)
     {
         cell.imageView.image = [UIImage imageNamed:@"menu_home"];
@@ -81,55 +81,6 @@
             cell.imageView.image = [UIImage imageNamed:@"menu_more"];
             cell.textLabel.text = @"More";
     }
-  /*
-  cell.textLabel.text = [self.menuItems objectAtIndex:indexPath.row];
-  //cell.imageView.image = [UIImage imageNamed:@"menu_account1.png"];
-    
-    NSString *menuName =  @"";
-    NSString *subtitleName =  @"";
-    NSString *selectedName =  [self.menuItems objectAtIndex:indexPath.row] ;
-    
-    
-    if([selectedName isEqualToString:@"logo"]) {
-        //menuName = @""; subtitleName = @"";
-        cell.imageView.image = [UIImage imageNamed:@"menu_axxess_logo.png"];
-        cell.textLabel.text = @""
-        
-    };
-    if([selectedName isEqualToString:@"Home"]) {
-        //menuName = @"Home"; subtitleName = @"";
-        cell.imageView.image = [UIImage imageNamed:@"menu_home.png"];
-
-    };
-    if([selectedName isEqualToString:@"Account"])
-    {
-        //menuName = @"My Account"; subtitleName = @"Log in, Log Out";
-        cell.imageView.image = [UIImage imageNamed:@"menu_account.png"];
-    };
-    if([selectedName isEqualToString:@"Messages"])
-    {
-        //menuName = @"My Messages"; subtitleName = @"Send and Receive messages";
-        cell.imageView.image = [UIImage imageNamed:@"menu_messages.png"];
-    };
-    if([selectedName isEqualToString:@"Schedule"])
-    {
-        //menuName = @"My Schedule"; subtitleName = @"View and Update Schedules and Tasks";
-        cell.imageView.image = [UIImage imageNamed:@"menu_schedule.png"];
-    };
-    if([selectedName isEqualToString:@"Notes"])
-    {
-        //menuName = @"My Notes"; subtitleName = @"Visit Notes";
-        cell.imageView.image = [UIImage imageNamed:@"menu_notes.png"];
-    };
-    if([selectedName isEqualToString:@"Navigation"])
-    {
-        //menuName = @"Navigation"; subtitleName = @"";
-        cell.imageView.image = [UIImage imageNamed:@"menu_more.png"];
-    };
-
-    cell.textLabel.text = menuName;
-    cell.detailTextLabel.text = subtitleName;
-  */
   return cell;
 }
 

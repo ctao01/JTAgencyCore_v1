@@ -10,11 +10,11 @@
 #import "LogInViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define MESSAGE_BUTTON_TAG 7001
-#define SCHEDULE_BUTTON_TAG 7002
+#define AGENCYCORE_MESSAGE_BUTTON_TAG 7001
+#define AGENCYCORE_SCHEDULE_BUTTON_TAG 7002
 
-#define BADGE_ICON_VIEW_TAG 7005
-#define BADGE_ICON_LABEL_TAG 7006
+#define AGENCYCORE_BADGE_ICON_VIEW_TAG 7005
+#define AGENCYCORE_BADGE_ICON_LABEL_TAG 7006
 
 
 @interface HomeViewController ()
@@ -34,16 +34,16 @@
     [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, 24.0f, 24.0f)];
     [view setBackgroundColor:[UIColor colorWithRed:164.0/255.0f green:26.0f/255.0f blue:54.0f/255.0f alpha:1.0f]];
     [view.layer setCornerRadius:4.0f];
-    view.tag = BADGE_ICON_VIEW_TAG;
+    view.tag = AGENCYCORE_BADGE_ICON_VIEW_TAG;
 //
     UILabel * badgeLabel = [[UILabel alloc]initWithFrame:view.frame];
     [badgeLabel setTextColor:[UIColor whiteColor]];
     [badgeLabel setBackgroundColor:[UIColor clearColor]];
-    [badgeLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
+    [badgeLabel setFont:ACFontDefaultBold16];
     if ([identifier isEqualToString:@"message"])[badgeLabel setText:@"3"];
     else if ([identifier isEqualToString:@"schedule"]) [badgeLabel setText:@"15"];
     [badgeLabel setTextAlignment:NSTextAlignmentCenter];
-    badgeLabel.tag = BADGE_ICON_LABEL_TAG;
+    badgeLabel.tag = AGENCYCORE_BADGE_ICON_LABEL_TAG;
 
     [self.view addSubview:view];
     [self.view addSubview:badgeLabel];
@@ -56,16 +56,16 @@
     [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, 24.0f, 24.0f)];
     [view setBackgroundColor:[UIColor colorWithRed:164.0/255.0f green:26.0f/255.0f blue:54.0f/255.0f alpha:1.0f]];
     [view.layer setCornerRadius:4.0f];
-    view.tag = BADGE_ICON_VIEW_TAG;
+    view.tag = AGENCYCORE_BADGE_ICON_VIEW_TAG;
     //
     UILabel * badgeLabel = [[UILabel alloc]initWithFrame:view.bounds];
     [badgeLabel setTextColor:[UIColor whiteColor]];
     [badgeLabel setBackgroundColor:[UIColor clearColor]];
-    [badgeLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16.0f]];
+    [badgeLabel setFont:ACFontDefaultBold16];
     if ([identifier isEqualToString:@"message"])[badgeLabel setText:@"3"];
     else if ([identifier isEqualToString:@"schedule"]) [badgeLabel setText:@"15"];
     [badgeLabel setTextAlignment:NSTextAlignmentCenter];
-    badgeLabel.tag = BADGE_ICON_LABEL_TAG;
+    badgeLabel.tag = AGENCYCORE_BADGE_ICON_LABEL_TAG;
     
     [view addSubview:badgeLabel];
     return view;
@@ -98,7 +98,7 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    UIView * view1 = [self.view viewWithTag:MESSAGE_BUTTON_TAG];
+    UIView * view1 = [self.view viewWithTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
     if (view1)
     {
 //        [self setupBadgeNumberWithIdentifier:@"message" withFrame:view1.frame];
@@ -107,7 +107,7 @@
         [self.view addSubview:msgBadge];
 
     }
-    UIView * view2 = [self.view viewWithTag:SCHEDULE_BUTTON_TAG];
+    UIView * view2 = [self.view viewWithTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     if (view2 )
     {
 //        [self setupBadgeNumberWithIdentifier:@"schedule" withFrame:view2.frame];
@@ -137,7 +137,7 @@
     [btnMsg setFrame:CGRectMake(0.0f, self.view.frame.origin.y + self.view.frame.size.height * 4/7 , imgMsg.size.width, imgMsg.size.height)];
     [btnMsg setCenter:CGPointMake(self.view.center.x, btnMsg.center.y)];
     [btnMsg addTarget:self action:@selector(gotoMyMessages) forControlEvents:UIControlEventTouchUpInside];
-    [btnMsg setTag:MESSAGE_BUTTON_TAG];
+    [btnMsg setTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
     [self.view addSubview:btnMsg];
     
     UIButton * btnSchedule = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -146,7 +146,7 @@
     [btnSchedule setBackgroundImage:imgSchedule forState:UIControlStateNormal];
     [btnSchedule setFrame:CGRectOffset(btnSchedule.frame, 0.0f, btnSchedule.frame.size.height)];
     [btnSchedule addTarget:self action:@selector(gotoMySchedule) forControlEvents:UIControlEventTouchUpInside];
-    [btnSchedule setTag:SCHEDULE_BUTTON_TAG];
+    [btnSchedule setTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     [self.view addSubview:btnSchedule];
     
     
@@ -157,8 +157,8 @@
 {
     NSLog(@"receiveTestNotification");
     
-    UIView * view1 = [self.view viewWithTag:MESSAGE_BUTTON_TAG];
-    UIView * view2 = [self.view viewWithTag:SCHEDULE_BUTTON_TAG];
+    UIView * view1 = [self.view viewWithTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
+    UIView * view2 = [self.view viewWithTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     UIView * subview1 = [self.view viewWithTag:7008];
     UIView * subview2 = [self.view viewWithTag:7009];
     
