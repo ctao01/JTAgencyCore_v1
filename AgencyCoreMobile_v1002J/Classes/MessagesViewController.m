@@ -13,84 +13,11 @@
 #import "MessageComposer.h"
 
 @implementation MessagesViewController
-/*
-- (void)awakeFromNib
-{
-  [[NSNotificationCenter defaultCenter] addObserver:self 
-                                           selector:@selector(underLeftWillAppear:)
-                                               name:ECSlidingViewUnderLeftWillAppear 
-                                             object:self.slidingViewController];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(topDidAnchorRight:) 
-                                               name:ECSlidingViewTopDidAnchorRight 
-                                             object:self.slidingViewController];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(underRightWillAppear:) 
-                                               name:ECSlidingViewUnderRightWillAppear 
-                                             object:self.slidingViewController];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(topDidAnchorLeft:) 
-                                               name:ECSlidingViewTopDidAnchorLeft 
-                                             object:self.slidingViewController];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(topDidReset:) 
-                                               name:ECSlidingViewTopDidReset 
-                                             object:self.slidingViewController];
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-  [super viewWillAppear:animated];
-  
-  if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-    self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-  }
-  
-  if (![self.slidingViewController.underRightViewController isKindOfClass:[UnderRightViewController class]]) {
-    self.slidingViewController.underRightViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UnderRight"];
-  }
-  
-  [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-*/
 - (IBAction)revealMenu:(id)sender
 {
   [self.slidingViewController anchorTopViewTo:ECRight];
 }
-//
-//- (void) updateLayoutForNewOrientation: (UIInterfaceOrientation) orientation
-//{
-//    
-//}
-
-/*
-// slidingViewController notification
-- (void)underLeftWillAppear:(NSNotification *)notification
-{
-  NSLog(@"under left will appear");
-}
-
-- (void)topDidAnchorRight:(NSNotification *)notification
-{
-  NSLog(@"top did anchor right");
-}
-
-- (void)underRightWillAppear:(NSNotification *)notification
-{
-  NSLog(@"under right will appear");
-}
-
-- (void)topDidAnchorLeft:(NSNotification *)notification
-{
-  NSLog(@"top did anchor left");
-}
-
-- (void)topDidReset:(NSNotification *)notification
-{
-  NSLog(@"top did reset");
-}*/
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -107,13 +34,14 @@
 {
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.view.autoresizesSubviews = YES;
 //    UIToolbar * tb = [[UIToolbar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 49.0f)];
 //    tb.barStyle = UIBarStyleBlackTranslucent;
 //    tb.frame = CGRectOffset(tb.frame, 0.0f, self.view.frame.size.height - tb.frame.size.height);
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Message";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -121,6 +49,17 @@
     [super viewWillDisappear:animated];
     MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
     nav.navToolBar.items = nil;
+}
+
+#pragma mark - NSNotification
+
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    NSLog(@"MessagesViewController receiveTestNotification");
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+    {
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -132,8 +71,6 @@
     MessageComposer * composer = [[MessageComposer alloc]init];
     UINavigationController * ncComposer = [[UINavigationController alloc]initWithRootViewController:composer];
     [self.navigationController presentViewController:ncComposer animated:YES completion:^{
-        ncComposer.navigationBar.barStyle = UIBarStyleBlackOpaque;
-        composer.navigationItem.title = @"New Message";
     }];
 }
 
@@ -151,10 +88,50 @@
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * cellID = @"MessageCell";
-    MessageCell * messageCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+//    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice]orientation];
+    
+    static NSString * iPhone_portrait_cell = @"iPhone_Portrait_Cell";
+    static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
+    static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
+    static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
+//    static NSString * cellID = @"iPad_Landscape_Cell";
+    NSLog(@"MessageCell %i",interfaceOrientation);
+    
+    MessageCell * messageCell ;
+    if (iPHONE_UI)
+    {
+        if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+            messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
+        else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+            messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
+    }
+    else if (iPAD_UI)
+    {
+        if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+            messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_portrait_cell];
+        else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+            messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_landscape_cell];
+    }
     if (messageCell == nil)
-        messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    {
+        if (iPHONE_UI)
+            {
+                if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown )
+                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+                else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+            }
+            else if (iPAD_UI)
+            {
+                if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+                else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+            }
+    }
+        
+        
     messageCell.senderLabel.text = @"Sender";
     messageCell.subjectLabel.text = @"Subject";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
