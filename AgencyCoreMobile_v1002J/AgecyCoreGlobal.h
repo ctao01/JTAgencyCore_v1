@@ -16,6 +16,8 @@
 #define DEVICE_LANDSCAPE (DEVICE_ORIENTATION == UIDeviceOrientationLandscapeLeft || DEVICE_ORIENTATION == UIDeviceOrientationLandscapeRight)
 #define DEVICE_PORTRAIT (DEVICE_ORIENTATION == UIDeviceOrientationPortrait || DEVICE_ORIENTATION == UIDeviceOrientationPortraitUpsideDown)
 
+#define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
+
 // UIFont
 #define ACFontDefault8                      [UIFont fontWithName:@"HelveticaNeue" size:8.0f]
 #define ACFontDefaultBold8                  [UIFont fontWithName:@"HelveticaNeue-Bold" size:8.0f]

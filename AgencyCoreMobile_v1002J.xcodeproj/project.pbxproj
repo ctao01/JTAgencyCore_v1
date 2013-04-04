@@ -10,6 +10,7 @@
 		3D0D0AD9170A273700EE110D /* agencycore_icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0AD8170A273700EE110D /* agencycore_icon_iPad.png */; };
 		3D0D0ADB170A273B00EE110D /* agencycore_icon_iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */; };
 		3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B09170C686400EE110D /* MenuViewController.m */; };
+		3D0D0B0D170CD0F900EE110D /* ACNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -161,6 +162,8 @@
 		3D0D0ADC170A2B6100EE110D /* AgecyCoreGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgecyCoreGlobal.h; sourceTree = "<group>"; };
 		3D0D0B08170C685800EE110D /* MessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectField.h; path = Classes/MessageSubjectField.h; sourceTree = "<group>"; };
 		3D0D0B09170C686400EE110D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Classes/MenuViewController.m; sourceTree = "<group>"; };
+		3D0D0B0B170CD0F700EE110D /* ACNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACNavigationController.h; path = Classes/ACNavigationController.h; sourceTree = "<group>"; };
+		3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACNavigationController.m; path = Classes/ACNavigationController.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -413,15 +416,17 @@
 			isa = PBXGroup;
 			children = (
 				3D0D0B09170C686400EE110D /* MenuViewController.m */,
+				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
 				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
 				3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */,
 				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
 				3D768D4016FA1E9F0000165A /* HomeViewController.m */,
 				3D768D4116FA1E9F0000165A /* InitialSlidingViewController.h */,
 				3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */,
-				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
 				3D46C4101700E44900E4A112 /* RootViewController.h */,
 				3D46C4111700E44900E4A112 /* RootViewController.m */,
+				3D0D0B0B170CD0F700EE110D /* ACNavigationController.h */,
+				3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1050,6 +1055,7 @@
 				3DFD32A31705FE36001536D0 /* UIView+TKCategory.m in Sources */,
 				3DFD32A71705FED0001536D0 /* CalendarMonthViewController.m in Sources */,
 				3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */,
+				3D0D0B0D170CD0F900EE110D /* ACNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

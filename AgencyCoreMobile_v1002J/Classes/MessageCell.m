@@ -13,11 +13,16 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 20.0f, 10.0f, 20.0f));
+    if (self) { CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 20.0f, 10.0f, 20.0f));
 //        self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, innerRect.size.width - 120.0f, 20.0f)];
-        if (iPHONE_UI) self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
-        else if (iPAD_UI) self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 880.0f, 20.0f)];
+        if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
+        else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
+        else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 640, 20.0f)];
+        else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 880.0f, 20.0f)];
         
         [self.senderLabel  setFont:ACFontDefaultBold16];
         [self.contentView addSubview:self.senderLabel];
@@ -47,16 +52,6 @@
     }
     return self;
 }
-
-//- (void) layoutSubviews
-//{
-//    [super layoutSubviews];    
-//    self.senderLabel.frame = CGRectOffset(self.senderLabel.frame, self.contentView.frame.origin.x, self.contentView.frame.origin.y);
-//    
-////    self.dateLabel.frame = CGRectOffset(self.dateLabel.frame, innerRect.origin.x + innerRect.size.width - 120.0f,innerRect.origin.y);
-//    self.subjectLabel.frame = CGRectOffset(self.subjectLabel.frame, self.frame.origin.x, self.senderLabel.frame.origin.y + self.senderLabel.frame.size.height);
-//    self.messageLabel.frame = CGRectOffset(self.messageLabel.frame, self.frame.origin.x, self.subjectLabel.frame.origin.y + 18);
-//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

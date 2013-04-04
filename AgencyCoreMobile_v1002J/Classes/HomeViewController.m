@@ -134,7 +134,7 @@
     UIButton * btnMsg = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage * imgMsg = [UIImage imageNamed:@"button_messages"];
     [btnMsg setBackgroundImage:imgMsg forState:UIControlStateNormal];
-    [btnMsg setFrame:CGRectMake(0.0f, self.view.frame.origin.y + self.view.frame.size.height * 4/7 , imgMsg.size.width, imgMsg.size.height)];
+    [btnMsg setFrame:CGRectMake(0.0f, self.view.bounds.origin.y + self.view.bounds.size.height * 4/7 , imgMsg.size.width, imgMsg.size.height)];
     [btnMsg setCenter:CGPointMake(self.view.center.x, btnMsg.center.y)];
     [btnMsg addTarget:self action:@selector(gotoMyMessages) forControlEvents:UIControlEventTouchUpInside];
     [btnMsg setTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
@@ -155,7 +155,7 @@
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
-    NSLog(@"receiveTestNotification");
+    NSLog(@"HomeViewController receiveTestNotification");
     
     UIView * view1 = [self.view viewWithTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
     UIView * view2 = [self.view viewWithTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];

@@ -10,6 +10,8 @@
 #import "MessageSubjectField.h"
 #import "MessageNavgationViewController.h"
 #import "ContactViewController.h"
+#import "ACNavigationController.h"
+
 @interface MessageComposer ()
 {
     TITokenFieldView * tokenFieldView;
@@ -47,32 +49,7 @@
 {
     self = [super init];
     if (self) {
-        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
-        //	[tokenFieldView setSourceArray:[Names listOfNames]];
-        [self.view addSubview:tokenFieldView];
         
-        [tokenFieldView.tokenField setDelegate:self];
-        [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:TITokenFieldControlEventFrameDidChange];
-        [tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
-        
-        UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        [addButton addTarget:self action:@selector(showContactsPicker) forControlEvents:UIControlEventTouchUpInside];
-        [tokenFieldView.tokenField setRightView:addButton];
-        [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidBegin];
-        [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidEnd];
-        
-        CGRect contentBounds = tokenFieldView.contentView.bounds;
-        subjectField = [[MessageSubjectField alloc]initWithFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
-        subjectField.delegate = self;
-        [tokenFieldView.contentView addSubview:subjectField];
-        
-        messageView = [[UITextView alloc] initWithFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
-        [messageView setAutoresizingMask:UIViewAutoresizingNone];
-        [messageView setScrollEnabled:NO];
-        [messageView setDelegate:self];
-        [messageView setFont:[UIFont systemFontOfSize:15]];
-        [messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
-        [tokenFieldView.contentView addSubview:messageView];
         
     }
     return self;
@@ -80,9 +57,15 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    self.navigationItem.title = @"New Message";
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"Rotation_Notification" object:nil];
+
     
+    [super viewDidLoad];
+
+    self.navigationItem.title = @"New Message";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.view.backgroundColor = [UIColor whiteColor];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
@@ -100,16 +83,60 @@
     self.navigationItem.leftBarButtonItem = cancelItem;
     self.navigationItem.rightBarButtonItem = sendItem;
 
+    tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
+    //	[tokenFieldView setSourceArray:[Names listOfNames]];
+    [self.view addSubview:tokenFieldView];
+    
+    [tokenFieldView.tokenField setDelegate:self];
+    [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:TITokenFieldControlEventFrameDidChange];
+    [tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
+    
+    UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    [addButton addTarget:self action:@selector(showContactsPicker) forControlEvents:UIControlEventTouchUpInside];
+    [tokenFieldView.tokenField setRightView:addButton];
+    [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidBegin];
+    [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidEnd];
+    
+    CGRect contentBounds = tokenFieldView.contentView.bounds;
+    subjectField = [[MessageSubjectField alloc]initWithFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
+    subjectField.delegate = self;
+    [tokenFieldView.contentView addSubview:subjectField];
+    
+    messageView = [[UITextView alloc] initWithFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
+    [messageView setAutoresizingMask:UIViewAutoresizingNone];
+    [messageView setScrollEnabled:NO];
+    [messageView setDelegate:self];
+    [messageView setFont:[UIFont systemFontOfSize:15]];
+    [messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
+    [tokenFieldView.contentView addSubview:messageView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+
+    UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem * trashItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
+    UIBarButtonItem * forwardItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:nil action:nil];
+    UIBarButtonItem * replyItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:nil action:nil];
+
+    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
+
+    nav.navToolBar.items = [NSArray arrayWithObjects:trashItem,spaceItem,forwardItem,spaceItem,replyItem,spaceItem,composeItem, nil];
+    
     if (self.selectedContact != nil)
     {
         [tokenFieldView.tokenField addTokenWithTitle:self.selectedContact];
         [tokenFieldView.tokenField layoutTokensAnimated:YES];
     }
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+    nav.navToolBar.items = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -118,8 +145,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - UINotification Method
+
+//- (void) receiveTestNotification:(NSNotification*)notification
+//{
+//    if ([[notification name]isEqualToString:@"Rotation_Notification" ])
+//    {        
+////        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+////            NSLog(@"YES");
+////        else
+////            NSLog(@"NO");
+//    }
+//}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 	
@@ -137,20 +174,28 @@
 
 - (void) cancelMessageComposer
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void) showContactsPicker
 {
     ContactViewController * vc = [[ContactViewController alloc]initWithStyle:UITableViewStylePlain];
-    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-    [self.navigationController presentViewController:nc animated:YES completion:^{
-        nc.navigationBar.barStyle = UIBarStyleBlackOpaque;
-        vc.navigationItem.title = @"Contacts";
-        vc.vcParent = self;
-        
-        self.selectedContact = nil;
-    }];
+    [self.navigationController pushViewController:vc animated:NO];
+    vc.vcParent = self;
+    vc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    vc.navigationItem.title = @"Contacts";
+    
+    self.selectedContact = nil;
+    
+//    ACNavigationController * nc = [[ACNavigationController alloc]initWithRootViewController:vc];
+//    [self.navigationController presentViewController:nc animated:YES completion:^{
+//        nc.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//        vc.navigationItem.title = @"Contacts";
+//        vc.vcParent = self;
+//        
+//        self.selectedContact = nil;
+//    }];
 }
 
 
@@ -161,13 +206,21 @@
 	if ([token.title isEqualToString:@"Tom Irving"]){
 		return NO;
 	}
+    
 	NSLog(@"%@",token.title);
 	return YES;
+}
+- (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token
+{
+    if ([tokenField.tokens count] > 0) self.navigationItem.rightBarButtonItem.enabled = YES;
+    else self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)tokenFieldChangedEditing:(TITokenField *)tokenField {
 	// There's some kind of annoying bug where UITextFieldViewModeWhile/UnlessEditing doesn't do anything.
 	[tokenField setRightViewMode:(tokenField.editing ? UITextFieldViewModeAlways : UITextFieldViewModeNever)];
+    if ([tokenField.tokens count] > 0) self.navigationItem.rightBarButtonItem.enabled = YES;
+    else self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)tokenFieldFrameDidChange:(TITokenField *)tokenField {

@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
     self.navToolBar = [[UIToolbar alloc]init];
-    UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
     {
@@ -53,7 +53,6 @@
         self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height );
     }
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

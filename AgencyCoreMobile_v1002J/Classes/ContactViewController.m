@@ -102,7 +102,9 @@
                      @"Tom Irving",
                      nil];
     UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelSelectingContact)];
-    self.navigationItem.rightBarButtonItem = cancelItem;
+
+    self.navigationItem.leftBarButtonItem = cancelItem;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,7 +116,8 @@
 
 - (void) cancelSelectingContact
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void) filterContentForSearchText:(NSString*)searchText andScope:(NSString*)scope
@@ -212,7 +215,8 @@
 {
     MessageComposer * composer = (MessageComposer*)self.vcParent;
     composer.selectedContact = [self.contacts objectAtIndex:indexPath.row];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

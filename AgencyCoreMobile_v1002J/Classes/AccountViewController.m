@@ -53,9 +53,8 @@
     CGRect frame = self.view.frame;
     CGRect tvFrame;
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight)
+    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
         tvFrame = CGRectMake(frame.origin.x, frame.origin.y , frame.size.width, frame.size.height);
-//    if (iPHONE_UI)
     else  tvFrame = CGRectMake(frame.origin.x, frame.origin.y - 20.0f, frame.size.width, frame.size.height);
 //    else if (iPAD_UI) tvFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     self.tableView = [[UITableView alloc]initWithFrame:tvFrame style:UITableViewStylePlain];
@@ -76,25 +75,6 @@
     CGRect footerFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
     UIView * footerView = [[UIView alloc]initWithFrame:footerFrame];
     footerView.backgroundColor = [UIColor whiteColor];
-    /*
-    UIButton * btnSign = [UIButton grayStyleButtonWithTitle:@"Change Signature"];
-    [btnSign setFrame:UIEdgeInsetsInsetRect(footerFrame, UIEdgeInsetsMake(20.0f, 20.0f, 0.0f, 0.0f))];
-    [btnSign setFrame:CGRectMake(btnSign.frame.origin.x, btnSign.frame.origin.y, 135.0f , 44.0f)];
-    [btnSign addTarget:self action:@selector(changeSignature) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:btnSign];
-    
-//    UIButton * btnPwd = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    UIButton * btnPwd = [UIButton grayStyleButtonWithTitle:@"Change Password"];
-    [btnPwd setFrame:UIEdgeInsetsInsetRect(footerFrame, UIEdgeInsetsMake(20.0f, 30 + btnSign.frame.size.width, 0.0f, 20.0f))];
-    [btnPwd setFrame:CGRectMake(btnPwd.frame.origin.x, btnPwd.frame.origin.y, 135.0f , 44.0f)];
-    [btnPwd addTarget:self action:@selector(changePassword) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:btnPwd];
-    
-    UIButton * btnLogout = [UIButton redStyleButtonWithTitle:@"Log Out"];
-    [btnLogout setFrame:UIEdgeInsetsInsetRect(footerFrame, UIEdgeInsetsMake(84.0f, 20.0f, 20.0f, 20.0f))];
-    [btnLogout setFrame:CGRectMake(btnLogout.frame.origin.x, btnLogout.frame.origin.y, 280.0f , 44.0f)];
-    [btnLogout addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:btnLogout];*/
     
     self.tableView.tableFooterView = footerView;
     
@@ -104,46 +84,6 @@
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark - UIButton  Actions
-/*
-- (void) changeSignature
-{
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Axxess Home Health Management System"
-                                                        message:@"Enter a new signature"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Change", nil];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView show];
-}
-
-- (void) changePassword
-{
-    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Axxess Home Health Management System"
-                                                        message:@"Change a new password"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                              otherButtonTitles:@"Change", nil];
-    alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-    [alertView show];
-}
-
-- (void) logout
-{
-//    self.slidingViewController.topViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Home"];
-    [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
-    
-//    [self.navigationController dismissViewControllerAnimated:YES completion:^{AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-//        [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];}];
-//    [self.slidingViewController dismissViewControllerAnimated:YES completion:^{
-//        
-//    }];
-    
-    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
-}
-*/
 #pragma mark - UITableView DataSource 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -175,7 +115,7 @@
             {
                 accountCell.titleLabel.text = @"Name";
                 accountCell.dataLabel.text = @"Edem Jimbo";
-                accountCell.dataLabel.font = ACFontDefaultBold8;
+                accountCell.dataLabel.font = ACFontDefaultBold18;
             }
                 break;
             case 1:

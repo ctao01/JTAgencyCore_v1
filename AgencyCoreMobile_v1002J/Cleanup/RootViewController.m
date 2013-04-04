@@ -97,15 +97,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//{
-//    return YES;
-//}
-//
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TestNotification"  object:self];
+    return YES;
+}
+
 - (BOOL) shouldAutorotate
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"TestNotification"  object:self];
     return YES;
 }
+
+//- (NSUInteger) supportedInterfaceOrientations
+//{
+//    return YES;
+//}
+//
+//- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
+//{
+//    if (iPHONE_UI) return UIInterfaceOrientationPortrait;
+//    else if (iPAD_UI) return UIInterfaceOrientationLandscapeRight;
+//    else return UIInterfaceOrientationPortrait;
+//}
 
 @end

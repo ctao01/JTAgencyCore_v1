@@ -11,6 +11,7 @@
 #import "MessageDetailViewController.h"
 #import "MessageNavgationViewController.h"
 #import "MessageComposer.h"
+#import "ACNavigationController.h"
 
 @implementation MessagesViewController
 
@@ -34,9 +35,7 @@
 {
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//    UIToolbar * tb = [[UIToolbar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 49.0f)];
-//    tb.barStyle = UIBarStyleBlackTranslucent;
-//    tb.frame = CGRectOffset(tb.frame, 0.0f, self.view.frame.size.height - tb.frame.size.height);
+    
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Message";
@@ -55,23 +54,25 @@
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
-    NSLog(@"MessagesViewController receiveTestNotification");
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
         [self.tableView reloadData];
+        
     }
 }
-
-
 
 #pragma mark - UIToolBar Items Actions
 
 - (void) composeMessage
 {
+    
     MessageComposer * composer = [[MessageComposer alloc]init];
-    UINavigationController * ncComposer = [[UINavigationController alloc]initWithRootViewController:composer];
-    [self.navigationController presentViewController:ncComposer animated:YES completion:^{
-    }];
+    [self.navigationController pushViewController:composer animated:NO];
+
+//    ACNavigationController * ncComposer = [[ACNavigationController alloc]initWithRootViewController:composer];
+//    
+//    [self presentViewController:ncComposer animated:YES completion:^{
+//    }];
 }
 
 #pragma mark - UITableView Datasource
@@ -95,9 +96,7 @@
     static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
     static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
     static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
-//    static NSString * cellID = @"iPad_Landscape_Cell";
-    NSLog(@"MessageCell %i",interfaceOrientation);
-    
+//    static NSString * cellID = @"iPad_Landscape_Cell";    
     MessageCell * messageCell ;
     if (iPHONE_UI)
     {
@@ -161,5 +160,6 @@
     MessageDetailViewController * vc = [[MessageDetailViewController alloc]initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 @end
