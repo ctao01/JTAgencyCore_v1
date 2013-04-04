@@ -8,31 +8,28 @@
 
 #import "InitialSlidingViewController.h"
 
+
 @implementation InitialSlidingViewController
 
-- (void)viewDidLoad
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-
-    [super viewDidLoad];
-    UIStoryboard *storyboard;
-  
-  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-    storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-  } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-  }
-  
-  //self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstTop"];
-    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"Home"];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        UIStoryboard *storyboard;
+        
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+            storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
+        }
+        
+        //self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstTop"];
+        self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"Home"];
+    }
     
-
+    return self;
 }
-
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-//{
-//  return YES;
-//}
-
 
 
 

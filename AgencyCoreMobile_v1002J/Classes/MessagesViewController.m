@@ -67,12 +67,11 @@
 {
     
     MessageComposer * composer = [[MessageComposer alloc]init];
-    [self.navigationController pushViewController:composer animated:NO];
+    UINavigationController * ncComposer = [[UINavigationController alloc]initWithRootViewController:composer];
+    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
 
-//    ACNavigationController * ncComposer = [[ACNavigationController alloc]initWithRootViewController:composer];
-//    
-//    [self presentViewController:ncComposer animated:YES completion:^{
-//    }];
+    [nav presentModalViewController:ncComposer animated:YES];
+
 }
 
 #pragma mark - UITableView Datasource

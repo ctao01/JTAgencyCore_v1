@@ -46,15 +46,18 @@
 
 - (void)didPasscodeEnteredCorrectly:(KKPasscodeViewController*)viewController
 {
-    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [delegate removeLockedScreen];
+//    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    [delegate removeLockedScreen];
+    [self dismissModalViewControllerAnimated:YES];
+
 }
 
 
 - (void) unlockWasSuccessful
 {
-    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [delegate removeLockedScreen];
+//    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+//    [delegate removeLockedScreen];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)unlockWasUnsuccessful:(NSString *)falsePin afterAttemptNumber:(NSInteger)attemptNumber

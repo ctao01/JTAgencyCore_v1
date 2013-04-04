@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "InitialSlidingViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic , strong) RootViewController * viewController;
@@ -32,9 +33,13 @@
 {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
-    self.viewController = [[RootViewController alloc]init];
-    self.window.rootViewController = self.viewController;
-    [self.viewController displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
+//    self.viewController = [[RootViewController alloc]init];
+////    self.window.rootViewController = self.viewController;
+//    [self.viewController displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
+    InitialSlidingViewController * rv = [[InitialSlidingViewController alloc]init];
+    
+    self.navigation = [[RootNavigationController alloc]initWithRootViewController:rv];
+    self.window.rootViewController = self.navigation;
     
     return YES;
 }
@@ -68,8 +73,8 @@
 //    self.navigation = [[UINavigationController alloc]initWithRootViewController:vc];
 //    self.window.rootViewController = self.navigation;
 //    [self.viewController showLockedScreenForExistingUser:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
-    [self.viewController addLockedScreen];
-
+//    [self.viewController addLockedScreen];
+    [self.navigation displayLockedScreen];
 
 }
 

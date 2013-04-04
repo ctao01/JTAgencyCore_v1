@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootNavigationController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong , nonatomic )UINavigationController * navigation;
+@property (strong , nonatomic )RootNavigationController * navigation;
 
 - (void) displayScreen:(BOOL)existUser;
 - (void) removeLockedScreen;

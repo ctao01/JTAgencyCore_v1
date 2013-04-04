@@ -18,6 +18,7 @@
 		3D46C40B1700D6DA00E4A112 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D46C40A1700D6D900E4A112 /* QuartzCore.framework */; };
 		3D46C40F1700E21700E4A112 /* LockScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C40E1700E21700E4A112 /* LockScreenViewController.m */; };
 		3D46C4121700E44900E4A112 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4111700E44900E4A112 /* RootViewController.m */; };
+		3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB4D170DB81E00AE500F /* RootNavigationController.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
@@ -175,6 +176,8 @@
 		3D46C40E1700E21700E4A112 /* LockScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LockScreenViewController.m; path = Classes/LockScreenViewController.m; sourceTree = "<group>"; };
 		3D46C4101700E44900E4A112 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = Cleanup/RootViewController.h; sourceTree = "<group>"; };
 		3D46C4111700E44900E4A112 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Cleanup/RootViewController.m; sourceTree = "<group>"; };
+		3D53DB4C170DB81E00AE500F /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/RootNavigationController.h; sourceTree = "<group>"; };
+		3D53DB4D170DB81E00AE500F /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootNavigationController.m; path = Classes/RootNavigationController.m; sourceTree = "<group>"; };
 		3D72BCCC16FCB1BC00FE5D22 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = Classes/ContactViewController.h; sourceTree = "<group>"; };
 		3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactViewController.m; path = Classes/ContactViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				3D46C4111700E44900E4A112 /* RootViewController.m */,
 				3D0D0B0B170CD0F700EE110D /* ACNavigationController.h */,
 				3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */,
+				3D53DB4C170DB81E00AE500F /* RootNavigationController.h */,
+				3D53DB4D170DB81E00AE500F /* RootNavigationController.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1056,6 +1061,7 @@
 				3DFD32A71705FED0001536D0 /* CalendarMonthViewController.m in Sources */,
 				3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */,
 				3D0D0B0D170CD0F900EE110D /* ACNavigationController.m in Sources */,
+				3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

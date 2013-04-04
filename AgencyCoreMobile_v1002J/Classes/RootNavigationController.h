@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface RootNavigationController : UINavigationController
+- (void) displayLockedScreen;
 
 @end
