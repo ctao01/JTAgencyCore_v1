@@ -63,7 +63,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="XYc-ji-qQz" kind="relationship" relationship="rootViewController" id="0vD-9V-Hx4"/>
+                        <segue destination="G5c-VY-FqF" kind="relationship" relationship="rootViewController" id="j0y-kI-TeC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRB-ld-w4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,17 +71,32 @@
             <point key="canvasLocation" x="241" y="-925"/>
         </scene>
         <!--Account View Controller-->
-        <scene sceneID="dCa-Xc-F9L">
+        <scene sceneID="BJT-pW-adA">
             <objects>
-                <viewController storyboardIdentifier="vcAccount" id="XYc-ji-qQz" customClass="AccountViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Z4T-qv-OS6">
+                <tableViewController storyboardIdentifier="vcAccount" id="G5c-VY-FqF" customClass="AccountViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iLm-PT-gMO">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Cwm-wc-u7i"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7AE-EV-BdB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="61q-ak-YFT">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="G5c-VY-FqF" id="tzs-tv-Vd3"/>
+                            <outlet property="delegate" destination="G5c-VY-FqF" id="n3t-9k-LVF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="4VE-KR-vfc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NBE-of-5ZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="696" y="-925"/>
         </scene>

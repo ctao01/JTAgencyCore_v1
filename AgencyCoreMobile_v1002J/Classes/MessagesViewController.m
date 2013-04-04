@@ -40,7 +40,7 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Message";
     
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -67,10 +67,10 @@
 {
     
     MessageComposer * composer = [[MessageComposer alloc]init];
-    UINavigationController * ncComposer = [[UINavigationController alloc]initWithRootViewController:composer];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
-
-    [nav presentModalViewController:ncComposer animated:YES];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:composer];
+    [self presentViewController:nc animated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+    }];
 
 }
 

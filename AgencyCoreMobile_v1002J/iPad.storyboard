@@ -114,31 +114,40 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="l8j-7E-T3d" kind="relationship" relationship="rootViewController" id="sxW-td-AcP"/>
+                        <segue destination="ecC-K4-Tda" kind="relationship" relationship="rootViewController" id="tk3-8p-70o"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LqG-vb-N8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="504" y="1243"/>
         </scene>
-        <!--Account View Controller - Account-->
-        <scene sceneID="zk3-3L-mXg">
+        <!--Account View Controller-->
+        <scene sceneID="Y2U-Se-TGt">
             <objects>
-                <viewController storyboardIdentifier="vcAccount" id="l8j-7E-T3d" customClass="AccountViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="BpN-fW-7mx">
+                <tableViewController id="ecC-K4-Tda" customClass="AccountViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OYH-6i-eTT">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Account" id="BRG-Lc-GYC">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="4Pv-ub-aVW">
-                            <connections>
-                                <action selector="revealMenu:" destination="l8j-7E-T3d" id="oRy-aR-uWX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DA8-2g-8wD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ks7-Dz-z1T">
+                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ecC-K4-Tda" id="jXq-z6-vky"/>
+                            <outlet property="delegate" destination="ecC-K4-Tda" id="NY6-ug-6YE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="3t0-oo-m7a"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWx-ca-dx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1435" y="1243"/>
         </scene>
@@ -375,7 +384,7 @@
         </scene>
     </scenes>
     <classes>
-        <class className="AccountViewController" superclassName="UIViewController">
+        <class className="AccountViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
             <relationships>
                 <relationship kind="action" name="revealMenu:"/>

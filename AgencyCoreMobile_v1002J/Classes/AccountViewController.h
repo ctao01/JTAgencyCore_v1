@@ -11,7 +11,7 @@
 #import "MenuViewController.h"
 #import "NavigationTopViewController.h"
 
-@interface AccountViewController : UIViewController <UITableViewDataSource , UITableViewDelegate , UIAlertViewDelegate>
+@interface AccountViewController : UITableViewController < UIAlertViewDelegate>
 - (IBAction)revealMenu:(id)sender;
 
 @end

@@ -83,7 +83,14 @@
     self.navigationItem.leftBarButtonItem = cancelItem;
     self.navigationItem.rightBarButtonItem = sendItem;
 
-    tokenFieldView = [[TITokenFieldView alloc] initWithFrame:self.view.bounds];
+    CGRect bounds = self.view.frame;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication]statusBarOrientation];
+    
+    
+    if (orientation == UIInterfaceOrientationPortraitUpsideDown || orientation == UIInterfaceOrientationPortrait)
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y-20.0f, bounds.size.width, bounds.size.height)];
+    else if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x -20.0f, bounds.origin.y, bounds.size.height, bounds.size.width)];
     //	[tokenFieldView setSourceArray:[Names listOfNames]];
     [self.view addSubview:tokenFieldView];
     
@@ -111,32 +118,9 @@
     [tokenFieldView.contentView addSubview:messageView];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
-
-    UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem * trashItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
-    UIBarButtonItem * forwardItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:nil action:nil];
-    UIBarButtonItem * replyItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:nil action:nil];
-
-    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
-
-    nav.navToolBar.items = [NSArray arrayWithObjects:trashItem,spaceItem,forwardItem,spaceItem,replyItem,spaceItem,composeItem, nil];
-    
-    if (self.selectedContact != nil)
-    {
-        [tokenFieldView.tokenField addTokenWithTitle:self.selectedContact];
-        [tokenFieldView.tokenField layoutTokensAnimated:YES];
-    }
-}
-
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
-    nav.navToolBar.items = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -174,28 +158,28 @@
 
 - (void) cancelMessageComposer
 {
-    [self.navigationController popViewControllerAnimated:YES];
-//    [self.navigationController dismissModalViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void) showContactsPicker
 {
     ContactViewController * vc = [[ContactViewController alloc]initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:vc animated:NO];
-    vc.vcParent = self;
-    vc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    vc.navigationItem.title = @"Contacts";
+//    [self.navigationController pushViewController:vc animated:NO];
+//    vc.vcParent = self;
+//    vc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//    vc.navigationItem.title = @"Contacts";
+//    
+//    self.selectedContact = nil;
     
-    self.selectedContact = nil;
-    
-//    ACNavigationController * nc = [[ACNavigationController alloc]initWithRootViewController:vc];
-//    [self.navigationController presentViewController:nc animated:YES completion:^{
-//        nc.navigationBar.barStyle = UIBarStyleBlackOpaque;
-//        vc.navigationItem.title = @"Contacts";
-//        vc.vcParent = self;
-//        
-//        self.selectedContact = nil;
-//    }];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self.navigationController presentViewController:nc animated:YES completion:^{
+        nc.navigationBar.barStyle = UIBarStyleBlackOpaque;
+        vc.navigationItem.title = @"Contacts";
+        vc.vcParent = self;
+        
+        self.selectedContact = nil;
+    }];
 }
 
 

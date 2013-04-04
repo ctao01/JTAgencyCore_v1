@@ -16,7 +16,7 @@
 {
     NSDictionary * tempUser; 
 }
-@property (nonatomic , strong) UITableView * tableView;
+//@property (nonatomic , strong) UITableView * tableView;
 @end
 
 @implementation AccountViewController
@@ -50,16 +50,17 @@
 
 - (void) viewDidLoad
 {
-    CGRect frame = self.view.frame;
-    CGRect tvFrame;
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
-        tvFrame = CGRectMake(frame.origin.x, frame.origin.y , frame.size.width, frame.size.height);
-    else  tvFrame = CGRectMake(frame.origin.x, frame.origin.y - 20.0f, frame.size.width, frame.size.height);
-//    else if (iPAD_UI) tvFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-    self.tableView = [[UITableView alloc]initWithFrame:tvFrame style:UITableViewStylePlain];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    [super viewDidLoad];
+//    CGRect frame = self.view.frame;
+//    CGRect tvFrame;
+//    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+//    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+//        tvFrame = CGRectMake(frame.origin.x, frame.origin.y , frame.size.width, frame.size.height);
+//    else  tvFrame = CGRectMake(frame.origin.x, frame.origin.y - 20.0f, frame.size.width, frame.size.height);
+////    else if (iPAD_UI) tvFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+//    self.tableView = [[UITableView alloc]initWithFrame:tvFrame style:UITableViewStylePlain];
+//    self.tableView.dataSource = self;
+//    self.tableView.delegate = self;
     
     UIBarButtonItem * menuItem = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
     self.navigationItem.leftBarButtonItem = menuItem;
@@ -81,7 +82,7 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 44.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - UITableView DataSource 

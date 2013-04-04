@@ -40,15 +40,26 @@
         self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height - 20.0f);
     }
     [self.view addSubview:self.navToolBar];
-    
+
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 
+//    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
+    self.navToolBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height );
 }
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
+        NSLog(@"MessageNavgationViewController receiveTestNotification");
         self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
         self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height );
     }

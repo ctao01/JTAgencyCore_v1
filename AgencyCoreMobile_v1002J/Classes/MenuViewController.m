@@ -21,8 +21,24 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-    [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - 40.0f];
+    UIInterfaceOrientation oreientation = [[UIApplication sharedApplication]statusBarOrientation];
+    
+    if (iPHONE_UI)
+    {
+        if (oreientation == UIInterfaceOrientationPortrait || oreientation == UIInterfaceOrientationPortraitUpsideDown)
+            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - 40.0f];
+
+        else if (oreientation == UIInterfaceOrientationLandscapeLeft || oreientation == UIInterfaceOrientationLandscapeRight)
+            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.height - self.view.frame.size.height/2];
+    }
+    else if (iPAD_UI)
+    {
+        if (oreientation == UIInterfaceOrientationPortrait || oreientation == UIInterfaceOrientationPortraitUpsideDown)
+            [self.slidingViewController setAnchorRightRevealAmount:self.view.bounds.size.width - self.view.bounds.size.width/2];
+        
+        else if (oreientation == UIInterfaceOrientationLandscapeLeft || oreientation == UIInterfaceOrientationLandscapeRight)
+            [self.slidingViewController setAnchorRightRevealAmount:self.view.bounds.size.height - self.view.bounds.size.height/2];
+    }
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.tableView.backgroundColor = [UIColor colorWithRed:10.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
     UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 300.0f)];
@@ -86,23 +102,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  //NSString *identifier = [NSString stringWithFormat:@"%@Top", [self.menuItems objectAtIndex:indexPath.row]];
     NSString *identifier = [self.menuItems objectAtIndex:indexPath.row];
-    
-//    NSString *selectedName =  [self.menuItems objectAtIndex:indexPath.row] ;
-//    if([selectedName isEqualToString:@"Navigation"]) {
-//      identifier = [NSString stringWithFormat:@"%@Top", [self.menuItems objectAtIndex:indexPath.row]];
-//        
-//    };
-//    if([selectedName isEqualToString:@"logo"]) {
-//        identifier = @"Home";
-//        
-//    };
-
-    
-  UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
+    UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
   
-  [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
+    [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{
     CGRect frame = self.slidingViewController.topViewController.view.frame;
     self.slidingViewController.topViewController = newTopViewController;
     self.slidingViewController.topViewController.view.frame = frame;
