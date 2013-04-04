@@ -46,21 +46,17 @@
     [self.navigationController pushViewController:vcSettings animated:YES];
 }
 
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+        [self.tableView reloadData];
+}
+
 #pragma mark -
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-//    CGRect frame = self.view.frame;
-//    CGRect tvFrame;
-//    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-//    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
-//        tvFrame = CGRectMake(frame.origin.x, frame.origin.y , frame.size.width, frame.size.height);
-//    else  tvFrame = CGRectMake(frame.origin.x, frame.origin.y - 20.0f, frame.size.width, frame.size.height);
-////    else if (iPAD_UI) tvFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-//    self.tableView = [[UITableView alloc]initWithFrame:tvFrame style:UITableViewStylePlain];
-//    self.tableView.dataSource = self;
-//    self.tableView.delegate = self;
     
     UIBarButtonItem * menuItem = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
     self.navigationItem.leftBarButtonItem = menuItem;
@@ -68,10 +64,6 @@
     
     UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc]initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSettings) ];
     self.navigationItem.rightBarButtonItem = settingsItem;
-    
-//    LoginFieldView * view = [[LoginFieldView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 88.0f) andRadius:8.0f];
-//    self.tableView.tableHeaderView = view;
-    
     
     CGRect footerFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
     UIView * footerView = [[UIView alloc]initWithFrame:footerFrame];
@@ -81,8 +73,8 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 44.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    
-//    [self.view addSubview:self.tableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+
 }
 
 #pragma mark - UITableView DataSource 
@@ -94,77 +86,49 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (section == 0) return 4;
-//    else return 20;
     return 4;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * cell1ID = @"MyAccountCell";
-    static NSString * cell2ID = @"ActivityCell";
+//    static NSString * cell = @"MyAccountCell";
+    static NSString * iPhone_portrait_cell = @"iPhone_Portrait_Cell";
+    static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
+    static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
+    static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
+
+//    BasicCustomCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cell1ID];
+    BasicCustomCell * accountCell;
     
-    UITableViewCell * cell;
-    if (indexPath.section == 0)
-    {
-        BasicCustomCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cell1ID];
-        if (accountCell == nil)
-            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1ID];
-        
-        switch (indexPath.row) {
-            case 0:
-            {
-                accountCell.titleLabel.text = @"Name";
-                accountCell.dataLabel.text = @"Edem Jimbo";
-                accountCell.dataLabel.font = ACFontDefaultBold18;
-            }
-                break;
-            case 1:
-            {
-                accountCell.titleLabel.text = @"Agency";
-                accountCell.dataLabel.text = @"Sunny Bobo Agnecy";
-            }
-                break;
-            case 2:
-            {
-                accountCell.titleLabel.text = @"Address";
-                accountCell.dataLabel.text = @"8035 E R L Thomton Fwy # 147 Dallas,Texas 76006";
-                accountCell.dataLabel.lineBreakMode = NSLineBreakByWordWrapping;
-                accountCell.dataLabel.numberOfLines = 0.0f;
-            }
-                break;
-            case 3:
-            {
-                accountCell.titleLabel.text = @"Phone";
-                accountCell.dataLabel.text = @"(214)660-4400";
-            }
-                break;
-                
-            default:
-                break;
-        }
-        accountCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell = (UITableViewCell*)accountCell;
-    }
-    else
-    {
-        UITableViewCell * cell2 = [tableView dequeueReusableCellWithIdentifier:cell2ID];
-        if (cell2 == nil)
-            cell2 = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell2ID];
-        cell2.textLabel.text = @"Recent Activities";
-        cell = (UITableViewCell*)cell2;
-    }
-    /*
-    BasicCustomCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    if (iPHONE_UI && UserInterface_Portrait)
+        accountCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
+    else if (iPHONE_UI && UserInterface_Landscape)
+        accountCell =  [tableView dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
+    else if (iPAD_UI && UserInterface_Portrait)
+        accountCell = [tableView dequeueReusableCellWithIdentifier:iPad_portrait_cell];
+    else if (iPAD_UI && UserInterface_Landscape)
+        accountCell = [tableView dequeueReusableCellWithIdentifier:iPad_landscape_cell];
+    
     if (accountCell == nil)
-        accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    {
+        if (iPHONE_UI && UserInterface_Portrait)
+            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+        else if (iPHONE_UI && UserInterface_Landscape)
+            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+        else if (iPAD_UI && UserInterface_Portrait)
+            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+        else if (iPAD_UI && UserInterface_Landscape)
+            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+        else
+            accountCell = nil;
+    }
     
     switch (indexPath.row) {
         case 0:
         {
             accountCell.titleLabel.text = @"Name";
             accountCell.dataLabel.text = @"Edem Jimbo";
-            accountCell.dataLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0f];
+            accountCell.dataLabel.font = ACFontDefaultBold18;
         }
             break;
         case 1:
@@ -192,8 +156,7 @@
             break;
     }
     accountCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return accountCell;*/
-    return cell;
+    return accountCell;
 }
 
 #pragma mark - UITableView Delegate

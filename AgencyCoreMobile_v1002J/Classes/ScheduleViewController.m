@@ -8,7 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "CalendarMonthViewController.h"
-
+#import "ACNavigationController.h"
 @interface ScheduleViewController ()
 
 @end
@@ -35,10 +35,11 @@
 - (void) gotoMontlyView
 {
     CalendarMonthViewController * cvc = [[CalendarMonthViewController alloc]initWithSunday:YES];
-    UINavigationController * cnv = [[UINavigationController alloc]initWithRootViewController:cvc];
+    ACNavigationController * cnv = [[ACNavigationController alloc]initWithRootViewController:cvc];
     cnv.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.navigationController presentViewController:cnv animated:YES completion:^{
-        
+        [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+
     }];
 }
 
@@ -49,7 +50,7 @@
     [super viewDidLoad];
     
     UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithTitle:@"Cal" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
-    if (iPHONE_UI) self.navigationItem.rightBarButtonItem = calItem;
+    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
     self.navigationItem.title = @"My Schedule Tasks";
 }
 

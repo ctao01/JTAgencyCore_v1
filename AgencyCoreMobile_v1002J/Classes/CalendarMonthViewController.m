@@ -35,12 +35,6 @@
 	[self.monthView selectDate:[NSDate date]];
     self.view.backgroundColor = [UIColor clearColor];
 }
-
-- (BOOL) shouldAutorotate
-{
-    return NO;
-}
-
 #pragma mark -
 
 - (void) backToScheduleList
@@ -57,7 +51,6 @@
 	return self.dataArray;
 }
 - (void) calendarMonthView:(TKCalendarMonthView*)monthView didSelectDate:(NSDate*)date{
-	NSLog(@"Date Selected: %@",date);
 	[self.tableView reloadData];
 }
 - (void) calendarMonthView:(TKCalendarMonthView*)mv monthDidChange:(NSDate*)d animated:(BOOL)animated{
@@ -95,10 +88,7 @@
 	// this function sets up dataArray & dataDictionary
 	// dataArray: has boolean markers for each day to pass to the calendar view (via the delegate function)
 	// dataDictionary: has items that are associated with date keys (for tableview)
-	
-	
-	NSLog(@"Delegate Range: %@ %@ %d",start,end,[start daysBetweenDate:end]);
-	
+
 	self.dataArray = [NSMutableArray array];
 	self.dataDictionary = [NSMutableDictionary dictionary];
 	

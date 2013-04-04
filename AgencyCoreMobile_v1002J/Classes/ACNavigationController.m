@@ -16,30 +16,23 @@
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
-    self = [super init];
+    self = [super initWithRootViewController:rootViewController];
     if (self) {
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-    {
-        NSLog(@"YES");
-        [self shouldAutorotate];
-    }
-    else
-        NSLog(@"NO");
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    if (DEVICE_VERSION < 6.0f) [self shouldAutorotateToInterfaceOrientation:UIInterfaceOrientationPortrait];
+    else [self shouldAutorotate];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
@@ -49,10 +42,8 @@
 
 - (BOOL) shouldAutorotate
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Rotation_Notification"  object:self];
-//    return YES;
-    if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight) return YES;
-    else return NO;
+    NSLog(@"shouldAutorotate");
+    return NO;
 }
 
 - (NSUInteger) supportedInterfaceOrientations
