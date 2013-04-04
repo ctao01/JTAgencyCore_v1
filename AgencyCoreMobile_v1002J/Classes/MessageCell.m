@@ -41,7 +41,7 @@
         [self.subjectLabel  setFont:ACFontDefault14];
         [self.contentView addSubview:self.subjectLabel];
         
-        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + 18 , self.senderLabel.frame.size.width, 40.0f)];
+        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + 18 , innerRect.size.width, 40.0f)];
 //        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.senderLabel.frame.size.width, 40.0f)];
 
         [self.messageLabel  setFont:ACFontDefault12];

@@ -11,6 +11,7 @@
 #import "LogInViewController.h"
 #import "MenuViewController.h"
 #import "SettingViewController.h"
+#import "ACNavigationController.h"
 
 @interface AccountViewController ()
 {
@@ -43,7 +44,10 @@
 - (void) gotoSettings
 {
     SettingViewController * vcSettings = [[SettingViewController alloc]initWithStyle:UITableViewStyleGrouped];
+//    ACNavigationController * ncSettings = [[ACNavigationController alloc]initWithRootViewController:vcSettings];
+    
     [self.navigationController pushViewController:vcSettings animated:YES];
+//    [self.navigationController presentViewController:ncSettings animated:YES completion:^{}];
 }
 
 - (void) receiveTestNotification:(NSNotification*)notification
@@ -158,19 +162,5 @@
     accountCell.selectionStyle = UITableViewCellSelectionStyleNone;
     return accountCell;
 }
-
-#pragma mark - UITableView Delegate
-
-//- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 1) return @"Recent Activities";
-//    else return nil;
-//}
-//
-//- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (indexPath.section == 1) return 60.0f;
-//    else return 44.0f;
-//}
 
 @end

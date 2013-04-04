@@ -57,9 +57,7 @@
 
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"Rotation_Notification" object:nil];
-
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
     [super viewDidLoad];
 
     self.navigationItem.title = @"New Message";
@@ -84,12 +82,9 @@
     self.navigationItem.rightBarButtonItem = sendItem;
 
     CGRect bounds = self.view.frame;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication]statusBarOrientation];
-    
-    
-    if (orientation == UIInterfaceOrientationPortraitUpsideDown || orientation == UIInterfaceOrientationPortrait)
+    if (UserInterface_Portrait)
         tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y-20.0f, bounds.size.width, bounds.size.height)];
-    else if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+    else if (UserInterface_Landscape)
         tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x -20.0f, bounds.origin.y, bounds.size.height, bounds.size.width)];
     //	[tokenFieldView setSourceArray:[Names listOfNames]];
     [self.view addSubview:tokenFieldView];
@@ -118,6 +113,17 @@
     [tokenFieldView.contentView addSubview:messageView];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.selectedContact != nil)
+    {
+        [tokenFieldView.tokenField addTokenWithTitle:self.selectedContact];
+        [tokenFieldView.tokenField layoutTokensAnimated:YES];
+    }
+
+}
+
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -131,16 +137,22 @@
 
 #pragma mark - UINotification Method
 
-//- (void) receiveTestNotification:(NSNotification*)notification
-//{
-//    if ([[notification name]isEqualToString:@"Rotation_Notification" ])
-//    {        
-////        if (self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-////            NSLog(@"YES");
-////        else
-////            NSLog(@"NO");
-//    }
-//}
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification"])
+    {
+        NSLog(@"TestNotification:%@",NSStringFromCGRect(self.view.frame));
+        [tokenFieldView setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width,self.view.frame.size.height)];
+        CGRect contentBounds = tokenFieldView.contentView.bounds;
+        [subjectField setFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
+        [messageView setFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
+
+//        if (UserInterface_Landscape)
+//        else if (UserInterface_Portrait)
+//            [tokenFieldView setFrame:CGRectMake(0.0f, 0.0f, tokenFieldView.frame.size.width  , tokenFieldView.frame.size.height)];
+
+    }
+}
 
 - (void)keyboardWillShow:(NSNotification *)notification {
 	
@@ -165,12 +177,6 @@
 - (void) showContactsPicker
 {
     ContactViewController * vc = [[ContactViewController alloc]initWithStyle:UITableViewStylePlain];
-//    [self.navigationController pushViewController:vc animated:NO];
-//    vc.vcParent = self;
-//    vc.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-//    vc.navigationItem.title = @"Contacts";
-//    
-//    self.selectedContact = nil;
     
     UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self.navigationController presentViewController:nc animated:YES completion:^{

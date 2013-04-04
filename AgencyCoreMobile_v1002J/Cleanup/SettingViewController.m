@@ -37,16 +37,28 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+
 //    UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 32.0f)];
 //    self.tableView.tableHeaderView = headerView;
-    self.navigationItem.title = @"Settings";
     
-    [super viewDidLoad];
+//    UIBarButtonItem * accountItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoAccountView)];
+//    self.navigationItem.rightBarButtonItem = accountItem;
+    self.navigationItem.title = @"Settings";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 
+
+- (void) gotoAccountView
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 #pragma mark - Table view data source
@@ -181,8 +193,5 @@
         [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
     }
 }
-
-
-
 
 @end
