@@ -7,7 +7,7 @@
 //
 
 #import "ProfileView.h"
-#import "BasicCustomCell.h"
+#import "BasicOneLineCell.h"
 
 @implementation ProfileView
 
@@ -36,9 +36,9 @@
 {
     static NSString * cell1ID = @"MyAccountCell";
     
-    BasicCustomCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cell1ID];
+    BasicOneLineCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cell1ID];
     if (accountCell == nil)
-        accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1ID];
+        accountCell = [[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell1ID];
     
     switch (indexPath.row) {
         case 0:

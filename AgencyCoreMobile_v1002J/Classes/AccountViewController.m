@@ -7,7 +7,7 @@
 //
 
 #import "AccountViewController.h"
-#import "BasicCustomCell.h"
+#import "BasicOneLineCell.h"
 #import "LogInViewController.h"
 #import "MenuViewController.h"
 #import "SettingViewController.h"
@@ -102,7 +102,7 @@
     static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
 
 //    BasicCustomCell * accountCell = [tableView dequeueReusableCellWithIdentifier:cell1ID];
-    BasicCustomCell * accountCell;
+    BasicOneLineCell * accountCell;
     
     if (iPHONE_UI && UserInterface_Portrait)
         accountCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
@@ -116,13 +116,13 @@
     if (accountCell == nil)
     {
         if (iPHONE_UI && UserInterface_Portrait)
-            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+            accountCell = [[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
         else if (iPHONE_UI && UserInterface_Landscape)
-            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+            accountCell = [[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
         else if (iPAD_UI && UserInterface_Portrait)
-            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+            accountCell = [[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
         else if (iPAD_UI && UserInterface_Landscape)
-            accountCell = [[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+            accountCell = [[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
         else
             accountCell = nil;
     }

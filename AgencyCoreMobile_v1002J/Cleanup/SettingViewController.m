@@ -7,7 +7,7 @@
 //
 
 #import "SettingViewController.h"
-#import "BasicCustomCell.h"
+#import "BasicOneLineCell.h"
 //#import "PasscodeSettingViewController.h"
 #import "PasscodeSettingsViewController.h"
 #import "KKPasscodeLock.h"
