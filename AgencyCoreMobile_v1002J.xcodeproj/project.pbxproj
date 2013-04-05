@@ -10,7 +10,7 @@
 		3D0D0AD9170A273700EE110D /* agencycore_icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0AD8170A273700EE110D /* agencycore_icon_iPad.png */; };
 		3D0D0ADB170A273B00EE110D /* agencycore_icon_iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */; };
 		3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B09170C686400EE110D /* MenuViewController.m */; };
-		3D0D0B0D170CD0F900EE110D /* ACNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */; };
+		3D0D0B0D170CD0F900EE110D /* NavigationControllerWithoutRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -18,6 +18,7 @@
 		3D46C40B1700D6DA00E4A112 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D46C40A1700D6D900E4A112 /* QuartzCore.framework */; };
 		3D46C40F1700E21700E4A112 /* LockScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C40E1700E21700E4A112 /* LockScreenViewController.m */; };
 		3D46C4121700E44900E4A112 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4111700E44900E4A112 /* RootViewController.m */; };
+		3D49002C170F0A5200D46134 /* PasscodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D49002B170F0A5200D46134 /* PasscodeSettingsViewController.m */; };
 		3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB4D170DB81E00AE500F /* RootNavigationController.m */; };
 		3D53DB54170E18D000AE500F /* UINavigationController+Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */; };
@@ -91,7 +92,6 @@
 		3DFD31461703825F001536D0 /* KKPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD31411703825E001536D0 /* KKPasscodeViewController.m */; };
 		3DFD314817038299001536D0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD314717038299001536D0 /* AudioToolbox.framework */; };
 		3DFD314A1703829E001536D0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DFD31491703829E001536D0 /* Security.framework */; };
-		3DFD314D1703A2ED001536D0 /* PasscodeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD314C1703A2EC001536D0 /* PasscodeSettingViewController.m */; };
 		3DFD32111705D2DA001536D0 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD32101705D2DA001536D0 /* ProfileView.m */; };
 		3DFD32141705D8D8001536D0 /* Account2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD32131705D8D7001536D0 /* Account2ViewController.m */; };
 		3DFD321A1705EC63001536D0 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFD32191705EC63001536D0 /* ActivityCell.m */; };
@@ -164,8 +164,8 @@
 		3D0D0ADC170A2B6100EE110D /* AgecyCoreGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AgecyCoreGlobal.h; sourceTree = "<group>"; };
 		3D0D0B08170C685800EE110D /* MessageSubjectField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectField.h; path = Classes/MessageSubjectField.h; sourceTree = "<group>"; };
 		3D0D0B09170C686400EE110D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Classes/MenuViewController.m; sourceTree = "<group>"; };
-		3D0D0B0B170CD0F700EE110D /* ACNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACNavigationController.h; path = Classes/ACNavigationController.h; sourceTree = "<group>"; };
-		3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACNavigationController.m; path = Classes/ACNavigationController.m; sourceTree = "<group>"; };
+		3D0D0B0B170CD0F700EE110D /* NavigationControllerWithoutRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationControllerWithoutRotation.h; path = Classes/NavigationControllerWithoutRotation.h; sourceTree = "<group>"; };
+		3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationControllerWithoutRotation.m; path = Classes/NavigationControllerWithoutRotation.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -177,6 +177,8 @@
 		3D46C40E1700E21700E4A112 /* LockScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LockScreenViewController.m; path = Classes/LockScreenViewController.m; sourceTree = "<group>"; };
 		3D46C4101700E44900E4A112 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = Cleanup/RootViewController.h; sourceTree = "<group>"; };
 		3D46C4111700E44900E4A112 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Cleanup/RootViewController.m; sourceTree = "<group>"; };
+		3D49002A170F0A5200D46134 /* PasscodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeSettingsViewController.h; path = Classes/PasscodeSettingsViewController.h; sourceTree = "<group>"; };
+		3D49002B170F0A5200D46134 /* PasscodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeSettingsViewController.m; path = Classes/PasscodeSettingsViewController.m; sourceTree = "<group>"; };
 		3D53DB4C170DB81E00AE500F /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/RootNavigationController.h; sourceTree = "<group>"; };
 		3D53DB4D170DB81E00AE500F /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootNavigationController.m; path = Classes/RootNavigationController.m; sourceTree = "<group>"; };
 		3D53DB52170E18D000AE500F /* UINavigationController+Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Rotation.h"; path = "Categories/UINavigationController+Rotation.h"; sourceTree = "<group>"; };
@@ -285,8 +287,6 @@
 		3DFD31411703825E001536D0 /* KKPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPasscodeViewController.m; sourceTree = "<group>"; };
 		3DFD314717038299001536D0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3DFD31491703829E001536D0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		3DFD314B1703A2EC001536D0 /* PasscodeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeSettingViewController.h; path = Classes/PasscodeSettingViewController.h; sourceTree = "<group>"; };
-		3DFD314C1703A2EC001536D0 /* PasscodeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeSettingViewController.m; path = Classes/PasscodeSettingViewController.m; sourceTree = "<group>"; };
 		3DFD320F1705D2DA001536D0 /* ProfileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileView.h; path = Classes/ProfileView.h; sourceTree = "<group>"; };
 		3DFD32101705D2DA001536D0 /* ProfileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileView.m; path = Classes/ProfileView.m; sourceTree = "<group>"; };
 		3DFD32121705D8D6001536D0 /* Account2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Account2ViewController.h; path = Classes/Account2ViewController.h; sourceTree = "<group>"; };
@@ -421,8 +421,8 @@
 		3D46C40C1700DF8F00E4A112 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				3D0D0B09170C686400EE110D /* MenuViewController.m */,
 				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
+				3D0D0B09170C686400EE110D /* MenuViewController.m */,
 				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
 				3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */,
 				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
@@ -431,8 +431,8 @@
 				3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */,
 				3D46C4101700E44900E4A112 /* RootViewController.h */,
 				3D46C4111700E44900E4A112 /* RootViewController.m */,
-				3D0D0B0B170CD0F700EE110D /* ACNavigationController.h */,
-				3D0D0B0C170CD0F800EE110D /* ACNavigationController.m */,
+				3D0D0B0B170CD0F700EE110D /* NavigationControllerWithoutRotation.h */,
+				3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */,
 				3D53DB4C170DB81E00AE500F /* RootNavigationController.h */,
 				3D53DB4D170DB81E00AE500F /* RootNavigationController.m */,
 			);
@@ -448,8 +448,6 @@
 				3DFD313617037BB2001536D0 /* SettingViewController.m */,
 				3D768D4316FA1E9F0000165A /* LogInViewController.h */,
 				3D768D4416FA1E9F0000165A /* LogInViewController.m */,
-				3DFD314B1703A2EC001536D0 /* PasscodeSettingViewController.h */,
-				3DFD314C1703A2EC001536D0 /* PasscodeSettingViewController.m */,
 				3DFD32121705D8D6001536D0 /* Account2ViewController.h */,
 				3DFD32131705D8D7001536D0 /* Account2ViewController.m */,
 			);
@@ -716,6 +714,8 @@
 			children = (
 				3D46C40D1700E21700E4A112 /* LockScreenViewController.h */,
 				3D46C40E1700E21700E4A112 /* LockScreenViewController.m */,
+				3D49002A170F0A5200D46134 /* PasscodeSettingsViewController.h */,
+				3D49002B170F0A5200D46134 /* PasscodeSettingsViewController.m */,
 			);
 			name = PinPadScreen;
 			sourceTree = "<group>";
@@ -1016,7 +1016,6 @@
 				3DFD31441703825F001536D0 /* KKPasscodeLock.m in Sources */,
 				3DFD31451703825F001536D0 /* KKPasscodeSettingsViewController.m in Sources */,
 				3DFD31461703825F001536D0 /* KKPasscodeViewController.m in Sources */,
-				3DFD314D1703A2ED001536D0 /* PasscodeSettingViewController.m in Sources */,
 				3DFD32111705D2DA001536D0 /* ProfileView.m in Sources */,
 				3DFD32141705D8D8001536D0 /* Account2ViewController.m in Sources */,
 				3DFD321A1705EC63001536D0 /* ActivityCell.m in Sources */,
@@ -1065,9 +1064,10 @@
 				3DFD32A31705FE36001536D0 /* UIView+TKCategory.m in Sources */,
 				3DFD32A71705FED0001536D0 /* CalendarMonthViewController.m in Sources */,
 				3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */,
-				3D0D0B0D170CD0F900EE110D /* ACNavigationController.m in Sources */,
+				3D0D0B0D170CD0F900EE110D /* NavigationControllerWithoutRotation.m in Sources */,
 				3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */,
 				3D53DB54170E18D000AE500F /* UINavigationController+Rotation.m in Sources */,
+				3D49002C170F0A5200D46134 /* PasscodeSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
