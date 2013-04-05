@@ -19,6 +19,11 @@
 		3D46C40F1700E21700E4A112 /* LockScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C40E1700E21700E4A112 /* LockScreenViewController.m */; };
 		3D46C4121700E44900E4A112 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4111700E44900E4A112 /* RootViewController.m */; };
 		3D49002C170F0A5200D46134 /* PasscodeSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D49002B170F0A5200D46134 /* PasscodeSettingsViewController.m */; };
+		3D490030170F56D000D46134 /* BasicTwoLinesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D49002F170F56D000D46134 /* BasicTwoLinesCell.m */; };
+		3D490034170F760400D46134 /* axxess_logo_white_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D490032170F760300D46134 /* axxess_logo_white_iphone.png */; };
+		3D490035170F760400D46134 /* axxess_logo_white_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D490033170F760300D46134 /* axxess_logo_white_iphone@2x.png */; };
+		3D490038170F7C9300D46134 /* axxess_logo_white_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D490036170F7C9300D46134 /* axxess_logo_white_ipad.png */; };
+		3D490039170F7C9300D46134 /* axxess_logo_white_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D490037170F7C9300D46134 /* axxess_logo_white_ipad@2x.png */; };
 		3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB4D170DB81E00AE500F /* RootNavigationController.m */; };
 		3D53DB54170E18D000AE500F /* UINavigationController+Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */; };
@@ -47,7 +52,7 @@
 		3D768D1516FA1E040000165A /* btn_Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D768D1116FA1E040000165A /* btn_Red.png */; };
 		3D768D1616FA1E040000165A /* btn_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D768D1216FA1E040000165A /* btn_Red@2x.png */; };
 		3D768D3316FA1E6F0000165A /* LoginFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3216FA1E6F0000165A /* LoginFieldView.m */; };
-		3D768D3A16FA1E830000165A /* BasicCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3516FA1E830000165A /* BasicCustomCell.m */; };
+		3D768D3A16FA1E830000165A /* BasicOneLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3516FA1E830000165A /* BasicOneLineCell.m */; };
 		3D768D3B16FA1E830000165A /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3716FA1E830000165A /* MessageCell.m */; };
 		3D768D3C16FA1E830000165A /* MessageSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3916FA1E830000165A /* MessageSubjectCell.m */; };
 		3D768D5516FA1E9F0000165A /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3E16FA1E9F0000165A /* AccountViewController.m */; };
@@ -55,7 +60,7 @@
 		3D768D5716FA1E9F0000165A /* InitialSlidingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */; };
 		3D768D5816FA1E9F0000165A /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4416FA1E9F0000165A /* LogInViewController.m */; };
 		3D768D5A16FA1E9F0000165A /* MessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */; };
-		3D768D5B16FA1E9F0000165A /* MessageNavgationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4A16FA1E9F0000165A /* MessageNavgationViewController.m */; };
+		3D768D5B16FA1E9F0000165A /* NavigationToolBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4A16FA1E9F0000165A /* NavigationToolBarController.m */; };
 		3D768D5C16FA1E9F0000165A /* MessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4C16FA1E9F0000165A /* MessagesViewController.m */; };
 		3D768D5D16FA1E9F0000165A /* NavigationTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */; };
 		3D768D5E16FA1E9F0000165A /* SampleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D5016FA1E9F0000165A /* SampleTableViewController.m */; };
@@ -179,6 +184,12 @@
 		3D46C4111700E44900E4A112 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = Cleanup/RootViewController.m; sourceTree = "<group>"; };
 		3D49002A170F0A5200D46134 /* PasscodeSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeSettingsViewController.h; path = Classes/PasscodeSettingsViewController.h; sourceTree = "<group>"; };
 		3D49002B170F0A5200D46134 /* PasscodeSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeSettingsViewController.m; path = Classes/PasscodeSettingsViewController.m; sourceTree = "<group>"; };
+		3D49002E170F56D000D46134 /* BasicTwoLinesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicTwoLinesCell.h; path = Classes/BasicTwoLinesCell.h; sourceTree = "<group>"; };
+		3D49002F170F56D000D46134 /* BasicTwoLinesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicTwoLinesCell.m; path = Classes/BasicTwoLinesCell.m; sourceTree = "<group>"; };
+		3D490032170F760300D46134 /* axxess_logo_white_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = axxess_logo_white_iphone.png; path = Assets/axxess_logo_white_iphone.png; sourceTree = "<group>"; };
+		3D490033170F760300D46134 /* axxess_logo_white_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "axxess_logo_white_iphone@2x.png"; path = "Assets/axxess_logo_white_iphone@2x.png"; sourceTree = "<group>"; };
+		3D490036170F7C9300D46134 /* axxess_logo_white_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = axxess_logo_white_ipad.png; path = Assets/axxess_logo_white_ipad.png; sourceTree = "<group>"; };
+		3D490037170F7C9300D46134 /* axxess_logo_white_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "axxess_logo_white_ipad@2x.png"; path = "Assets/axxess_logo_white_ipad@2x.png"; sourceTree = "<group>"; };
 		3D53DB4C170DB81E00AE500F /* RootNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootNavigationController.h; path = Classes/RootNavigationController.h; sourceTree = "<group>"; };
 		3D53DB4D170DB81E00AE500F /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootNavigationController.m; path = Classes/RootNavigationController.m; sourceTree = "<group>"; };
 		3D53DB52170E18D000AE500F /* UINavigationController+Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Rotation.h"; path = "Categories/UINavigationController+Rotation.h"; sourceTree = "<group>"; };
@@ -218,8 +229,8 @@
 		3D768D1216FA1E040000165A /* btn_Red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_Red@2x.png"; path = "Assets/btn_Red@2x.png"; sourceTree = "<group>"; };
 		3D768D3116FA1E6F0000165A /* LoginFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginFieldView.h; path = Classes/LoginFieldView.h; sourceTree = "<group>"; };
 		3D768D3216FA1E6F0000165A /* LoginFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginFieldView.m; path = Classes/LoginFieldView.m; sourceTree = "<group>"; };
-		3D768D3416FA1E830000165A /* BasicCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicCustomCell.h; path = Classes/BasicCustomCell.h; sourceTree = "<group>"; };
-		3D768D3516FA1E830000165A /* BasicCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicCustomCell.m; path = Classes/BasicCustomCell.m; sourceTree = "<group>"; };
+		3D768D3416FA1E830000165A /* BasicOneLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicOneLineCell.h; path = Classes/BasicOneLineCell.h; sourceTree = "<group>"; };
+		3D768D3516FA1E830000165A /* BasicOneLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicOneLineCell.m; path = Classes/BasicOneLineCell.m; sourceTree = "<group>"; };
 		3D768D3616FA1E830000165A /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = Classes/MessageCell.h; sourceTree = "<group>"; };
 		3D768D3716FA1E830000165A /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = Classes/MessageCell.m; sourceTree = "<group>"; };
 		3D768D3816FA1E830000165A /* MessageSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectCell.h; path = Classes/MessageSubjectCell.h; sourceTree = "<group>"; };
@@ -235,8 +246,8 @@
 		3D768D4516FA1E9F0000165A /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Classes/MenuViewController.h; sourceTree = "<group>"; };
 		3D768D4716FA1E9F0000165A /* MessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageDetailViewController.h; path = Classes/MessageDetailViewController.h; sourceTree = "<group>"; };
 		3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageDetailViewController.m; path = Classes/MessageDetailViewController.m; sourceTree = "<group>"; };
-		3D768D4916FA1E9F0000165A /* MessageNavgationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageNavgationViewController.h; path = Classes/MessageNavgationViewController.h; sourceTree = "<group>"; };
-		3D768D4A16FA1E9F0000165A /* MessageNavgationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageNavgationViewController.m; path = Classes/MessageNavgationViewController.m; sourceTree = "<group>"; };
+		3D768D4916FA1E9F0000165A /* NavigationToolBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationToolBarController.h; path = Classes/NavigationToolBarController.h; sourceTree = "<group>"; };
+		3D768D4A16FA1E9F0000165A /* NavigationToolBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationToolBarController.m; path = Classes/NavigationToolBarController.m; sourceTree = "<group>"; };
 		3D768D4B16FA1E9F0000165A /* MessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesViewController.h; path = Classes/MessagesViewController.h; sourceTree = "<group>"; };
 		3D768D4C16FA1E9F0000165A /* MessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesViewController.m; path = Classes/MessagesViewController.m; sourceTree = "<group>"; };
 		3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationTopViewController.h; path = Classes/NavigationTopViewController.h; sourceTree = "<group>"; };
@@ -423,16 +434,10 @@
 			children = (
 				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
 				3D0D0B09170C686400EE110D /* MenuViewController.m */,
-				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
-				3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */,
 				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
 				3D768D4016FA1E9F0000165A /* HomeViewController.m */,
 				3D768D4116FA1E9F0000165A /* InitialSlidingViewController.h */,
 				3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */,
-				3D46C4101700E44900E4A112 /* RootViewController.h */,
-				3D46C4111700E44900E4A112 /* RootViewController.m */,
-				3D0D0B0B170CD0F700EE110D /* NavigationControllerWithoutRotation.h */,
-				3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */,
 				3D53DB4C170DB81E00AE500F /* RootNavigationController.h */,
 				3D53DB4D170DB81E00AE500F /* RootNavigationController.m */,
 			);
@@ -452,6 +457,28 @@
 				3DFD32131705D8D7001536D0 /* Account2ViewController.m */,
 			);
 			name = Account;
+			sourceTree = "<group>";
+		};
+		3D49002D170F536E00D46134 /* Pending */ = {
+			isa = PBXGroup;
+			children = (
+				3D46C4101700E44900E4A112 /* RootViewController.h */,
+				3D46C4111700E44900E4A112 /* RootViewController.m */,
+			);
+			name = Pending;
+			sourceTree = "<group>";
+		};
+		3D490031170F5B7400D46134 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
+				3D768D4E16FA1E9F0000165A /* NavigationTopViewController.m */,
+				3D0D0B0B170CD0F700EE110D /* NavigationControllerWithoutRotation.h */,
+				3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */,
+				3D768D4916FA1E9F0000165A /* NavigationToolBarController.h */,
+				3D768D4A16FA1E9F0000165A /* NavigationToolBarController.m */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
@@ -546,6 +573,8 @@
 		3D768D0516FA1CE30000165A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3D490031170F5B7400D46134 /* Navigation */,
+				3D49002D170F536E00D46134 /* Pending */,
 				3D768D3016FA1E500000165A /* Views */,
 				3D768D2F16FA1E430000165A /* Cells */,
 				3D768D2E16FA1E3C0000165A /* ViewControllers */,
@@ -599,6 +628,10 @@
 		3D768D0A16FA1DBD0000165A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3D490036170F7C9300D46134 /* axxess_logo_white_ipad.png */,
+				3D490037170F7C9300D46134 /* axxess_logo_white_ipad@2x.png */,
+				3D490032170F760300D46134 /* axxess_logo_white_iphone.png */,
+				3D490033170F760300D46134 /* axxess_logo_white_iphone@2x.png */,
 				3DBE75F916FB5B8F001755FE /* menu_account@2x.png */,
 				3DBE75FA16FB5B8F001755FE /* menu_home@2x.png */,
 				3DBE75FB16FB5B8F001755FE /* menu_messages@2x.png */,
@@ -648,8 +681,10 @@
 		3D768D2F16FA1E430000165A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				3D768D3416FA1E830000165A /* BasicCustomCell.h */,
-				3D768D3516FA1E830000165A /* BasicCustomCell.m */,
+				3D768D3416FA1E830000165A /* BasicOneLineCell.h */,
+				3D768D3516FA1E830000165A /* BasicOneLineCell.m */,
+				3D49002E170F56D000D46134 /* BasicTwoLinesCell.h */,
+				3D49002F170F56D000D46134 /* BasicTwoLinesCell.m */,
 				3D768D3616FA1E830000165A /* MessageCell.h */,
 				3D768D3716FA1E830000165A /* MessageCell.m */,
 				3D768D3816FA1E830000165A /* MessageSubjectCell.h */,
@@ -692,8 +727,6 @@
 				3DBE75F016FB5820001755FE /* MessageComposer.m */,
 				3D768D4716FA1E9F0000165A /* MessageDetailViewController.h */,
 				3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */,
-				3D768D4916FA1E9F0000165A /* MessageNavgationViewController.h */,
-				3D768D4A16FA1E9F0000165A /* MessageNavgationViewController.m */,
 				3D768D4B16FA1E9F0000165A /* MessagesViewController.h */,
 				3D768D4C16FA1E9F0000165A /* MessagesViewController.m */,
 			);
@@ -973,6 +1006,10 @@
 				3DFD32C6170601E2001536D0 /* timeline@2x.png in Resources */,
 				3D0D0AD9170A273700EE110D /* agencycore_icon_iPad.png in Resources */,
 				3D0D0ADB170A273B00EE110D /* agencycore_icon_iPad@2x.png in Resources */,
+				3D490034170F760400D46134 /* axxess_logo_white_iphone.png in Resources */,
+				3D490035170F760400D46134 /* axxess_logo_white_iphone@2x.png in Resources */,
+				3D490038170F7C9300D46134 /* axxess_logo_white_ipad.png in Resources */,
+				3D490039170F7C9300D46134 /* axxess_logo_white_ipad@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,7 +1023,7 @@
 				3D768CE816FA1C750000165A /* main.m in Sources */,
 				3D768CEC16FA1C750000165A /* AppDelegate.m in Sources */,
 				3D768D3316FA1E6F0000165A /* LoginFieldView.m in Sources */,
-				3D768D3A16FA1E830000165A /* BasicCustomCell.m in Sources */,
+				3D768D3A16FA1E830000165A /* BasicOneLineCell.m in Sources */,
 				3D768D3B16FA1E830000165A /* MessageCell.m in Sources */,
 				3D768D3C16FA1E830000165A /* MessageSubjectCell.m in Sources */,
 				3D768D5516FA1E9F0000165A /* AccountViewController.m in Sources */,
@@ -994,7 +1031,7 @@
 				3D768D5716FA1E9F0000165A /* InitialSlidingViewController.m in Sources */,
 				3D768D5816FA1E9F0000165A /* LogInViewController.m in Sources */,
 				3D768D5A16FA1E9F0000165A /* MessageDetailViewController.m in Sources */,
-				3D768D5B16FA1E9F0000165A /* MessageNavgationViewController.m in Sources */,
+				3D768D5B16FA1E9F0000165A /* NavigationToolBarController.m in Sources */,
 				3D768D5C16FA1E9F0000165A /* MessagesViewController.m in Sources */,
 				3D768D5D16FA1E9F0000165A /* NavigationTopViewController.m in Sources */,
 				3D768D5E16FA1E9F0000165A /* SampleTableViewController.m in Sources */,
@@ -1068,6 +1105,7 @@
 				3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */,
 				3D53DB54170E18D000AE500F /* UINavigationController+Rotation.m in Sources */,
 				3D49002C170F0A5200D46134 /* PasscodeSettingsViewController.m in Sources */,
+				3D490030170F56D000D46134 /* BasicTwoLinesCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1435" y="2399"/>
         </scene>
-        <!--Message Navgation View Controller-->
+        <!--Navigation Tool Bar Controller-->
         <scene sceneID="9WO-aH-5Qf">
             <objects>
-                <navigationController storyboardIdentifier="Messages" definesPresentationContext="YES" id="cIZ-lN-1Dn" customClass="MessageNavgationViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Messages" definesPresentationContext="YES" id="cIZ-lN-1Dn" customClass="NavigationToolBarController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="rkI-8m-pcb">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -277,10 +277,10 @@
             </objects>
             <point key="canvasLocation" x="1435" y="3599"/>
         </scene>
-        <!--Navigation Top View Controller-->
+        <!--Navigation Tool Bar Controller-->
         <scene sceneID="Mp9-VU-rsg">
             <objects>
-                <navigationController storyboardIdentifier="Schedule" definesPresentationContext="YES" id="lpb-tD-4hM" customClass="NavigationTopViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Schedule" definesPresentationContext="YES" id="lpb-tD-4hM" customClass="NavigationToolBarController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="Nen-QE-7Nd">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -383,60 +383,6 @@
             <point key="canvasLocation" x="504" y="5992"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AccountViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-            </relationships>
-        </class>
-        <class className="ECSlidingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
-        </class>
-        <class className="HomeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-                <relationship kind="action" name="revealUnderRight:"/>
-            </relationships>
-        </class>
-        <class className="InitialSlidingViewController" superclassName="ECSlidingViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialSlidingViewController.h"/>
-        </class>
-        <class className="LogInViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogInViewController.h"/>
-        </class>
-        <class className="MenuViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
-        </class>
-        <class className="MessageNavgationViewController" superclassName="NavigationTopViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessageNavgationViewController.h"/>
-        </class>
-        <class className="MessagesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessagesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-            </relationships>
-        </class>
-        <class className="NavigationTopViewController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationTopViewController.h"/>
-        </class>
-        <class className="SampleTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SampleTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-            </relationships>
-        </class>
-        <class className="ScheduleViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="revealMenu:"/>
-            </relationships>
-        </class>
-        <class className="UnderRightViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UnderRightViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

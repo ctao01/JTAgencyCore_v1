@@ -7,8 +7,8 @@
 //
 
 #import "MessageDetailViewController.h"
-#import "MessageNavgationViewController.h"
-#import "BasicCustomCell.h"
+#import "NavigationToolBarController.h"
+#import "BasicOneLineCell.h"
 #import "MessageSubjectCell.h"
 
 @interface MessageDetailViewController ()
@@ -30,7 +30,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    MessageNavgationViewController * nav = (MessageNavgationViewController *) self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController *) self.navigationController;
     
     UIBarButtonItem * trashItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
     UIBarButtonItem * forwardItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(forwardMessage)];
@@ -46,18 +46,20 @@
 {
     [super viewDidLoad];
 
-    
     UITextView * textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 0.0f)];
     NSString * message = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully. \nJoin the movement!Facebook: https://www.facebook.com/axxess \n Twitter: https://twitter.com/AxxessConsult \nLinkedin: http://www.linkedin.com/company/axxess-consult \nInstagram: http://instagram.com/axxessconsult \nSincerely, \nThe Axxess Team.";
     textView.text = message;
+    textView.font = ACFontDefault14;
     textView.editable = NO;
     CGRect textFrame = textView.frame;
-    textView.contentSize = [message sizeWithFont:ACFontDefault14
+    textView.contentSize = [message sizeWithFont:[textView font]
                                constrainedToSize:CGSizeMake(self.tableView.frame.size.width, self.tableView.frame.size.height - 44 * 3)
                                    lineBreakMode:UIViewAutoresizingFlexibleHeight];
     
     textFrame.size.height = textView.contentSize.height;
     textView.frame = UIEdgeInsetsInsetRect(textFrame, UIEdgeInsetsMake(10.0f, 10.0f, 0.0f, 10.0f));
+    textView.tag = 30007;
+   
     UIView * headerView =[[UIView alloc]initWithFrame:textFrame];
     [headerView addSubview:textView];
     self.tableView.tableFooterView = headerView;
@@ -65,13 +67,14 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
 }
 
@@ -81,7 +84,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UIToolBar Items Action
+#pragma mark - NSNotification 
+
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+//    if ([[notification name]isEqualToString:@"TestNotification" ])
+//    {
+//    }
+}
+
 
 //- (void) forwardMessage
 //{
@@ -90,7 +101,7 @@
 
 - (void) replyMessage
 {
-    MessageNavgationViewController * nav = (MessageNavgationViewController *) self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController *) self.navigationController;
 
     UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Reply", @"Reply All", nil];
     [sheet showFromToolbar:nav.navToolBar];
@@ -118,8 +129,8 @@
     
     if (indexPath.row != 2)
     {
-        BasicCustomCell * cell1 = (BasicCustomCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-        if (cell1 == nil) cell1 = (BasicCustomCell*)[[BasicCustomCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier1];
+        BasicOneLineCell * cell1 = (BasicOneLineCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        if (cell1 == nil) cell1 = (BasicOneLineCell*)[[BasicOneLineCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier1];
         if (indexPath.row == 0)
         {
             cell1.titleLabel.text = @"From";
@@ -150,18 +161,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) return 64.0f;
-    else return 44.0f;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+   return 44.0f;
 }
 
 @end

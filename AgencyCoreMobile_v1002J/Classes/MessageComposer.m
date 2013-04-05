@@ -8,7 +8,7 @@
 
 #import "MessageComposer.h"
 #import "MessageSubjectField.h"
-#import "MessageNavgationViewController.h"
+#import "NavigationToolBarController.h"
 #import "ContactViewController.h"
 #import "NavigationControllerWithoutRotation.h"
 
@@ -67,7 +67,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
 
     [self.view removeGestureRecognizer:nav.slidingViewController.panGesture];
     

@@ -9,7 +9,7 @@
 #import "MessagesViewController.h"
 #import "MessageCell.h"
 #import "MessageDetailViewController.h"
-#import "MessageNavgationViewController.h"
+#import "NavigationToolBarController.h"
 #import "MessageComposer.h"
 #import "NavigationControllerWithoutRotation.h"
 
@@ -23,12 +23,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
+    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
+    [updatedLabel setFont:ACFontDefault14];
+    [updatedLabel setTextColor:[UIColor whiteColor]];
+    [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
+    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
+    [updatedLabel setBackgroundColor:[UIColor clearColor]];
+    UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
+
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
-    nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,composeItem, nil];
+    nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
 - (void) viewDidLoad
@@ -46,8 +53,14 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    MessageNavgationViewController * nav = (MessageNavgationViewController*)self.navigationController;
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - NSNotification
@@ -134,7 +147,7 @@
     messageCell.subjectLabel.text = @"Subject";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
     /* manage Categories later */
-    NSDateFormatter * df = [[NSDateFormatter alloc]init];
+    /*NSDateFormatter * df = [[NSDateFormatter alloc]init];
     [df setDateStyle:NSDateFormatterShortStyle];
    
     NSDate * yesterday = [NSDate dateWithTimeIntervalSinceNow: -(60.0f * 60.0f * 24.0f)];
@@ -143,7 +156,8 @@
     // For temp
     if (indexPath.row % 3 == 1)messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:yesterday];
     else if (indexPath.row % 3 == 0)messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:[NSDate date]];
-    else messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:previousDay];
+    else messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:previousDay];*/
+    messageCell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     
     return messageCell;
 }

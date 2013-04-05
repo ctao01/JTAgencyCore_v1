@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad
 {
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
     [super viewDidLoad];
     if (iPHONE_UI)
         [self.slidingViewController setAnchorRightRevealAmount:280.0f];
@@ -32,7 +34,12 @@
     footerView.backgroundColor =[UIColor colorWithRed:10.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
     self.tableView.tableFooterView = footerView;
     
-    UIImage * logoImg = [UIImage imageNamed:@"menu_axxess_logo"];
+    UIImage * logoImg;
+    if (iPHONE_UI)
+        logoImg = [UIImage imageNamed:@"axxess_logo_white_iphone"];
+    else if (iPAD_UI)
+        logoImg = [UIImage imageNamed:@"axxess_logo_white_ipad"];
+
     UIImageView * headerView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, logoImg.size.width, logoImg.size.height)];
     headerView.image = logoImg;
     self.tableView.tableHeaderView = headerView;
@@ -46,18 +53,12 @@
 }
 #pragma mark - NSNotification
 
-//- (void) receiveTestNotification:(NSNotification*)notice
-//{
-//    if ([[notice name]isEqualToString:@"TestNotification" ])
-//    {
-//        if (self.slidingViewController )
-//        
-//        if (iPHONE_UI && UserInterface_Portrait)
-//            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - 40.0f];
-//        else
-//            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - self.view.frame.size.width/2];
-//    }
-//}
+- (void) receiveTestNotification:(NSNotification*)notice
+{
+    if ([[notice name]isEqualToString:@"TestNotification" ])
+    {
+    }
+}
 
 
 #pragma mark - UITableView Data Source

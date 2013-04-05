@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="696" y="-925"/>
         </scene>
-        <!--Message Navgation View Controller-->
+        <!--Navigation Tool Bar Controller-->
         <scene sceneID="y4P-bF-xAP">
             <objects>
-                <navigationController storyboardIdentifier="Messages" definesPresentationContext="YES" id="kg2-d3-FWA" customClass="MessageNavgationViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Messages" definesPresentationContext="YES" id="kg2-d3-FWA" customClass="NavigationToolBarController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="Chc-95-IpX">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -309,10 +309,10 @@
             </objects>
             <point key="canvasLocation" x="1518" y="-925"/>
         </scene>
-        <!--Navigation Top View Controller-->
+        <!--Navigation Tool Bar Controller-->
         <scene sceneID="o6Q-an-t1T">
             <objects>
-                <navigationController restorationIdentifier="" storyboardIdentifier="Schedule" definesPresentationContext="YES" id="3zw-Fh-m3Q" customClass="NavigationTopViewController" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="" storyboardIdentifier="Schedule" definesPresentationContext="YES" id="3zw-Fh-m3Q" customClass="NavigationToolBarController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackOpaque" id="pMx-4i-Rt8">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
