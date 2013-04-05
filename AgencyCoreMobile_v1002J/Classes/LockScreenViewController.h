@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavigationControllerWithoutRotation.h"
 
-@interface LockScreenViewController : UINavigationController < UIAlertViewDelegate >
+@interface LockScreenViewController : NavigationControllerWithoutRotation < UIAlertViewDelegate >
 
 @end

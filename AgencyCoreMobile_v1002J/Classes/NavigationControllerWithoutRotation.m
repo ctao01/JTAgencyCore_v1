@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "ACNavigationController.h"
+#import "NavigationControllerWithoutRotation.h"
 
-@interface ACNavigationController ()
+@interface NavigationControllerWithoutRotation ()
 
 @end
 
-@implementation ACNavigationController
+@implementation NavigationControllerWithoutRotation
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
@@ -42,21 +42,20 @@
 
 - (BOOL) shouldAutorotate
 {
-    NSLog(@"shouldAutorotate");
     return NO;
 }
 
-- (NSUInteger) supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
-{
-    if (iPHONE_UI) return UIInterfaceOrientationPortrait;
-    else if (iPAD_UI) return UIInterfaceOrientationLandscapeRight;
-    else return UIInterfaceOrientationPortrait;
-}
+//- (NSUInteger) supportedInterfaceOrientations
+//{
+//    return UIInterfaceOrientationMaskPortrait;
+//}
+//
+//- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation
+//{
+//    if (iPHONE_UI) return UIInterfaceOrientationPortrait;
+//    else if (iPAD_UI) return UIInterfaceOrientationLandscapeRight;
+//    else return UIInterfaceOrientationPortrait;
+//}
 
 
 @end

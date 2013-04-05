@@ -44,6 +44,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return NO;
+}
+
+- (BOOL) shouldAutorotate
+{
+    return NO;
+}
+
+#pragma mark -
+
 - (void)didPasscodeEnteredCorrectly:(KKPasscodeViewController*)viewController
 {
 //    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
