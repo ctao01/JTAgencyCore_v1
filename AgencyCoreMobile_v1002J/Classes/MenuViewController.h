@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ECSlidingViewController.h"
+#import "InitialSlidingViewController.h"
 
 @interface MenuViewController : UITableViewController
 @end

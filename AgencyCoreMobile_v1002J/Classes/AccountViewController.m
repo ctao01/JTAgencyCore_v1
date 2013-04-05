@@ -11,7 +11,7 @@
 #import "LogInViewController.h"
 #import "MenuViewController.h"
 #import "SettingViewController.h"
-#import "ACNavigationController.h"
+#import "NavigationControllerWithoutRotation.h"
 
 @interface AccountViewController ()
 {

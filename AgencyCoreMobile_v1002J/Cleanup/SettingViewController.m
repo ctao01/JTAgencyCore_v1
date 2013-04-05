@@ -8,8 +8,10 @@
 
 #import "SettingViewController.h"
 #import "BasicCustomCell.h"
-#import "PasscodeSettingViewController.h"
+//#import "PasscodeSettingViewController.h"
+#import "PasscodeSettingsViewController.h"
 #import "KKPasscodeLock.h"
+#import "LogInViewController.h"
 #import "AppDelegate.h"
 
 @interface SettingViewController () <KKPasscodeSettingsViewControllerDelegate>
@@ -180,7 +182,7 @@
     
     else if (indexPath.section == 1 && indexPath.row == 0)
     {
-        PasscodeSettingViewController * pSettings = [[PasscodeSettingViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        PasscodeSettingsViewController * pSettings = [[PasscodeSettingsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         pSettings.delegate = self;
         [self.navigationController pushViewController:pSettings animated:YES];
     }
@@ -190,7 +192,13 @@
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-        [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
+        [delegate.navigation viewDidAppear:YES];
+//        [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
+//        LogInViewController * vc = [[LogInViewController alloc]init];
+//        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+//        [self.navigationController presentViewController:nc animated:NO completion:^{}];
+
+        
     }
 }
 

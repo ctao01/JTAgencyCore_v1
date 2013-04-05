@@ -10,6 +10,7 @@
 #import "LogInViewController.h"
 #import "LockScreenViewController.h"
 #import "KKPasscodeLock.h"
+#import "InitialSlidingViewController.h"
 
 @interface RootNavigationController ()
 
@@ -28,7 +29,6 @@
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
-    NSLog(@"RootNavigationController-init");
     UIViewController * vc;
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"] == YES)
         vc = rootViewController;
@@ -57,9 +57,25 @@
     
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]== NO)
     {
+        if (self.viewControllers != nil && self.viewControllers.count > 0)
+        {
+            NSLog(@"rootviewcontroller exists!");
+            NSMutableArray * viewcontrollers = [NSMutableArray arrayWithArray:self.viewControllers];
+            [viewcontrollers removeAllObjects];
+            
+            UIViewController * vcBlank = [[UIViewController alloc]init];
+            vcBlank.view.backgroundColor = [UIColor whiteColor];
+            [viewcontrollers insertObject:vcBlank atIndex:0];
+            
+            self.viewControllers = viewcontrollers;
+        }
         LogInViewController * vc = [[LogInViewController alloc]init];
         UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-        [self presentModalViewController:nc animated:YES];
+        [self presentViewController:nc animated:YES completion:^{
+            InitialSlidingViewController * vcHome = [[InitialSlidingViewController alloc]init];
+            [self pushViewController:vcHome animated:NO];
+        }];
+        
     }
 }
 

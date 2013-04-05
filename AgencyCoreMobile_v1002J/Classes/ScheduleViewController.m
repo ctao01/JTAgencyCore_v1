@@ -8,7 +8,7 @@
 
 #import "ScheduleViewController.h"
 #import "CalendarMonthViewController.h"
-#import "ACNavigationController.h"
+#import "NavigationControllerWithoutRotation.h"
 @interface ScheduleViewController ()
 
 @end
@@ -35,7 +35,7 @@
 - (void) gotoMontlyView
 {
     CalendarMonthViewController * cvc = [[CalendarMonthViewController alloc]initWithSunday:YES];
-    ACNavigationController * cnv = [[ACNavigationController alloc]initWithRootViewController:cvc];
+    NavigationControllerWithoutRotation * cnv = [[NavigationControllerWithoutRotation alloc]initWithRootViewController:cvc];
     cnv.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self.navigationController presentViewController:cnv animated:YES completion:^{
         [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];

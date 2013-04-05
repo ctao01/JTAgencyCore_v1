@@ -87,11 +87,6 @@
   if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
     self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
   }
-  
-//  if (![self.slidingViewController.underRightViewController isKindOfClass:[UnderRightViewController class]]) {
-//    self.slidingViewController.underRightViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"UnderRight"];
-//  }
-  
   [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
@@ -148,7 +143,6 @@
     [btnSchedule addTarget:self action:@selector(gotoMySchedule) forControlEvents:UIControlEventTouchUpInside];
     [btnSchedule setTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     [self.view addSubview:btnSchedule];
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }

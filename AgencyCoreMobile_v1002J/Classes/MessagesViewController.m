@@ -11,7 +11,7 @@
 #import "MessageDetailViewController.h"
 #import "MessageNavgationViewController.h"
 #import "MessageComposer.h"
-#import "ACNavigationController.h"
+#import "NavigationControllerWithoutRotation.h"
 
 @implementation MessagesViewController
 

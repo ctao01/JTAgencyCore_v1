@@ -20,25 +20,12 @@
 
 - (void)viewDidLoad
 {
-  [super viewDidLoad];
-    UIInterfaceOrientation oreientation = [[UIApplication sharedApplication]statusBarOrientation];
-    
+    [super viewDidLoad];
     if (iPHONE_UI)
-    {
-        if (oreientation == UIInterfaceOrientationPortrait || oreientation == UIInterfaceOrientationPortraitUpsideDown)
-            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - 40.0f];
-
-        else if (oreientation == UIInterfaceOrientationLandscapeLeft || oreientation == UIInterfaceOrientationLandscapeRight)
-            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.height - self.view.frame.size.height/2];
-    }
+        [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     else if (iPAD_UI)
-    {
-        if (oreientation == UIInterfaceOrientationPortrait || oreientation == UIInterfaceOrientationPortraitUpsideDown)
-            [self.slidingViewController setAnchorRightRevealAmount:self.view.bounds.size.width - self.view.bounds.size.width/2];
-        
-        else if (oreientation == UIInterfaceOrientationLandscapeLeft || oreientation == UIInterfaceOrientationLandscapeRight)
-            [self.slidingViewController setAnchorRightRevealAmount:self.view.bounds.size.height - self.view.bounds.size.height/2];
-    }
+        [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.height - self.view.frame.size.height/2];
+
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.tableView.backgroundColor = [UIColor colorWithRed:10.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
     UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 280.0f, 300.0f)];
@@ -51,8 +38,30 @@
     self.tableView.tableHeaderView = headerView;
     
     self.tableView.separatorColor = [UIColor lightGrayColor];
-  
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+#pragma mark - NSNotification
+
+//- (void) receiveTestNotification:(NSNotification*)notice
+//{
+//    if ([[notice name]isEqualToString:@"TestNotification" ])
+//    {
+//        if (self.slidingViewController )
+//        
+//        if (iPHONE_UI && UserInterface_Portrait)
+//            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - 40.0f];
+//        else
+//            [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.width - self.view.frame.size.width/2];
+//    }
+//}
+
+
+#pragma mark - UITableView Data Source
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
   return self.menuItems.count;
@@ -99,6 +108,8 @@
     }
   return cell;
 }
+
+#pragma mark - UITableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

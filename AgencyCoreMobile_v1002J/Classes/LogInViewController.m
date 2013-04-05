@@ -71,6 +71,7 @@
 	// Do any additional setup after loading the view.
     self.navigationItem.title = @"Log In";
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 
 }
@@ -95,8 +96,8 @@
 - (void) userSignIn
 {
     [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
-    AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+    }];
 }
 
 - (void) userForgotPwd

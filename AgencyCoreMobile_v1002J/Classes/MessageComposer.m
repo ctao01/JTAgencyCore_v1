@@ -10,7 +10,7 @@
 #import "MessageSubjectField.h"
 #import "MessageNavgationViewController.h"
 #import "ContactViewController.h"
-#import "ACNavigationController.h"
+#import "NavigationControllerWithoutRotation.h"
 
 @interface MessageComposer ()
 {

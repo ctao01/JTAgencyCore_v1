@@ -11,24 +11,19 @@
 
 @implementation InitialSlidingViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void) viewDidLoad
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        UIStoryboard *storyboard;
-        
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
-        } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
-        }
-        
-        //self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstTop"];
-        self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"Home"];
+    [super viewDidLoad];
+    UIStoryboard *storyboard;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        storyboard = [UIStoryboard storyboardWithName:@"iPhone" bundle:nil];
+    } else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        storyboard = [UIStoryboard storyboardWithName:@"iPad" bundle:nil];
     }
     
-    return self;
+    //self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"FirstTop"];
+    self.topViewController = [storyboard instantiateViewControllerWithIdentifier:@"Home"];
 }
 
 
