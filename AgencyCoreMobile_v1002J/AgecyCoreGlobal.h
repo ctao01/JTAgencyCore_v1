@@ -23,6 +23,9 @@
 
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
 
+// UIColor
+#define ACColorTextRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
+
 // UIFont
 #define ACFontDefault8                      [UIFont fontWithName:@"HelveticaNeue" size:8.0f]
 #define ACFontDefaultBold8                  [UIFont fontWithName:@"HelveticaNeue-Bold" size:8.0f]

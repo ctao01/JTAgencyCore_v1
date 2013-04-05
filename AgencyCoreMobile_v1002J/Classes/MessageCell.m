@@ -30,8 +30,8 @@
         self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.senderLabel.frame.origin.x + self.senderLabel.frame.size.width -10.0f, innerRect.origin.y, 120.0f, 20.0f)];
 //        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 20.0f)];
 
-        [self.dateLabel  setFont:ACFontDefault16];
-        [self.dateLabel setTextColor:[UIColor redColor]];
+        [self.dateLabel  setFont:ACFontDefaultBold14];
+        [self.dateLabel setTextColor:ACColorTextRed];
         [self.dateLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.dateLabel];
         
@@ -41,7 +41,7 @@
         [self.subjectLabel  setFont:ACFontDefault14];
         [self.contentView addSubview:self.subjectLabel];
         
-        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + 18 , innerRect.size.width, 40.0f)];
+        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + 16 , innerRect.size.width, 40.0f)];
 //        self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.senderLabel.frame.size.width, 40.0f)];
 
         [self.messageLabel  setFont:ACFontDefault12];
@@ -49,6 +49,9 @@
         self.messageLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         self.messageLabel.numberOfLines = 0;
         [self.contentView addSubview:self.messageLabel];
+        
+        for (UIView * labels in self.contentView.subviews)
+            labels.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

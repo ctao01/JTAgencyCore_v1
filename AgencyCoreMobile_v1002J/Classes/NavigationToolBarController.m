@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "MessageNavgationViewController.h"
-@interface MessageNavgationViewController ()
+#import "NavigationToolBarController.h"
+@interface NavigationToolBarController ()
 
 @end
 
-@implementation MessageNavgationViewController
+@implementation NavigationToolBarController
 
 - (id)init
 {
@@ -51,7 +51,7 @@
 //    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
-    self.navToolBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navToolBar.barStyle = UIBarStyleBlackOpaque;
     self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height );
 }
 

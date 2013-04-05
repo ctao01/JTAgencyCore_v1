@@ -18,7 +18,7 @@
     return string;
 }
 
-+ (NSString*) messageCellDateStringFromDate:(NSDate*)date
++ (NSString*) customizedCellDateStringFromDate:(NSDate*)date
 {
     NSString * todayString = [[[NSDate date] description] substringToIndex:10];
     
@@ -44,5 +44,16 @@
     }
     return string;
 }
+
++ (NSString*) updateLabelDateStringFromDate:(NSDate*)date
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc]init];
+    [df setDateStyle:NSDateFormatterShortStyle];
+    [df setTimeStyle:NSDateFormatterShortStyle];
+    
+    NSString * string = [df stringFromDate:date];
+    return [NSString stringWithFormat:@"Updated %@", string];
+}
+
 
 @end

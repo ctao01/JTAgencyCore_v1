@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BasicCustomCell : UITableViewCell
+@interface BasicOneLineCell : UITableViewCell
 
 @property (nonatomic , strong) UILabel * titleLabel;
 @property (nonatomic , strong) UILabel * dataLabel;

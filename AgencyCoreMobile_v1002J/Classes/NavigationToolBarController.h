@@ -8,6 +8,6 @@
 
 #import "NavigationTopViewController.h"
 
-@interface MessageNavgationViewController : NavigationTopViewController
+@interface NavigationToolBarController : NavigationTopViewController
 @property (nonatomic , strong) UIToolbar * navToolBar;
 @end

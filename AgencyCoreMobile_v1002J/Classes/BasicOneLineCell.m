@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "BasicCustomCell.h"
+#import "BasicOneLineCell.h"
 
-@implementation BasicCustomCell
+@implementation BasicOneLineCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 0.0f));
+        CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f));
         self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 80.0f, 44.0f)];
         self.titleLabel.textColor = [UIColor grayColor];
         self.titleLabel.backgroundColor = [UIColor clearColor];

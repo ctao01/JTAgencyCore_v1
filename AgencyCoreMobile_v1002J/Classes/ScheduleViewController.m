@@ -9,21 +9,14 @@
 #import "ScheduleViewController.h"
 #import "CalendarMonthViewController.h"
 #import "NavigationControllerWithoutRotation.h"
+#import "NavigationToolBarController.h"
+#import "BasicTwoLinesCell.h"
+
 @interface ScheduleViewController ()
 
 @end
 
 @implementation ScheduleViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
 
 - (IBAction)revealMenu:(id)sender
 {
@@ -48,17 +41,76 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithTitle:@"Cal" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
-    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
-    self.navigationItem.title = @"My Schedule Tasks";
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    self.navigationItem.title = @"Scheduled";
+
+//    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithTitle:@"Cal" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
+//    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
+//    self.navigationItem.title = @"My Schedule Tasks";
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
+//        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+//    }
+//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
+    
+    UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
+    [updatedLabel setFont:ACFontDefault14];
+    [updatedLabel setTextColor:[UIColor whiteColor]];
+    [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
+    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
+    [updatedLabel setBackgroundColor:[UIColor clearColor]];
+    UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
+    
+    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTask)];
+    nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
+    nav.navToolBar.items = nil;
+}
+
+- (void) viewDidUnload
+{
+    [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - 
+
+- (void) composeTask
+{
+    
+}
+
+#pragma mark - NSNotification
+
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+    {
+        [self.tableView reloadData];
+    }
+}
+
 
 #pragma mark - UITableView Datasource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -68,16 +120,51 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellIdentifier = @"SampleCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//    NSString *cellIdentifier = @"SampleCell";
+    static NSString * iPhone_portrait_cell = @"iPhone_Portrait_Cell";
+    static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
+    static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
+    static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
+    
+    BasicTwoLinesCell * cell;
+    if (iPHONE_UI && UserInterface_Portrait)
+        cell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
+    else if (iPHONE_UI && UserInterface_Landscape)
+        cell = [tableView dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
+    else if (iPAD_UI && UserInterface_Portrait)
+        cell = [tableView dequeueReusableCellWithIdentifier:iPad_portrait_cell];
+    else if (iPAD_UI && UserInterface_Landscape)
+        cell = [tableView dequeueReusableCellWithIdentifier:iPad_landscape_cell];
+    
+    if (cell == nil)
+    {
+        if (iPHONE_UI && UserInterface_Portrait)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+        else if (iPHONE_UI && UserInterface_Landscape)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+        else if (iPAD_UI && UserInterface_Portrait)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+        else if (iPAD_UI && UserInterface_Landscape)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+        else
+            cell = nil;
     }
-        
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+//    }
+    cell.titleLabel.text = @"Patient Name";
+    cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
+    cell.taskLabel.text = @"HHA Visit";
+    
     return cell;
 }
 
-
 #pragma mark - UITableView Delegate
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0f;
+}
 @end

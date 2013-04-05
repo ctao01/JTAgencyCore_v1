@@ -10,5 +10,7 @@
 
 @interface NSString (Additions)
 + (NSString*) detailDateStringFromDate:(NSDate*)date;
-+ (NSString*) messageCellDateStringFromDate:(NSDate*)date;
++ (NSString*) customizedCellDateStringFromDate:(NSDate*)date;
++ (NSString*) updateLabelDateStringFromDate:(NSDate*)date;
+
 @end
