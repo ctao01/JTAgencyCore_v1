@@ -40,8 +40,12 @@
     else if (iPAD_UI)
         logoImg = [UIImage imageNamed:@"axxess_logo_white_ipad"];
 
-    UIImageView * headerView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, logoImg.size.width, logoImg.size.height)];
-    headerView.image = logoImg;
+    UIImageView * logoView= [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, logoImg.size.width, logoImg.size.height)];
+    logoView.image = logoImg;
+    
+    UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 60.0f)];
+    [headerView addSubview:logoView];
+    
     self.tableView.tableHeaderView = headerView;
     
     self.tableView.separatorColor = [UIColor lightGrayColor];

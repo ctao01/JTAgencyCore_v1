@@ -20,7 +20,7 @@
 
 - (void) displayLockedScreen
 {
-    if ([[KKPasscodeLock sharedLock] isPasscodeRequired])
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]== YES && [[KKPasscodeLock sharedLock] isPasscodeRequired])
     {
         LockScreenViewController * vcLocked = [[LockScreenViewController alloc]init];
         [self presentModalViewController:vcLocked animated:NO];
@@ -53,13 +53,12 @@
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     
     if ([[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]== NO)
     {
         if (self.viewControllers != nil && self.viewControllers.count > 0)
         {
-            NSLog(@"rootviewcontroller exists!");
+//            NSLog(@"rootviewcontroller exists!");
             NSMutableArray * viewcontrollers = [NSMutableArray arrayWithArray:self.viewControllers];
             [viewcontrollers removeAllObjects];
             
@@ -77,6 +76,8 @@
         }];
         
     }
+    [super viewDidAppear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning
