@@ -10,6 +10,7 @@
 #import "NavigationToolBarController.h"
 #import "BasicOneLineCell.h"
 #import "MessageSubjectCell.h"
+#import "MessageComposer.h"
 
 @interface MessageDetailViewController ()
 
@@ -35,7 +36,7 @@
     UIBarButtonItem * trashItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
     UIBarButtonItem * forwardItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(forwardMessage)];
     UIBarButtonItem * replyItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyMessage)];
-    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:nil];
+    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     nav.navToolBar.items = [NSArray arrayWithObjects:trashItem,spaceItem,forwardItem,spaceItem,replyItem,spaceItem,composeItem, nil];
@@ -93,6 +94,7 @@
 //    }
 }
 
+#pragma mark - UIToolBar Actions
 
 //- (void) forwardMessage
 //{
@@ -105,6 +107,17 @@
 
     UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Reply", @"Reply All", nil];
     [sheet showFromToolbar:nav.navToolBar];
+}
+
+- (void) composeMessage
+{
+    
+    MessageComposer * composer = [[MessageComposer alloc]init];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:composer];
+    [self presentViewController:nc animated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+    }];
+    
 }
 
 #pragma mark - Table view data source

@@ -100,46 +100,34 @@
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-//    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice]orientation];
-    
+{    
     static NSString * iPhone_portrait_cell = @"iPhone_Portrait_Cell";
     static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
     static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
     static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
 //    static NSString * cellID = @"iPad_Landscape_Cell";    
     MessageCell * messageCell ;
-    if (iPHONE_UI)
-    {
-        if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-            messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
-        else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-            messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
-    }
-    else if (iPAD_UI)
-    {
-        if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-            messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_portrait_cell];
-        else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-            messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_landscape_cell];
-    }
+    if (iPHONE_UI && UserInterface_Portrait)
+        messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
+    else if (iPHONE_UI && UserInterface_Landscape)
+        messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
+    else if (iPAD_UI && UserInterface_Portrait)
+        messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_portrait_cell];
+    else if (iPAD_UI && UserInterface_Landscape)
+        messageCell = [tableView dequeueReusableCellWithIdentifier:iPad_landscape_cell];
+    
     if (messageCell == nil)
     {
-        if (iPHONE_UI)
-            {
-                if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown )
-                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
-                else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
-            }
-            else if (iPAD_UI)
-            {
-                if (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
-                else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-                    messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
-            }
+        if (iPHONE_UI && UserInterface_Portrait)
+            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+        else if (iPHONE_UI && UserInterface_Landscape)
+            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+        else if (iPAD_UI && UserInterface_Portrait)
+            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+        else if (iPAD_UI && UserInterface_Landscape)
+            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+        else
+            messageCell = nil;
     }
         
         

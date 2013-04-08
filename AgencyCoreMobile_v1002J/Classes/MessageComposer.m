@@ -39,8 +39,6 @@
     NSLog(@"%@",NSStringFromCGRect(subjectField.frame));
 	[messageView setFrame:CGRectMake(contentBounds.origin.x, subjectField.frame.origin.y + subjectField.frame.size.height , contentBounds.size.width, contentBounds.size.height - subjectField.frame.size.height)];
 //    [messageView setFrame:tokenFieldView.contentView.bounds];
-    NSLog(@"%@",NSStringFromCGRect(messageView.frame));
-
 }
 
 #pragma mark -
@@ -146,10 +144,10 @@
         CGRect contentBounds = tokenFieldView.contentView.bounds;
         [subjectField setFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
         [messageView setFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
-
-//        if (UserInterface_Landscape)
-//        else if (UserInterface_Portrait)
-//            [tokenFieldView setFrame:CGRectMake(0.0f, 0.0f, tokenFieldView.frame.size.width  , tokenFieldView.frame.size.height)];
+        [tokenFieldView resignFirstResponder];
+        [messageView resignFirstResponder];
+        [subjectField resignFirstResponder];
+       
 
     }
 }
