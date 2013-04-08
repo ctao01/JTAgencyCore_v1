@@ -11,6 +11,7 @@
 #import "NavigationControllerWithoutRotation.h"
 #import "NavigationToolBarController.h"
 #import "BasicTwoLinesCell.h"
+#import "VisitViewController.h"
 
 @interface ScheduleViewController ()
 
@@ -75,12 +76,6 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
-    nav.navToolBar.items = nil;
-}
 
 - (void) viewDidUnload
 {
@@ -149,14 +144,10 @@
         else
             cell = nil;
     }
-    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-//    }
     cell.titleLabel.text = @"Patient Name";
     cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
+//    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
@@ -167,4 +158,11 @@
 {
     return 60.0f;
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    VisitViewController * vc = [[VisitViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

@@ -35,6 +35,8 @@
         [self.taskLabel setFont:ACFontDefault14];
         [self.taskLabel setTextColor:[UIColor grayColor]];
         
+        [self.accessoryView setFrame:CGRectMake(self.contentView.frame.size.width - 32.0f , self.taskLabel.frame.origin.y, 32.0f, 32.0f)];
+        
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.dateLabel];
         [self.contentView addSubview:self.taskLabel];

@@ -25,6 +25,7 @@
 
 // UIColor
 #define ACColorTextRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
+#define ACColorMenuSeparatorGray [UIColor colorWithRed:221.0f/255.0 green:221.0f/255.0 blue:221.0f/255.0 alpha:0.4f]
 
 // UIFont
 #define ACFontDefault8                      [UIFont fontWithName:@"HelveticaNeue" size:8.0f]

@@ -48,7 +48,7 @@
     
     self.tableView.tableHeaderView = headerView;
     
-    self.tableView.separatorColor = [UIColor lightGrayColor];
+    self.tableView.separatorColor = ACColorMenuSeparatorGray;
 }
 
 - (void) viewDidAppear:(BOOL)animated

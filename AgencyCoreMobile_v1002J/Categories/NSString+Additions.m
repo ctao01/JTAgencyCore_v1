@@ -55,5 +55,14 @@
     return [NSString stringWithFormat:@"Updated %@", string];
 }
 
++ (NSString*) shortDateStyleStringFromDate:(NSDate*)date
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc]init];
+    [df setDateStyle:NSDateFormatterShortStyle];
+    
+    NSString * string = [df stringFromDate:date];
+    return string;
+}
+
 
 @end
