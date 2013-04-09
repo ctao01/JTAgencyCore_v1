@@ -59,7 +59,6 @@
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
-        NSLog(@"MessageNavgationViewController receiveTestNotification");
         self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
         self.navToolBar.frame = CGRectOffset(self.navToolBar.frame, 0.0f, self.view.frame.size.height - self.navToolBar.frame.size.height );
     }

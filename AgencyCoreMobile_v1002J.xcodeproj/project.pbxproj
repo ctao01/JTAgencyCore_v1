@@ -18,7 +18,7 @@
 		3D3A90A71713395A00D38D19 /* VisitHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A61713395A00D38D19 /* VisitHeaderView.m */; };
 		3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A91713588D00D38D19 /* CommentsViewController.m */; };
 		3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AC17135F1200D38D19 /* TextViewCell.m */; };
-		3D3A90B017136A2100D38D19 /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AF17136A2100D38D19 /* TextView.m */; };
+		3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AF17136A2100D38D19 /* VisitTextView.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -61,7 +61,7 @@
 		3D768D1616FA1E040000165A /* btn_Red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D768D1216FA1E040000165A /* btn_Red@2x.png */; };
 		3D768D3316FA1E6F0000165A /* LoginFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3216FA1E6F0000165A /* LoginFieldView.m */; };
 		3D768D3A16FA1E830000165A /* BasicOneLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3516FA1E830000165A /* BasicOneLineCell.m */; };
-		3D768D3B16FA1E830000165A /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3716FA1E830000165A /* MessageCell.m */; };
+		3D768D3B16FA1E830000165A /* BasicMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3716FA1E830000165A /* BasicMessageCell.m */; };
 		3D768D3C16FA1E830000165A /* MessageSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3916FA1E830000165A /* MessageSubjectCell.m */; };
 		3D768D5516FA1E9F0000165A /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D3E16FA1E9F0000165A /* AccountViewController.m */; };
 		3D768D5616FA1E9F0000165A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D768D4016FA1E9F0000165A /* HomeViewController.m */; };
@@ -191,8 +191,8 @@
 		3D3A90A91713588D00D38D19 /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsViewController.m; path = Classes/CommentsViewController.m; sourceTree = "<group>"; };
 		3D3A90AB17135F1200D38D19 /* TextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextViewCell.h; path = Classes/TextViewCell.h; sourceTree = "<group>"; };
 		3D3A90AC17135F1200D38D19 /* TextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewCell.m; path = Classes/TextViewCell.m; sourceTree = "<group>"; };
-		3D3A90AE17136A2100D38D19 /* TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextView.h; path = Classes/TextView.h; sourceTree = "<group>"; };
-		3D3A90AF17136A2100D38D19 /* TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextView.m; path = Classes/TextView.m; sourceTree = "<group>"; };
+		3D3A90AE17136A2100D38D19 /* VisitTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitTextView.h; path = Classes/VisitTextView.h; sourceTree = "<group>"; };
+		3D3A90AF17136A2100D38D19 /* VisitTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitTextView.m; path = Classes/VisitTextView.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 		3D768D3216FA1E6F0000165A /* LoginFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginFieldView.m; path = Classes/LoginFieldView.m; sourceTree = "<group>"; };
 		3D768D3416FA1E830000165A /* BasicOneLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicOneLineCell.h; path = Classes/BasicOneLineCell.h; sourceTree = "<group>"; };
 		3D768D3516FA1E830000165A /* BasicOneLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicOneLineCell.m; path = Classes/BasicOneLineCell.m; sourceTree = "<group>"; };
-		3D768D3616FA1E830000165A /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageCell.h; path = Classes/MessageCell.h; sourceTree = "<group>"; };
-		3D768D3716FA1E830000165A /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageCell.m; path = Classes/MessageCell.m; sourceTree = "<group>"; };
+		3D768D3616FA1E830000165A /* BasicMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicMessageCell.h; path = Classes/BasicMessageCell.h; sourceTree = "<group>"; };
+		3D768D3716FA1E830000165A /* BasicMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicMessageCell.m; path = Classes/BasicMessageCell.m; sourceTree = "<group>"; };
 		3D768D3816FA1E830000165A /* MessageSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageSubjectCell.h; path = Classes/MessageSubjectCell.h; sourceTree = "<group>"; };
 		3D768D3916FA1E830000165A /* MessageSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageSubjectCell.m; path = Classes/MessageSubjectCell.m; sourceTree = "<group>"; };
 		3D768D3D16FA1E9F0000165A /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = Classes/AccountViewController.h; sourceTree = "<group>"; };
@@ -720,8 +720,8 @@
 				3D768D3516FA1E830000165A /* BasicOneLineCell.m */,
 				3D49002E170F56D000D46134 /* BasicTwoLinesCell.h */,
 				3D49002F170F56D000D46134 /* BasicTwoLinesCell.m */,
-				3D768D3616FA1E830000165A /* MessageCell.h */,
-				3D768D3716FA1E830000165A /* MessageCell.m */,
+				3D768D3616FA1E830000165A /* BasicMessageCell.h */,
+				3D768D3716FA1E830000165A /* BasicMessageCell.m */,
 				3D768D3816FA1E830000165A /* MessageSubjectCell.h */,
 				3D768D3916FA1E830000165A /* MessageSubjectCell.m */,
 				3DFD32181705EC63001536D0 /* ActivityCell.h */,
@@ -743,8 +743,8 @@
 				3DFD32101705D2DA001536D0 /* ProfileView.m */,
 				3D3A90A51713395A00D38D19 /* VisitHeaderView.h */,
 				3D3A90A61713395A00D38D19 /* VisitHeaderView.m */,
-				3D3A90AE17136A2100D38D19 /* TextView.h */,
-				3D3A90AF17136A2100D38D19 /* TextView.m */,
+				3D3A90AE17136A2100D38D19 /* VisitTextView.h */,
+				3D3A90AF17136A2100D38D19 /* VisitTextView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1069,7 +1069,7 @@
 				3D768CEC16FA1C750000165A /* AppDelegate.m in Sources */,
 				3D768D3316FA1E6F0000165A /* LoginFieldView.m in Sources */,
 				3D768D3A16FA1E830000165A /* BasicOneLineCell.m in Sources */,
-				3D768D3B16FA1E830000165A /* MessageCell.m in Sources */,
+				3D768D3B16FA1E830000165A /* BasicMessageCell.m in Sources */,
 				3D768D3C16FA1E830000165A /* MessageSubjectCell.m in Sources */,
 				3D768D5516FA1E9F0000165A /* AccountViewController.m in Sources */,
 				3D768D5616FA1E9F0000165A /* HomeViewController.m in Sources */,
@@ -1157,7 +1157,7 @@
 				3D3A90A71713395A00D38D19 /* VisitHeaderView.m in Sources */,
 				3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */,
 				3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */,
-				3D3A90B017136A2100D38D19 /* TextView.m in Sources */,
+				3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,22 +24,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        CGRect innerRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f));
-        self.patientLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, innerRect.size.width, 44.0f)];
+        self.patientLabel = [[UILabel alloc]init];
         self.patientLabel.backgroundColor = [UIColor clearColor];
-        self.patientLabel.font = ACFontDefaultBold18;
+        self.patientLabel.font = ACFontDefaultBold16;
         
-        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x + innerRect.size.width - 120.0f, innerRect.origin.y, 120.0f, 44.0f)];
+        self.dateLabel = [[UILabel alloc]init];
         self.dateLabel.backgroundColor = [UIColor clearColor];
         self.dateLabel.font = ACFontDefaultBold14;
         self.dateLabel.textColor = ACColorTextRed;
         self.dateLabel.textAlignment = NSTextAlignmentRight;
         
-        self.taskLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.patientLabel.frame.origin.y + 30.0f, innerRect.size.width, 24.0f)];
+        self.taskLabel = [[UILabel alloc]init];
         self.taskLabel.backgroundColor = [UIColor clearColor];
         self.taskLabel.font = ACFontDefault16;
         
-        self.statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.taskLabel.frame.origin.y + 20.0f, innerRect.size.width, 24.0f)];
+        self.statusLabel = [[UILabel alloc]init];
         self.statusLabel.backgroundColor = [UIColor clearColor];
         self.statusLabel.font = ACFontDefault14;
         
@@ -51,16 +50,20 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame withIdentifier:(NSString *)identifier
-{
-    self = [self initWithFrame:frame];
-    return self;
-}
-
-
 - (void) layoutSubviews
 {
     [super layoutSubviews];
+    
+    CGFloat horizontalOffset;
+    if (iPHONE_UI) horizontalOffset = 10.0f;
+    else if (iPAD_UI) horizontalOffset = 45.0f;
+    else horizontalOffset = 0.0f;
+    
+    CGRect innerRect = UIEdgeInsetsInsetRect(self.frame, UIEdgeInsetsMake(10.0f, horizontalOffset, 10.0f, horizontalOffset));
+    [self.patientLabel setFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, innerRect.size.width, 44.0f)];
+    [self.dateLabel setFrame:CGRectMake(innerRect.origin.x + innerRect.size.width - 120.0f, innerRect.origin.y, 120.0f, 44.0f)];
+    [self.taskLabel setFrame:CGRectMake(innerRect.origin.x, self.patientLabel.frame.origin.y + 30.0f, innerRect.size.width, 24.0f)];
+    [self.statusLabel setFrame:CGRectMake(innerRect.origin.x, self.taskLabel.frame.origin.y + 20.0f, innerRect.size.width, 24.0f)];
     
     self.patientLabel.text = @"Tom Hanks";
     self.taskLabel.text = @"HHA Visit";

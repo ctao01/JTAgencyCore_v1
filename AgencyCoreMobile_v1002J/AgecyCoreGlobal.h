@@ -19,7 +19,7 @@
 #define UserInterface_Oreientation [[UIApplication sharedApplication]statusBarOrientation]
 //#define UserInterface_Oreientation [[UIApplication sharedApplication]statusBarOrientation]
 #define UserInterface_Landscape (UserInterface_Oreientation == UIInterfaceOrientationLandscapeLeft || UserInterface_Oreientation == UIInterfaceOrientationLandscapeRight)
-#define UserInterface_Portrait (UserInterface_Oreientation == UIInterfaceOrientationPortrait)
+#define UserInterface_Portrait (UserInterface_Oreientation == UIInterfaceOrientationPortrait || UserInterface_Oreientation == UIInterfaceOrientationPortraitUpsideDown)
 
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
 

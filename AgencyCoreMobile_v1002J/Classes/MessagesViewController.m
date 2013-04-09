@@ -7,7 +7,7 @@
 //
 
 #import "MessagesViewController.h"
-#import "MessageCell.h"
+#import "BasicMessageCell.h"
 #import "MessageDetailViewController.h"
 #import "NavigationToolBarController.h"
 #import "MessageComposer.h"
@@ -106,7 +106,7 @@
     static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
     static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
 //    static NSString * cellID = @"iPad_Landscape_Cell";    
-    MessageCell * messageCell ;
+    BasicMessageCell * messageCell ;
     if (iPHONE_UI && UserInterface_Portrait)
         messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
     else if (iPHONE_UI && UserInterface_Landscape)
@@ -119,13 +119,13 @@
     if (messageCell == nil)
     {
         if (iPHONE_UI && UserInterface_Portrait)
-            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+            messageCell = [[BasicMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
         else if (iPHONE_UI && UserInterface_Landscape)
-            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+            messageCell = [[BasicMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
         else if (iPAD_UI && UserInterface_Portrait)
-            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+            messageCell = [[BasicMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
         else if (iPAD_UI && UserInterface_Landscape)
-            messageCell = [[MessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+            messageCell = [[BasicMessageCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
         else
             messageCell = nil;
     }

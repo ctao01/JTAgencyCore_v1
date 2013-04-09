@@ -32,6 +32,8 @@
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
+    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 
     self.visitHeaderView = [[VisitHeaderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 90.0f)];
     self.visitHeaderView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -95,9 +97,14 @@
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundView = [[UIImageView alloc]init];
+    cell.selectedBackgroundView = [[UIImageView alloc]init];
     ((UIImageView*) cell.backgroundView).image = nil;
+    ((UIImageView*) cell.selectedBackgroundView).image = nil;
     UIImage * backgroundImage = [[UIImage imageNamed:@"btn_Gray"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
+    UIImage * selectedBackgroundImage = [[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
     ((UIImageView*) cell.backgroundView).image = backgroundImage;
+    ((UIImageView*) cell.selectedBackgroundView).image = selectedBackgroundImage;
+
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,7 +114,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CommentsViewController * vc = [[CommentsViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    CommentsViewController * vc = [[CommentsViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

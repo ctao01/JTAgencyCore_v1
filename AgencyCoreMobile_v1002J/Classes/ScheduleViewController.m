@@ -61,9 +61,9 @@
 //    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
-    
+    [nav.navToolBar setHidden:NO];
+
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
     UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
     [updatedLabel setFont:ACFontDefault14];
     [updatedLabel setTextColor:[UIColor whiteColor]];
@@ -147,7 +147,6 @@
     cell.titleLabel.text = @"Patient Name";
     cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
-//    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }

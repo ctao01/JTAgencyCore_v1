@@ -9,40 +9,72 @@
 #import "CommentsViewController.h"
 #import "VisitHeaderView.h"
 #import "TextViewCell.h"
-#import "TextView.h"
+#import "VisitTextView.h"
 
 @interface CommentsViewController ()
+{
+    BOOL moved;
+    UIButton * savedButton;
+}
+
 @property (nonatomic , strong) VisitHeaderView * visitView;
-@property (nonatomic , strong) TextView * commentView;
+@property (nonatomic , strong) VisitTextView * commentView;
 
 @end
 
 @implementation CommentsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundView = nil;
+//    self.tableView.backgroundView = nil;
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"Visit";
+    CGFloat screenWidth;
+    if (UserInterface_Portrait) screenWidth = self.view.frame.size.width;
+    else if (UserInterface_Landscape) screenWidth = self.view.frame.size.height;
+    else screenWidth = 0.0f;
     
-    self.visitView = [[VisitHeaderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 90.0f)];
+    self.visitView = [[VisitHeaderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, screenWidth, 90.0f)];   
     [self.view addSubview:self.visitView];
-//    self.tableView.tableHeaderView = self.visitView;
     
-    self.commentView = [[TextView alloc]initWithFrame:CGRectMake(0.0f, self.visitView.frame.size.height, self.view.frame.size.width, 150.0f)];
+    if (iPAD_UI)
+    {
+        if (UserInterface_Portrait) NSLog(@"iPAD_UI && UserInterface_Portrait");
+        else if (UserInterface_Landscape) NSLog(@"iPAD_UI && UserInterface_Landscape");
+    }
+    
+    CGFloat textviewHight;
+    if (iPAD_UI) textviewHight = 400.0f;
+    else if (iPHONE_UI && UserInterface_Landscape) textviewHight = 140.0f;
+    else textviewHight = 200.0f;
+    
+    self.commentView = [[VisitTextView alloc]initWithFrame:CGRectMake(0.0f, self.visitView.frame.size.height, screenWidth, textviewHight)];
+    self.commentView.commentsField.delegate = self;
     [self.view addSubview:self.commentView];
     
-    self.navigationItem.title = @"Visit";
+    CGFloat horizontalOffset;
+    if (iPHONE_UI) horizontalOffset = 12;
+    else if (iPAD_UI) horizontalOffset = 47.0f;
+    else horizontalOffset = 0.0f;
+    
+    savedButton = [UIButton redStyleButtonWithTitle:@"Save"];
+    [savedButton setFrame:CGRectMake(0.0f, 0.0f, screenWidth - horizontalOffset *2 , 44.0f)];
+    [savedButton setCenter:CGPointMake(screenWidth / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + 20.0f)];
+    [self.view addSubview:savedButton];
 
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +82,66 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Keyboard Method
+
+- (void) animatedViewUp:(BOOL)UP
+{
+    moved = UP;
+    const int movementDistance = 90.0f;
+    
+    int movement = (UP ? -movementDistance : movementDistance);
+    
+    [UIView animateWithDuration:0.3f
+                     animations:^{
+                         self.view.frame = CGRectOffset(self.view.frame, 0.0f, movement);
+                     }
+                     completion:^(BOOL successful){}];
+    
+}
+
+#pragma mark - NSNotificationCenter
+
+- (void) receiveTestNotification:(NSNotification*) notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+    {
+        CGFloat textviewHight;
+        if (iPAD_UI && UserInterface_Portrait) textviewHight = 400.0f;
+        if (iPHONE_UI && UserInterface_Landscape) textviewHight = 140.0f;
+        else textviewHight = 200.0f;
+        
+        [self.visitView setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 90.0f)];
+        [self.commentView setFrame:CGRectMake(0.0f, self.visitView.frame.size.height, self.view.frame.size.width, textviewHight)];
+        
+        CGFloat horizontalOffset;
+        if (iPHONE_UI) horizontalOffset = 12;
+        else if (iPAD_UI) horizontalOffset = 47.0f;
+        else horizontalOffset = 0.0f;
+        [savedButton setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width - horizontalOffset *2 , 44.0f)];
+        [savedButton setCenter:CGPointMake(self.view.frame.size.width / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + 10.0f)];
+    }
+}
+
+#pragma mark- UITextViewDelegate 
+
+- (void) textViewDidBeginEditing:(UITextView *)textView
+{
+    if (iPHONE_UI)[self animatedViewUp:YES];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        if (iPHONE_UI)[self animatedViewUp:NO];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
 
 #pragma mark - Table view data source
 /*

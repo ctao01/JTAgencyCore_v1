@@ -11,6 +11,6 @@
 @interface VisitHeaderView : UIView
 
 //@property (nonatomic , strong) 
-- (id)initWithFrame:(CGRect)frame withIdentifier:(NSString *)identifier;
- 
+//- (id)initWithFrame:(CGRect)frame withIdentifier:(NSString *)identifier;
+
 @end

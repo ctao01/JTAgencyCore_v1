@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MessageCell : UITableViewCell
+@interface BasicMessageCell : UITableViewCell
 
 @property (nonatomic , strong) UILabel * senderLabel;
 @property (nonatomic , strong) UILabel * subjectLabel;

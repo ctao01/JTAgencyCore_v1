@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "MessageCell.h"
+#import "BasicMessageCell.h"
 
-@implementation MessageCell
+@implementation BasicMessageCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -20,7 +20,7 @@
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 640, 20.0f)];
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 880.0f, 20.0f)];
         
