@@ -19,6 +19,7 @@
 		3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A91713588D00D38D19 /* CommentsViewController.m */; };
 		3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AC17135F1200D38D19 /* TextViewCell.m */; };
 		3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AF17136A2100D38D19 /* VisitTextView.m */; };
+		3D3A90B31714AA2900D38D19 /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -193,6 +194,8 @@
 		3D3A90AC17135F1200D38D19 /* TextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TextViewCell.m; path = Classes/TextViewCell.m; sourceTree = "<group>"; };
 		3D3A90AE17136A2100D38D19 /* VisitTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitTextView.h; path = Classes/VisitTextView.h; sourceTree = "<group>"; };
 		3D3A90AF17136A2100D38D19 /* VisitTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitTextView.m; path = Classes/VisitTextView.m; sourceTree = "<group>"; };
+		3D3A90B11714AA2700D38D19 /* NewTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewTaskViewController.h; path = Classes/NewTaskViewController.h; sourceTree = "<group>"; };
+		3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTaskViewController.m; path = Classes/NewTaskViewController.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -916,6 +919,8 @@
 				3D3A90A31713329900D38D19 /* VisitViewController.m */,
 				3D3A90A81713588D00D38D19 /* CommentsViewController.h */,
 				3D3A90A91713588D00D38D19 /* CommentsViewController.m */,
+				3D3A90B11714AA2700D38D19 /* NewTaskViewController.h */,
+				3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */,
 			);
 			name = MyScheduleTasks;
 			sourceTree = "<group>";
@@ -1158,6 +1163,7 @@
 				3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */,
 				3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */,
 				3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */,
+				3D3A90B31714AA2900D38D19 /* NewTaskViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,6 +25,10 @@
 
 // UIColor
 #define ACColorTextRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
+#define ACColorTaskMissedRed [UIColor colorWithRed:178.0f/255.0 green:14.0f/255.0 blue:14.0f/255.0 alpha:1.0f]
+#define ACColorTaskCompletedGreen [UIColor colorWithRed:62.0f/255.0 green:161.0f/255.0 blue:35.0f/255.0 alpha:1.0f]
+#define ACColorTaskScheduledBlue [UIColor colorWithRed:62.0f/255.0 green:121.0f/255.0 blue:156.0f/255.0 alpha:1.0f]
+
 #define ACColorMenuSeparatorGray [UIColor colorWithRed:221.0f/255.0 green:221.0f/255.0 blue:221.0f/255.0 alpha:0.4f]
 
 // UIFont

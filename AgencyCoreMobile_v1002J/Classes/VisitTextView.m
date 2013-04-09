@@ -31,6 +31,8 @@
         self.commentsField.layer.cornerRadius = 1.0f;
         self.commentsField.layer.borderColor = [[UIColor darkGrayColor] CGColor];
         self.commentsField.layer.borderWidth = 2.0f;
+        self.commentsField.font = ACFontDefault16;
+        
         
         [self addSubview:descLabel];
         [self addSubview:self.commentsField];

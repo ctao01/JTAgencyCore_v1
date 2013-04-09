@@ -13,5 +13,6 @@
 @property (nonatomic , strong) UILabel * titleLabel;
 @property (nonatomic , strong) UILabel * dateLabel;
 @property (nonatomic , strong) UILabel * taskLabel;
+@property (nonatomic , strong) UILabel * statusLabel;
 
 @end

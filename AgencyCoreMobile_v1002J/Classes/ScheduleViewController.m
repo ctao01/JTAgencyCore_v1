@@ -12,6 +12,7 @@
 #import "NavigationToolBarController.h"
 #import "BasicTwoLinesCell.h"
 #import "VisitViewController.h"
+#import "NewTaskViewController.h"
 
 @interface ScheduleViewController ()
 
@@ -87,7 +88,10 @@
 
 - (void) composeTask
 {
+    NewTaskViewController * vc = [[NewTaskViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
     
+    [self presentViewController:nc animated:YES completion:^{}];
 }
 
 #pragma mark - NSNotification
@@ -147,6 +151,7 @@
     cell.titleLabel.text = @"Patient Name";
     cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
+    cell.statusLabel.text = @"Upcoming";
     
     return cell;
 }

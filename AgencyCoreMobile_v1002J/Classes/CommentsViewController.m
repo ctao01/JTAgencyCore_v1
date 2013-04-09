@@ -38,12 +38,6 @@
     self.visitView = [[VisitHeaderView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, screenWidth, 90.0f)];   
     [self.view addSubview:self.visitView];
     
-    if (iPAD_UI)
-    {
-        if (UserInterface_Portrait) NSLog(@"iPAD_UI && UserInterface_Portrait");
-        else if (UserInterface_Landscape) NSLog(@"iPAD_UI && UserInterface_Landscape");
-    }
-    
     CGFloat textviewHight;
     if (iPAD_UI) textviewHight = 400.0f;
     else if (iPHONE_UI && UserInterface_Landscape) textviewHight = 140.0f;
@@ -58,9 +52,13 @@
     else if (iPAD_UI) horizontalOffset = 47.0f;
     else horizontalOffset = 0.0f;
     
+    CGFloat verticalOffset;
+    if (iPHONE_UI && UserInterface_Landscape) verticalOffset = 10.0f;
+    else verticalOffset = 20.0f;
+    
     savedButton = [UIButton redStyleButtonWithTitle:@"Save"];
     [savedButton setFrame:CGRectMake(0.0f, 0.0f, screenWidth - horizontalOffset *2 , 44.0f)];
-    [savedButton setCenter:CGPointMake(screenWidth / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + 20.0f)];
+    [savedButton setCenter:CGPointMake(screenWidth / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + verticalOffset)];
     [self.view addSubview:savedButton];
 
 }
@@ -108,7 +106,7 @@
     {
         CGFloat textviewHight;
         if (iPAD_UI && UserInterface_Portrait) textviewHight = 400.0f;
-        if (iPHONE_UI && UserInterface_Landscape) textviewHight = 140.0f;
+        else if (iPHONE_UI && UserInterface_Landscape) textviewHight = 140.0f;
         else textviewHight = 200.0f;
         
         [self.visitView setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 90.0f)];
@@ -118,8 +116,13 @@
         if (iPHONE_UI) horizontalOffset = 12;
         else if (iPAD_UI) horizontalOffset = 47.0f;
         else horizontalOffset = 0.0f;
+        
+        CGFloat verticalOffset;
+        if (iPHONE_UI && UserInterface_Landscape) verticalOffset = 10.0f;
+        else verticalOffset = 20.0f;
+        NSLog(@"%f",self.commentView.frame.size.height);
         [savedButton setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width - horizontalOffset *2 , 44.0f)];
-        [savedButton setCenter:CGPointMake(self.view.frame.size.width / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + 10.0f)];
+        [savedButton setCenter:CGPointMake(self.view.frame.size.width / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + verticalOffset)];
     }
 }
 

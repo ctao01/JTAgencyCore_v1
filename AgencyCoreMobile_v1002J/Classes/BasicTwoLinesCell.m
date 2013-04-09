@@ -35,14 +35,32 @@
         [self.taskLabel setFont:ACFontDefault14];
         [self.taskLabel setTextColor:[UIColor grayColor]];
         
+        self.statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.dateLabel.frame.origin.x, self.taskLabel.frame.origin.y, 120.0f, 20.0f)];
+        [self.statusLabel setFont:ACFontDefault14];
+        [self.statusLabel setTextAlignment:NSTextAlignmentRight];
+
         [self.accessoryView setFrame:CGRectMake(self.contentView.frame.size.width - 32.0f , self.taskLabel.frame.origin.y, 32.0f, 32.0f)];
         
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.dateLabel];
         [self.contentView addSubview:self.taskLabel];
-
+        [self.contentView addSubview:self.statusLabel];
     }
     return self;
+}
+
+- (void) layoutSubviews
+{
+    [super layoutSubviews];
+    
+    NSString * taskStatus = self.statusLabel.text;
+    if ([taskStatus isEqualToString:@"Upcoming"])
+        [self.statusLabel setTextColor:ACColorTaskScheduledBlue];
+    else if ([taskStatus isEqualToString:@"Completed"])
+        [self.statusLabel setTextColor:ACColorTaskCompletedGreen];
+    else if ([taskStatus isEqualToString:@"Missed"])
+        [self.statusLabel setTextColor:ACColorTaskMissedRed];
+    
 }
 
 @end
