@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Daily/Outlier</key>
+	<array>
+		<string>OASIS-C Start of Care</string>
+		<string>OASIS-C Recertification</string>
+		<string>HHA Care Plan</string>
+		<string>Communication Note</string>
+		<string>60 Day Summary</string>
+	</array>
+	<key>Orders/Care Plans</key>
+	<array>
+		<string>Plan of Treatment/Care</string>
+		<string>Physician Order</string>
+	</array>
+	<key>Dietician</key>
+	<array>
+		<string>Nutritional Assessment Form</string>
+	</array>
+	<key>Therapy</key>
+	<array>
+		<string>PT Evaluation</string>
+		<string>PT Discharge Summary</string>
+		<string>PT Discharge</string>
+	</array>
+	<key>MSW/Other</key>
+	<array>
+		<string>Driver/Transportation Log</string>
+		<string>NSW Assessment</string>
+		<string>NSW Discharge</string>
+		<string>NSW Evaluation</string>
+		<string>NSW Visit</string>
+	</array>
+	<key>HHA</key>
+	<array>
+		<string>HHA Visit</string>
+		<string>Home Marker Note</string>
+		<string>PAS Care Plan</string>
+		<string>PAS Note</string>
+		<string>PAS Travel Note</string>
+		<string>UAP Wound Care Note</string>
+	</array>
+	<key>Nursing</key>
+	<array>
+		<string>SN Assessment</string>
+		<string>SN Discharge Summary</string>
+		<string>SN Evaluation</string>
+		<string>SN Labs</string>
+		<string>SN Injection</string>
+	</array>
+</dict>
+</plist>

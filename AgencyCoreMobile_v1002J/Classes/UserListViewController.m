@@ -6,17 +6,18 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "ContactViewController.h"
+#import "UserListViewController.h"
 #import "MessageComposer.h"
+#import "NewTaskViewController.h"
 
-@interface ContactViewController ()
+@interface UserListViewController ()
 @property (nonatomic , strong) NSArray * contacts;
 @property (nonatomic , strong) UISearchDisplayController * searchDisplay;
 @property (nonatomic , strong) NSArray * searchedContacts;
 
 @end
 
-@implementation ContactViewController
+@implementation UserListViewController
 
 - (id)initWithStyle:(UITableViewStyle)style 
 {
@@ -101,9 +102,13 @@
                      @"Denver Perfater",
                      @"Tom Irving",
                      nil];
-    UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelSelectingContact)];
+    if ([[self.navigationController.viewControllers objectAtIndex:0] isEqual:self])
+    {
+        UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelSelectingContact)];
+        self.navigationItem.leftBarButtonItem = cancelItem;
+        self.navigationItem.title = @"Recipient List";
+    }
 
-    self.navigationItem.leftBarButtonItem = cancelItem;
     
 }
 
@@ -116,8 +121,10 @@
 
 - (void) cancelSelectingContact
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
-//    [self.navigationController popViewControllerAnimated:NO];
+   if ([[self.navigationController.viewControllers objectAtIndex:0] isEqual:self])
+       [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    else
+        [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void) filterContentForSearchText:(NSString*)searchText andScope:(NSString*)scope
@@ -173,10 +180,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MessageComposer * composer = (MessageComposer*)self.vcParent;
-    composer.selectedContact = [self.contacts objectAtIndex:indexPath.row];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
-//    [self.navigationController popViewControllerAnimated:NO];
+    if ([[self.navigationController.viewControllers objectAtIndex:0] isEqual:self])
+    {
+        MessageComposer * composer = (MessageComposer*)self.vcParent;
+        composer.selectedContact = [self.contacts objectAtIndex:indexPath.row];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+
+    }
+    else
+    {
+        NewTaskViewController * vc = [self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-2];
+        if ([self.navigationItem.title isEqualToString:@"Patient List"])    vc.selectedPatient = [self.contacts objectAtIndex:indexPath.row];
+        else if ([self.navigationItem.title isEqualToString:@"User List"])  vc.selectedUser = [self.contacts objectAtIndex:indexPath.row];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 @end

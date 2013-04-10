@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContactViewController : UITableViewController <UISearchDisplayDelegate>
+@interface UserListViewController : UITableViewController <UISearchDisplayDelegate>
 @property (nonatomic , retain) UIViewController * vcParent;
 @end

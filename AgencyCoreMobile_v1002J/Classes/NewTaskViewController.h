@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface NewTaskViewController : UITableViewController
+@property (nonatomic , copy) NSString * selectedPatient;
+@property (nonatomic , copy) NSString * selectedTask;
+@property (nonatomic , copy) NSString * selectedUser;
 
 @end

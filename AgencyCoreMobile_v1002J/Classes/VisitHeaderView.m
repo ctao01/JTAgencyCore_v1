@@ -67,7 +67,9 @@
     
     self.patientLabel.text = @"Tom Hanks";
     self.taskLabel.text = @"HHA Visit";
-    self.statusLabel.text = @"Completed";
+    self.statusLabel.text = @"Upcoming";
+    [self.statusLabel setTextColor:ACColorTaskScheduledBlue];
+
     self.dateLabel.text = [NSString shortDateStyleStringFromDate:[NSDate date]];
 }
 

@@ -8,6 +8,8 @@
 
 #import "NewTaskViewController.h"
 //#import "TasksTableViewController.h"
+#import "UserListViewController.h"
+#import "TaskCategoriesViewController.h"
 
 @interface NewTaskViewController ()
 
@@ -32,6 +34,7 @@
     self.navigationItem.rightBarButtonItem = cancelItem;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.navigationItem.title = @"New Task";
+    self.tableView.scrollsToTop = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -40,11 +43,19 @@
     [self.tableView reloadData];
 }
 
+- (void) dealloc
+{
+    self.selectedPatient = nil;
+    self.selectedUser = nil;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Private Actions
 
 - (void) cancelAddingTask
 {
@@ -60,7 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,15 +81,26 @@
     if (cell == nil) cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     
     if (indexPath.row == 0)
+    {
         cell.textLabel.text = @"Patient";
+        cell.detailTextLabel.text = self.selectedPatient ? self.selectedPatient:nil;
+    }
     else if (indexPath.row == 1)
         cell.textLabel.text = @"Episode";
     else if (indexPath.row == 2)
         cell.textLabel.text = @"Date";
-    else
+    else if (indexPath.row == 3)
+    {
         cell.textLabel.text = @"Task";
+        cell.detailTextLabel.text = self.selectedTask ? self.selectedTask : nil;
+    }
+    else
+    {
+        cell.textLabel.text = @"User";
+        cell.detailTextLabel.text = self.selectedUser ? self.selectedUser : nil;
+
+    }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    UIDatePicker
     return cell;
 }
 
@@ -86,8 +108,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewController * temp = [[UITableViewController alloc]init];
-    [self.navigationController pushViewController:temp animated:YES];
+    if (indexPath.row == 0)
+    {
+        UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
+        vc.navigationItem.title = @"Patient List";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 3)
+    {
+        TaskCategoriesViewController * vc = [[TaskCategoriesViewController alloc]initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.row == 4)
+    {
+        UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
+        vc.navigationItem.title = @"User List";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    else
+    {
+        UITableViewController * temp = [[UITableViewController alloc]init];
+        [self.navigationController pushViewController:temp animated:YES];
+    }
 
 }
 

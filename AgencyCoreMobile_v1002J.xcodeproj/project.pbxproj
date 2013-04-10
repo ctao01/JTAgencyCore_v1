@@ -20,6 +20,9 @@
 		3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AC17135F1200D38D19 /* TextViewCell.m */; };
 		3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AF17136A2100D38D19 /* VisitTextView.m */; };
 		3D3A90B31714AA2900D38D19 /* NewTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */; };
+		3D3A90C51715DDBA00D38D19 /* TaskCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90C41715DDB900D38D19 /* TaskCategoriesViewController.m */; };
+		3D3A90CB1715F4A900D38D19 /* ScheduledTaskList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D3A90CA1715F4A900D38D19 /* ScheduledTaskList.plist */; };
+		3D3A90CE1715F83000D38D19 /* TasksListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90CD1715F82F00D38D19 /* TasksListTableViewController.m */; };
 		3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C4011700975200E4A112 /* UILabel+Additons.m */; };
 		3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46C404170098F000E4A112 /* NSString+Additions.m */; };
 		3D46C4071700BBFC00E4A112 /* agencycore_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D46C4061700BBFC00E4A112 /* agencycore_icon.png */; };
@@ -35,7 +38,7 @@
 		3D490039170F7C9300D46134 /* axxess_logo_white_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D490037170F7C9300D46134 /* axxess_logo_white_ipad@2x.png */; };
 		3D53DB4E170DB81E00AE500F /* RootNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB4D170DB81E00AE500F /* RootNavigationController.m */; };
 		3D53DB54170E18D000AE500F /* UINavigationController+Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */; };
-		3D72BCCE16FCB1BC00FE5D22 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */; };
+		3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
 		3D72BCD516FCEE9D00FE5D22 /* agencycore_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD216FCEE9D00FE5D22 /* agencycore_bg.png */; };
@@ -196,6 +199,11 @@
 		3D3A90AF17136A2100D38D19 /* VisitTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitTextView.m; path = Classes/VisitTextView.m; sourceTree = "<group>"; };
 		3D3A90B11714AA2700D38D19 /* NewTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewTaskViewController.h; path = Classes/NewTaskViewController.h; sourceTree = "<group>"; };
 		3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewTaskViewController.m; path = Classes/NewTaskViewController.m; sourceTree = "<group>"; };
+		3D3A90C31715DDB800D38D19 /* TaskCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskCategoriesViewController.h; path = Classes/TaskCategoriesViewController.h; sourceTree = "<group>"; };
+		3D3A90C41715DDB900D38D19 /* TaskCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskCategoriesViewController.m; path = Classes/TaskCategoriesViewController.m; sourceTree = "<group>"; };
+		3D3A90CA1715F4A900D38D19 /* ScheduledTaskList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScheduledTaskList.plist; sourceTree = "<group>"; };
+		3D3A90CC1715F82E00D38D19 /* TasksListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TasksListTableViewController.h; path = Classes/TasksListTableViewController.h; sourceTree = "<group>"; };
+		3D3A90CD1715F82F00D38D19 /* TasksListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TasksListTableViewController.m; path = Classes/TasksListTableViewController.m; sourceTree = "<group>"; };
 		3D46C4001700975200E4A112 /* UILabel+Additons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Additons.h"; path = "Categories/UILabel+Additons.h"; sourceTree = "<group>"; };
 		3D46C4011700975200E4A112 /* UILabel+Additons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Additons.m"; path = "Categories/UILabel+Additons.m"; sourceTree = "<group>"; };
 		3D46C403170098F000E4A112 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Additions.h"; path = "Categories/NSString+Additions.h"; sourceTree = "<group>"; };
@@ -219,8 +227,8 @@
 		3D53DB4D170DB81E00AE500F /* RootNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootNavigationController.m; path = Classes/RootNavigationController.m; sourceTree = "<group>"; };
 		3D53DB52170E18D000AE500F /* UINavigationController+Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Rotation.h"; path = "Categories/UINavigationController+Rotation.h"; sourceTree = "<group>"; };
 		3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Rotation.m"; path = "Categories/UINavigationController+Rotation.m"; sourceTree = "<group>"; };
-		3D72BCCC16FCB1BC00FE5D22 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactViewController.h; path = Classes/ContactViewController.h; sourceTree = "<group>"; };
-		3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactViewController.m; path = Classes/ContactViewController.m; sourceTree = "<group>"; };
+		3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = Classes/UserListViewController.h; sourceTree = "<group>"; };
+		3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = Classes/UserListViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
 		3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "agencycore_bg-568h@2x.png"; path = "Assets/agencycore_bg-568h@2x.png"; sourceTree = "<group>"; };
 		3D72BCD216FCEE9D00FE5D22 /* agencycore_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_bg.png; path = Assets/agencycore_bg.png; sourceTree = "<group>"; };
@@ -520,8 +528,8 @@
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				3D72BCCC16FCB1BC00FE5D22 /* ContactViewController.h */,
-				3D72BCCD16FCB1BC00FE5D22 /* ContactViewController.m */,
+				3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */,
+				3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */,
 			);
 			name = Contacts;
 			sourceTree = "<group>";
@@ -596,6 +604,7 @@
 		3D768CE216FA1C750000165A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D3A90CA1715F4A900D38D19 /* ScheduledTaskList.plist */,
 				3D768CE316FA1C750000165A /* AgencyCoreMobile_v1002J-Info.plist */,
 				3D768CE416FA1C750000165A /* InfoPlist.strings */,
 				3D768CE716FA1C750000165A /* main.m */,
@@ -921,6 +930,10 @@
 				3D3A90A91713588D00D38D19 /* CommentsViewController.m */,
 				3D3A90B11714AA2700D38D19 /* NewTaskViewController.h */,
 				3D3A90B21714AA2800D38D19 /* NewTaskViewController.m */,
+				3D3A90C31715DDB800D38D19 /* TaskCategoriesViewController.h */,
+				3D3A90C41715DDB900D38D19 /* TaskCategoriesViewController.m */,
+				3D3A90CC1715F82E00D38D19 /* TasksListTableViewController.h */,
+				3D3A90CD1715F82F00D38D19 /* TasksListTableViewController.m */,
 			);
 			name = MyScheduleTasks;
 			sourceTree = "<group>";
@@ -1060,6 +1073,7 @@
 				3D490035170F760400D46134 /* axxess_logo_white_iphone@2x.png in Resources */,
 				3D490038170F7C9300D46134 /* axxess_logo_white_ipad.png in Resources */,
 				3D490039170F7C9300D46134 /* axxess_logo_white_ipad@2x.png in Resources */,
+				3D3A90CB1715F4A900D38D19 /* ScheduledTaskList.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,7 +1106,7 @@
 				3DBE75F116FB5820001755FE /* MessageComposer.m in Sources */,
 				3DBE75F416FB584E001755FE /* MessageSubjectField.m in Sources */,
 				3DBE75F816FB58A2001755FE /* TITokenField.m in Sources */,
-				3D72BCCE16FCB1BC00FE5D22 /* ContactViewController.m in Sources */,
+				3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */,
 				3D72BCDA16FCFB1800FE5D22 /* UIButton+Additons.m in Sources */,
 				3D46C4021700975200E4A112 /* UILabel+Additons.m in Sources */,
 				3D46C405170098F000E4A112 /* NSString+Additions.m in Sources */,
@@ -1164,6 +1178,8 @@
 				3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */,
 				3D3A90B017136A2100D38D19 /* VisitTextView.m in Sources */,
 				3D3A90B31714AA2900D38D19 /* NewTaskViewController.m in Sources */,
+				3D3A90C51715DDBA00D38D19 /* TaskCategoriesViewController.m in Sources */,
+				3D3A90CE1715F83000D38D19 /* TasksListTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

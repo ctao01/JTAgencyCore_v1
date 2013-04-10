@@ -9,7 +9,7 @@
 #import "MessageComposer.h"
 #import "MessageSubjectField.h"
 #import "NavigationToolBarController.h"
-#import "ContactViewController.h"
+#import "UserListViewController.h"
 #import "NavigationControllerWithoutRotation.h"
 
 @interface MessageComposer ()
@@ -174,7 +174,7 @@
 
 - (void) showContactsPicker
 {
-    ContactViewController * vc = [[ContactViewController alloc]initWithStyle:UITableViewStylePlain];
+    UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
     
     UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
     [self.navigationController presentViewController:nc animated:YES completion:^{
