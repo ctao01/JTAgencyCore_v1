@@ -64,5 +64,15 @@
     return string;
 }
 
++ (NSString*) shortDateAndTimeStyleStringFromDate:(NSDate*)date
+
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc]init];
+    [df setDateStyle:NSDateFormatterShortStyle];
+    [df setTimeStyle:NSDateFormatterShortStyle];
+
+    NSString * string = [df stringFromDate:date];
+    return string;
+}
 
 @end

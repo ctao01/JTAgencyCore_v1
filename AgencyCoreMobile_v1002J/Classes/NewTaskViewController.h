@@ -12,5 +12,6 @@
 @property (nonatomic , copy) NSString * selectedPatient;
 @property (nonatomic , copy) NSString * selectedTask;
 @property (nonatomic , copy) NSString * selectedUser;
+@property (nonatomic , copy) NSDate * selectedDate;
 
 @end

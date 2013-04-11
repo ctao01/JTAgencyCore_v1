@@ -13,5 +13,6 @@
 + (NSString*) customizedCellDateStringFromDate:(NSDate*)date;
 + (NSString*) updateLabelDateStringFromDate:(NSDate*)date;
 + (NSString*) shortDateStyleStringFromDate:(NSDate*)date;
++ (NSString*) shortDateAndTimeStyleStringFromDate:(NSDate*)date;
 
 @end
