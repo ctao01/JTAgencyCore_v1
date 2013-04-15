@@ -38,6 +38,6 @@
 
 
 /** A `UITextView` field. */
-@property (nonatomic,strong) UITextView *textView;
+@property (strong, nonatomic) UITextView *textView;
 
 @end

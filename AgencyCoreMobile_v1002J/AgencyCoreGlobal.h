@@ -1,5 +1,5 @@
 //
-//  AgecyCoreGlobal.h
+//  AgencyCoreGlobal.h
 //  AgencyCoreMobile_v1002J
 //
 //  Created by Joy Tao on 4/1/13.
@@ -28,6 +28,7 @@
 #define ACColorTaskMissedRed [UIColor colorWithRed:178.0f/255.0 green:14.0f/255.0 blue:14.0f/255.0 alpha:1.0f]
 #define ACColorTaskCompletedGreen [UIColor colorWithRed:62.0f/255.0 green:161.0f/255.0 blue:35.0f/255.0 alpha:1.0f]
 #define ACColorTaskScheduledBlue [UIColor colorWithRed:62.0f/255.0 green:121.0f/255.0 blue:156.0f/255.0 alpha:1.0f]
+#define ACColorTaskScheduledMultiplePurple [UIColor colorWithRed:97.0f/255.0 green:63.0f/255.0 blue:186.0f/255.0 alpha:1.0f]
 
 #define ACColorMenuSeparatorGray [UIColor colorWithRed:221.0f/255.0 green:221.0f/255.0 blue:221.0f/255.0 alpha:0.4f]
 

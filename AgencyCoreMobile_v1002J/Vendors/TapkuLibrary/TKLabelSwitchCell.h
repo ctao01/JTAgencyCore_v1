@@ -36,6 +36,6 @@
 @interface TKLabelSwitchCell : TKLabelCell 
 
 /** A `UISwitch` field. */
-@property (nonatomic,strong) UISwitch *switcher;
+@property (strong,nonatomic) UISwitch *switcher;
 
 @end

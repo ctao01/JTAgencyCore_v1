@@ -1,5 +1,5 @@
 //
-//  TKCalendarDayEventView.h
+//  ODCalendarDayEventView.h
 //  Created by Devin Ross on 7/28/09.
 //
 /*
@@ -31,34 +31,32 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TapDetectingView.h"
 
-#pragma mark - TKCalendarDayEventView
-/** `TKCalendarDayEventView` is displayed by `TKCalendarDayView`. */
-@interface TKCalendarDayEventView : UIView
+#define VERTICAL_DIFF 50.0
 
-/** Returns an event view.
- @return Returns `TKCalendarDayEventView` object.
- */
-+ (TKCalendarDayEventView*) eventView;
+@interface TKCalendarDayEventView : TapDetectingView {
+	NSNumber *_id;
+	NSDate *_startDate;
+	NSDate *_endDate;
+	NSString *_title;
+	NSString *_location;
+	UIColor *balloonColorTop;
+	UIColor *balloonColorBottom;
+	UIColor *textColor;
+}
 
-+ (TKCalendarDayEventView*) eventViewWithIdentifier:(NSNumber *)identifier startDate:(NSDate *)startDate endDate:(NSDate *)endDate title:(NSString *)title location:(NSString *)location;
+@property (nonatomic, copy) NSNumber *id;
+@property (nonatomic, copy) NSDate *startDate;
+@property (nonatomic, copy) NSDate *endDate;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *location;
+@property (nonatomic, strong) UIColor *balloonColorTop;
+@property (nonatomic, strong) UIColor *balloonColorBottom;
+@property (nonatomic, copy) UIColor *textColor;
 
-/** The identifier for the event. */
-@property (nonatomic,strong) NSNumber *identifier;
+- (void)setupCustomInitialisation;
 
-/** The start date for the event. */
-@property (nonatomic,strong) NSDate *startDate;
-
-/** The end date for the event. */
-@property (nonatomic,strong) NSDate *endDate;
-
-/** The title label for the event. */
-@property (nonatomic,strong) UILabel *titleLabel;
-
-/** The location label for the event. */
-@property (nonatomic,strong) UILabel *locationLabel;
-
-- (CGFloat) contentHeight;
-
++ (id)eventViewWithFrame:(CGRect)frame id:(NSNumber *)id startDate:(NSDate *)startDate endDate:(NSDate *)endDate title:(NSString *)title location:(NSString *)location;
 
 @end

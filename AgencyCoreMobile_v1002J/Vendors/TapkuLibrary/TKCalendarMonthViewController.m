@@ -32,55 +32,43 @@
 #import "TKCalendarMonthView.h"
 
 
-@interface TKCalendarMonthViewController () 
-@property (nonatomic,strong) NSTimeZone *timeZone;
-@property (nonatomic,assign) BOOL sundayFirst;
+@interface TKCalendarMonthViewController () {
+	BOOL _sundayFirst;
+}
+
 @end
 
 @implementation TKCalendarMonthViewController
 
 - (id) init{
-	self = [self initWithSunday:YES];
-	return self;
+	return [self initWithSunday:YES];
 }
 - (id) initWithSunday:(BOOL)sundayFirst{
-	self = [self initWithSunday:sundayFirst timeZone:[NSTimeZone defaultTimeZone]];
-	return self;
-}
-- (id) initWithTimeZone:(NSTimeZone *)timeZone{
-	self = [self initWithSunday:YES timeZone:self.timeZone];
-	return self;
-}
-- (id) initWithSunday:(BOOL)sundayFirst timeZone:(NSTimeZone *)timeZone{
 	if(!(self = [super init])) return nil;
-	self.timeZone = timeZone;
-	self.sundayFirst = sundayFirst;
+	_sundayFirst = sundayFirst;
 	return self;
 }
-- (id) initWithCoder:(NSCoder *)decoder {
-    if(!(self=[super initWithCoder:decoder])) return nil;
-	self.timeZone = [NSTimeZone defaultTimeZone];
-	self.sundayFirst = YES;
-    return self;
-}
-
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return NO;
 }
+
 - (void) viewDidUnload {
 	self.monthView = nil;
 }
 
+
 - (void) loadView{
 	[super loadView];
-	self.view.backgroundColor = [UIColor whiteColor];
 	
-	self.monthView = [[TKCalendarMonthView alloc] initWithSundayAsFirst:self.sundayFirst timeZone:self.timeZone];
-	self.monthView.dataSource = self;
-	self.monthView.delegate = self;
-	[self.view addSubview:self.monthView];
+	_monthView = [[TKCalendarMonthView alloc] initWithSundayAsFirst:_sundayFirst];
+	_monthView.delegate = self;
+	_monthView.dataSource = self;
+	[self.view addSubview:_monthView];
+	[_monthView reload];
+	
 }
+
 
 - (NSArray*) calendarMonthView:(TKCalendarMonthView*)monthView marksFromDate:(NSDate*)startDate toDate:(NSDate*)lastDate{
 	return nil;

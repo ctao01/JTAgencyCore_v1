@@ -34,24 +34,28 @@
 #import "TKHTTPRequest.h"
 #import "TKGlobal.h"
 
-#pragma mark - TKImageRequest
+#pragma mark -
 @interface TKImageRequest : TKHTTPRequest
-@property (nonatomic,strong) NSString *key;
+@property (strong,nonatomic) NSString *key;
 @end
 
 @implementation TKImageRequest
 @end
 
 
-#pragma mark - TKImageCache
-@interface TKImageCache (){
-	NSString *_cacheDirectoryPath;
-	NSMutableDictionary *_diskKeys;
-	NSMutableDictionary *_requestKeys;
-	dispatch_queue_t cache_queue;
-}
+
+@interface TKImageCache (private)
+
+- (NSString *) _filePathWithKey:(NSString *)key;
+- (BOOL) _imageExistsOnDiskWithKey:(NSString *)key;
+- (UIImage*) _imageFromDiskWithKey:(NSString*)key;
+- (void) _readImageFromDiskWithKey:(NSString*)key tag:(NSUInteger)tag;
+- (void) _sendRequestForURL:(NSURL*)url key:(NSString*)key tag:(NSUInteger)tag;
+
 @end
 
+
+#pragma mark -
 @implementation TKImageCache
 
 - (id) init{
@@ -220,7 +224,7 @@
 		
 		
 		for( NSString *file in files ) {
-			if( ![file isEqual:@"."] && ![file isEqual:@".."] ) {
+			if( file != @"." && file != @".." ) {
 				NSString *path = [[self cacheDirectoryPath] stringByAppendingPathComponent:file];
 				[[NSFileManager defaultManager] removeItemAtPath:path error:&error];
 				
@@ -244,7 +248,7 @@
 		NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:&error];
 		
 		for( NSString *file in files ) {
-			if( ![file isEqual:@"."] && ![file isEqual:@".."] ) {
+			if( file != @"." && file != @".." ) {
 				
 				NSString *path = [path stringByAppendingPathComponent:file];
 				NSDate *created = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:NULL] fileCreationDate];
@@ -370,12 +374,13 @@
 	
 }
 - (NSString *) cacheDirectoryPath{
-	if(_cacheDirectoryPath) return _cacheDirectoryPath;
-
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = paths[0];
-	NSString *str = [documentsDirectory stringByAppendingPathComponent:_cacheDirectoryName];
-	_cacheDirectoryPath = [str copy];
+	
+	if(_cacheDirectoryPath==nil){
+		NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+		NSString *documentsDirectory = [paths objectAtIndex:0];
+		NSString *str = [documentsDirectory stringByAppendingPathComponent:_cacheDirectoryName];
+		_cacheDirectoryPath = [str copy];
+	}
 	return _cacheDirectoryPath;
 }
 

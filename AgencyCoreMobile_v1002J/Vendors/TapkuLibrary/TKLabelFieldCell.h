@@ -35,7 +35,7 @@
 @interface TKLabelFieldCell : TKLabelCell 
 
 /** A `UILabel` field. */
-@property (nonatomic,strong) UILabel *field;
+@property (strong, nonatomic) UILabel *field;
 
 @end
 

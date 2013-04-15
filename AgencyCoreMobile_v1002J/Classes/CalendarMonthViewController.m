@@ -7,6 +7,7 @@
 //
 
 #import "CalendarMonthViewController.h"
+#import "NewTaskViewController.h"
 
 @interface CalendarMonthViewController ()
 
@@ -14,13 +15,13 @@
 
 @implementation CalendarMonthViewController
 
-#pragma mark - CalendarMonthViewController
-- (NSUInteger) supportedInterfaceOrientations{
-	return  UIInterfaceOrientationMaskPortrait;
-}
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-}
+//#pragma mark - CalendarMonthViewController
+//- (NSUInteger) supportedInterfaceOrientations{
+//	return  UIInterfaceOrientationMaskPortrait;
+//}
+//- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//	return UIInterfaceOrientationIsPortrait(interfaceOrientation);
+//}
 
 
 #pragma mark View Lifecycle
@@ -32,6 +33,9 @@
     UIBarButtonItem * listItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(backToScheduleList)];
     self.navigationItem.leftBarButtonItem = listItem;
     
+    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeNewTask)];
+    self.navigationItem.rightBarButtonItem = composeItem;
+    
 	[self.monthView selectDate:[NSDate date]];
     self.view.backgroundColor = [UIColor clearColor];
 }
@@ -42,6 +46,14 @@
     self.navigationController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) composeNewTask
+{
+    NewTaskViewController * vc = [[NewTaskViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+    
+    [self presentViewController:nc animated:YES completion:^{}];
 }
 
 
@@ -108,12 +120,26 @@
 			[self.dataArray addObject:[NSNumber numberWithInt:0]];
 		
 		
-		NSDateComponents *info = [d dateComponentsWithTimeZone:self.monthView.timeZone];
+//		NSDateComponents *info = [d dateComponentsWithTimeZone:self.monthView.timeZone];
+//		info.day++;
+//		d = [NSDate dateWithDateComponents:info];
+//		if([d compare:end]==NSOrderedDescending) break;
+        TKDateInformation info = [d dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 		info.day++;
-		d = [NSDate dateWithDateComponents:info];
+		d = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 		if([d compare:end]==NSOrderedDescending) break;
 	}
 	
 }
+
+//-(void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    [self updateTableOffset:YES];
+//}
+//
+//
+//- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+//	return YES;
+//}
 
 @end

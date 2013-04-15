@@ -8,6 +8,7 @@
     </entity>
     <entity name="Episode" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="episodes" inverseEntity="Patient" syncable="YES"/>
@@ -35,10 +36,12 @@
     <entity name="Task" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scheduledDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="assignee" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tasks" inverseEntity="User" syncable="YES"/>
         <relationship name="episode" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="tasks" inverseEntity="Episode" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" syncable="YES"/>
     </entity>
     <entity name="User" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
@@ -61,11 +64,11 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignee" inverseEntity="Task" syncable="YES"/>
     </entity>
     <elements>
+        <element name="CurrentUser" positionX="-12186" positionY="-7119" width="128" height="103"/>
+        <element name="Episode" positionX="-11457" positionY="-6966" width="128" height="133"/>
         <element name="Message" positionX="-12186" positionY="-6991" width="128" height="133"/>
         <element name="Patient" positionX="-11693" positionY="-7182" width="128" height="178"/>
-        <element name="Task" positionX="-11684" positionY="-6831" width="128" height="133"/>
+        <element name="Task" positionX="-11684" positionY="-6831" width="128" height="163"/>
         <element name="User" positionX="-11981" positionY="-7101" width="128" height="313"/>
-        <element name="CurrentUser" positionX="-12186" positionY="-7119" width="128" height="103"/>
-        <element name="Episode" positionX="-11457" positionY="-6966" width="128" height="118"/>
     </elements>
 </model>

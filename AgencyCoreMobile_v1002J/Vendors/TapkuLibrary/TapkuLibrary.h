@@ -28,7 +28,6 @@
 #import "TKGlobal.h"
 
 // ADDITIONS
-#import "NSObject+TKCategory.h"
 #import "NSString+TKCategory.h"
 #import "NSDate+TKCategory.h"
 #import "NSArray+TKCategory.h"
@@ -38,7 +37,7 @@
 #import "UIImageView+TKCategory.h"
 #import "UIScrollview+TKCategory.h"
 #import "UIButton+TKCategory.h"
-
+#import "UIViewController+TKCategory.h"
 
 
 #import "TKWindow.h"
@@ -55,8 +54,6 @@
 #import "TKNetworkQueue.h"
 #import "TKHTTPRequest.h"
 #import "TKImageCache.h"
-
-
 
 // CELLS
 #import "TKLabelCell.h"
@@ -87,3 +84,4 @@
 
 // Coverflow
 #import "TKCoverflowView.h"
+#import "TKCoverflowCoverView.h"

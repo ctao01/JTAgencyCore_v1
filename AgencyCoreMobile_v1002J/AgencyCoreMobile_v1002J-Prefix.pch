@@ -17,5 +17,5 @@
     #import "UIButton+Additons.h"
     #import "NSString+Additions.h"
 
-    #import "AgecyCoreGlobal.h"
+    #import "AgencyCoreGlobal.h"
 #endif

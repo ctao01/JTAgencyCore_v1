@@ -61,16 +61,15 @@
 
 }
 
-- (void) _colorText:(BOOL)active{
-	_textView.textColor = active ? [UIColor whiteColor] : [UIColor grayColor];
-}
+
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-	[self _colorText:selected];
+	_textView.textColor = selected ? [UIColor whiteColor] : [UIColor grayColor];
+
 }
 - (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
 	[super setHighlighted:highlighted animated:animated];
-	[self _colorText:highlighted];
+	_textView.textColor = highlighted ? [UIColor whiteColor] : [UIColor grayColor];
 }
 
 

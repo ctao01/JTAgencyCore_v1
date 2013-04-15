@@ -47,10 +47,10 @@
 ///----------------------------
 
 /** The progress bar view */
-@property (nonatomic,strong) TKProgressBarView *progressBar;
+@property (strong,nonatomic) TKProgressBarView *progressBar;
 
 /** The title label for the alert. */
-@property (nonatomic,strong) UILabel *label;
+@property (strong,nonatomic) UILabel *label;
 
 ///----------------------------
 /// @name Displaying and hiding alert

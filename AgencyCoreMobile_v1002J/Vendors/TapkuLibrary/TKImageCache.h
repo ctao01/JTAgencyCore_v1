@@ -34,7 +34,12 @@
 @class TKNetworkQueue,TKHTTPRequest;
 
 /** An `TKImageCache` object provides a way to manage images between the network, disk and `NSCache`. */
-@interface TKImageCache : NSCache 
+@interface TKImageCache : NSCache {
+	NSString *_cacheDirectoryPath;
+	NSMutableDictionary *_diskKeys;
+	NSMutableDictionary *_requestKeys;
+	dispatch_queue_t cache_queue;
+}
 
 ///-------------------------
 /// @name Initializing An Image Cache Object
@@ -61,16 +66,16 @@
 
 
 /** The queue that manages all network requests for images */
-@property (nonatomic,strong) TKNetworkQueue *imagesQueue;
+@property (strong,nonatomic) TKNetworkQueue *imagesQueue;
 
 /** The directory where images are stored on disk */
-@property (nonatomic,copy) NSString *cacheDirectoryName;
+@property (copy,nonatomic) NSString *cacheDirectoryName;
 
 /** The notification name posted to `NSNotificationCenter` */
-@property (nonatomic,copy) NSString *notificationName;
+@property (copy,nonatomic) NSString *notificationName;
 
 /** The threshold of time images on disk need to be created before to be read from disk. Otherwise the images will be requested from the network again. The time needs to be greater than zero to for the creation date to be check. Default is -1. */
-@property (nonatomic,assign) NSTimeInterval timeTillRefreshCache;
+@property (assign,nonatomic) NSTimeInterval timeTillRefreshCache;
 
 
 ///-------------------------

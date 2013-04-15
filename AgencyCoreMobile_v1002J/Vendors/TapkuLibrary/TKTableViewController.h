@@ -70,15 +70,15 @@
 ///----------------------------
 
 /** Returns the table view managed by the controller object. */
-@property (nonatomic,strong) UITableView *tableView;
+@property (strong,nonatomic) UITableView *tableView;
 
 /** Returns the empty view. Good for displaying when the content of the table view is empty. */
-@property (nonatomic,strong) TKEmptyView *emptyView;
+@property (strong,nonatomic) TKEmptyView *emptyView;
 
 /** Returns a `UISearchBar` view. */
-@property (nonatomic,strong) UISearchBar *searchBar;
+@property (strong,nonatomic) UISearchBar *searchBar;
 
 /** Returns a `UISearchDisplayController` for the search bar and table view. */
-@property (nonatomic,strong) UISearchDisplayController *searchBarDisplayController;
+@property (strong,nonatomic) UISearchDisplayController *searchBarDisplayController;
 
 @end
