@@ -439,7 +439,7 @@
 	UIColor *color = [UIColor grayColor];
 	
 	if(firstOfPrev>0){
-		[color set];
+//		[color set];
 		for(int i = firstOfPrev;i<= lastOfPrev;i++){
 			r = [self rectForCellAtIndex:index];
 			if ([marks count] > 0)
@@ -466,7 +466,7 @@
 		index++;
 	}
 	
-	[[UIColor grayColor] set];
+//	[[UIColor grayColor] set];
 	int i = 1;
 	while(index % 7 != 0){
 		r = [self rectForCellAtIndex:index] ;
