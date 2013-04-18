@@ -49,6 +49,7 @@
     self.tableView.tableHeaderView = headerView;
     
     self.tableView.separatorColor = ACColorMenuSeparatorGray;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -111,10 +112,17 @@
             cell.imageView.image = [UIImage imageNamed:@"menu_more"];
             cell.textLabel.text = @"More";
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
   return cell;
 }
 
 #pragma mark - UITableView Delegate
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.selectedBackgroundView = [[UIView alloc]init];
+    ((UIView*) cell.selectedBackgroundView).backgroundColor = ACColorMenuSelectedViewGray;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

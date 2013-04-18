@@ -106,94 +106,131 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    if (section == 0) return 5;
+    else if (section == 1) return 1;
+    else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
-    
-    if (indexPath.row == 0)
+    if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"Patient";
-        cell.detailTextLabel.text = self.selectedPatient ? self.selectedPatient:nil;
-    }
-    else if (indexPath.row == 1)
-        cell.textLabel.text = @"Episode";
-    else if (indexPath.row == 2)
-    {
-        cell.textLabel.text = @"Date";
-        cell.detailTextLabel.text = self.selectedDate ? [NSString shortDateAndTimeStyleStringFromDate:self.selectedDate]:nil;
-    }
-    else if (indexPath.row == 3)
-    {
-        cell.textLabel.text = @"Task";
-        cell.detailTextLabel.text = self.selectedTask ? self.selectedTask : nil;
-    }
-    else
-    {
-        cell.textLabel.text = @"User";
-        cell.detailTextLabel.text = self.selectedUser ? self.selectedUser : nil;
+        if (cell == nil) cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"Patient";
+            cell.detailTextLabel.text = self.selectedPatient ? self.selectedPatient:nil;
+        }
+        else if (indexPath.row == 1)
+            cell.textLabel.text = @"Episode";
+        else if (indexPath.row == 2)
+        {
+            cell.textLabel.text = @"Date";
+            cell.detailTextLabel.text = self.selectedDate ? [NSString shortDateAndTimeStyleStringFromDate:self.selectedDate]:nil;
+        }
+        else if (indexPath.row == 3)
+        {
+            cell.textLabel.text = @"Task";
+            cell.detailTextLabel.text = self.selectedTask ? self.selectedTask : nil;
+        }
+        else
+        {
+            cell.textLabel.text = @"User";
+            cell.detailTextLabel.text = self.selectedUser ? self.selectedUser : nil;
+            
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
 
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    else if (indexPath.section == 1)
+    {
+        if (cell == nil) cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+
+        cell.textLabel.text = @"Add";
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        
+        cell.textLabel.center = cell.center;
+    }
+   
     return cell;
 }
 
 #pragma mark - Table view delegate
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) return 42.0f;
+    else return 44.0f;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1)
+    {
+        cell.backgroundView = [[UIImageView alloc]init];
+
+        ((UIImageView*) cell.backgroundView).image = nil;
+        UIImage * backgroundImage = [[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
+        ((UIImageView*) cell.backgroundView).image = backgroundImage;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGRect bounds = [[UIScreen mainScreen]bounds];
-
-    if (indexPath.row != 2) [self selectDateDone];
-    else
+    if (indexPath.section == 0)
     {
-        [UIView animateWithDuration:0.4f delay:0.0f options:(UIViewAnimationOptions)UIViewAnimationCurveEaseIn
-                         animations:^{
-                             [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.height - 250.0f + 44.0f, bounds.size.width, 250.0f)];
-                         }
-                         completion:^(BOOL finished){
-                             UIBarButtonItem * doneItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(selectDateDone)];
-                             self.navigationItem.rightBarButtonItem = doneItem;
-                             
-                             UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithTitle:@"Reset" style:UIBarButtonItemStyleBordered target:self action:@selector(selectDateCancel)];
-                             self.navigationItem.leftBarButtonItem = cancelItem;
-                             self.selectedDate = datePicker.date;
-                             [self.tableView reloadData];
-                         }];
+        if (indexPath.row != 2) [self selectDateDone];
+        else
+        {
+            [UIView animateWithDuration:0.4f delay:0.0f options:(UIViewAnimationOptions)UIViewAnimationCurveEaseIn
+                             animations:^{
+                                 [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.height - 250.0f + 44.0f, bounds.size.width, 250.0f)];
+                             }
+                             completion:^(BOOL finished){
+                                 UIBarButtonItem * doneItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(selectDateDone)];
+                                 self.navigationItem.rightBarButtonItem = doneItem;
+                                 
+                                 UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithTitle:@"Reset" style:UIBarButtonItemStyleBordered target:self action:@selector(selectDateCancel)];
+                                 self.navigationItem.leftBarButtonItem = cancelItem;
+                                 self.selectedDate = datePicker.date;
+                                 [self.tableView reloadData];
+                             }];
+        }
+        
+        if (indexPath.row == 0)
+        {
+            UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
+            vc.navigationItem.title = @"Patient List";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row == 3)
+        {
+            TaskCategoriesViewController * vc = [[TaskCategoriesViewController alloc]initWithStyle:UITableViewStylePlain];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row == 4)
+        {
+            UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
+            vc.navigationItem.title = @"User List";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
-    
-    if (indexPath.row == 0)
+    else if (indexPath.section == 1)
     {
-        UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
-        vc.navigationItem.title = @"Patient List";
-        [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
     }
-    else if (indexPath.row == 3)
-    {
-        TaskCategoriesViewController * vc = [[TaskCategoriesViewController alloc]initWithStyle:UITableViewStylePlain];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.row == 4)
-    {
-        UserListViewController * vc = [[UserListViewController alloc]initWithStyle:UITableViewStylePlain];
-        vc.navigationItem.title = @"User List";
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-//    else
-//    {
-//        UITableViewController * temp = [[UITableViewController alloc]init];
-//        [self.navigationController pushViewController:temp animated:YES];
-//    }
 
 }
 

@@ -18,7 +18,7 @@
         if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 380.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
@@ -31,7 +31,7 @@
 //        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 20.0f)];
 
         [self.dateLabel  setFont:ACFontDefaultBold14];
-        [self.dateLabel setTextColor:ACColorTextRed];
+        [self.dateLabel setTextColor:ACColorRed];
         [self.dateLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.dateLabel];
         

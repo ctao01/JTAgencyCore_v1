@@ -322,9 +322,8 @@
     return image;
 }
 
-- (void) drawTileInRect:(CGRect)r day:(int)day mark:(CalendarMonthTileMark)mark font:(UIFont*)f1 font2:(UIFont*)f2 withTileMode:(NSString*)mode{
-	
-    NSLog(@"%@",mode);
+- (void) drawTileInRect:(CGRect)r day:(int)day mark:(CalendarMonthTileMark)mark font:(UIFont*)f1 font2:(UIFont*)f2 withTileMode:(NSString*)mode
+{
     if ([mode isEqualToString:@"Previous"]) [[UIColor lightGrayColor]set];
     else if ([mode isEqualToString:@"Current"])
     {

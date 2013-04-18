@@ -57,7 +57,8 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     cell.textLabel.text = [self.categories objectAtIndex:indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    
     return cell;
 }
 

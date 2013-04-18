@@ -66,7 +66,8 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     cell.textLabel.text = [self.collections objectAtIndex:indexPath.row];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+
     // Configure the cell...
     
     return cell;

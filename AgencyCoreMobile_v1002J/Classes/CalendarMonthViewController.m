@@ -8,6 +8,7 @@
 
 #import "CalendarMonthViewController.h"
 #import "NewTaskViewController.h"
+#import "BasicTwoLinesCell.h"
 
 @interface CalendarMonthViewController ()
 
@@ -71,7 +72,7 @@
 }
 
 
-#pragma mark UITableView Delegate & DataSource
+#pragma mark -  UITableView DataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
 	return 1;
 }
@@ -82,17 +83,55 @@
 }
 - (UITableViewCell *) tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    static NSString *CellIdentifier = @"Cell";
+//    BasicTwoLinesCell *cell = [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) cell = [[BasicTwoLinesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+
+    static NSString * iPhone_portrait_cell = @"iPhone_Portrait_Cell";
+    static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
+    static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
+    static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
     
-	
+    BasicTwoLinesCell * cell;
+    if (iPHONE_UI && UserInterface_Portrait)
+        cell = [tv dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
+    else if (iPHONE_UI && UserInterface_Landscape)
+        cell = [tv dequeueReusableCellWithIdentifier:iPhone_landscape_cell];
+    else if (iPAD_UI && UserInterface_Portrait)
+        cell = [tv dequeueReusableCellWithIdentifier:iPad_portrait_cell];
+    else if (iPAD_UI && UserInterface_Landscape)
+        cell = [tv dequeueReusableCellWithIdentifier:iPad_landscape_cell];
     
-	NSArray *ar = self.dataDictionary[[self.monthView dateSelected]];
-	cell.textLabel.text = ar[indexPath.row];
+    if (cell == nil)
+    {
+        if (iPHONE_UI && UserInterface_Portrait)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_portrait_cell];
+        else if (iPHONE_UI && UserInterface_Landscape)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPhone_landscape_cell];
+        else if (iPAD_UI && UserInterface_Portrait)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_portrait_cell];
+        else if (iPAD_UI && UserInterface_Landscape)
+            cell = [[BasicTwoLinesCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iPad_landscape_cell];
+        else
+            cell = nil;
+    }
+    
+    NSArray *ar = self.dataDictionary[[self.monthView dateSelected]];
+//	cell.textLabel.text = ar[indexPath.row];
+    cell.titleLabel.text = ar[indexPath.row];
+    cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[self.monthView dateSelected]];
+    cell.taskLabel.text = @"HHA Visit";
+    cell.statusLabel.text = @"Upcoming";
 	
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
 	
+}
+#pragma mark -  UITableView Delegate
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60.0f;
 }
 
 

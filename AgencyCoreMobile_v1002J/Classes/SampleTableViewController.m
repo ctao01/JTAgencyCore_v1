@@ -8,6 +8,7 @@
 
 #import "SampleTableViewController.h"
 #import "Account2ViewController.h"
+#import "HomeTableViewController.h"
 
 @interface SampleTableViewController()
 @property (nonatomic, strong) NSArray *sampleItems;
@@ -53,8 +54,15 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Account2ViewController * ac = [[Account2ViewController alloc]initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController pushViewController:ac animated:YES];
+    if (indexPath.row == 2){
+        Account2ViewController * ac = [[Account2ViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:ac animated:YES];
+    }
+    else
+    {
+        HomeTableViewController * tv = [[HomeTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+        [self.navigationController pushViewController:tv animated:YES];
+    }
 }
 
 @end

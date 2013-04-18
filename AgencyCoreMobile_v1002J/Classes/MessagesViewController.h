@@ -12,6 +12,6 @@
 #import "UnderRightViewController.h"
 
 
-@interface MessagesViewController : UITableViewController
+@interface MessagesViewController : UITableViewController < UIScrollViewDelegate >
 - (IBAction)revealMenu:(id)sender;
 @end

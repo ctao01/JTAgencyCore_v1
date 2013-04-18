@@ -153,7 +153,8 @@
     cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
     cell.statusLabel.text = @"Upcoming";
-    
+
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
 }
 
@@ -162,6 +163,12 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60.0f;
+}
+
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    cell.selectedBackgroundView = [[UIView alloc]init];
+//    cell.selectedBackgroundView.backgroundColor = ACColorRed;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

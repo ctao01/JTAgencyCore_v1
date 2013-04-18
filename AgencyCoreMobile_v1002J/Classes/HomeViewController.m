@@ -21,7 +21,6 @@
 
 //- (void) setupMessagesBadgeNumberLabel:(UILabel*)label onBadgeImageView:(UIImageView*)image;
 //- (void) setupTasksBadgeNumberLabel:(UILabel*)label onBadgeImageView:(UIImageView*)image;
-
 @end
 
 @implementation HomeViewController
@@ -96,7 +95,6 @@
     UIView * view1 = [self.view viewWithTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
     if (view1)
     {
-//        [self setupBadgeNumberWithIdentifier:@"message" withFrame:view1.frame];
         UIView * msgBadge = [self setupBadgeViewWithIdentifier:@"message" withFrame:view1.frame];
         msgBadge.tag  = 7008;
         [self.view addSubview:msgBadge];
@@ -105,32 +103,45 @@
     UIView * view2 = [self.view viewWithTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     if (view2 )
     {
-//        [self setupBadgeNumberWithIdentifier:@"schedule" withFrame:view2.frame];
         UIView * scheduleBadge = [self setupBadgeViewWithIdentifier:@"schedule" withFrame:view2.frame];
         scheduleBadge.tag = 7009;
         [self.view addSubview:scheduleBadge];
     }
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    CGFloat height = self.view.frame.size.height;
-    UIImageView * bgImg;
-    if (height >= 548.0f)
-        bgImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"agencycore_bg-568h"]];
-    else
-        bgImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"agencycore_bg"]];
-    bgImg.frame = self.view.bounds;
-    [self.view addSubview:bgImg];
+    if (iPHONE_UI && UserInterface_Portrait)
+    {
+        if (self.view.frame.size.height >= 548.0f)
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg-568h"]];
+        else
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg"]];
+    }
+    else if (iPAD_UI && UserInterface_Portrait)
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg_ipad"]];
+    else if (iPAD_UI && UserInterface_Landscape)
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg_landscape_ipad"]];
+    
+    
+    float button_position_y;
+    if (iPHONE_UI && UserInterface_Portrait) button_position_y = self.view.bounds.size.height * 4/7 - 44.0f;
+    else if (iPAD_UI && UserInterface_Portrait) button_position_y = self.view.bounds.size.height * 4/5 - 44.0f;
+    else if (UserInterface_Landscape) button_position_y = self.view.bounds.size.width - 66.0f;
+    else button_position_y = 0.0f;
     
     UIButton * btnMsg = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage * imgMsg = [UIImage imageNamed:@"button_messages"];
     [btnMsg setBackgroundImage:imgMsg forState:UIControlStateNormal];
-    [btnMsg setFrame:CGRectMake(0.0f, self.view.bounds.origin.y + self.view.bounds.size.height * 4/7 , imgMsg.size.width, imgMsg.size.height)];
-    [btnMsg setCenter:CGPointMake(self.view.center.x, btnMsg.center.y)];
+    [btnMsg setFrame:CGRectMake(0.0f, self.view.frame.origin.y + button_position_y , imgMsg.size.width, imgMsg.size.height)];
+
+    if (UserInterface_Portrait) [btnMsg setCenter:CGPointMake(self.view.center.x, btnMsg.center.y)];
+    else if (UserInterface_Landscape) [btnMsg setCenter:CGPointMake(self.view.frame.size.height / 4, btnMsg.center.y)];
+
     [btnMsg addTarget:self action:@selector(gotoMyMessages) forControlEvents:UIControlEventTouchUpInside];
     [btnMsg setTag:AGENCYCORE_MESSAGE_BUTTON_TAG];
     [self.view addSubview:btnMsg];
@@ -139,12 +150,12 @@
     UIImage * imgSchedule = [UIImage imageNamed:@"button_schedule"];
     btnSchedule.frame = btnMsg.frame;
     [btnSchedule setBackgroundImage:imgSchedule forState:UIControlStateNormal];
-    [btnSchedule setFrame:CGRectOffset(btnSchedule.frame, 0.0f, btnSchedule.frame.size.height)];
+    if (UserInterface_Portrait) [btnSchedule setFrame:CGRectOffset(btnSchedule.frame, 0.0f, btnSchedule.frame.size.height)];
+    else if (UserInterface_Landscape) [btnSchedule setFrame:CGRectOffset(btnSchedule.frame, self.view.frame.size.height /2 , 0.0f)];
     [btnSchedule addTarget:self action:@selector(gotoMySchedule) forControlEvents:UIControlEventTouchUpInside];
     [btnSchedule setTag:AGENCYCORE_SCHEDULE_BUTTON_TAG];
     [self.view addSubview:btnSchedule];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }
 
 - (void) receiveTestNotification:(NSNotification*)notification
@@ -158,6 +169,36 @@
     
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
+        if (iPHONE_UI && UserInterface_Portrait)
+        {
+            if (self.view.frame.size.height >= 548.0f)
+                self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg-568h"]];
+            else
+                self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg"]];
+        }
+        else if (iPAD_UI && UserInterface_Portrait)
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg_ipad"]];
+        else if (iPAD_UI && UserInterface_Landscape)
+            self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"agencycore_bg_landscape_ipad"]];
+        float button_position_y;
+        if (iPHONE_UI && UserInterface_Portrait) button_position_y = self.view.bounds.size.height * 4/7;
+        else if (iPAD_UI && UserInterface_Portrait) button_position_y = self.view.frame.size.height * 4/5;
+        else if (UserInterface_Landscape) button_position_y = self.view.frame.size.height - 66.0f;
+        else button_position_y = 0.0f;
+        
+        [view1 setFrame:CGRectMake(0.0f, self.view.frame.origin.y + button_position_y , view1.frame.size.width, view1.frame.size.height)];
+        if (UserInterface_Portrait) [view1 setCenter:CGPointMake(self.view.center.x, view1.center.y)];
+        else if (UserInterface_Landscape) [view1 setCenter:CGPointMake(self.view.frame.size.width / 4, view1.center.y)];
+        subview1.frame = UIEdgeInsetsInsetRect(view1.frame, UIEdgeInsetsMake(20.0f, 250.0f, 10.0f, 20.0f));
+        [subview1 setFrame:CGRectMake(subview1.frame.origin.x, subview1.frame.origin.y, 24.0f, 24.0f)];
+        
+        view2.frame = view1.frame;
+        if (UserInterface_Portrait) [view2 setFrame:CGRectOffset(view2.frame, 0.0f, view1.frame.size.height)];
+        else if (UserInterface_Landscape) [view2 setFrame:CGRectOffset(view2.frame, self.view.frame.size.width /2 , 0.0f)];
+        subview2.frame = UIEdgeInsetsInsetRect(view2.frame, UIEdgeInsetsMake(20.0f, 250.0f, 10.0f, 20.0f));
+        [subview2 setFrame:CGRectMake(subview2.frame.origin.x, subview2.frame.origin.y, 24.0f, 24.0f)];
+        
+        /*
         view1.center = CGPointMake(self.view.center.x, view1.center.y);
         if (view1)
         {
@@ -171,7 +212,7 @@
         {
             subview2.frame = UIEdgeInsetsInsetRect(view2.frame, UIEdgeInsetsMake(20.0f, 250.0f, 10.0f, 20.0f));
             [subview2 setFrame:CGRectMake(subview2.frame.origin.x, subview2.frame.origin.y, 24.0f, 24.0f)];
-        }
+        }*/
     }
 }
 

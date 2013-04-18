@@ -31,7 +31,7 @@
         self.dateLabel = [[UILabel alloc]init];
         self.dateLabel.backgroundColor = [UIColor clearColor];
         self.dateLabel.font = ACFontDefaultBold14;
-        self.dateLabel.textColor = ACColorTextRed;
+        self.dateLabel.textColor = ACColorRed;
         self.dateLabel.textAlignment = NSTextAlignmentRight;
         
         self.taskLabel = [[UILabel alloc]init];

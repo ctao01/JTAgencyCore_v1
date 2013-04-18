@@ -13,6 +13,13 @@
 #import "MessageComposer.h"
 #import "NavigationControllerWithoutRotation.h"
 
+@interface MessagesViewController ()
+//{
+//    UIActivityIndicatorView * indicator;
+//}
+//@property (nonatomic) NSInteger count;
+@end
+
 @implementation MessagesViewController
 
 - (IBAction)revealMenu:(id)sender
@@ -42,10 +49,18 @@
 {
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
+
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Message";
+//    self.count = 20;
+    
+    /*UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 49.0f)];
+    indicator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
+    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    indicator.center = footerView.center;
+    [footerView addSubview:indicator];
+    self.tableView.tableFooterView = footerView;*/
     
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }
@@ -96,7 +111,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return 20.0f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -131,7 +146,7 @@
     }
         
         
-    messageCell.senderLabel.text = @"Sender";
+    messageCell.senderLabel.text = [NSString stringWithFormat:@"Sender:%i",indexPath.row];
     messageCell.subjectLabel.text = @"Subject";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
     /* manage Categories later */
@@ -162,5 +177,27 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - UIScrollView Delegate
+/*
+- (void) loadingMoreData
+{
+    self.count ++;
+    [self.tableView reloadData];
+    [indicator stopAnimating];
+}
 
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger currentOffset = self.tableView.contentOffset.y;
+    NSInteger maximumOffset = self.tableView.contentSize.height - self.tableView.frame.size.height;
+    
+    // Change 10.0 to adjust the distance from bottom
+    if (maximumOffset - currentOffset <= -49.0f - 44.0f) {
+        [indicator startAnimating];
+        [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(loadingMoreData) userInfo:nil repeats:NO];
+ [self performSelector:@selector(stopAnimatingFooter) withObject:nil afterDelay:0.5];
+
+    }
+}
+*/
 @end

@@ -19,7 +19,7 @@
         if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-            self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
+            self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 380.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
@@ -28,7 +28,7 @@
         
         self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width, innerRect.origin.y, 120.0f, 20.0f)];
         [self.dateLabel setFont:ACFontDefaultBold14];
-        [self.dateLabel setTextColor:ACColorTextRed];
+        [self.dateLabel setTextColor:ACColorRed];
         [self.dateLabel setTextAlignment:NSTextAlignmentRight];
         
         self.taskLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x , self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height , self.titleLabel.frame.size.width, 20.0f)];
