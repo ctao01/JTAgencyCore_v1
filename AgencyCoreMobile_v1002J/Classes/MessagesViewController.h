@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
-#import "UnderRightViewController.h"
+#import "ACTableViewController.h"
 
-
-@interface MessagesViewController : UITableViewController < UIScrollViewDelegate >
+@interface MessagesViewController : ACTableViewController
 - (IBAction)revealMenu:(id)sender;
 @end

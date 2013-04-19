@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "MenuViewController.h"
-#import "UnderRightViewController.h"
+#import "ACTableViewController.h"
 
-@interface ScheduleViewController : UITableViewController
+@interface ScheduleViewController : ACTableViewController
 - (IBAction)revealMenu:(id)sender;
 @end

@@ -35,7 +35,10 @@
 {
     [super viewDidLoad];
     [self addPullToRefreshHeader];
-    [self addLoadMoreFooter];
+//    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height/ self.tableView.rowHeight);
+//    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
+//    NSLog(@"row:%i",rows);
+    if ([self.tableView numberOfRowsInSection:0] > 25) [self addLoadMoreFooter];
 }
 
 //- (void) viewDidAppear:(BOOL)animated
@@ -139,11 +142,12 @@
     loadMoreLabel.textColor = [UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
     loadMoreLabel.textAlignment = NSTextAlignmentCenter;
     loadMoreLabel.center = loadMoreFooter.center;
-    [loadMoreFooter addSubview:loadMoreLabel];
+//    [loadMoreFooter addSubview:loadMoreLabel];
     
     loadMoreSpinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
     loadMoreSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    loadMoreSpinner.center = CGPointMake(refreshLabel.frame.origin.x - loadMoreSpinner.frame.size.width, refreshLabel.center.y);
+//    loadMoreSpinner.center = CGPointMake(refreshLabel.frame.origin.x - loadMoreSpinner.frame.size.width, refreshLabel.center.y);
+    loadMoreSpinner.center = loadMoreFooter.center;
     loadMoreSpinner.hidesWhenStopped = YES;
     [loadMoreFooter addSubview:loadMoreSpinner];
     self.tableView.tableFooterView = loadMoreFooter;
@@ -155,24 +159,23 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0, LOADMORE_FOOTER_HEIGHT, 0);
         NSLog(@"startLoadingMore");
-        loadMoreLabel.text = @"Load More";
+        loadMoreLabel.text = @"Loading More";
     }];
-//    [loadMoreSpinner startAnimating];
+    [loadMoreSpinner startAnimating];
 
     [self loadMore];
 }
 
 - (void) stopLoadinMore
 {
-    isLoadingMore = NO;
     
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
         self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, LOADMORE_FOOTER_HEIGHT, self.tableView.contentInset.right);
     }
                      completion:^(BOOL finished) {
-                         [self performSelector:@selector(stopLoadingMoreComplete)];
-
+                         [loadMoreSpinner stopAnimating];
+                         isLoadingMore = NO;
                      }];
 
 }
@@ -180,14 +183,10 @@
 - (void) loadMore
 {
     [self performSelector:@selector(stopLoadinMore) withObject:nil afterDelay:2.0];
+//    [self performSelector:<#(SEL)#> onThread:<#(NSThread *)#> withObject:<#(id)#> waitUntilDone:<#(BOOL)#>]
 //    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0]-1 inSection:0];
 //    // [self reload tabeview];
 //    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
-
-- (void) stopLoadingMoreComplete
-{
-    [loadMoreSpinner stopAnimating];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -219,7 +218,7 @@
         }];
     }
     
-    if (isLoadingMore == NO)
+    if (loadMoreFooter && isLoadingMore == NO)
     {
         NSInteger currentOffset = self.tableView.contentOffset.y;
         NSInteger maximumOffset = self.tableView.contentSize.height - self.tableView.frame.size.height;

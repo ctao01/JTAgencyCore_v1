@@ -78,7 +78,14 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
-
+//- (void) viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+////    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height / self.tableView.rowHeight);
+////    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
+////    if ([self.tableView numberOfRowsInSection:0] < rows) self.loadMoreFooter.hidden = YES;
+//    
+//}
 - (void) viewDidUnload
 {
     [super viewDidUnload];

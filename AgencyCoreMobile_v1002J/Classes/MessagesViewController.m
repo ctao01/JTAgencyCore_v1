@@ -17,7 +17,7 @@
 //{
 //    UIActivityIndicatorView * indicator;
 //}
-//@property (nonatomic) NSInteger count;
+@property (nonatomic , strong) NSMutableArray * counts;
 @end
 
 @implementation MessagesViewController
@@ -52,17 +52,25 @@
 
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, 52.0f, self.tableView.contentInset.right);
+
     self.navigationItem.title = @"Message";
 //    self.count = 20;
-    
+    self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
     /*UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 49.0f)];
     indicator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
     indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     indicator.center = footerView.center;
     [footerView addSubview:indicator];
     self.tableView.tableFooterView = footerView;*/
-    
+   
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -76,6 +84,24 @@
 {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - ACTableViewController Method
+
+- (void) loadMore
+{
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0]-1 inSection:0];
+    for (int i = 0; i < 10; i++)
+        [self.counts addObject:@"aaa"];
+    [self performSelector:@selector(stopLoadinMore:) withObject:indexPath afterDelay:2.0];
+
+}
+
+- (void) stopLoadinMore:(NSIndexPath*)indexPath
+{
+    [super stopLoadinMore];
+    [self.tableView reloadData];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
 }
 
 #pragma mark - NSNotification
@@ -111,7 +137,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20.0f;
+    return [self.counts count];
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -146,7 +172,7 @@
     }
         
         
-    messageCell.senderLabel.text = [NSString stringWithFormat:@"Sender:%i",indexPath.row];
+    messageCell.senderLabel.text = [NSString stringWithFormat:@"Sender:%@",[self.counts objectAtIndex:indexPath.row]];
     messageCell.subjectLabel.text = @"Subject";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
     /* manage Categories later */
