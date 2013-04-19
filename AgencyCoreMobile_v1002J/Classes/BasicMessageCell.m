@@ -14,11 +14,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 20.0f, 10.0f, 20.0f));
+        CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f));
         if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 380.0f, 20.0f)];
+        {
+            CGRect screenSize = [[UIScreen mainScreen]bounds];
+            if (screenSize.size.height >= 568.0f) self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 420.0f, 20.0f)];
+            else self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
+        }
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
             self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
@@ -27,7 +31,7 @@
         [self.senderLabel  setFont:ACFontDefaultBold16];
         [self.contentView addSubview:self.senderLabel];
         
-        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.senderLabel.frame.origin.x + self.senderLabel.frame.size.width -10.0f, innerRect.origin.y, 120.0f, 20.0f)];
+        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.senderLabel.frame.origin.x + self.senderLabel.frame.size.width, innerRect.origin.y, 120.0f, 20.0f)];
 //        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 120.0f, 20.0f)];
 
         [self.dateLabel  setFont:ACFontDefaultBold14];

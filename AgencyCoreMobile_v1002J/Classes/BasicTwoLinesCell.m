@@ -19,7 +19,11 @@
         if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 180.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-            self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 380.0f, 20.0f)];
+        {
+            CGRect screenSize = [[UIScreen mainScreen]bounds];
+            if (screenSize.size.height >= 568.0f) self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 420.0f, 20.0f)];
+            else self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 340.0f, 20.0f)];
+        }
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
