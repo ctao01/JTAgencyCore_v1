@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Additions)
+
 + (NSString*) detailDateStringFromDate:(NSDate*)date;
 + (NSString*) customizedCellDateStringFromDate:(NSDate*)date;
 + (NSString*) updateLabelDateStringFromDate:(NSDate*)date;
 + (NSString*) shortDateStyleStringFromDate:(NSDate*)date;
 + (NSString*) shortDateAndTimeStyleStringFromDate:(NSDate*)date;
+
++ (NSString*) shortTimeStyleStringFromDate:(NSDate*)date;
 
 @end

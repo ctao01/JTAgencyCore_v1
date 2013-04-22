@@ -7,6 +7,7 @@
 //
 
 #import "NSString+Additions.h"
+//#import "NSDate+Additions.h"
 
 @implementation NSString (Additions)
 
@@ -57,9 +58,20 @@
 
 + (NSString*) shortDateStyleStringFromDate:(NSDate*)date
 {
-    NSDateFormatter * df = [[NSDateFormatter alloc]init];
-    [df setDateStyle:NSDateFormatterShortStyle];
     
+    NSDateFormatter * df = [[NSDateFormatter alloc]init];   
+    [df setDateStyle:NSDateFormatterShortStyle];   
+    
+    NSString * string = [df stringFromDate:date];
+    return string;
+}
+
++ (NSString*) shortTimeStyleStringFromDate:(NSDate*)date
+{
+    NSDateFormatter * df = [[NSDateFormatter alloc]init];
+    [df setTimeStyle:NSDateFormatterShortStyle];
+    [df setTimeZone:[NSTimeZone localTimeZone]];
+
     NSString * string = [df stringFromDate:date];
     return string;
 }
@@ -70,7 +82,9 @@
     NSDateFormatter * df = [[NSDateFormatter alloc]init];
     [df setDateStyle:NSDateFormatterShortStyle];
     [df setTimeStyle:NSDateFormatterShortStyle];
+    [df setTimeZone:[NSTimeZone systemTimeZone]];
 
+    
     NSString * string = [df stringFromDate:date];
     return string;
 }

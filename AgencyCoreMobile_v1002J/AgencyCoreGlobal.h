@@ -6,6 +6,13 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
+#import "UIButton+Additons.h"
+#import "UILabel+Additons.h"
+#import "NSString+Additions.h"
+#import "NSDate+Additions.h"
+#import "NSDictionary+Additions.h"
+#import "UINavigationController+Rotation.h"
+
 #ifndef AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
 #define AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
 
