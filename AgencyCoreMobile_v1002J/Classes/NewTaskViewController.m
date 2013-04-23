@@ -40,7 +40,9 @@
     self.tableView.scrollsToTop = YES;
     
     CGRect bounds = [[UIScreen mainScreen]bounds];
-    datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height + 44.0f, bounds.size.width, bounds.size.height)];
+    if (UserInterface_Portrait) datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height + 44.0f, bounds.size.width, bounds.size.height)];
+    else if (UserInterface_Landscape) datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.width + 44.0f, bounds.size.height, bounds.size.width)];
+
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
     datePicker.date = [NSDate date];
     datePicker.maximumDate =  [[NSDate date] dateByAddingTimeInterval:60 * 60 * 24 * 60];
@@ -54,6 +56,13 @@
     [self.tableView reloadData];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+    
+}
+
 - (void) dealloc
 {
     self.selectedPatient = nil;
@@ -65,6 +74,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark - NSNotification Center
+
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+    {
+        CGRect bounds = [[UIScreen mainScreen]bounds];
+        if ([self.navigationItem.rightBarButtonItem.title isEqualToString:@"Done"])
+        {
+            if(UserInterface_Landscape) [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.width - 250.0f + 44.0f, bounds.size.height, 250.0f)];
+            else [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.height - 250.0f + 44.0f, bounds.size.width, 250.0f)];
+        }
+    }
 }
 
 #pragma mark - Private Actions
@@ -86,7 +109,8 @@
 
     [UIView animateWithDuration:0.3f delay:0.0f options:(UIViewAnimationOptions)UIViewAnimationCurveEaseIn
                      animations:^{
-                         [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height, bounds.size.width, bounds.size.height)];
+                         if (UserInterface_Landscape) [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.width, bounds.size.height, bounds.size.width)];
+                         else [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height, bounds.size.width, bounds.size.height)];
                      }
                      completion:^(BOOL finished){
                          UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelAddingTask)];
@@ -196,7 +220,8 @@
         {
             [UIView animateWithDuration:0.4f delay:0.0f options:(UIViewAnimationOptions)UIViewAnimationCurveEaseIn
                              animations:^{
-                                 [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.height - 250.0f + 44.0f, bounds.size.width, 250.0f)];
+                                 if(UserInterface_Landscape) [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.width - 250.0f + 44.0f, bounds.size.height, 250.0f)];
+                                 else [datePicker setFrame:CGRectMake(bounds.origin.x, bounds.size.height - 250.0f + 44.0f, bounds.size.width, 250.0f)];
                              }
                              completion:^(BOOL finished){
                                  UIBarButtonItem * doneItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(selectDateDone)];

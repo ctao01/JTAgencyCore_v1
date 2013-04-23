@@ -10,4 +10,5 @@
 
 @interface VisitViewController : UITableViewController
 
+@property (nonatomic , assign) NSDictionary * taskObject;
 @end

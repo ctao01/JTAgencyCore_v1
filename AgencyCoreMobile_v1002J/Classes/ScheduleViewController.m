@@ -67,7 +67,7 @@
 
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
-    [updatedLabel setFont:ACFontDefault14];
+    [updatedLabel setFont:ACFontDefaultBold14];
     [updatedLabel setTextColor:[UIColor whiteColor]];
     [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
     [updatedLabel setTextAlignment:NSTextAlignmentCenter];
@@ -122,7 +122,7 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 32;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -157,9 +157,22 @@
             cell = nil;
     }
     cell.titleLabel.text = @"Patient Name";
-    cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
+//    cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
-    cell.statusLabel.text = @"Upcoming";
+    if (indexPath.row % 5 == 1){
+        cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-18 10:00:00 -0500"]];
+        cell.statusLabel.text = @"Completed";
+    }
+    else if (indexPath.row % 5 == 3)
+    {
+        cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-11 10:00:00 -0500"]];
+        cell.statusLabel.text = @"Missed";
+    }
+    else
+    {
+        cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-30 10:00:00 -0500"]];
+        cell.statusLabel.text = @"Upcoming";
+    }
 
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
@@ -180,8 +193,16 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // TEMP: Testing Object
+    BasicTwoLinesCell * cell = (BasicTwoLinesCell*)[tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary * comment = [NSDictionary dictionaryWithObjectsAndKeys:NULL,@"episode_comment",NULL,@"visit_comment",NULL,@"missed_visited_form", nil];
+    NSDictionary * object = [NSDictionary dictionaryWithObjectsAndKeys:cell.titleLabel.text, @"patient",cell.dateLabel.text, @"schedule_date",cell.taskLabel.text, @"task_title", cell.statusLabel.text, @"task_status",comment, @"task_notes" ,nil];
+//    NSLog(@"Task Object:%@",object);
+    //
     VisitViewController * vc = [[VisitViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:vc animated:YES];
+    [vc setTaskObject:object];
+    
 }
 
 @end

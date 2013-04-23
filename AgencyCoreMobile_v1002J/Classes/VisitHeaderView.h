@@ -10,7 +10,7 @@
 
 @interface VisitHeaderView : UIView
 
-//@property (nonatomic , strong) 
+@property (nonatomic , strong) NSDictionary * taskObject;
 //- (id)initWithFrame:(CGRect)frame withIdentifier:(NSString *)identifier;
 
 @end

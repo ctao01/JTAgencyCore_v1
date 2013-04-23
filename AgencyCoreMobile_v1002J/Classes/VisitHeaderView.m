@@ -65,12 +65,14 @@
     [self.taskLabel setFrame:CGRectMake(innerRect.origin.x, self.patientLabel.frame.origin.y + 30.0f, innerRect.size.width, 24.0f)];
     [self.statusLabel setFrame:CGRectMake(innerRect.origin.x, self.taskLabel.frame.origin.y + 20.0f, innerRect.size.width, 24.0f)];
     
-    self.patientLabel.text = @"Tom Hanks";
-    self.taskLabel.text = @"HHA Visit";
-    self.statusLabel.text = @"Upcoming";
-    [self.statusLabel setTextColor:ACColorTaskScheduledBlue];
+    self.patientLabel.text = [self.taskObject objectForKey:@"patient"];
+    self.taskLabel.text = [self.taskObject objectForKey:@"task_title"];
+    self.statusLabel.text = [self.taskObject objectForKey:@"task_status"];
+    if ([self.statusLabel.text isEqualToString:@"Missed"]) self.statusLabel.textColor = ACColorTaskMissedRed;
+    else if ([self.statusLabel.text isEqualToString:@"Completed"]) self.statusLabel.textColor = ACColorTaskCompletedGreen;
+    else self.statusLabel.textColor = ACColorTaskScheduledBlue;
 
-    self.dateLabel.text = [NSString shortDateStyleStringFromDate:[NSDate date]];
+    self.dateLabel.text = [self.taskObject objectForKey:@"schedule_date"];
 }
 
 @end

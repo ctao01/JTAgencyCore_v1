@@ -23,6 +23,17 @@
 @end
 
 @implementation CommentsViewController
+@synthesize taskObject = _taskObject;
+
+- (void) setTaskObject:(NSDictionary *)newObject
+{
+    if (_taskObject == newObject) return;
+    
+    _taskObject = newObject;
+    self.visitView.taskObject = newObject;
+    [self.visitView layoutIfNeeded];
+    
+}
 
 - (void)viewDidLoad
 {
@@ -59,6 +70,7 @@
     savedButton = [UIButton redStyleButtonWithTitle:@"Save"];
     [savedButton setFrame:CGRectMake(0.0f, 0.0f, screenWidth - horizontalOffset *2 , 44.0f)];
     [savedButton setCenter:CGPointMake(screenWidth / 2.0f, self.commentView.frame.origin.y + self.commentView.frame.size.height + verticalOffset)];
+    [savedButton addTarget:self action:@selector(saveCommentNote) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:savedButton];
 
 }
@@ -79,6 +91,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark -
+
+- (void) saveCommentNote
+{
+    NSMutableDictionary * notes = [NSMutableDictionary dictionaryWithDictionary:[self.taskObject objectForKey:@"task_notes"]];
+    if ([self.title isEqualToString:@"Episode Comments"])
+        [notes setObject:self.commentView.commentsField.text forKey:@"episode_comment"];
+    else if ([self.title isEqualToString:@"Visit Comments"])
+        [notes setObject:self.commentView.commentsField.text forKey:@"visit_comment"];
+    else
+        [notes setObject:self.commentView.commentsField forKey:@"missed_visited_form"];
+    
+    NSMutableDictionary * dict = [NSMutableDictionary dictionaryWithDictionary:self.taskObject];
+    [dict setObject:notes forKey:@"task_notes"];
+    
+    self.taskObject = dict;
+    NSLog(@"complete task:%@",self.taskObject);
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Keyboard Method

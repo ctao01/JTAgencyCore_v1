@@ -16,6 +16,18 @@
 @end
 
 @implementation VisitViewController
+@synthesize taskObject = _taskObject;
+
+- (void) setTaskObject:(NSDictionary *)newObject
+{
+    if (_taskObject == newObject) return;
+    
+    _taskObject = newObject;
+    self.visitHeaderView.taskObject = newObject;
+    [self.visitHeaderView layoutIfNeeded];
+    
+    [self.tableView reloadData];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -68,7 +80,8 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    if ([[self.taskObject objectForKey:@"task_status"] isEqualToString:@"Missed"])  return 3;
+    else return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -116,6 +129,14 @@
 {
     CommentsViewController * vc = [[CommentsViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == 0)
+        vc.title = @"Episode Comments";
+    else if (indexPath.row == 1)
+        vc.title = @"Visit Comments";
+    else
+        vc.title = @"Missed Visited Form";
+    
+    [vc setTaskObject:self.taskObject];
 }
 
 

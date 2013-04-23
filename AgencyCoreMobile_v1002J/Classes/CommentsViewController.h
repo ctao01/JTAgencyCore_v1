@@ -10,4 +10,6 @@
 
 @interface CommentsViewController : UIViewController < UITextViewDelegate >
 
+@property (nonatomic , assign) NSDictionary * taskObject;
+
 @end
