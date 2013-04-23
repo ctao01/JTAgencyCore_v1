@@ -10,6 +10,6 @@
 
 @interface NSDictionary (Additions)
 
-+ (NSDictionary*) dictionaryFromArray:(NSArray*)array;
++ (NSDictionary*) dictionaryFromArray:(NSArray*)array andKey:(NSString*)key;
 
 @end

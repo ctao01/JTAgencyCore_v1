@@ -10,26 +10,32 @@
 
 @implementation NSDictionary (Additions)
 
-+ (NSDictionary*) dictionaryFromArray:(NSArray*)array
++ (NSDictionary*) dictionaryFromArray:(NSArray*)array andKey:(NSString*)key
 {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
     for(NSDictionary * object in array)
     {
-        NSLog(@"%i",[dict.allKeys count]);
         if ([dict.allKeys count] >0)
         {
-            if (![dict.allKeys containsObject:[object objectForKey:@"time_key"]])
-                [dict setObject:object forKey:[object objectForKey:@"time_key"]];
+            if (![dict.allKeys containsObject:[NSDate dateWithoutTimePortionFromDate:[object objectForKey:key]]])
+            {
+                NSArray * array = [NSArray arrayWithObjects:object, nil];
+                [dict setObject:array forKey:[NSDate dateWithoutTimePortionFromDate:[object objectForKey:key]]];
+            }
             else
             {
-                NSMutableArray * array = [[NSMutableArray alloc]initWithObjects:[dict objectForKey:[object objectForKey:@"time_key"]], nil];
+                id obj = [dict objectForKey:[NSDate dateWithoutTimePortionFromDate:[object objectForKey:key]]];
+                NSMutableArray * array = [NSMutableArray arrayWithArray:obj];
                 [array addObject:object];
-                [dict setObject:array forKey:[object objectForKey:@"time_key"]];
+                [dict setObject:array forKey:[NSDate dateWithoutTimePortionFromDate:[object objectForKey:key]]];
+                
             }
         }
         else
-            [dict setObject:object forKey:[object objectForKey:@"time_key"]];
-        
+        {
+            NSArray * array = [NSArray arrayWithObjects:object, nil];
+            [dict setObject:array forKey:[NSDate dateWithoutTimePortionFromDate:[object objectForKey:key]]];
+        }
     }
     return [NSDictionary dictionaryWithDictionary:dict];
 }
