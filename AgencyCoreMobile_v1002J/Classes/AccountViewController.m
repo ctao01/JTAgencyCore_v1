@@ -82,7 +82,7 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem * menuItem = [[UIBarButtonItem alloc]initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
+    UIBarButtonItem * menuItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_menu"] style:UIBarButtonItemStyleBordered target:self action:@selector(revealMenu:)];
     self.navigationItem.leftBarButtonItem = menuItem;
     self.title = @"My Account";
     

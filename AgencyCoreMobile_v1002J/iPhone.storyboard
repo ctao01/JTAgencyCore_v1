@@ -44,7 +44,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="More..." id="zZr-kz-Vtd">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Fnr-aj-zqe">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="Fnr-aj-zqe">
                             <connections>
                                 <action selector="revealMenu:" destination="IJx-7N-r3m" id="WXT-fT-P3h"/>
                             </connections>
@@ -74,16 +74,16 @@
         <scene sceneID="BJT-pW-adA">
             <objects>
                 <tableViewController storyboardIdentifier="vcAccount" id="G5c-VY-FqF" customClass="AccountViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="iLm-PT-gMO">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iLm-PT-gMO">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="61q-ak-YFT">
-                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -94,7 +94,9 @@
                             <outlet property="delegate" destination="G5c-VY-FqF" id="n3t-9k-LVF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="4VE-KR-vfc"/>
+                    <navigationItem key="navigationItem" id="4VE-KR-vfc">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="u6A-Uu-yqW"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBE-of-5ZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,7 +142,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="8Li-60-AYy">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="mU4-Ok-nF7">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="mU4-Ok-nF7">
                             <connections>
                                 <action selector="revealMenu:" destination="YzM-13-NI2" id="j32-YK-QyC"/>
                             </connections>
@@ -191,7 +193,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Home" id="OHf-PH-ipO">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Iup-2u-hge">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="Iup-2u-hge">
                             <connections>
                                 <action selector="revealMenu:" destination="5wu-rR-UH9" id="54F-Fp-UvX"/>
                             </connections>
@@ -364,7 +366,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="UOZ-6J-8t0">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="fXa-Cu-SDB">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="fXa-Cu-SDB">
                             <connections>
                                 <action selector="revealMenu:" destination="d41-XM-Wd7" id="OBC-3i-xc4"/>
                             </connections>
@@ -415,7 +417,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="More..." id="6iZ-SB-Zvw">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="ldr-Es-58O">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="ldr-Es-58O">
                             <connections>
                                 <action selector="revealMenu:" destination="paC-zW-aa6" id="zWL-Iy-9CT"/>
                             </connections>
@@ -427,6 +429,9 @@
             <point key="canvasLocation" x="696" y="-3430"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_menu.png" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

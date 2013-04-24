@@ -101,7 +101,7 @@
 	[formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
 	[formatter setDateStyle:NSDateFormatterFullStyle];
 	[formatter setTimeStyle:NSDateFormatterNoStyle];
-	[formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	[formatter setTimeZone:[NSTimeZone localTimeZone]];
 	
 	NSDate *firstDate = [self.datesArray objectAtIndex:0];
     forIpad=(([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) && (EnableLargeCalendarForIpad==YES))? YES:NO;
@@ -147,14 +147,14 @@
 	
 	NSDate *firstDate, *lastDate;
 	
-	TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	TKDateInformation info = [date dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	info.day = 1;
 	info.hour = 0;
 	info.minute = 0;
 	info.second = 0;
 	
-	NSDate *currentMonth = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-	info = [currentMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	NSDate *currentMonth = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone localTimeZone]];
+	info = [currentMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	
 	
 	NSDate *previousMonth = [currentMonth previousMonth];
@@ -162,23 +162,23 @@
 	
 	if(info.weekday > 1 && sunday){
 		
-		TKDateInformation info2 = [previousMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		TKDateInformation info2 = [previousMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 		
 		int preDayCnt = [previousMonth daysBetweenDate:currentMonth];
 		info2.day = preDayCnt - info.weekday + 2;
-		firstDate = [NSDate dateFromDateInformation:info2 timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		firstDate = [NSDate dateFromDateInformation:info2 timeZone:[NSTimeZone localTimeZone]];
 		
 		
 	}else if(!sunday && info.weekday != 2){
 		
-		TKDateInformation info2 = [previousMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		TKDateInformation info2 = [previousMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 		int preDayCnt = [previousMonth daysBetweenDate:currentMonth];
 		if(info.weekday==1){
 			info2.day = preDayCnt - 5;
 		}else{
 			info2.day = preDayCnt - info.weekday + 3;
 		}
-		firstDate = [NSDate dateFromDateInformation:info2 timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		firstDate = [NSDate dateFromDateInformation:info2 timeZone:[NSTimeZone localTimeZone]];
 		
 		
 		
@@ -190,8 +190,8 @@
 	
 	int daysInMonth = [currentMonth daysBetweenDate:nextMonth];
 	info.day = daysInMonth;
-	NSDate *lastInMonth = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-	TKDateInformation lastDateInfo = [lastInMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	NSDate *lastInMonth = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone localTimeZone]];
+	TKDateInformation lastDateInfo = [lastInMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
     
 	
 	
@@ -204,7 +204,7 @@
 			lastDateInfo.month = 1;
 			lastDateInfo.year++;
 		}
-		lastDate = [NSDate dateFromDateInformation:lastDateInfo timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		lastDate = [NSDate dateFromDateInformation:lastDateInfo timeZone:[NSTimeZone localTimeZone]];
         
 	}else if(!sunday && lastDateInfo.weekday != 1){
 		
@@ -214,7 +214,7 @@
 		if(lastDateInfo.month>12){ lastDateInfo.month = 1; lastDateInfo.year++; }
         
 		
-		lastDate = [NSDate dateFromDateInformation:lastDateInfo timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		lastDate = [NSDate dateFromDateInformation:lastDateInfo timeZone:[NSTimeZone localTimeZone]];
         
 	}else{
 		lastDate = lastInMonth;
@@ -232,7 +232,7 @@
 	_monthDate = date;
 	startOnSunday = sunday;
 	
-	TKDateInformation dateInfo = [_monthDate dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	TKDateInformation dateInfo = [_monthDate dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	firstWeekday = dateInfo.weekday;
 	
 	
@@ -549,12 +549,12 @@
 }
 - (NSDate*) dateSelected{
 	if(selectedDay < 1 || selectedPortion != 1) return nil;
-	TKDateInformation info = [_monthDate dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	TKDateInformation info = [_monthDate dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	info.hour = 0;
 	info.minute = 0;
 	info.second = 0;
 	info.day = selectedDay;
-	NSDate *d = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	NSDate *d = [NSDate dateFromDateInformation:info timeZone:[NSTimeZone localTimeZone]];
 	
     
 	
@@ -789,7 +789,7 @@
 	
 	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat:@"eee"];
-	[dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	[dateFormat setTimeZone:[NSTimeZone localTimeZone]];
 	
 	
 	TKDateInformation sund;
@@ -802,7 +802,7 @@
 	sund.weekday = 0;
 	
 	
-	NSTimeZone *tz = [NSTimeZone timeZoneForSecondsFromGMT:0];
+	NSTimeZone *tz = [NSTimeZone localTimeZone];
 	NSString * sun = [dateFormat stringFromDate:[NSDate dateFromDateInformation:sund timeZone:tz]];
 	
 	sund.day = 6;
@@ -882,7 +882,7 @@
 	BOOL isNext = (sender.tag == 1);
 	NSDate *nextMonth = isNext ? [currentTile.monthDate nextMonth] : [currentTile.monthDate previousMonth];
 	
-	TKDateInformation nextInfo = [nextMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	TKDateInformation nextInfo = [nextMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	NSDate *localNextMonth = [NSDate dateFromDateInformation:nextInfo];
 	
 	return localNextMonth;
@@ -893,7 +893,7 @@
 	BOOL isNext = (sender.tag == 1);
 	NSDate *nextMonth = isNext ? [currentTile.monthDate nextMonth] : [currentTile.monthDate previousMonth];
 	
-	TKDateInformation nextInfo = [nextMonth dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+	TKDateInformation nextInfo = [nextMonth dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 	NSDate *localNextMonth = [NSDate dateFromDateInformation:nextInfo];
 	
 	
@@ -1100,7 +1100,7 @@
         
         
 		// thanks rafael
-		TKDateInformation info = [[currentTile monthDate] dateInformationWithTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+		TKDateInformation info = [[currentTile monthDate] dateInformationWithTimeZone:[NSTimeZone localTimeZone]];
 		info.day = day;
         
         NSDate *dateForMonth = [NSDate dateFromDateInformation:info  timeZone:[NSTimeZone timeZoneWithName:@"GMT"]];

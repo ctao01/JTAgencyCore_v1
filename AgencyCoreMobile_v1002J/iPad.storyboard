@@ -64,7 +64,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="0Z8-pI-HLy">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Te0-jx-u1L">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="Te0-jx-u1L">
                             <connections>
                                 <action selector="revealMenu:" destination="red-lB-eZS" id="fnY-jV-Rap"/>
                             </connections>
@@ -172,7 +172,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Messages" id="5LM-kB-DE5">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="qDu-ft-GVV">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="qDu-ft-GVV">
                             <connections>
                                 <action selector="revealMenu:" destination="MZd-HG-M2g" id="HOZ-LO-aqW"/>
                             </connections>
@@ -219,7 +219,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Notes" id="udj-Wd-gGi">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="TZS-As-NWD">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="TZS-As-NWD">
                             <connections>
                                 <action selector="revealMenu:" destination="lNF-Lt-TcU" id="UDh-lr-Y1M"/>
                             </connections>
@@ -266,7 +266,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Schedule Tasks" id="mCs-Lq-P4S">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="iT1-YF-0yS">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="iT1-YF-0yS">
                             <connections>
                                 <action selector="revealMenu:" destination="t0F-51-tmi" id="fDR-80-ILe"/>
                             </connections>
@@ -356,7 +356,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="More" id="QPh-KW-pbN">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="QEZ-m8-vkg">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="QEZ-m8-vkg">
                             <connections>
                                 <action selector="revealMenu:" destination="5au-1W-dmi" id="ZSU-ng-qIg"/>
                             </connections>
@@ -383,6 +383,66 @@
             <point key="canvasLocation" x="504" y="5992"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_menu.png" width="32" height="32"/>
+    </resources>
+    <classes>
+        <class className="ACTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ACTableViewController.h"/>
+        </class>
+        <class className="AccountViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+            </relationships>
+        </class>
+        <class className="ECSlidingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
+        </class>
+        <class className="HomeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+                <relationship kind="action" name="revealUnderRight:"/>
+            </relationships>
+        </class>
+        <class className="InitialSlidingViewController" superclassName="ECSlidingViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InitialSlidingViewController.h"/>
+        </class>
+        <class className="LogInViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogInViewController.h"/>
+        </class>
+        <class className="MenuViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
+        </class>
+        <class className="MessagesViewController" superclassName="ACTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MessagesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+            </relationships>
+        </class>
+        <class className="NavigationToolBarController" superclassName="NavigationTopViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationToolBarController.h"/>
+        </class>
+        <class className="NavigationTopViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationTopViewController.h"/>
+        </class>
+        <class className="SampleTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SampleTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+            </relationships>
+        </class>
+        <class className="ScheduleViewController" superclassName="ACTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+            </relationships>
+        </class>
+        <class className="UnderRightViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UnderRightViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
