@@ -125,16 +125,16 @@
         <scene sceneID="Y2U-Se-TGt">
             <objects>
                 <tableViewController id="ecC-K4-Tda" customClass="AccountViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OYH-6i-eTT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OYH-6i-eTT">
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ks7-Dz-z1T">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="54" width="768" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <rect key="frame" x="45" y="1" width="678" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -384,6 +384,9 @@
         </scene>
     </scenes>
     <classes>
+        <class className="ACTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ACTableViewController.h"/>
+        </class>
         <class className="AccountViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
             <relationships>
@@ -409,7 +412,7 @@
         <class className="MenuViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MenuViewController.h"/>
         </class>
-        <class className="MessagesViewController" superclassName="UITableViewController">
+        <class className="MessagesViewController" superclassName="ACTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MessagesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="revealMenu:"/>
@@ -427,7 +430,7 @@
                 <relationship kind="action" name="revealMenu:"/>
             </relationships>
         </class>
-        <class className="ScheduleViewController" superclassName="UITableViewController">
+        <class className="ScheduleViewController" superclassName="ACTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ScheduleViewController.h"/>
             <relationships>
                 <relationship kind="action" name="revealMenu:"/>

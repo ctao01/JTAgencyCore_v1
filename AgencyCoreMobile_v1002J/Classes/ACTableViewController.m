@@ -8,8 +8,6 @@
 
 #import "ACTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#define REFRESH_HEADER_HEIGHT 52.0f
-#define LOADMORE_FOOTER_HEIGHT 52.0f
 
 @interface ACTableViewController ()
 {
@@ -35,18 +33,8 @@
 {
     [super viewDidLoad];
     [self addPullToRefreshHeader];
-//    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height/ self.tableView.rowHeight);
-//    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
-//    NSLog(@"row:%i",rows);
     if ([self.tableView numberOfRowsInSection:0] > 25) [self addLoadMoreFooter];
 }
-
-//- (void) viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    NSLog(@"tableView:%@",NSStringFromCGSize(self.tableView.contentSize));
-//    [self addLoadMoreFooter];
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -54,12 +42,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Layout Rotation
+
+- (void) layoutRotated
+{
+    
+    refreshHeaderView.frame = CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT);
+    refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
+    
+    loadMoreFooter.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT);
+    loadMoreLabel.center = loadMoreFooter.center;
+    loadMoreSpinner.center = loadMoreFooter.center;
+}
+
 #pragma mark - Pull-To-Update Method
 
 - (void)addPullToRefreshHeader
 {
-    refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT)];
+    if (UserInterface_Portrait) refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT)];
+    else if (UserInterface_Landscape) refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.height, REFRESH_HEADER_HEIGHT)];
     refreshHeaderView.backgroundColor = [UIColor clearColor];
+    NSLog(@"%--@",NSStringFromCGRect(refreshHeaderView.frame));
     
     refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 44.0f)];
     refreshLabel.backgroundColor = [UIColor clearColor];
@@ -133,7 +136,8 @@
 
 - (void) addLoadMoreFooter
 {
-    loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT)];
+    if (UserInterface_Portrait) loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT)];
+    else if (UserInterface_Landscape) loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, LOADMORE_FOOTER_HEIGHT)];
     loadMoreFooter.backgroundColor = [UIColor redColor];
     
     loadMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 44.0f)];

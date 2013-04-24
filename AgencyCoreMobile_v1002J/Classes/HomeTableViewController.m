@@ -34,28 +34,32 @@
     
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor whiteColor];
-   
-    if (iPHONE_UI && UserInterface_Portrait) self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.65f )];
-    else if (iPHONE_UI && UserInterface_Landscape)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.45f)];
-    else if (iPAD_UI && UserInterface_Portrait)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.height  * 0.8f )];
-
-    else if (iPAD_UI && UserInterface_Landscape)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.7f)];
-       
-    self.headerView.backgroundColor = [UIColor grayColor];
-    self.tableView.tableHeaderView = self.headerView;
     self.tableView.scrollEnabled = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 
+    if (iPHONE_UI && UserInterface_Portrait) self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.7f)];
+    else if (iPHONE_UI && UserInterface_Landscape)
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.45f)];
+    else if (iPAD_UI && UserInterface_Portrait)
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.height  * 0.8f)];
+    
+    else if (iPAD_UI && UserInterface_Landscape)
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.7f)];
+    
+    self.headerView.backgroundColor = [UIColor grayColor];
+    self.tableView.tableHeaderView = self.headerView;
+    [self.tableView reloadData];
 
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,17 +75,16 @@
     if ([[notice name]isEqualToString:@"TestNotification" ])
     {
         if (iPHONE_UI && UserInterface_Portrait)
-            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.65f);
+            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.7f );
         else if (iPHONE_UI && UserInterface_Landscape)
             self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.45f);
         else if (iPAD_UI && UserInterface_Portrait )
             self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.8f);
 
         else if (iPAD_UI && UserInterface_Landscape )
-            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.75f);
+            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.7f);
     }
     self.tableView.tableHeaderView = self.headerView;
-
     [self.tableView reloadData];
 }
 

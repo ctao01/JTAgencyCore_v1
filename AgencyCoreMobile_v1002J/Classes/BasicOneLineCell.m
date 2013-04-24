@@ -15,7 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         CGRect innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f));
-        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 80.0f, 44.0f)];
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 100.0f, 44.0f)];
         self.titleLabel.textColor = [UIColor grayColor];
         self.titleLabel.backgroundColor = [UIColor clearColor];
         
@@ -38,7 +38,7 @@
         [self.contentView addSubview:self.dataLabel];
         
         for (UILabel * label in self.contentView.subviews)
-            label.font = ACFontDefault14;
+            label.font = ACFontDefault16;
     }
     return self;
 }

@@ -43,15 +43,12 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Scheduled";
 
     UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithTitle:@"Cal" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
     self.navigationItem.rightBarButtonItem = calItem;
-//    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
-//    self.navigationItem.title = @"My Schedule Tasks";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -78,17 +75,15 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
-//- (void) viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-////    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height / self.tableView.rowHeight);
-////    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
-////    if ([self.tableView numberOfRowsInSection:0] < rows) self.loadMoreFooter.hidden = YES;
-//    
-//}
-- (void) viewDidUnload
+- (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidUnload];
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -108,6 +103,7 @@
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
+        [self layoutRotated];
         [self.tableView reloadData];
     }
 }

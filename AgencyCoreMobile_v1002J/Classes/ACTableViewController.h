@@ -22,14 +22,16 @@
 
 
 - (void) addPullToRefreshHeader;
-- (void)startLoading;
-- (void)stopLoading;
-- (void)refresh;
+- (void) startLoading;
+- (void) stopLoading;
+- (void) refresh;
 
 - (void) addLoadMoreFooter;
 - (void) startLoadingMore;
 - (void) stopLoadinMore;
 - (void) loadMore;
 - (void) stopLoadingMoreComplete;
+
+- (void) layoutRotated;
 
 @end

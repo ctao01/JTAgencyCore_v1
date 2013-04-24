@@ -34,7 +34,7 @@
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
-    [updatedLabel setFont:ACFontDefault14];
+    [updatedLabel setFont:ACFontDefaultBold14];
     [updatedLabel setTextColor:[UIColor whiteColor]];
     [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
     [updatedLabel setTextAlignment:NSTextAlignmentCenter];
@@ -47,30 +47,18 @@
 
 - (void) viewDidLoad
 {
+    self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
+    
     [super viewDidLoad];
-    self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, 52.0f, self.tableView.contentInset.right);
-
     self.navigationItem.title = @"Message";
-//    self.count = 20;
-    self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
-    /*UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 49.0f)];
-    indicator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    indicator.center = footerView.center;
-    [footerView addSubview:indicator];
-    self.tableView.tableFooterView = footerView;*/
-   
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
-
+    [super viewDidAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -110,8 +98,10 @@
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
+        NSLog(@"TestNotification");
+        [self layoutRotated];
         [self.tableView reloadData];
-        
+
     }
 }
 

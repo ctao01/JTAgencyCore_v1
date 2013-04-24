@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2057" systemVersion="12C3103" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="CurrentUser" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C3103" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ACComments" representedClassName="ACComments" syncable="YES">
+        <attribute name="episodeComment" optional="YES" syncable="YES"/>
+        <attribute name="missedVisitedForm" optional="YES" syncable="YES"/>
+        <attribute name="taskComment" optional="YES" syncable="YES"/>
+        <relationship name="task" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACTask" inverseName="comments" inverseEntity="ACTask" syncable="YES"/>
+    </entity>
+    <entity name="ACCurrentUser" representedClassName="CurrentUser" parentEntity="ACUser" syncable="YES">
         <attribute name="accessToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="signature" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Episode" syncable="YES">
-        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="ACEpisode" representedClassName="ACEpisode" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="episodeComments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="episodes" inverseEntity="Patient" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="episode" inverseEntity="Task" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACPatient" inverseName="episodes" inverseEntity="ACPatient" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACTask" inverseName="episode" inverseEntity="ACTask" syncable="YES"/>
     </entity>
-    <entity name="Message" syncable="YES">
+    <entity name="ACMessage" representedClassName="ACMessage" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="receivers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messagesTo" inverseEntity="User" syncable="YES"/>
-        <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="messageForm" inverseEntity="User" syncable="YES"/>
+        <relationship name="receivers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="messagesTo" inverseEntity="ACUser" syncable="YES"/>
+        <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="messageForm" inverseEntity="ACUser" syncable="YES"/>
     </entity>
-    <entity name="Patient" syncable="YES">
+    <entity name="ACPatient" representedClassName="ACPatient" syncable="YES">
         <attribute name="birth" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="insuranceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="insuranceName" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,45 +36,47 @@
         <attribute name="medicareNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="caseManager" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="patientsAssigned" inverseEntity="User" syncable="YES"/>
-        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Episode" inverseName="patient" inverseEntity="Episode" syncable="YES"/>
+        <relationship name="caseManager" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="patientsAssigned" inverseEntity="ACUser" syncable="YES"/>
+        <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACEpisode" inverseName="patient" inverseEntity="ACEpisode" syncable="YES"/>
     </entity>
-    <entity name="Task" syncable="YES">
-        <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="ACTask" representedClassName="Task" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scheduledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="assignee" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tasks" inverseEntity="User" syncable="YES"/>
-        <relationship name="episode" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Episode" inverseName="tasks" inverseEntity="Episode" syncable="YES"/>
-        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" syncable="YES"/>
+        <relationship name="assignee" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="tasks" inverseEntity="ACUser" syncable="YES"/>
+        <relationship name="comments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACComments" inverseName="task" inverseEntity="ACComments" syncable="YES"/>
+        <relationship name="episode" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACEpisode" inverseName="tasks" inverseEntity="ACEpisode" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACPatient" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="ACUser" representedClassName="User" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="home" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="contacts" inverseEntity="User" syncable="YES"/>
-        <relationship name="messageForm" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="sender" inverseEntity="Message" syncable="YES"/>
-        <relationship name="messagesTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="receivers" inverseEntity="Message" syncable="YES"/>
-        <relationship name="patients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="patients" inverseEntity="User" syncable="YES"/>
-        <relationship name="patientsAssigned" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="caseManager" inverseEntity="Patient" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignee" inverseEntity="Task" syncable="YES"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACUser" inverseName="contacts" inverseEntity="ACUser" syncable="YES"/>
+        <relationship name="messageForm" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACMessage" inverseName="sender" inverseEntity="ACMessage" syncable="YES"/>
+        <relationship name="messagesTo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACMessage" inverseName="receivers" inverseEntity="ACMessage" syncable="YES"/>
+        <relationship name="patients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACUser" inverseName="patients" inverseEntity="ACUser" syncable="YES"/>
+        <relationship name="patientsAssigned" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACPatient" inverseName="caseManager" inverseEntity="ACPatient" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACTask" inverseName="assignee" inverseEntity="ACTask" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CurrentUser" positionX="-12186" positionY="-7119" width="128" height="103"/>
-        <element name="Episode" positionX="-11457" positionY="-6966" width="128" height="133"/>
-        <element name="Message" positionX="-12186" positionY="-6991" width="128" height="133"/>
-        <element name="Patient" positionX="-11693" positionY="-7182" width="128" height="178"/>
-        <element name="Task" positionX="-11684" positionY="-6831" width="128" height="163"/>
-        <element name="User" positionX="-11981" positionY="-7101" width="128" height="313"/>
+        <element name="ACCurrentUser" positionX="-12186" positionY="-7119" width="128" height="103"/>
+        <element name="ACEpisode" positionX="-11457" positionY="-6966" width="128" height="133"/>
+        <element name="ACMessage" positionX="-12186" positionY="-6991" width="128" height="133"/>
+        <element name="ACPatient" positionX="-11693" positionY="-7182" width="128" height="178"/>
+        <element name="ACTask" positionX="-11684" positionY="-6831" width="128" height="163"/>
+        <element name="ACUser" positionX="-11981" positionY="-7101" width="128" height="328"/>
+        <element name="ACComments" positionX="-11450" positionY="-6768" width="128" height="103"/>
     </elements>
 </model>

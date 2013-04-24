@@ -11,7 +11,11 @@
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
 #import "NSDictionary+Additions.h"
-#import "UINavigationController+Rotation.h"
+
+#import "User.h"
+#import "CurrentUser.h"
+
+//#import "UINavigationController+Rotation.h"
 
 #ifndef AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
 #define AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
@@ -29,6 +33,12 @@
 #define UserInterface_Portrait (UserInterface_Oreientation == UIInterfaceOrientationPortrait || UserInterface_Oreientation == UIInterfaceOrientationPortraitUpsideDown)
 
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
+
+// Constant
+#define REFRESH_HEADER_HEIGHT 52.0f
+#define LOADMORE_FOOTER_HEIGHT 52.0f
+
+
 
 // UIColor
 #define ACColorRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
