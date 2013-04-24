@@ -86,7 +86,7 @@
     self.navigationItem.leftBarButtonItem = menuItem;
     self.title = @"My Account";
     
-    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc]initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSettings) ];
+    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_settings"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSettings) ];
     self.navigationItem.rightBarButtonItem = settingsItem;
     
     CGRect footerFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);

@@ -48,7 +48,7 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Scheduled";
 
-    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithTitle:@"Cal" style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
+    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_calendar"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
     self.navigationItem.rightBarButtonItem = calItem;
 //    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
 //    self.navigationItem.title = @"My Schedule Tasks";
