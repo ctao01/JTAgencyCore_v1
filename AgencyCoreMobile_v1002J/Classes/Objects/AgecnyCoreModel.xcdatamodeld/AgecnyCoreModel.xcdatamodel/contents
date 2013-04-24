@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12C3103" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ACComments" representedClassName="ACComments" syncable="YES">
-        <attribute name="episodeComment" optional="YES" syncable="YES"/>
-        <attribute name="missedVisitedForm" optional="YES" syncable="YES"/>
-        <attribute name="taskComment" optional="YES" syncable="YES"/>
+        <attribute name="episodeComment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missedVisitedForm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskComment" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="task" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACTask" inverseName="comments" inverseEntity="ACTask" syncable="YES"/>
     </entity>
     <entity name="ACCurrentUser" representedClassName="CurrentUser" parentEntity="ACUser" syncable="YES">
@@ -15,15 +15,15 @@
     <entity name="ACEpisode" representedClassName="ACEpisode" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="episodeComments" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="episodeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACPatient" inverseName="episodes" inverseEntity="ACPatient" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACTask" inverseName="episode" inverseEntity="ACTask" syncable="YES"/>
     </entity>
     <entity name="ACMessage" representedClassName="ACMessage" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastUpdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="messageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subject" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="receivers" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="messagesTo" inverseEntity="ACUser" syncable="YES"/>
         <relationship name="sender" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="messageForm" inverseEntity="ACUser" syncable="YES"/>
@@ -40,16 +40,16 @@
         <relationship name="episodes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACEpisode" inverseName="patient" inverseEntity="ACEpisode" syncable="YES"/>
     </entity>
     <entity name="ACTask" representedClassName="Task" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="scheduledDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="assignee" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACUser" inverseName="tasks" inverseEntity="ACUser" syncable="YES"/>
         <relationship name="comments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACComments" inverseName="task" inverseEntity="ACComments" syncable="YES"/>
         <relationship name="episode" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACEpisode" inverseName="tasks" inverseEntity="ACEpisode" syncable="YES"/>
         <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ACPatient" syncable="YES"/>
     </entity>
-    <entity name="ACUser" representedClassName="User" syncable="YES">
+    <entity name="ACUser" representedClassName="ACUser" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
@@ -71,12 +71,12 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ACTask" inverseName="assignee" inverseEntity="ACTask" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ACCurrentUser" positionX="-12186" positionY="-7119" width="128" height="103"/>
-        <element name="ACEpisode" positionX="-11457" positionY="-6966" width="128" height="133"/>
-        <element name="ACMessage" positionX="-12186" positionY="-6991" width="128" height="133"/>
-        <element name="ACPatient" positionX="-11693" positionY="-7182" width="128" height="178"/>
-        <element name="ACTask" positionX="-11684" positionY="-6831" width="128" height="163"/>
-        <element name="ACUser" positionX="-11981" positionY="-7101" width="128" height="328"/>
-        <element name="ACComments" positionX="-11450" positionY="-6768" width="128" height="103"/>
+        <element name="ACComments" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="ACCurrentUser" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="ACEpisode" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="ACMessage" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="ACPatient" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="ACTask" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="ACUser" positionX="0" positionY="0" width="128" height="330"/>
     </elements>
 </model>

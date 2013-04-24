@@ -12,8 +12,11 @@
 #import "NSDate+Additions.h"
 #import "NSDictionary+Additions.h"
 
-#import "User.h"
-#import "CurrentUser.h"
+#import "ACUser.h"
+#import "ACCurrentUser.h"
+#import "ACTask.h"
+#import "ACComments.h"
+#import "ACMessage.h"
 
 //#import "UINavigationController+Rotation.h"
 
