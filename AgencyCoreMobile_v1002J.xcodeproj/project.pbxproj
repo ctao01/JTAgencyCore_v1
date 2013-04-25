@@ -76,6 +76,7 @@
 		3D5637EF17282E91008F220C /* ACTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5637EE17282E91008F220C /* ACTask.m */; };
 		3D5637F417283CC0008F220C /* NSDate+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5637F317283CC0008F220C /* NSDate+TKCategory.m */; };
 		3D5637F817286AF2008F220C /* ACMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5637F717286AED008F220C /* ACMessage.m */; };
+		3D56381217297E62008F220C /* TaskWithSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56381117297E62008F220C /* TaskWithSectionsViewController.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
@@ -276,6 +277,8 @@
 		3D5637F317283CC0008F220C /* NSDate+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TKCategory.m"; sourceTree = "<group>"; };
 		3D5637F617286AE9008F220C /* ACMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACMessage.h; path = Classes/Objects/ACMessage.h; sourceTree = "<group>"; };
 		3D5637F717286AED008F220C /* ACMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACMessage.m; path = Classes/Objects/ACMessage.m; sourceTree = "<group>"; };
+		3D56381017297E62008F220C /* TaskWithSectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskWithSectionsViewController.h; path = Classes/TaskWithSectionsViewController.h; sourceTree = "<group>"; };
+		3D56381117297E62008F220C /* TaskWithSectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskWithSectionsViewController.m; path = Classes/TaskWithSectionsViewController.m; sourceTree = "<group>"; };
 		3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = Classes/UserListViewController.h; sourceTree = "<group>"; };
 		3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = Classes/UserListViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
@@ -525,6 +528,15 @@
 				3D768D4A16FA1E9F0000165A /* NavigationToolBarController.m */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		3D56380F17297DC5008F220C /* temp */ = {
+			isa = PBXGroup;
+			children = (
+				3D56381017297E62008F220C /* TaskWithSectionsViewController.h */,
+				3D56381117297E62008F220C /* TaskWithSectionsViewController.m */,
+			);
+			name = temp;
 			sourceTree = "<group>";
 		};
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
@@ -894,6 +906,7 @@
 		3DFD32A41705FE9A001536D0 /* MyScheduleTasks */ = {
 			isa = PBXGroup;
 			children = (
+				3D56380F17297DC5008F220C /* temp */,
 				3D768D5116FA1E9F0000165A /* ScheduleViewController.h */,
 				3D768D5216FA1E9F0000165A /* ScheduleViewController.m */,
 				3DFD32A51705FED0001536D0 /* CalendarMonthViewController.h */,
@@ -1160,6 +1173,7 @@
 				3D5637EF17282E91008F220C /* ACTask.m in Sources */,
 				3D5637F417283CC0008F220C /* NSDate+TKCategory.m in Sources */,
 				3D5637F817286AF2008F220C /* ACMessage.m in Sources */,
+				3D56381217297E62008F220C /* TaskWithSectionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

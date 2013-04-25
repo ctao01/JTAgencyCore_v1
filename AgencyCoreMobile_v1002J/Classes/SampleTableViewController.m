@@ -8,7 +8,9 @@
 
 #import "SampleTableViewController.h"
 #import "Account2ViewController.h"
-#import "HomeTableViewController.h"
+#import "HomeViewController.h"
+
+#import "TaskWithSectionsViewController.h"
 
 @interface SampleTableViewController()
 @property (nonatomic, strong) NSArray *sampleItems;
@@ -19,7 +21,7 @@
 
 - (void)awakeFromNib
 {
-  self.sampleItems = [NSArray arrayWithObjects:@"One", @"Two", @"Three", nil];
+  self.sampleItems = [NSArray arrayWithObjects:@"Tasks With Sections", @"Tasks With Segment Control", @"Account With Activity Log",@"Original Home Screen", nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
@@ -50,19 +52,34 @@
     return YES;
 }
 
-#pragma mark - 
+#pragma mark - UITableView Data Source
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2){
+    if (indexPath.row == 0)
+    {
+        TaskWithSectionsViewController * vc = [[TaskWithSectionsViewController alloc]initWithStyle:UITableViewStylePlain];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if (indexPath.row == 1)
+    {
+        
+    }
+    else if (indexPath.row == 2)
+    {
         Account2ViewController * ac = [[Account2ViewController alloc]initWithStyle:UITableViewStyleGrouped];
         [self.navigationController pushViewController:ac animated:YES];
     }
-    else
+    else if (indexPath.row == 3)
     {
-        HomeTableViewController * tv = [[HomeTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:tv animated:YES];
+        HomeViewController * vc = [[HomeViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
+
 }
+
+
 
 @end

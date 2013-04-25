@@ -33,7 +33,12 @@
 {
     [super viewDidLoad];
     [self addPullToRefreshHeader];
-    if ([self.tableView numberOfRowsInSection:0] > 25) [self addLoadMoreFooter];
+    
+    int count = 0;
+    for (int i = 0; i < [self.tableView numberOfSections]; i++)
+        count = count + [self.tableView numberOfRowsInSection:i];
+    NSLog(@"total rows:%i",count);
+    if (count > 25) [self addLoadMoreFooter];
 }
 
 - (void)didReceiveMemoryWarning

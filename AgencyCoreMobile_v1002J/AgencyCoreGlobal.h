@@ -37,6 +37,10 @@
 
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
 
+
+#define width(frame) frame.size.width
+#define height(frame) frame.size.height
+
 // Constant
 #define REFRESH_HEADER_HEIGHT 52.0f
 #define LOADMORE_FOOTER_HEIGHT 52.0f
