@@ -31,6 +31,8 @@
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
 
 #define Bounds_Screen  [[UIScreen mainScreen]bounds]
+#define width(frame) frame.size.width
+#define height(frame) frame.size.height
 
 // Constant
 // ACTableViewController.h

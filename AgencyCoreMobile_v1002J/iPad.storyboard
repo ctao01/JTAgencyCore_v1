@@ -63,7 +63,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="xWk-E2-oDi">
-                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="FHP-et-oe8"/>
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="FHP-et-oe8">
+                            <connections>
+                                <action selector="revealMenu:" destination="YtC-cg-Bxf" id="TbQ-QL-1Cd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nF-H7-sgq" userLabel="First Responder" sceneMemberID="firstResponder"/>

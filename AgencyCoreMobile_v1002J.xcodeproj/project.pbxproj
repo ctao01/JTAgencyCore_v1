@@ -75,6 +75,7 @@
 		3D563809172888CB008F220C /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563805172888CB008F220C /* icon_calendar.png */; };
 		3D56380A172888CB008F220C /* icon_settings_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563806172888CB008F220C /* icon_settings_@2x.png */; };
 		3D56380B172888CB008F220C /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563807172888CB008F220C /* icon_settings.png */; };
+		3D563816172987F5008F220C /* TaskWithSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D563815172987F5008F220C /* TaskWithSectionsViewController.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
@@ -268,6 +269,8 @@
 		3D563805172888CB008F220C /* icon_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_calendar.png; path = Assets/icon_calendar.png; sourceTree = "<group>"; };
 		3D563806172888CB008F220C /* icon_settings_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_settings_@2x.png"; path = "Assets/icon_settings_@2x.png"; sourceTree = "<group>"; };
 		3D563807172888CB008F220C /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_settings.png; path = Assets/icon_settings.png; sourceTree = "<group>"; };
+		3D563814172987F5008F220C /* TaskWithSectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskWithSectionsViewController.h; path = Classes/TaskWithSectionsViewController.h; sourceTree = "<group>"; };
+		3D563815172987F5008F220C /* TaskWithSectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskWithSectionsViewController.m; path = Classes/TaskWithSectionsViewController.m; sourceTree = "<group>"; };
 		3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = Classes/UserListViewController.h; sourceTree = "<group>"; };
 		3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = Classes/UserListViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
@@ -516,6 +519,15 @@
 				3D7372CB171EE0DD00C54A8E /* HomeTableViewController.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		3D563813172987DC008F220C /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				3D563814172987F5008F220C /* TaskWithSectionsViewController.h */,
+				3D563815172987F5008F220C /* TaskWithSectionsViewController.m */,
+			);
+			name = Temp;
 			sourceTree = "<group>";
 		};
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
@@ -890,6 +902,7 @@
 		3DFD32A41705FE9A001536D0 /* MyScheduleTasks */ = {
 			isa = PBXGroup;
 			children = (
+				3D563813172987DC008F220C /* Temp */,
 				3D768D5116FA1E9F0000165A /* ScheduleViewController.h */,
 				3D768D5216FA1E9F0000165A /* ScheduleViewController.m */,
 				3DFD32A51705FED0001536D0 /* CalendarMonthViewController.h */,
@@ -1156,6 +1169,7 @@
 				3D7372E4172054CB00C54A8E /* ACTableViewController.m in Sources */,
 				3D5637FE172882FE008F220C /* NSDate+Additions.m in Sources */,
 				3D5637FF172882FE008F220C /* NSDictionary+Additions.m in Sources */,
+				3D563816172987F5008F220C /* TaskWithSectionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
