@@ -10,6 +10,10 @@
 
 @interface NSString (Additions)
 
+// Account
++ (NSString*) userLocationWithUser:(id)user;
+
+// Date + Time
 + (NSString*) detailDateStringFromDate:(NSDate*)date;
 + (NSString*) customizedCellDateStringFromDate:(NSDate*)date;
 + (NSString*) updateLabelDateStringFromDate:(NSDate*)date;

@@ -38,7 +38,10 @@
         [self.contentView addSubview:self.dataLabel];
         
         for (UILabel * label in self.contentView.subviews)
-            label.font = ACFontDefault16;
+        {
+            if (iPHONE_UI) label.font = ACFontDefault14;
+            else  label.font = ACFontDefault16;
+        }
     }
     return self;
 }

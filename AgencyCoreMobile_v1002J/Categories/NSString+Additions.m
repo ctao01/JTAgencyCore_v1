@@ -11,6 +11,18 @@
 
 @implementation NSString (Additions)
 
++ (NSString*) userLocationWithUser:(id) userObject
+{
+    ACUser * user = (ACUser*)userObject;
+    NSString * result = @"";
+    if (user.address) result = [result stringByAppendingString:user.address];
+    if (user.city) result = [result stringByAppendingString:user.city];
+    if (user.state) result = [result stringByAppendingString:user.state];
+    if (user.zipcode) result = [result stringByAppendingString:user.zipcode];
+    if (user.country) result = [result stringByAppendingString:user.country];
+    return result;
+}
+
 + (NSString*) detailDateStringFromDate:(NSDate*)date
 {
     NSDateFormatter * df = [[NSDateFormatter alloc]init];

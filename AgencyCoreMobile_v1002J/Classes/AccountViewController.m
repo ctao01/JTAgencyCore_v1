@@ -97,10 +97,11 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 44.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    
 
     self.currentUser = [AgencyCoreEntries createCurrentUser];
     NSLog(@"%@",self.currentUser);
+    NSLog(@"%@",self.currentUser);
+
 }
 
 #pragma mark - UITableView DataSource 
@@ -161,7 +162,7 @@
             case 0:
             {
                 accountCell.titleLabel.text = @"Name";
-                accountCell.dataLabel.text = self.currentUser.location;
+                accountCell.dataLabel.text = self.currentUser.username;
                 accountCell.dataLabel.font = ACFontDefaultBold18;
             }
                 break;
@@ -175,7 +176,7 @@
             {
                 accountCell.titleLabel.text = @"Address";
 //                //            accountCell.dataLabel.text = @"8035 E R L Thomton Fwy # 147 Dallas,Texas 76006";
-                accountCell.dataLabel.text = [self.currentUser location];
+                accountCell.dataLabel.text = [NSString userLocationWithUser:self.currentUser];
                 
                 accountCell.dataLabel.lineBreakMode = NSLineBreakByWordWrapping;
                 accountCell.dataLabel.numberOfLines = 0.0f;
