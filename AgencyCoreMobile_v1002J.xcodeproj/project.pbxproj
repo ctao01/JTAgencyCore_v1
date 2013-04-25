@@ -456,18 +456,15 @@
 		3D46C40C1700DF8F00E4A112 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3D490031170F5B7400D46134 /* Custom Navigation */,
 				3D7372E2172054CB00C54A8E /* ACTableViewController.h */,
 				3D7372E3172054CB00C54A8E /* ACTableViewController.m */,
 				3D768D4516FA1E9F0000165A /* MenuViewController.h */,
 				3D0D0B09170C686400EE110D /* MenuViewController.m */,
-				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
-				3D768D4016FA1E9F0000165A /* HomeViewController.m */,
 				3D768D4116FA1E9F0000165A /* InitialSlidingViewController.h */,
 				3D768D4216FA1E9F0000165A /* InitialSlidingViewController.m */,
 				3D53DB4C170DB81E00AE500F /* RootNavigationController.h */,
 				3D53DB4D170DB81E00AE500F /* RootNavigationController.m */,
-				3D7372CA171EE0DD00C54A8E /* HomeTableViewController.h */,
-				3D7372CB171EE0DD00C54A8E /* HomeTableViewController.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -475,6 +472,7 @@
 		3D46C4131702444E00E4A112 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				3DFD3134170375E7001536D0 /* PinPadScreen */,
 				3D768D3D16FA1E9F0000165A /* AccountViewController.h */,
 				3D768D3E16FA1E9F0000165A /* AccountViewController.m */,
 				3DFD313517037BB2001536D0 /* SettingViewController.h */,
@@ -496,7 +494,7 @@
 			name = Pending;
 			sourceTree = "<group>";
 		};
-		3D490031170F5B7400D46134 /* Navigation */ = {
+		3D490031170F5B7400D46134 /* Custom Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				3D768D4D16FA1E9F0000165A /* NavigationTopViewController.h */,
@@ -506,7 +504,18 @@
 				3D768D4916FA1E9F0000165A /* NavigationToolBarController.h */,
 				3D768D4A16FA1E9F0000165A /* NavigationToolBarController.m */,
 			);
-			name = Navigation;
+			name = "Custom Navigation";
+			sourceTree = "<group>";
+		};
+		3D56380E17296A4E008F220C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3D768D3F16FA1E9F0000165A /* HomeViewController.h */,
+				3D768D4016FA1E9F0000165A /* HomeViewController.m */,
+				3D7372CA171EE0DD00C54A8E /* HomeTableViewController.h */,
+				3D7372CB171EE0DD00C54A8E /* HomeTableViewController.m */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
@@ -641,7 +650,6 @@
 			isa = PBXGroup;
 			children = (
 				3D3A909917131C9600D38D19 /* Objects */,
-				3D490031170F5B7400D46134 /* Navigation */,
 				3D49002D170F536E00D46134 /* Pending */,
 				3D768D3016FA1E500000165A /* Views */,
 				3D768D2F16FA1E430000165A /* Cells */,
@@ -744,14 +752,14 @@
 			isa = PBXGroup;
 			children = (
 				3D46C40C1700DF8F00E4A112 /* Shared */,
-				3DFD3134170375E7001536D0 /* PinPadScreen */,
+				3D56380E17296A4E008F220C /* Home */,
 				3D46C4131702444E00E4A112 /* Account */,
 				3DBE75EE16FB57F0001755FE /* Messages */,
-				3D768D4F16FA1E9F0000165A /* SampleTableViewController.h */,
-				3D768D5016FA1E9F0000165A /* SampleTableViewController.m */,
 				3DFD32A41705FE9A001536D0 /* MyScheduleTasks */,
 				3D768D5316FA1E9F0000165A /* UnderRightViewController.h */,
 				3D768D5416FA1E9F0000165A /* UnderRightViewController.m */,
+				3D768D4F16FA1E9F0000165A /* SampleTableViewController.h */,
+				3D768D5016FA1E9F0000165A /* SampleTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

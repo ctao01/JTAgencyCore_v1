@@ -30,6 +30,14 @@
 
 #define DEVICE_VERSION  [[[UIDevice currentDevice]systemVersion] floatValue]
 
+#define Bounds_Screen  [[UIScreen mainScreen]bounds]
+
+// Constant
+// ACTableViewController.h
+#define REFRESH_HEADER_HEIGHT 52.0f
+#define LOADMORE_FOOTER_HEIGHT 52.0f
+
+
 // UIColor
 #define ACColorRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
 #define ACColorTaskMissedRed [UIColor colorWithRed:178.0f/255.0 green:14.0f/255.0 blue:14.0f/255.0 alpha:1.0f]

@@ -30,6 +30,6 @@
 - (void) startLoadingMore;
 - (void) stopLoadinMore;
 - (void) loadMore;
-- (void) stopLoadingMoreComplete;
+//- (void) stopLoadingMoreComplete;
 
 @end

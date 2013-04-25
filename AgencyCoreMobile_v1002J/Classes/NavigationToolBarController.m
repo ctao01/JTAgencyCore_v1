@@ -25,9 +25,8 @@
 {
     [super viewDidLoad];
     self.navToolBar = [[UIToolbar alloc]init];
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
-    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight)
+    if (UserInterface_Landscape)
     {
         self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.height, 44.0f);
         self.navToolBar.barStyle = UIBarStyleBlackTranslucent;
@@ -47,8 +46,6 @@
 {
     [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
-
-//    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     self.navToolBar.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 44.0f);
     self.navToolBar.barStyle = UIBarStyleBlackOpaque;

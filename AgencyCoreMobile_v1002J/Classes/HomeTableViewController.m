@@ -35,14 +35,14 @@
     self.tableView.backgroundView = nil;
     self.tableView.backgroundColor = [UIColor whiteColor];
    
-    if (iPHONE_UI && UserInterface_Portrait) self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.65f )];
+    if (iPHONE_UI && UserInterface_Portrait) self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.66f)];
     else if (iPHONE_UI && UserInterface_Landscape)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.45f)];
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.45f)];
     else if (iPAD_UI && UserInterface_Portrait)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.height  * 0.8f )];
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.6f )];
 
     else if (iPAD_UI && UserInterface_Landscape)
-        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, self.tableView.frame.size.width  * 0.7f)];
+        self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.6f)];
        
     self.headerView.backgroundColor = [UIColor grayColor];
     self.tableView.tableHeaderView = self.headerView;
@@ -54,8 +54,6 @@
     [super viewDidAppear:animated];
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,9 +69,9 @@
     if ([[notice name]isEqualToString:@"TestNotification" ])
     {
         if (iPHONE_UI && UserInterface_Portrait)
-            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.65f);
+            self.headerView.frame = CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.66f);
         else if (iPHONE_UI && UserInterface_Landscape)
-            self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.45f);
+            self.headerView.frame = CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.45f);
         else if (iPAD_UI && UserInterface_Portrait )
             self.headerView.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.8f);
 

@@ -36,18 +36,6 @@
     [self.tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-        self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-    }
-    self.slidingViewController.underRightViewController = nil;
-    
-    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
-}
-
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -93,7 +81,7 @@
     UIView * footerView = [[UIView alloc]initWithFrame:footerFrame];
     footerView.backgroundColor = [UIColor whiteColor];
     
-    //    self.tableView.tableFooterView = footerView;
+//    self.tableView.tableFooterView = footerView;
     
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 44.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
@@ -162,7 +150,6 @@
             {
                 accountCell.titleLabel.text = @"Name";
                 accountCell.dataLabel.text = @"Edem Jimbo";
-                accountCell.dataLabel.font = ACFontDefaultBold18;
             }
                 break;
             case 1:

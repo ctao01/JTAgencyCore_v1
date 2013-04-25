@@ -20,9 +20,9 @@
         self.titleLabel.backgroundColor = [UIColor clearColor];
         
         if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
-            self.dataLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width -10.0f, innerRect.origin.y, 200.0f, 44.0f)];
+            self.dataLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width -10.0f, innerRect.origin.y, 180.0f, 44.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-            self.dataLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width -10.0f, innerRect.origin.y, 460.0f, 44.0f)];
+            self.dataLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width -10.0f, innerRect.origin.y, 440.0f, 44.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
             self.dataLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width -10.0f, innerRect.origin.y, 600, 44.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
@@ -38,7 +38,10 @@
         [self.contentView addSubview:self.dataLabel];
         
         for (UILabel * label in self.contentView.subviews)
-            label.font = ACFontDefault16;
+        {
+            if (iPAD_UI) label.font = ACFontDefault16;
+            else label.font = ACFontDefault14;
+        }
     }
     return self;
 }

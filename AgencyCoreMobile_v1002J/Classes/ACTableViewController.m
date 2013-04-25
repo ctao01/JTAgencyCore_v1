@@ -8,8 +8,6 @@
 
 #import "ACTableViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#define REFRESH_HEADER_HEIGHT 52.0f
-#define LOADMORE_FOOTER_HEIGHT 52.0f
 
 @interface ACTableViewController ()
 {
@@ -35,18 +33,8 @@
 {
     [super viewDidLoad];
     [self addPullToRefreshHeader];
-//    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height/ self.tableView.rowHeight);
-//    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
-//    NSLog(@"row:%i",rows);
     if ([self.tableView numberOfRowsInSection:0] > 25) [self addLoadMoreFooter];
 }
-
-//- (void) viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    NSLog(@"tableView:%@",NSStringFromCGSize(self.tableView.contentSize));
-//    [self addLoadMoreFooter];
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -54,12 +42,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Layout Rotation
+
+- (void) layoutRotated
+{
+    refreshHeaderView.frame = CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT);
+    refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
+    
+    loadMoreFooter.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT);
+    loadMoreLabel.center = loadMoreFooter.center;
+    loadMoreSpinner.center = loadMoreFooter.center;
+}
+
 #pragma mark - Pull-To-Update Method
 
 - (void)addPullToRefreshHeader
 {
-    refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT)];
+    if (UserInterface_Portrait) refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT)];
+    else if (UserInterface_Landscape) refreshHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.height, REFRESH_HEADER_HEIGHT)];
     refreshHeaderView.backgroundColor = [UIColor clearColor];
+    NSLog(@"%--@",NSStringFromCGRect(refreshHeaderView.frame));
     
     refreshLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 44.0f)];
     refreshLabel.backgroundColor = [UIColor clearColor];
@@ -68,20 +70,20 @@
     refreshLabel.textAlignment = NSTextAlignmentCenter;
     refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
     [refreshHeaderView addSubview:refreshLabel];
-//
-//    UIImage * image = [UIImage imageNamed:@"img_loadingArrow"];
-//    refreshArrow = [[UIImageView alloc] initWithImage:image];
-//    refreshArrow.frame = CGRectMake(280 - floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
-//                                    (floorf(REFRESH_HEADER_HEIGHT - 36) / 2),
-//                                    27, 44);
-//    
-//    refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//    refreshSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 32) / 2), floorf((REFRESH_HEADER_HEIGHT - 32) / 2), 32, 32);
-//    refreshSpinner.hidesWhenStopped = YES;
-//    
-//    [refreshHeaderView addSubview:refreshLabel];
-//    [refreshHeaderView addSubview:refreshArrow];
-//    [refreshHeaderView addSubview:refreshSpinner];
+    //
+    //    UIImage * image = [UIImage imageNamed:@"img_loadingArrow"];
+    //    refreshArrow = [[UIImageView alloc] initWithImage:image];
+    //    refreshArrow.frame = CGRectMake(280 - floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
+    //                                    (floorf(REFRESH_HEADER_HEIGHT - 36) / 2),
+    //                                    27, 44);
+    //
+    //    refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    //    refreshSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 32) / 2), floorf((REFRESH_HEADER_HEIGHT - 32) / 2), 32, 32);
+    //    refreshSpinner.hidesWhenStopped = YES;
+    //
+    //    [refreshHeaderView addSubview:refreshLabel];
+    //    [refreshHeaderView addSubview:refreshArrow];
+    //    [refreshHeaderView addSubview:refreshSpinner];
     refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     refreshSpinner.frame = CGRectMake(0.0f, 0.0f, 44.0f, 44.0f);
     refreshSpinner.center = CGPointMake(refreshLabel.frame.origin.x - refreshSpinner.frame.size.width, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
@@ -133,7 +135,8 @@
 
 - (void) addLoadMoreFooter
 {
-    loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT)];
+    if (UserInterface_Portrait) loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT)];
+    else if (UserInterface_Landscape) loadMoreFooter = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.height, LOADMORE_FOOTER_HEIGHT)];
     loadMoreFooter.backgroundColor = [UIColor redColor];
     
     loadMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200.0f, 44.0f)];
@@ -142,11 +145,11 @@
     loadMoreLabel.textColor = [UIColor colorWithRed:220.0f/255.0f green:220.0f/255.0f blue:220.0f/255.0f alpha:1.0f];
     loadMoreLabel.textAlignment = NSTextAlignmentCenter;
     loadMoreLabel.center = loadMoreFooter.center;
-//    [loadMoreFooter addSubview:loadMoreLabel];
+    //    [loadMoreFooter addSubview:loadMoreLabel];
     
     loadMoreSpinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
     loadMoreSpinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-//    loadMoreSpinner.center = CGPointMake(refreshLabel.frame.origin.x - loadMoreSpinner.frame.size.width, refreshLabel.center.y);
+    //    loadMoreSpinner.center = CGPointMake(refreshLabel.frame.origin.x - loadMoreSpinner.frame.size.width, refreshLabel.center.y);
     loadMoreSpinner.center = loadMoreFooter.center;
     loadMoreSpinner.hidesWhenStopped = YES;
     [loadMoreFooter addSubview:loadMoreSpinner];
@@ -162,7 +165,7 @@
         loadMoreLabel.text = @"Loading More";
     }];
     [loadMoreSpinner startAnimating];
-
+    
     [self loadMore];
 }
 
@@ -177,16 +180,12 @@
                          [loadMoreSpinner stopAnimating];
                          isLoadingMore = NO;
                      }];
-
+    
 }
 
 - (void) loadMore
 {
     [self performSelector:@selector(stopLoadinMore) withObject:nil afterDelay:2.0];
-//    [self performSelector:<#(SEL)#> onThread:<#(NSThread *)#> withObject:<#(id)#> waitUntilDone:<#(BOOL)#>]
-//    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0]-1 inSection:0];
-//    // [self reload tabeview];
-//    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -226,7 +225,7 @@
         // Change 10.0 to adjust the distance from bottom
         if (maximumOffset - currentOffset <= LOADMORE_FOOTER_HEIGHT) {
             [self startLoadingMore];
-
+            
         }
     }
 }
@@ -239,8 +238,8 @@
         [self startLoading];
     }
     
-//    if (scrollView.contentOffset.y >= self.tableView.frame.size.height)
-//        [self startLoadingMore];
+    //    if (scrollView.contentOffset.y >= self.tableView.frame.size.height)
+    //        [self startLoadingMore];
 }
 
 
