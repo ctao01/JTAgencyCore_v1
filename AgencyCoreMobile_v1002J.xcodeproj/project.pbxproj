@@ -472,7 +472,6 @@
 		3D46C4131702444E00E4A112 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				3DFD3134170375E7001536D0 /* PinPadScreen */,
 				3D768D3D16FA1E9F0000165A /* AccountViewController.h */,
 				3D768D3E16FA1E9F0000165A /* AccountViewController.m */,
 				3DFD313517037BB2001536D0 /* SettingViewController.h */,
@@ -481,6 +480,7 @@
 				3D768D4416FA1E9F0000165A /* LogInViewController.m */,
 				3DFD32121705D8D6001536D0 /* Account2ViewController.h */,
 				3DFD32131705D8D7001536D0 /* Account2ViewController.m */,
+				3DFD3134170375E7001536D0 /* PinPadScreen */,
 			);
 			name = Account;
 			sourceTree = "<group>";
