@@ -33,7 +33,8 @@
 {
     [super viewDidLoad];
     [self addPullToRefreshHeader];
-    if ([self.tableView numberOfRowsInSection:0] > 25) [self addLoadMoreFooter];
+    if ([self.tableView numberOfRowsInSection:0] > 20) [self addLoadMoreFooter];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +44,17 @@
 }
 
 #pragma mark - Layout Rotation
-
 - (void) layoutRotated
 {
     refreshHeaderView.frame = CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT);
     refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
-    
+
     loadMoreFooter.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT);
     loadMoreLabel.center = loadMoreFooter.center;
     loadMoreSpinner.center = loadMoreFooter.center;
+    self.tableView.tableFooterView = loadMoreFooter;
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Pull-To-Update Method
@@ -70,20 +73,6 @@
     refreshLabel.textAlignment = NSTextAlignmentCenter;
     refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
     [refreshHeaderView addSubview:refreshLabel];
-    //
-    //    UIImage * image = [UIImage imageNamed:@"img_loadingArrow"];
-    //    refreshArrow = [[UIImageView alloc] initWithImage:image];
-    //    refreshArrow.frame = CGRectMake(280 - floorf((REFRESH_HEADER_HEIGHT - 27) / 2),
-    //                                    (floorf(REFRESH_HEADER_HEIGHT - 36) / 2),
-    //                                    27, 44);
-    //
-    //    refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    //    refreshSpinner.frame = CGRectMake(floorf(floorf(REFRESH_HEADER_HEIGHT - 32) / 2), floorf((REFRESH_HEADER_HEIGHT - 32) / 2), 32, 32);
-    //    refreshSpinner.hidesWhenStopped = YES;
-    //
-    //    [refreshHeaderView addSubview:refreshLabel];
-    //    [refreshHeaderView addSubview:refreshArrow];
-    //    [refreshHeaderView addSubview:refreshSpinner];
     refreshSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     refreshSpinner.frame = CGRectMake(0.0f, 0.0f, 44.0f, 44.0f);
     refreshSpinner.center = CGPointMake(refreshLabel.frame.origin.x - refreshSpinner.frame.size.width, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);

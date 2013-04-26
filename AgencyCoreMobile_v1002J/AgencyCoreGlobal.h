@@ -11,6 +11,7 @@
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
 #import "NSDictionary+Additions.h"
+#import "UISegmentedControl+Additions.h"
 #import "UINavigationController+Rotation.h"
 
 #ifndef AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
@@ -33,6 +34,8 @@
 #define Bounds_Screen  [[UIScreen mainScreen]bounds]
 #define width(frame) frame.size.width
 #define height(frame) frame.size.height
+#define origin_x(frame) frame.origin.x
+#define origin_y(frame) frame.origin.y
 
 // Constant
 // ACTableViewController.h

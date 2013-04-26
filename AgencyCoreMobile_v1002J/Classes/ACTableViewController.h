@@ -32,4 +32,6 @@
 - (void) loadMore;
 //- (void) stopLoadingMoreComplete;
 
+- (void) layoutRotated;
+
 @end

@@ -14,7 +14,9 @@
 #import "VisitViewController.h"
 #import "NewTaskViewController.h"
 
+
 @interface ScheduleViewController ()
+@property (nonatomic , strong) UISegmentedControl * segmentControl;
 
 @end
 
@@ -50,17 +52,25 @@
 
     UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_calendar"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
     self.navigationItem.rightBarButtonItem = calItem;
-//    if (iPHONE_UI && DEVICE_VERSION >= 6.0f)self.navigationItem.rightBarButtonItem = calItem;
-//    self.navigationItem.title = @"My Schedule Tasks";
+
+    self.segmentControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Upcoming",@"Missed",@"Completed", nil]];
+    self.segmentControl.frame = CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f);
+    self.segmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    [self.segmentControl addTarget:self action:@selector(refreshScheduleTasks) forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.tableHeaderView = self.segmentControl;
+    self.segmentControl.selectedSegmentIndex = 0;
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self setupColorForSegmentControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    if (![self.slidingViewController.underLeftViewController isKindOfClass:[MenuViewController class]]) {
-//        self.slidingViewController.underLeftViewController  = [self.storyboard instantiateViewControllerWithIdentifier:@"Menu"];
-//    }
-//    [self.view addGestureRecognizer:self.slidingViewController.panGesture];
     
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     [nav.navToolBar setHidden:NO];
@@ -78,14 +88,6 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
-//- (void) viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-////    double lastRow = ceil([[UIScreen mainScreen]bounds].size.height / self.tableView.rowHeight);
-////    int rows = [[NSNumber numberWithDouble:lastRow] intValue];
-////    if ([self.tableView numberOfRowsInSection:0] < rows) self.loadMoreFooter.hidden = YES;
-//    
-//}
 - (void) viewDidUnload
 {
     [super viewDidUnload];
@@ -102,13 +104,79 @@
     [self presentViewController:nc animated:YES completion:^{}];
 }
 
+- (void) setupColorForSegmentControl
+{
+    NSLog(@"index %i", self.segmentControl.selectedSegmentIndex);
+//    int index = self.segmentControl.selectedSegmentIndex;
+//    int segments = [self.segmentControl.subviews count];
+//    
+//    for( int i = 0; i < segments; i++ )
+//    {
+//        // reset color
+//        [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
+//    }
+//    
+//    if( hasSetSelectedIndexOnce )
+//    {
+//        // this is super weird - the subviews array is backwards... so deal with it like that
+//        if (self.segmentControl.selectedSegmentIndex == 0)
+//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskScheduledBlue];
+//        else if (self.segmentControl.selectedSegmentIndex == 1)
+//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskMissedRed];
+//        else if (self.segmentControl.selectedSegmentIndex == 2)
+//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskCompletedGreen];
+//    }
+//    else
+//    {
+//        if (self.segmentControl.selectedSegmentIndex == 0)
+//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskScheduledBlue];
+//        else if (self.segmentControl.selectedSegmentIndex == 1)
+//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskMissedRed];
+//        else if (self.segmentControl.selectedSegmentIndex == 2)
+//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskCompletedGreen];
+//        hasSetSelectedIndexOnce = YES;
+//    }
+    for (int i=0; i<[self.segmentControl.subviews count]; i++)
+    {
+        if ([[self.segmentControl.subviews objectAtIndex:i]isSelected] )
+        {
+            NSLog(@"objectAtIndex%i",i);
+            UIColor * tintcolor;
+            if (self.segmentControl.selectedSegmentIndex == 0) tintcolor = ACColorTaskScheduledBlue;
+            else if (self.segmentControl.selectedSegmentIndex == 1) tintcolor = ACColorTaskMissedRed;
+            else if (self.segmentControl.selectedSegmentIndex == 2) tintcolor = ACColorTaskCompletedGreen;
+            
+            [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
+            [[self.segmentControl.subviews objectAtIndex:i] setTintColor:tintcolor];
+        }
+        else [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
+    }
+}
+- (void) refreshScheduleTasks
+{
+    [self.tableView reloadData];
+    if ([self.tableView numberOfRowsInSection:0] > 20) [self addLoadMoreFooter];
+    else [self.loadMoreFooter removeFromSuperview];
+    
+    [self setupColorForSegmentControl];
+    
+//    [self.segmentControl setTag:kTagFirst forSegmentAtIndex:0];
+//    [self.segmentControl setTag:kTagSecond forSegmentAtIndex:1];
+//    [self.segmentControl setTag:kTagThird forSegmentAtIndex:2];
+//    
+//    [self.segmentControl setTintColor:ACColorTaskScheduledBlue forTag:kTagFirst];
+//    [self.segmentControl setTintColor:ACColorTaskMissedRed forTag:kTagSecond];
+//    [self.segmentControl setTintColor:ACColorTaskCompletedGreen forTag:kTagThird];
+
+}
+
 #pragma mark - NSNotification
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
     {
-        [self.tableView reloadData];
+        [self layoutRotated];
     }
 }
 
@@ -122,7 +190,11 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 32;
+    if (self.segmentControl.selectedSegmentIndex == 0) return 11;
+    else if (self.segmentControl.selectedSegmentIndex == 1) return 5;
+    else if (self.segmentControl.selectedSegmentIndex == 2) return 32;
+    
+    else return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -159,11 +231,11 @@
     cell.titleLabel.text = @"Patient Name";
 //    cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     cell.taskLabel.text = @"HHA Visit";
-    if (indexPath.row % 5 == 1){
+    if (self.segmentControl.selectedSegmentIndex == 0){
         cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-18 10:00:00 -0500"]];
-        cell.statusLabel.text = @"Completed";
+        cell.statusLabel.text = @"Upcoming";
     }
-    else if (indexPath.row % 5 == 3)
+    else if (self.segmentControl.selectedSegmentIndex == 1)
     {
         cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-11 10:00:00 -0500"]];
         cell.statusLabel.text = @"Missed";
@@ -171,7 +243,7 @@
     else
     {
         cell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate dateFromString:@"2013-04-30 10:00:00 -0500"]];
-        cell.statusLabel.text = @"Upcoming";
+        cell.statusLabel.text = @"Completed";
     }
 
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
