@@ -28,19 +28,23 @@
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 620.0f, 20.0f)];
         else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 880.0f, 20.0f)];
-        [self.titleLabel setFont:ACFontDefaultBold18];
-        
+        if (iPHONE_UI)  [self.titleLabel setFont:ACFontDefaultBold16];
+        else if (iPAD_UI)   [self.titleLabel setFont:ACFontDefaultBold18];
         self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width, innerRect.origin.y, 120.0f, 20.0f)];
-        [self.dateLabel setFont:ACFontDefaultBold14];
+        if (iPHONE_UI)  [self.dateLabel setFont:ACFontDefaultBold14];
+        else if (iPAD_UI)  [self.dateLabel setFont:ACFontDefaultBold16];
+
         [self.dateLabel setTextColor:ACColorRed];
         [self.dateLabel setTextAlignment:NSTextAlignmentRight];
         
         self.taskLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x , self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height , self.titleLabel.frame.size.width, 20.0f)];
-        [self.taskLabel setFont:ACFontDefault14];
+        if (iPHONE_UI)  [self.taskLabel setFont:ACFontDefaultBold14];
+        else if (iPAD_UI)  [self.taskLabel setFont:ACFontDefaultBold16];
         [self.taskLabel setTextColor:[UIColor grayColor]];
         
         self.statusLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.dateLabel.frame.origin.x, self.taskLabel.frame.origin.y, 120.0f, 20.0f)];
-        [self.statusLabel setFont:ACFontDefault14];
+        if (iPHONE_UI)  [self.statusLabel setFont:ACFontDefaultBold14];
+        else if (iPAD_UI)  [self.statusLabel setFont:ACFontDefaultBold16];
         [self.statusLabel setTextAlignment:NSTextAlignmentRight];
 
         [self.accessoryView setFrame:CGRectMake(self.contentView.frame.size.width - 32.0f , self.taskLabel.frame.origin.y, 32.0f, 32.0f)];

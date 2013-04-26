@@ -15,9 +15,13 @@
 #import "NewTaskViewController.h"
 
 
-@interface ScheduleViewController ()
+@interface ScheduleViewController () <UISearchDisplayDelegate , UISearchBarDelegate>
+{
+    BOOL isSearching;
+}
 @property (nonatomic , strong) UISegmentedControl * segmentControl;
-
+@property (nonatomic , strong) UISearchDisplayController * searchController;
+@property (nonatomic , strong) UISearchBar * searchBar;
 @end
 
 @implementation ScheduleViewController
@@ -50,14 +54,15 @@
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
     self.navigationItem.title = @"Scheduled";
 
-    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_calendar"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMontlyView)];
-    self.navigationItem.rightBarButtonItem = calItem;
-
+    UIBarButtonItem * search = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearchDisplayController)];
+    self.navigationItem.rightBarButtonItem = search;
+    
     self.segmentControl = [[UISegmentedControl alloc]initWithItems:[NSArray arrayWithObjects:@"Upcoming",@"Missed",@"Completed", nil]];
-    self.segmentControl.frame = CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f);
+    if (iPHONE_UI) self.segmentControl.frame = CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 32.0f);
+    else if (iPAD_UI) self.segmentControl.frame = CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f);
     self.segmentControl.segmentedControlStyle = UISegmentedControlStyleBar;
     [self.segmentControl addTarget:self action:@selector(refreshScheduleTasks) forControlEvents:UIControlEventValueChanged];
-    
+
     self.tableView.tableHeaderView = self.segmentControl;
     self.segmentControl.selectedSegmentIndex = 0;
 }
@@ -66,6 +71,8 @@
 {
     [super viewDidAppear:animated];
     [self setupColorForSegmentControl];
+
+    isSearching = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -74,7 +81,9 @@
     
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     [nav.navToolBar setHidden:NO];
-
+    
+    UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoMontlyView)];
+    
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
     [updatedLabel setFont:ACFontDefaultBold14];
@@ -85,7 +94,7 @@
     UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
     
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTask)];
-    nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
+    nav.navToolBar.items = [NSArray arrayWithObjects:calItem,spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
 - (void) viewDidUnload
@@ -106,36 +115,6 @@
 
 - (void) setupColorForSegmentControl
 {
-    NSLog(@"index %i", self.segmentControl.selectedSegmentIndex);
-//    int index = self.segmentControl.selectedSegmentIndex;
-//    int segments = [self.segmentControl.subviews count];
-//    
-//    for( int i = 0; i < segments; i++ )
-//    {
-//        // reset color
-//        [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
-//    }
-//    
-//    if( hasSetSelectedIndexOnce )
-//    {
-//        // this is super weird - the subviews array is backwards... so deal with it like that
-//        if (self.segmentControl.selectedSegmentIndex == 0)
-//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskScheduledBlue];
-//        else if (self.segmentControl.selectedSegmentIndex == 1)
-//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskMissedRed];
-//        else if (self.segmentControl.selectedSegmentIndex == 2)
-//            [[self.segmentControl.subviews objectAtIndex:segments -1-index]  setTintColor:ACColorTaskCompletedGreen];
-//    }
-//    else
-//    {
-//        if (self.segmentControl.selectedSegmentIndex == 0)
-//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskScheduledBlue];
-//        else if (self.segmentControl.selectedSegmentIndex == 1)
-//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskMissedRed];
-//        else if (self.segmentControl.selectedSegmentIndex == 2)
-//            [[self.segmentControl.subviews objectAtIndex:index]  setTintColor:ACColorTaskCompletedGreen];
-//        hasSetSelectedIndexOnce = YES;
-//    }
     for (int i=0; i<[self.segmentControl.subviews count]; i++)
     {
         if ([[self.segmentControl.subviews objectAtIndex:i]isSelected] )
@@ -149,7 +128,11 @@
             [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
             [[self.segmentControl.subviews objectAtIndex:i] setTintColor:tintcolor];
         }
-        else [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
+        else
+        {
+            if (iPHONE_UI) [[self.segmentControl.subviews objectAtIndex:i] setTintColor:[UIColor grayColor]];
+            else [[self.segmentControl.subviews objectAtIndex:i] setTintColor:nil];
+        }
     }
 }
 - (void) refreshScheduleTasks
@@ -159,15 +142,48 @@
     else [self.loadMoreFooter removeFromSuperview];
     
     [self setupColorForSegmentControl];
-    
-//    [self.segmentControl setTag:kTagFirst forSegmentAtIndex:0];
-//    [self.segmentControl setTag:kTagSecond forSegmentAtIndex:1];
-//    [self.segmentControl setTag:kTagThird forSegmentAtIndex:2];
-//    
-//    [self.segmentControl setTintColor:ACColorTaskScheduledBlue forTag:kTagFirst];
-//    [self.segmentControl setTintColor:ACColorTaskMissedRed forTag:kTagSecond];
-//    [self.segmentControl setTintColor:ACColorTaskCompletedGreen forTag:kTagThird];
+}
 
+#pragma mark - UISearchBar & UISearchDisplayController
+
+- (void) showSearchDisplayController
+{ 
+    isSearching = YES;
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f)];
+    self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+    self.searchController.searchResultsDataSource = self;
+    self.searchController.searchResultsDelegate = self;
+    self.searchController.delegate = self;
+    self.searchBar.delegate = self;
+    
+    self.tableView.tableHeaderView = self.searchBar;
+    [self.searchBar becomeFirstResponder];
+}
+
+- (void) filterContentForSearchText:(NSString*)searchText andScope:(NSString*)scope
+{
+//    NSPredicate * result = [NSPredicate predicateWithFormat:@"SELF contains[cd]%@",searchText];
+//    self.searchedContacts = [self.contacts filteredArrayUsingPredicate:result];
+}
+
+
+- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+{
+    NSLog(@"searchDisplayControllerDidEndSearch");
+    isSearching = NO;
+    self.tableView.tableHeaderView = self.segmentControl;
+}
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString andScope:nil];
+    return YES;
+}
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:[controller.searchBar text] andScope:nil];
+    return YES;
 }
 
 #pragma mark - NSNotification

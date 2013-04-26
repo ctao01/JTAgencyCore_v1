@@ -50,7 +50,8 @@
     UITextView * textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 0.0f)];
     NSString * message = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully. \nJoin the movement!Facebook: https://www.facebook.com/axxess \n Twitter: https://twitter.com/AxxessConsult \nLinkedin: http://www.linkedin.com/company/axxess-consult \nInstagram: http://instagram.com/axxessconsult \nSincerely, \nThe Axxess Team.";
     textView.text = message;
-    textView.font = ACFontDefault14;
+    if (iPHONE_UI)  textView.font = ACFontDefault14;
+    else if (iPAD_UI) textView.font = ACFontDefault16;
     textView.editable = NO;
     CGRect textFrame = textView.frame;
     textView.contentSize = [message sizeWithFont:[textView font]
@@ -174,7 +175,8 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   return 44.0f;
+    if (iPAD_UI && indexPath.row == 2) return 50.0f;
+    else return 44.0f;
 }
 
 @end
