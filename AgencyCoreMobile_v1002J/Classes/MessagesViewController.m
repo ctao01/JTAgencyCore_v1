@@ -187,13 +187,15 @@
     else if (indexPath.row % 3 == 0)messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:[NSDate date]];
     else messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:previousDay];*/
     messageCell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
+    messageCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return messageCell;
 }
 #pragma mark - UITableView Delegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90.0f;
+    if (iPHONE_UI) return 90.0f;
+    else return 110.0f;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
