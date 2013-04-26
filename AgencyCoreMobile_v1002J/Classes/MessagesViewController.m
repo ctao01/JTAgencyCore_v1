@@ -43,27 +43,25 @@
 
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
+    
+
 }
 
 - (void) viewDidLoad
 {
+    self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
+    
     [super viewDidLoad];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-//    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(self.tableView.contentInset.top, self.tableView.contentInset.left, 52.0f, self.tableView.contentInset.right);
 
     self.navigationItem.title = @"Message";
-//    self.count = 20;
-    self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
-    /*UIView * footerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 49.0f)];
-    indicator = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 44.0f, 44.0f)];
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    indicator.center = footerView.center;
-    [footerView addSubview:indicator];
-    self.tableView.tableFooterView = footerView;*/
-   
+    UIBarButtonItem * editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
+    self.navigationItem.rightBarButtonItem = editButton;
+    self.editing = NO;
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -109,10 +107,28 @@
 - (void) receiveTestNotification:(NSNotification*)notification
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
-    {
-        [self.tableView reloadData];
+        [self layoutRotated];
+}
+
+#pragma mark - Editable Table Method
+- (void) editTable:(id)sender{
+	if(self.editing)
+	{
+		[super setEditing:NO animated:NO];
+		[self.tableView setEditing:NO animated:NO];
+		[self.tableView reloadData];
+		[self.navigationItem.rightBarButtonItem setTitle:@"Edit"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleBordered];
+	}
+	else
+	{
+		[super setEditing:YES animated:YES];
+		[self.tableView setEditing:YES animated:YES];
+		[self.tableView reloadData];
         
-    }
+		[self.navigationItem.rightBarButtonItem setTitle:@"Done"];
+        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
+	}
 }
 
 #pragma mark - UIToolBar Items Actions
@@ -188,6 +204,7 @@
     else messageCell.dateLabel.text = [NSString messageCellDateStringFromDate:previousDay];*/
     messageCell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     messageCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    messageCell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     return messageCell;
 }
@@ -205,27 +222,25 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - UIScrollView Delegate
-/*
-- (void) loadingMoreData
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.count ++;
-    [self.tableView reloadData];
-    [indicator stopAnimating];
+    return YES;
 }
 
-- (void) scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSInteger currentOffset = self.tableView.contentOffset.y;
-    NSInteger maximumOffset = self.tableView.contentSize.height - self.tableView.frame.size.height;
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // Change 10.0 to adjust the distance from bottom
-    if (maximumOffset - currentOffset <= -49.0f - 44.0f) {
-        [indicator startAnimating];
-        [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(loadingMoreData) userInfo:nil repeats:NO];
- [self performSelector:@selector(stopAnimatingFooter) withObject:nil afterDelay:0.5];
-
-    }
+    return UITableViewCellEditingStyleDelete;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"UITableViewCellEditingStyleDelete");
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView reloadData];
+    
+}
+#pragma mark - UIScrollView Delegate
 @end
