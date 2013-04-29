@@ -26,7 +26,7 @@
     if (iPHONE_UI)
         [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     else if (iPAD_UI)
-        [self.slidingViewController setAnchorRightRevealAmount:self.view.frame.size.height - self.view.frame.size.height/2];
+        [self.slidingViewController setAnchorRightRevealAmount:width(Bounds_Screen)/2];
 
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     self.tableView.backgroundColor = [UIColor colorWithRed:10.0f/255.0f green:10.0f/255.0f blue:10.0f/255.0f alpha:1.0f];
@@ -62,6 +62,7 @@
 {
     if ([[notice name]isEqualToString:@"TestNotification" ])
     {
+        
     }
 }
 
@@ -80,6 +81,13 @@
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
   }
+    UILabel * badgeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 24.0f, 24.0f)];
+    badgeLabel.textAlignment = NSTextAlignmentCenter;
+    badgeLabel.layer.cornerRadius = 4.0f;
+    badgeLabel.backgroundColor = ACColorRed;
+    badgeLabel.textColor = [UIColor whiteColor];
+    badgeLabel.font = ACFontDefaultBold16;
+    
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.font = ACFontDefault16;
     if (indexPath.row == 0)
@@ -89,18 +97,27 @@
     }
     else if (indexPath.row == 1)
     {
-            cell.imageView.image = [UIImage imageNamed:@"menu_account"];
-            cell.textLabel.text = @"My Account";
+        cell.imageView.image = [UIImage imageNamed:@"menu_account"];
+        cell.textLabel.text = @"My Account";
+    
     }
     else if (indexPath.row == 2)
     {
-            cell.imageView.image = [UIImage imageNamed:@"menu_messages"];
-            cell.textLabel.text = @"My Messages";
+        cell.imageView.image = [UIImage imageNamed:@"menu_messages"];
+        cell.textLabel.text = @"My Messages";
+        badgeLabel.text = @"4";
+        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 310.0f, 10.0f);
+        else if (iPAD_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) / 2 - 30.0f, 10.0f);
+        [cell.contentView addSubview:badgeLabel];
     }
     else if (indexPath.row == 3)
     {
-            cell.imageView.image = [UIImage imageNamed:@"menu_schedule"];
-            cell.textLabel.text = @"My Schedule";
+        cell.imageView.image = [UIImage imageNamed:@"menu_schedule"];
+        cell.textLabel.text = @"My Schedule";
+        badgeLabel.text = @"11";
+        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 310.0f, 10.0f);
+        else if (iPAD_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) / 2 - 30.0f, 10.0f);
+        [cell.contentView addSubview:badgeLabel];
     }
     else if (indexPath.row == 4)
     {

@@ -54,12 +54,24 @@
     self.navigationItem.title = @"Schedule";
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     [nav.navToolBar setHidden:NO];
-
+    
+    UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
+    [updatedLabel setFont:ACFontDefaultBold14];
+    [updatedLabel setTextColor:[UIColor whiteColor]];
+    [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
+    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
+    [updatedLabel setBackgroundColor:[UIColor clearColor]];
+    UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
+    
+    UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTask)];
+    nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

@@ -7,7 +7,6 @@
 //
 
 #import "HomeTableViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface HomeTableViewController ()
 @property (nonatomic , strong)  UIView * headerView;

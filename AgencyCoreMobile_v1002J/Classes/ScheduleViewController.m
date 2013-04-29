@@ -44,7 +44,7 @@
     }];
 }
 
-#pragma mark -
+#pragma mark - Life Cycle Delegate
 
 - (void) viewDidLoad
 {
@@ -97,9 +97,16 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:calItem,spaceItem,labelItem,spaceItem,composeItem, nil];
 }
 
-- (void) viewDidUnload
+- (void) viewWillDisappear:(BOOL)animated
 {
-    [super viewDidUnload];
+    [super viewWillDisappear:animated];
+    NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
+    nav.navToolBar.items = nil;
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
