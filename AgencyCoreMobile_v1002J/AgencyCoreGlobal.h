@@ -41,6 +41,7 @@
 // ACTableViewController.h
 #define REFRESH_HEADER_HEIGHT 52.0f
 #define LOADMORE_FOOTER_HEIGHT 52.0f
+#define SEARCH_BAR__HEIGHT 44.0f
 
 
 // UIColor

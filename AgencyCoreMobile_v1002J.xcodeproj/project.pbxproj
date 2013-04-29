@@ -76,6 +76,9 @@
 		3D56380A172888CB008F220C /* icon_settings_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563806172888CB008F220C /* icon_settings_@2x.png */; };
 		3D56380B172888CB008F220C /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563807172888CB008F220C /* icon_settings.png */; };
 		3D563816172987F5008F220C /* TaskWithSectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D563815172987F5008F220C /* TaskWithSectionsViewController.m */; };
+		3D56381917298DB4008F220C /* TaskWithSegmentCotrolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56381817298DB4008F220C /* TaskWithSegmentCotrolViewController.m */; };
+		3D56381C1729944D008F220C /* TaskWithSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56381B1729944C008F220C /* TaskWithSearchViewController.m */; };
+		3D56381F1729C2C2008F220C /* UISegmentedControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
@@ -96,6 +99,12 @@
 		3D7372E0171EF27C00C54A8E /* UIScrollview+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7372D8171EF27C00C54A8E /* UIScrollview+TKCategory.m */; };
 		3D7372E1171EF27C00C54A8E /* UIView+TKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7372DA171EF27C00C54A8E /* UIView+TKCategory.m */; };
 		3D7372E4172054CB00C54A8E /* ACTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7372E3172054CB00C54A8E /* ACTableViewController.m */; };
+		3D765D6D172EDC17006F0F71 /* SyncOptionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D765D6C172EDC17006F0F71 /* SyncOptionsListController.m */; };
+		3D765D76172F03BB006F0F71 /* temp_bluedot_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D765D72172F03BB006F0F71 /* temp_bluedot_ipad.png */; };
+		3D765D77172F03BB006F0F71 /* temp_bluedot_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D765D73172F03BB006F0F71 /* temp_bluedot_ipad@2x.png */; };
+		3D765D78172F03BB006F0F71 /* temp_bluedot_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D765D74172F03BB006F0F71 /* temp_bluedot_iPhone.png */; };
+		3D765D79172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D765D75172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png */; };
+		3D765D7C172F1800006F0F71 /* CleanOptionsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D765D7B172F17FF006F0F71 /* CleanOptionsListController.m */; };
 		3D768CDC16FA1C750000165A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D768CDB16FA1C750000165A /* UIKit.framework */; };
 		3D768CDE16FA1C750000165A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D768CDD16FA1C750000165A /* Foundation.framework */; };
 		3D768CE016FA1C750000165A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D768CDF16FA1C750000165A /* CoreGraphics.framework */; };
@@ -271,6 +280,12 @@
 		3D563807172888CB008F220C /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_settings.png; path = Assets/icon_settings.png; sourceTree = "<group>"; };
 		3D563814172987F5008F220C /* TaskWithSectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskWithSectionsViewController.h; path = Classes/TaskWithSectionsViewController.h; sourceTree = "<group>"; };
 		3D563815172987F5008F220C /* TaskWithSectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskWithSectionsViewController.m; path = Classes/TaskWithSectionsViewController.m; sourceTree = "<group>"; };
+		3D56381717298DB4008F220C /* TaskWithSegmentCotrolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskWithSegmentCotrolViewController.h; path = Classes/TaskWithSegmentCotrolViewController.h; sourceTree = "<group>"; };
+		3D56381817298DB4008F220C /* TaskWithSegmentCotrolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskWithSegmentCotrolViewController.m; path = Classes/TaskWithSegmentCotrolViewController.m; sourceTree = "<group>"; };
+		3D56381A1729944C008F220C /* TaskWithSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskWithSearchViewController.h; path = Classes/TaskWithSearchViewController.h; sourceTree = "<group>"; };
+		3D56381B1729944C008F220C /* TaskWithSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskWithSearchViewController.m; path = Classes/TaskWithSearchViewController.m; sourceTree = "<group>"; };
+		3D56381D1729C2C2008F220C /* UISegmentedControl+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISegmentedControl+Additions.h"; path = "Categories/UISegmentedControl+Additions.h"; sourceTree = "<group>"; };
+		3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISegmentedControl+Additions.m"; path = "Categories/UISegmentedControl+Additions.m"; sourceTree = "<group>"; };
 		3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = Classes/UserListViewController.h; sourceTree = "<group>"; };
 		3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = Classes/UserListViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
@@ -303,6 +318,14 @@
 		3D7372DA171EF27C00C54A8E /* UIView+TKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TKCategory.m"; sourceTree = "<group>"; };
 		3D7372E2172054CB00C54A8E /* ACTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ACTableViewController.h; path = Classes/ACTableViewController.h; sourceTree = "<group>"; };
 		3D7372E3172054CB00C54A8E /* ACTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ACTableViewController.m; path = Classes/ACTableViewController.m; sourceTree = "<group>"; };
+		3D765D6B172EDC17006F0F71 /* SyncOptionsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncOptionsListController.h; path = Classes/SyncOptionsListController.h; sourceTree = "<group>"; };
+		3D765D6C172EDC17006F0F71 /* SyncOptionsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncOptionsListController.m; path = Classes/SyncOptionsListController.m; sourceTree = "<group>"; };
+		3D765D72172F03BB006F0F71 /* temp_bluedot_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp_bluedot_ipad.png; sourceTree = "<group>"; };
+		3D765D73172F03BB006F0F71 /* temp_bluedot_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp_bluedot_ipad@2x.png"; sourceTree = "<group>"; };
+		3D765D74172F03BB006F0F71 /* temp_bluedot_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp_bluedot_iPhone.png; sourceTree = "<group>"; };
+		3D765D75172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "temp_bluedot_iPhone@2x.png"; sourceTree = "<group>"; };
+		3D765D7A172F17FE006F0F71 /* CleanOptionsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CleanOptionsListController.h; path = Classes/CleanOptionsListController.h; sourceTree = "<group>"; };
+		3D765D7B172F17FF006F0F71 /* CleanOptionsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CleanOptionsListController.m; path = Classes/CleanOptionsListController.m; sourceTree = "<group>"; };
 		3D768CD816FA1C750000165A /* AgencyCoreMobile_v1002J.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgencyCoreMobile_v1002J.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D768CDB16FA1C750000165A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D768CDD16FA1C750000165A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -484,6 +507,10 @@
 				3DFD32121705D8D6001536D0 /* Account2ViewController.h */,
 				3DFD32131705D8D7001536D0 /* Account2ViewController.m */,
 				3DFD3134170375E7001536D0 /* PinPadScreen */,
+				3D765D6B172EDC17006F0F71 /* SyncOptionsListController.h */,
+				3D765D6C172EDC17006F0F71 /* SyncOptionsListController.m */,
+				3D765D7A172F17FE006F0F71 /* CleanOptionsListController.h */,
+				3D765D7B172F17FF006F0F71 /* CleanOptionsListController.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -526,6 +553,10 @@
 			children = (
 				3D563814172987F5008F220C /* TaskWithSectionsViewController.h */,
 				3D563815172987F5008F220C /* TaskWithSectionsViewController.m */,
+				3D56381717298DB4008F220C /* TaskWithSegmentCotrolViewController.h */,
+				3D56381817298DB4008F220C /* TaskWithSegmentCotrolViewController.m */,
+				3D56381A1729944C008F220C /* TaskWithSearchViewController.h */,
+				3D56381B1729944C008F220C /* TaskWithSearchViewController.m */,
 			);
 			name = Temp;
 			sourceTree = "<group>";
@@ -554,6 +585,8 @@
 				3D46C404170098F000E4A112 /* NSString+Additions.m */,
 				3D53DB52170E18D000AE500F /* UINavigationController+Rotation.h */,
 				3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */,
+				3D56381D1729C2C2008F220C /* UISegmentedControl+Additions.h */,
+				3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -673,6 +706,10 @@
 		3D768D0716FA1CF30000165A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3D765D72172F03BB006F0F71 /* temp_bluedot_ipad.png */,
+				3D765D73172F03BB006F0F71 /* temp_bluedot_ipad@2x.png */,
+				3D765D74172F03BB006F0F71 /* temp_bluedot_iPhone.png */,
+				3D765D75172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png */,
 				3DFD321B1705F850001536D0 /* bg_item_cell_x80.png */,
 				3DFD321C1705F850001536D0 /* bg_item_cell_x80@2x.png */,
 				3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */,
@@ -1081,6 +1118,10 @@
 				3D563809172888CB008F220C /* icon_calendar.png in Resources */,
 				3D56380A172888CB008F220C /* icon_settings_@2x.png in Resources */,
 				3D56380B172888CB008F220C /* icon_settings.png in Resources */,
+				3D765D76172F03BB006F0F71 /* temp_bluedot_ipad.png in Resources */,
+				3D765D77172F03BB006F0F71 /* temp_bluedot_ipad@2x.png in Resources */,
+				3D765D78172F03BB006F0F71 /* temp_bluedot_iPhone.png in Resources */,
+				3D765D79172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1170,6 +1211,11 @@
 				3D5637FE172882FE008F220C /* NSDate+Additions.m in Sources */,
 				3D5637FF172882FE008F220C /* NSDictionary+Additions.m in Sources */,
 				3D563816172987F5008F220C /* TaskWithSectionsViewController.m in Sources */,
+				3D56381917298DB4008F220C /* TaskWithSegmentCotrolViewController.m in Sources */,
+				3D56381C1729944D008F220C /* TaskWithSearchViewController.m in Sources */,
+				3D56381F1729C2C2008F220C /* UISegmentedControl+Additions.m in Sources */,
+				3D765D6D172EDC17006F0F71 /* SyncOptionsListController.m in Sources */,
+				3D765D7C172F1800006F0F71 /* CleanOptionsListController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

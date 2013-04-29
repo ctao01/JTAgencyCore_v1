@@ -19,6 +19,9 @@
 #import "LogInViewController.h"
 #import "AppDelegate.h"
 
+#import "SyncOptionsListController.h"
+#import "CleanOptionsListController.h"
+
 @interface AccountViewController () <KKPasscodeSettingsViewControllerDelegate>
 {
     NSDictionary * tempUser;
@@ -39,6 +42,8 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.tableView reloadData];
+
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
 }
 
@@ -74,18 +79,13 @@
     self.navigationItem.leftBarButtonItem = menuItem;
     self.title = @"My Account";
     
-    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_settings"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSettings) ];
-    self.navigationItem.rightBarButtonItem = settingsItem;
+//    UIBarButtonItem * settingsItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_settings"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSettings) ];
+//    self.navigationItem.rightBarButtonItem = settingsItem;
     
     CGRect footerFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 120.0f);
     UIView * footerView = [[UIView alloc]initWithFrame:footerFrame];
     footerView.backgroundColor = [UIColor whiteColor];
-    
-//    self.tableView.tableFooterView = footerView;
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 44.0f, 0.0f);
-    self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    
+
     
 //    self.currentUser = [AgencyCoreEntries createCurrentUser];
 //    NSLog(@"%@",self.currentUser);
@@ -95,14 +95,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return 4;
-    if (section == 1 || section == 2) return 2;
-    else if (section == 3) return 1;
+    if (section == 1 || section == 3) return 2;
+    else if (section == 2) return 2;
+    else if (section == 4) return 1;
     else return 0;
 }
 
@@ -195,9 +196,31 @@
     }
     else if (indexPath.section == 2)
     {
-        static NSString * CellIdentifier3 = @"DeviceSettingsCell";
+        static NSString * CellIdentifier3 = @"DataStoreSettingsCell";
         cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier3];
         if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier3];
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = @"Auto-Sync";
+            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults]integerForKey:@"AutoSyncDuration"] ? [NSString stringWithFormat:@"%i Minutes",[[NSUserDefaults standardUserDefaults]integerForKey:@"AutoSyncDuration"]]:@"";
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else
+        {
+            cell.textLabel.text = @"Schedule Clean Up Storage";
+            cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults]integerForKey:@"CleanUpStorageFreq"] ? [NSString stringWithFormat:@"Every %i Days",[[NSUserDefaults standardUserDefaults]integerForKey:@"CleanUpStorageFreq"]]:@"";
+            cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            
+    }
+    
+    else if (indexPath.section == 3)
+    {
+        static NSString * CellIdentifier4 = @"DeviceSettingsCell";
+        cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier4];
+        if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier4];
         if (indexPath.row == 0)
         {
             cell.textLabel.text = @"Passcode";
@@ -210,11 +233,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    else if (indexPath.section == 3)
+    
+    else if (indexPath.section == 4)
     {
-        static NSString * CellIdentifier4 = @"LogoutsCell";
-        cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier4];
-        if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier4];
+        static NSString * CellIdentifier5 = @"LogoutsCell";
+        cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier5];
+        if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier5];
         cell.textLabel.text = @"Log Out";
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
@@ -231,41 +255,51 @@
         if (indexPath.row == 0)
         {
             UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Axxess Home Health Management System"
-                                                                message:@"Enter a new signature"
+                                                                message:@"Click on the button below to reset your signature. An e-mail with instructions on how to reset your signature will be sent to your email."
                                                                delegate:self
                                                       cancelButtonTitle:@"Cancel"
-                                                      otherButtonTitles:@"Change", nil];
-            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+                                                      otherButtonTitles:@"Reset Signature", nil];
             [alertView show];
         }
         else
         {
             UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"Axxess Home Health Management System"
-                                                                message:@"Change a new password"
+                                                                message:@"Click on the button below to reset your password. An e-mail with instructions on how to reset your password will be sent to your email."
                                                                delegate:self
                                                       cancelButtonTitle:@"Cancel"
-                                                      otherButtonTitles:@"Change", nil];
-            alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                                                      otherButtonTitles:@"Reset Password", nil];
             [alertView show];        }
     }
+    else if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0)
+        {
+            SyncOptionsListController * vc = [[SyncOptionsListController alloc]initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.title = @"Auto-Sync";
+        }
+        else if (indexPath.row == 1)
+        {
+            CleanOptionsListController * vc = [[CleanOptionsListController alloc]initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.title = @"Clean Up Storage";
+
+        }
+    }
     
-    else if (indexPath.section == 2 && indexPath.row == 0)
+    else if (indexPath.section == 3 && indexPath.row == 0)
     {
         PasscodeSettingsViewController * pSettings = [[PasscodeSettingsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         pSettings.delegate = self;
         [self.navigationController pushViewController:pSettings animated:YES];
     }
     
-    else if (indexPath.section == 3)
+    else if (indexPath.section == 4)
     {
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [delegate.navigation viewDidAppear:YES];
-        //        [delegate displayScreen:[[NSUserDefaults standardUserDefaults]boolForKey:@"HasLoggedIn"]];
-        //        LogInViewController * vc = [[LogInViewController alloc]init];
-        //        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
-        //        [self.navigationController presentViewController:nc animated:NO completion:^{}];
         
         
     }
@@ -278,7 +312,7 @@
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3)
+    if (indexPath.section == 4)
     {
         cell.backgroundView = [[UIImageView alloc]init];
         ((UIImageView*) cell.backgroundView).image = nil;

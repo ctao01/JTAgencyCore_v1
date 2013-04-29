@@ -35,17 +35,17 @@
 		}
 		
 		NavigationControllerWithoutRotation *nav = [[NavigationControllerWithoutRotation alloc] initWithRootViewController:vc];
-        
-		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-			nav.modalPresentationStyle = UIModalPresentationFormSheet;
-			nav.navigationBar.barStyle = UIBarStyleBlack;
-			nav.navigationBar.opaque = NO;
-		} else {
-			nav.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
-			nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
-			nav.navigationBar.opaque = self.navigationController.navigationBar.opaque;
-			nav.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
-		}
+        nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+//		if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//			nav.modalPresentationStyle = UIModalPresentationFormSheet;
+//			nav.navigationBar.barStyle = UIBarStyleBlack;
+//			nav.navigationBar.opaque = NO;
+//		} else {
+//			nav.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
+//			nav.navigationBar.translucent = self.navigationController.navigationBar.translucent;
+//			nav.navigationBar.opaque = self.navigationController.navigationBar.opaque;
+//			nav.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
+//		}
 		
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
         [self.navigationController presentModalViewController:nav animated:YES];
