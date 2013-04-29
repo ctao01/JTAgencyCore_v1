@@ -13,11 +13,13 @@
 #import "MessageComposer.h"
 #import "NavigationControllerWithoutRotation.h"
 
-@interface MessagesViewController ()
+@interface MessagesViewController () < UISearchDisplayDelegate >
 //{
 //    UIActivityIndicatorView * indicator;
 //}
 @property (nonatomic , strong) NSMutableArray * counts;
+@property (nonatomic , strong) UISearchDisplayController * searchController;
+@property (nonatomic , strong) UISearchBar * searchBar;
 @end
 
 @implementation MessagesViewController
@@ -61,14 +63,21 @@
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
     self.navigationItem.rightBarButtonItem = editButton;
     self.editing = NO;
-
+    
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f)];
+    self.searchBar.barStyle = UIBarStyleBlackOpaque;
+    self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
+    self.searchController.searchResultsDataSource = self;
+    self.searchController.searchResultsDelegate = self;
+    self.searchController.delegate = self;
+    
+    self.tableView.tableHeaderView = self.searchBar;
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
-
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -100,6 +109,25 @@
     [super stopLoadinMore];
     [self.tableView reloadData];
     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:NO];
+}
+
+#pragma mark - UIsearchController Delegate Method
+- (void) filterContentForSearchText:(NSString*)searchText andScope:(NSString*)scope
+{
+    //    NSPredicate * result = [NSPredicate predicateWithFormat:@"SELF contains[cd]%@",searchText];
+    //    self.searchedContacts = [self.contacts filteredArrayUsingPredicate:result];
+}
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString andScope:nil];
+    return YES;
+}
+
+- (BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    [self filterContentForSearchText:[controller.searchBar text] andScope:nil];
+    return YES;
 }
 
 #pragma mark - NSNotification
@@ -189,7 +217,7 @@
         
         
     messageCell.senderLabel.text = [NSString stringWithFormat:@"Sender:%@",[self.counts objectAtIndex:indexPath.row]];
-    messageCell.subjectLabel.text = @"Subject";
+    messageCell.subjectLabel.text = @"Subject1234567890";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
     /* manage Categories later */
     /*NSDateFormatter * df = [[NSDateFormatter alloc]init];
@@ -205,6 +233,13 @@
     messageCell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     messageCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     messageCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    if (indexPath.row % 7 == 2)
+    {
+        if (iPHONE_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"temp_bluedot_iPhone"];
+        else if (iPAD_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"temp_bluedot_ipad"];
+
+    }
+    
     
     return messageCell;
 }

@@ -15,44 +15,39 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         CGRect innerRect ;
-        if (iPAD_UI) innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 30.0f, 10.0f, 20.0f));
-        else if (iPHONE_UI) innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 20.0f, 10.0f, 20.0f));
+    innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 30.0f, 10.0f, 20.0f));
+        if (iPAD_UI)
+        {
+            self.statusImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
+            self.statusImageView.center = CGPointMake(self.statusImageView.center.x, 55.0f);
+        }
+        else if (iPHONE_UI)
+        {
+            self.statusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
+            self.statusImageView.center = CGPointMake(self.statusImageView.center.x, 45.0f);
+        }
+        self.statusImageView.frame = CGRectOffset(self.statusImageView.frame, 5.0f, 0.0f);
+        [self.contentView addSubview:self.statusImageView];
 
+        
         float labelHeight;
         if (iPHONE_UI) labelHeight = 20;
         else if (iPAD_UI) labelHeight = 24;
         else labelHeight = 0.0f;
-        if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 240.0f, labelHeight)];
-        else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"])
-        {
-            CGRect screenSize = [[UIScreen mainScreen]bounds];
-            if (screenSize.size.height >= 568.0f) self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 480.0f, labelHeight)];
-            else self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 400.0f, labelHeight)];
-        }
-        else if ([reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 600.0f, labelHeight)];
-        else if ([reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
-            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 860.0f, labelHeight)];
-        
+        if ([reuseIdentifier isEqualToString:@"iPhone_Portrait_Cell"] || [reuseIdentifier isEqualToString:@"iPad_Portrait_Cell"] )
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, width(Bounds_Screen) - 80.0f, labelHeight)];
+        else if ([reuseIdentifier isEqualToString:@"iPhone_Landscape_Cell"] || [reuseIdentifier isEqualToString:@"iPad_Landscape_Cell"])
+            self.senderLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, height(Bounds_Screen) - 80.0f, labelHeight)];
         if (iPHONE_UI)[self.senderLabel  setFont:ACFontDefaultBold16];
         else if (iPAD_UI) [self.senderLabel setFont:ACFontDefaultBold18];
         [self.contentView addSubview:self.senderLabel];
         
         
         // Date Label:
-
-        if (iPHONE_UI)
-        {
-            self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(origin_x(self.senderLabel.frame) + width(self.senderLabel.frame) - 80.0f, origin_y(self.senderLabel.frame), 120.0f, 20.0f)];
-            [self.dateLabel setFont:ACFontDefault16];
-        }
-        else if (iPAD_UI)
-        {
-            self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(origin_x(self.senderLabel.frame) + width(self.senderLabel.frame) - 20.0f, origin_y(self.senderLabel.frame), 120.0f, 20.0f)];
-            [self.dateLabel setFont:ACFontDefault18];
-        }
-
+        if (UserInterface_Portrait) self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(width(Bounds_Screen) - 155.0f, origin_y(self.senderLabel.frame), 120.0f, 20.0f)];
+        else self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(height(Bounds_Screen) - 155.0f, origin_y(self.senderLabel.frame), 120.0f, 20.0f)];
+        if (iPHONE_UI) [self.dateLabel setFont:ACFontDefaultBold14];
+        else if (iPAD_UI) [self.dateLabel setFont:ACFontDefaultBold16];
         [self.dateLabel setTextColor:ACColorRed];
         [self.dateLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:self.dateLabel];
