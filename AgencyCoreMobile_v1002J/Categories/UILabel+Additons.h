@@ -10,4 +10,6 @@
 
 @interface UILabel (Additons)
 
++ (UILabel*) updatedLabelWithFrame:(CGRect)frame;
+
 @end

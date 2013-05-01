@@ -123,7 +123,8 @@
     badgeLabel.layer.cornerRadius = 4.0f;
     badgeLabel.backgroundColor = ACColorRed;
     badgeLabel.textColor = [UIColor whiteColor];
-    badgeLabel.font = ACFontDefaultBold16;
+    if (iPHONE_UI) badgeLabel.font = ACFontDefaultBold14;
+    else badgeLabel.font = ACFontDefaultBold16;
 
     if (indexPath.section == 0)
     {
@@ -139,6 +140,8 @@
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.accessoryView = badgeLabel;
     // Configure the cell...
+    if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold16;
+    else cell.textLabel.font = ACFontDefaultBold18;
     
     return cell;
 }

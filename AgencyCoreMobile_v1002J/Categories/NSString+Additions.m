@@ -50,10 +50,14 @@
 {
     NSDateFormatter * df = [[NSDateFormatter alloc]init];
     [df setDateStyle:NSDateFormatterShortStyle];
-    [df setTimeStyle:NSDateFormatterShortStyle];
+    NSString * dateString = [df stringFromDate:date];
     
-    NSString * string = [df stringFromDate:date];
-    return [NSString stringWithFormat:@"Updated %@", string];
+    NSDateFormatter * tformatter = [[NSDateFormatter alloc]init];
+    tformatter.dateFormat = @"HH:mm a";
+    NSString * timeString = [tformatter stringFromDate:date];
+    
+    return [NSString stringWithFormat:@"Last Update %@ at %@",dateString,timeString];
+    
 }
 
 + (NSString*) shortDateStyleStringFromDate:(NSDate*)date

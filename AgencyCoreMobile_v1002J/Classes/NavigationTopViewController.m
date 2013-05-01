@@ -21,4 +21,18 @@
   
   [self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    UIFont * titleFont;
+    if (iPHONE_UI) titleFont = ACFontDefaultBold18;
+    else titleFont = ACFontDefaultBold20;
+    
+    [[UINavigationBar appearance]setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], UITextAttributeTextColor,
+      titleFont, UITextAttributeFont ,nil]];
+}
+
 @end

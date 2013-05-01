@@ -37,6 +37,7 @@
 #define origin_x(frame) frame.origin.x
 #define origin_y(frame) frame.origin.y
 
+
 // Constant
 // ACTableViewController.h
 #define REFRESH_HEADER_HEIGHT 52.0f
@@ -52,7 +53,7 @@
 #define ACColorTaskScheduledMultiplePurple [UIColor colorWithRed:97.0f/255.0 green:63.0f/255.0 blue:186.0f/255.0 alpha:1.0f]
 
 #define ACColorMenuSeparatorGray [UIColor colorWithRed:70.0f/255.0 green:70.0f/255.0 blue:70.0f/255.0 alpha:0.4f]
-#define ACColorMenuSelectedViewGray [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:1.0f]
+#define ACColorGray80 [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:1.0f]
 
 // UIFont
 #define ACFontDefault8                      [UIFont fontWithName:@"HelveticaNeue" size:8.0f]

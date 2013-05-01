@@ -16,8 +16,8 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setBackgroundImage:[[UIImage imageNamed:@"btn_Gray"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)]forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button.titleLabel setFont:ACFontDefaultBold14];
-    
+    if (iPHONE_UI)  [button.titleLabel setFont:ACFontDefaultBold16];
+    else    [button.titleLabel setFont:ACFontDefaultBold18];
     return button;
 }
 
@@ -27,7 +27,9 @@
     [button setTitle:title forState:UIControlStateNormal];
     [button setBackgroundImage:[[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)]forState:UIControlStateNormal];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button.titleLabel setFont:ACFontDefaultBold14];
+    if (iPHONE_UI)[button.titleLabel setFont:ACFontDefaultBold14];
+    else  [button.titleLabel setFont:ACFontDefaultBold16];
+
     return button;
 }
 

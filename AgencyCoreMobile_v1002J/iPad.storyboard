@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="1435" y="-1147"/>
         </scene>
-        <!--Home Table View Controller-->
+        <!--Home Table View Controller - Home-->
         <scene sceneID="PLi-as-Tfk">
             <objects>
                 <tableViewController id="YtC-cg-Bxf" customClass="HomeTableViewController" sceneMemberID="viewController">
@@ -62,10 +62,10 @@
                             <outlet property="delegate" destination="YtC-cg-Bxf" id="0e5-eg-F6a"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="xWk-E2-oDi">
-                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="FHP-et-oe8">
+                    <navigationItem key="navigationItem" title="Home" id="xWk-E2-oDi">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="glg-KQ-qqe">
                             <connections>
-                                <action selector="revealMenu:" destination="YtC-cg-Bxf" id="TbQ-QL-1Cd"/>
+                                <action selector="revealMenu:" destination="YtC-cg-Bxf" id="38s-Tz-rHo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -383,7 +383,7 @@
         <!--Navigation Top View Controller-->
         <scene sceneID="yth-6K-Fhh">
             <objects>
-                <navigationController storyboardIdentifier="Navigation" definesPresentationContext="YES" id="tXb-ph-em2" customClass="NavigationTopViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="More" definesPresentationContext="YES" id="tXb-ph-em2" customClass="NavigationTopViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="Anl-es-a6X">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -395,6 +395,53 @@
             </objects>
             <point key="canvasLocation" x="504" y="5992"/>
         </scene>
+        <!--About View Controller - About-->
+        <scene sceneID="0dJ-G3-7Rw">
+            <objects>
+                <tableViewController storyboardIdentifier="vcAbout" id="vqD-eB-YyR" customClass="AboutViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="rHq-Qb-vum">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="iI8-56-Za9">
+                                <rect key="frame" x="0.0" y="54" width="768" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="45" y="1" width="678" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="About" id="wXM-ee-suy">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="2Gt-nM-oQq">
+                            <connections>
+                                <action selector="revealMenu:" destination="vqD-eB-YyR" id="4Hi-Xj-7z7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4LU-3J-bA3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1435" y="7228"/>
+        </scene>
+        <!--Navigation Top View Controller-->
+        <scene sceneID="KHV-uh-7kk">
+            <objects>
+                <navigationController storyboardIdentifier="About" definesPresentationContext="YES" id="8KY-yL-ddW" customClass="NavigationTopViewController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="J9o-2W-PSJ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vqD-eB-YyR" kind="relationship" relationship="rootViewController" id="1Lm-bT-CXn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BvB-O2-rWI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="504" y="7228"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon_menu.png" width="32" height="32"/>
@@ -402,6 +449,13 @@
     <classes>
         <class className="ACTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ACTableViewController.h"/>
+        </class>
+        <class className="AboutViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealMenu:"/>
+                <relationship kind="action" name="revealUnderRight:"/>
+            </relationships>
         </class>
         <class className="AccountViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>

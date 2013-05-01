@@ -30,7 +30,7 @@
             self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, innerRect.origin.y, 880.0f, 20.0f)];
         if (iPHONE_UI)  [self.titleLabel setFont:ACFontDefaultBold16];
         else if (iPAD_UI)   [self.titleLabel setFont:ACFontDefaultBold18];
-        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width, innerRect.origin.y, 120.0f, 20.0f)];
+        self.dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width - 30.0f, innerRect.origin.y, 120.0f, 20.0f)];
         if (iPHONE_UI)  [self.dateLabel setFont:ACFontDefaultBold14];
         else if (iPAD_UI)  [self.dateLabel setFont:ACFontDefaultBold16];
 

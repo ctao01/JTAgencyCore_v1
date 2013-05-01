@@ -392,6 +392,53 @@
             </objects>
             <point key="canvasLocation" x="234" y="-3430"/>
         </scene>
+        <!--About View Controller - About-->
+        <scene sceneID="MCx-V1-RYF">
+            <objects>
+                <tableViewController storyboardIdentifier="vcAbout" id="7DD-HY-zAF" customClass="AboutViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="EFq-rc-54m">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rK4-0w-kli">
+                                <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="About" id="pdf-gm-2nC">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Tbj-Z9-nbi">
+                            <connections>
+                                <action selector="revealMenu:" destination="7DD-HY-zAF" id="SeE-Y3-362"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LIa-Ko-EaQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="696" y="-4039"/>
+        </scene>
+        <!--Navigation Top View Controller-->
+        <scene sceneID="PkQ-6h-98O">
+            <objects>
+                <navigationController storyboardIdentifier="About" definesPresentationContext="YES" id="7qS-I1-09v" customClass="NavigationTopViewController" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="MSv-8c-Q0P">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7DD-HY-zAF" kind="relationship" relationship="rootViewController" id="yjZ-Oc-doR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XJz-Wg-Kmj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="-4039"/>
+        </scene>
         <!--Sample Table View Controller - More...-->
         <scene sceneID="rpK-4I-sHd">
             <objects>
@@ -435,6 +482,12 @@
     <classes>
         <class className="ACTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ACTableViewController.h"/>
+        </class>
+        <class className="AboutViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="revealUnderRight:"/>
+            </relationships>
         </class>
         <class className="AccountViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>

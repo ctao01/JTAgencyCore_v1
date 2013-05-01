@@ -10,5 +10,16 @@
 
 @implementation UILabel (Additons)
 
++ (UILabel*) updatedLabelWithFrame:(CGRect)frame
+{
+    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:frame];
+    if(iPHONE_UI) [updatedLabel setFont:ACFontDefaultBold12];
+    else  [updatedLabel setFont:ACFontDefaultBold14];
+    [updatedLabel setTextColor:[UIColor whiteColor]];
+    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
+    [updatedLabel setBackgroundColor:[UIColor clearColor]];
+    
+    return updatedLabel;
+}
 
 @end

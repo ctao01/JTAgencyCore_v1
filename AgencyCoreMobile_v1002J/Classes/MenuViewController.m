@@ -15,7 +15,7 @@
 
 - (void)awakeFromNib
 {
-    self.menuItems = [NSArray arrayWithObjects:@"Home", @"Account", @"Messages", @"Schedule", @"Notes", @"Navigation", nil];
+    self.menuItems = [NSArray arrayWithObjects:@"Home", @"Account", @"Messages", @"Schedule", @"Notes", @"Navigation",@"About", nil];
 }
 
 - (void)viewDidLoad
@@ -86,7 +86,8 @@
     badgeLabel.layer.cornerRadius = 4.0f;
     badgeLabel.backgroundColor = ACColorRed;
     badgeLabel.textColor = [UIColor whiteColor];
-    badgeLabel.font = ACFontDefaultBold16;
+    if (iPHONE_UI) badgeLabel.font = ACFontDefaultBold14;
+    else badgeLabel.font = ACFontDefaultBold16;
     
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.font = ACFontDefault16;
@@ -106,7 +107,7 @@
         cell.imageView.image = [UIImage imageNamed:@"menu_messages"];
         cell.textLabel.text = @"My Messages";
         badgeLabel.text = @"4";
-        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 310.0f, 10.0f);
+        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 70.0f, 10.0f);
         else if (iPAD_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) / 2 - 30.0f, 10.0f);
         [cell.contentView addSubview:badgeLabel];
     }
@@ -115,7 +116,7 @@
         cell.imageView.image = [UIImage imageNamed:@"menu_schedule"];
         cell.textLabel.text = @"My Schedule";
         badgeLabel.text = @"11";
-        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 310.0f, 10.0f);
+        if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 70.0f, 10.0f);
         else if (iPAD_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) / 2 - 30.0f, 10.0f);
         [cell.contentView addSubview:badgeLabel];
     }
@@ -124,12 +125,20 @@
             cell.imageView.image = [UIImage imageNamed:@"menu_notes"];
             cell.textLabel.text = @"My Notes";
     }
+    else if (indexPath.row == 6)
+    {
+        cell.imageView.image = [UIImage imageNamed:@"menu_notes"];
+        cell.textLabel.text = @"About Axxess";
+    }
+    
     else
     {
             cell.imageView.image = [UIImage imageNamed:@"menu_more"];
             cell.textLabel.text = @"More";
     }
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold16;
+    else cell.textLabel.font = ACFontDefaultBold18;
   return cell;
 }
 
@@ -138,7 +147,7 @@
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.selectedBackgroundView = [[UIView alloc]init];
-    ((UIView*) cell.selectedBackgroundView).backgroundColor = ACColorMenuSelectedViewGray;
+    ((UIView*) cell.selectedBackgroundView).backgroundColor = ACColorGray80;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

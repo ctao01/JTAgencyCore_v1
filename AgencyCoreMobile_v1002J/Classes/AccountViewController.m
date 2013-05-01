@@ -193,6 +193,8 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold14;
+        else cell.textLabel.font = ACFontDefaultBold16;
     }
     else if (indexPath.section == 2)
     {
@@ -213,7 +215,8 @@
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-            
+        if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold14;
+        else cell.textLabel.font = ACFontDefaultBold16;
     }
     
     else if (indexPath.section == 3)
@@ -232,6 +235,8 @@
         cell.detailTextLabel.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold14;
+        else cell.textLabel.font = ACFontDefaultBold16;
     }
     
     else if (indexPath.section == 4)
@@ -315,10 +320,13 @@
     if (indexPath.section == 4)
     {
         cell.backgroundView = [[UIImageView alloc]init];
+        cell.selectedBackgroundView = [[UIImageView alloc]init];
         ((UIImageView*) cell.backgroundView).image = nil;
+        ((UIImageView*) cell.selectedBackgroundView).image = nil;
         UIImage * backgroundImage = [[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
+        UIImage * selectedBackgroundImage = [[UIImage imageNamed:@"btn_Gray"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
         ((UIImageView*) cell.backgroundView).image = backgroundImage;
+        ((UIImageView*) cell.selectedBackgroundView).image = selectedBackgroundImage;
     }
 }
-
 @end

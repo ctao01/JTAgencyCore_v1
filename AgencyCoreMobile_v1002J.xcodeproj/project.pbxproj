@@ -11,10 +11,11 @@
 		3D0D0ADB170A273B00EE110D /* agencycore_icon_iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */; };
 		3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B09170C686400EE110D /* MenuViewController.m */; };
 		3D0D0B0D170CD0F900EE110D /* NavigationControllerWithoutRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */; };
+		3D3895A617305844009F30A6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3895A517305844009F30A6 /* AboutViewController.m */; };
 		3D3A909C17131CC100D38D19 /* ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A909B17131CC100D38D19 /* ObjectManager.m */; };
 		3D3A909E17131D6700D38D19 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3A909D17131D6700D38D19 /* CoreData.framework */; };
 		3D3A90A117132B2D00D38D19 /* AgecnyCoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A909F17132B2D00D38D19 /* AgecnyCoreModel.xcdatamodeld */; };
-		3D3A90A41713329900D38D19 /* VisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A31713329900D38D19 /* VisitViewController.m */; };
+		3D3A90A41713329900D38D19 /* ScheduleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A31713329900D38D19 /* ScheduleDetailViewController.m */; };
 		3D3A90A71713395A00D38D19 /* VisitHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A61713395A00D38D19 /* VisitHeaderView.m */; };
 		3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90A91713588D00D38D19 /* CommentsViewController.m */; };
 		3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A90AC17135F1200D38D19 /* TextViewCell.m */; };
@@ -192,12 +193,14 @@
 		3D0D0B09170C686400EE110D /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuViewController.m; path = Classes/MenuViewController.m; sourceTree = "<group>"; };
 		3D0D0B0B170CD0F700EE110D /* NavigationControllerWithoutRotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationControllerWithoutRotation.h; path = Classes/NavigationControllerWithoutRotation.h; sourceTree = "<group>"; };
 		3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationControllerWithoutRotation.m; path = Classes/NavigationControllerWithoutRotation.m; sourceTree = "<group>"; };
+		3D3895A417305844009F30A6 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = Classes/AboutViewController.h; sourceTree = "<group>"; };
+		3D3895A517305844009F30A6 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Classes/AboutViewController.m; sourceTree = "<group>"; };
 		3D3A909A17131CC100D38D19 /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectManager.h; path = Classes/Objects/ObjectManager.h; sourceTree = "<group>"; };
 		3D3A909B17131CC100D38D19 /* ObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectManager.m; path = Classes/Objects/ObjectManager.m; sourceTree = "<group>"; };
 		3D3A909D17131D6700D38D19 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3D3A90A017132B2D00D38D19 /* AgecnyCoreModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AgecnyCoreModel.xcdatamodel; sourceTree = "<group>"; };
-		3D3A90A21713329900D38D19 /* VisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitViewController.h; path = Classes/VisitViewController.h; sourceTree = "<group>"; };
-		3D3A90A31713329900D38D19 /* VisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitViewController.m; path = Classes/VisitViewController.m; sourceTree = "<group>"; };
+		3D3A90A21713329900D38D19 /* ScheduleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScheduleDetailViewController.h; path = Classes/ScheduleDetailViewController.h; sourceTree = "<group>"; };
+		3D3A90A31713329900D38D19 /* ScheduleDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduleDetailViewController.m; path = Classes/ScheduleDetailViewController.m; sourceTree = "<group>"; };
 		3D3A90A51713395A00D38D19 /* VisitHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitHeaderView.h; path = Classes/VisitHeaderView.h; sourceTree = "<group>"; };
 		3D3A90A61713395A00D38D19 /* VisitHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitHeaderView.m; path = Classes/VisitHeaderView.m; sourceTree = "<group>"; };
 		3D3A90A81713588D00D38D19 /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewController.h; path = Classes/CommentsViewController.h; sourceTree = "<group>"; };
@@ -624,6 +627,15 @@
 			name = TKCategory;
 			sourceTree = "<group>";
 		};
+		3D765D7D17305769006F0F71 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				3D3895A417305844009F30A6 /* AboutViewController.h */,
+				3D3895A517305844009F30A6 /* AboutViewController.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		3D768CCF16FA1C750000165A = {
 			isa = PBXGroup;
 			children = (
@@ -805,6 +817,7 @@
 				3D46C4131702444E00E4A112 /* Account */,
 				3DBE75EE16FB57F0001755FE /* Messages */,
 				3DFD32A41705FE9A001536D0 /* MyScheduleTasks */,
+				3D765D7D17305769006F0F71 /* About */,
 				3D768D5316FA1E9F0000165A /* UnderRightViewController.h */,
 				3D768D5416FA1E9F0000165A /* UnderRightViewController.m */,
 				3D768D4F16FA1E9F0000165A /* SampleTableViewController.h */,
@@ -944,8 +957,8 @@
 				3D768D5216FA1E9F0000165A /* ScheduleViewController.m */,
 				3DFD32A51705FED0001536D0 /* CalendarMonthViewController.h */,
 				3DFD32A61705FED0001536D0 /* CalendarMonthViewController.m */,
-				3D3A90A21713329900D38D19 /* VisitViewController.h */,
-				3D3A90A31713329900D38D19 /* VisitViewController.m */,
+				3D3A90A21713329900D38D19 /* ScheduleDetailViewController.h */,
+				3D3A90A31713329900D38D19 /* ScheduleDetailViewController.m */,
 				3D3A90A81713588D00D38D19 /* CommentsViewController.h */,
 				3D3A90A91713588D00D38D19 /* CommentsViewController.m */,
 				3D3A90B11714AA2700D38D19 /* NewTaskViewController.h */,
@@ -1187,7 +1200,7 @@
 				3D490030170F56D000D46134 /* BasicTwoLinesCell.m in Sources */,
 				3D3A909C17131CC100D38D19 /* ObjectManager.m in Sources */,
 				3D3A90A117132B2D00D38D19 /* AgecnyCoreModel.xcdatamodeld in Sources */,
-				3D3A90A41713329900D38D19 /* VisitViewController.m in Sources */,
+				3D3A90A41713329900D38D19 /* ScheduleDetailViewController.m in Sources */,
 				3D3A90A71713395A00D38D19 /* VisitHeaderView.m in Sources */,
 				3D3A90AA1713588E00D38D19 /* CommentsViewController.m in Sources */,
 				3D3A90AD17135F1200D38D19 /* TextViewCell.m in Sources */,
@@ -1216,6 +1229,7 @@
 				3D56381F1729C2C2008F220C /* UISegmentedControl+Additions.m in Sources */,
 				3D765D6D172EDC17006F0F71 /* SyncOptionsListController.m in Sources */,
 				3D765D7C172F1800006F0F71 /* CleanOptionsListController.m in Sources */,
+				3D3895A617305844009F30A6 /* AboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,12 +55,11 @@
         
         // Subject Label
         self.subjectLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.senderLabel.frame.origin.y + self.senderLabel.frame.size.height, self.senderLabel.frame.size.width, 20.0f)];
-        if (iPHONE_UI) [self.subjectLabel  setFont:ACFontDefault16];
-        else if (iPAD_UI) [self.subjectLabel setFont:ACFontDefault18];
+        if (iPHONE_UI) [self.subjectLabel  setFont:ACFontDefault14];
+        else if (iPAD_UI) [self.subjectLabel setFont:ACFontDefault16];
         [self.contentView addSubview:self.subjectLabel];
         
         self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + labelHeight , self.senderLabel.frame.size.width, 40.0f)];
-        
         // Message Label:
         if (iPHONE_UI) [self.messageLabel  setFont:ACFontDefault14];
         else if (iPAD_UI) [self.messageLabel setFont:ACFontDefault16];
