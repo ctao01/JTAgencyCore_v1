@@ -8,25 +8,21 @@
 
 #import "SampleTableViewController.h"
 #import "Account2ViewController.h"
-#import "HomeTableViewController.h"
+#import "HomeViewController.h"
 
-#import "TaskWithSectionsViewController.h"
+//#import "TaskWithSectionsViewController.h"
+//#import "TaskWithSegmentCotrolViewController.h"
+//#import "TaskWithSearchViewController.h"
 
 @interface SampleTableViewController()
-@property (nonatomic, strong) NSArray *sampleItems;
 @end
 
 @implementation SampleTableViewController
-@synthesize sampleItems;
 
-- (void)awakeFromNib
-{
-  self.sampleItems = [NSArray arrayWithObjects:@"Tasks with sections", @"Tasks with segment control", @"Tasks with Search Bar", "Original home screen", @"Account with activity logs", nil];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-  return self.sampleItems.count;
+  return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,10 +32,10 @@
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
   }
-  
-  cell.textLabel.text = [self.sampleItems objectAtIndex:indexPath.row];
-  
-  return cell;
+    NSArray * sampleItems = [NSArray arrayWithObjects:@"Tasks with sections", @"Tasks with segment control", @"Tasks with Search Bar",@"Original home screen", @"Account with avtivity log", nil];
+    cell.textLabel.text = [sampleItems objectAtIndex:indexPath.row];
+    
+    return cell;
 }
 
 - (IBAction)revealMenu:(id)sender
@@ -56,15 +52,26 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0)
+//    if (indexPath.row == 0)
+//    {
+//        TaskWithSectionsViewController * vc = [[TaskWithSectionsViewController alloc]initWithStyle:UITableViewStylePlain];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    else if (indexPath.row == 1)
+//    {
+//        TaskWithSegmentCotrolViewController * vc = [[TaskWithSegmentCotrolViewController alloc]initWithStyle:UITableViewStylePlain];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    else if (indexPath.row == 2)
+//    {
+//        TaskWithSearchViewController * vc = [[TaskWithSearchViewController alloc]initWithStyle:UITableViewStylePlain];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    
+    if (indexPath.row == 3)
     {
-        TaskWithSectionsViewController * vc = [[TaskWithSectionsViewController alloc]initWithStyle:UITableViewStylePlain];
+        HomeViewController * vc = [[HomeViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.row == 3)
-    {
-        HomeTableViewController * tv = [[HomeTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
-        [self.navigationController pushViewController:tv animated:YES];
     }
     else if (indexPath.row == 4)
     {

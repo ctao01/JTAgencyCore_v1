@@ -33,8 +33,8 @@
 //        self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(100.0f, 36.0f, 220.0f, 20.0f)];
         self.updatedLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.subjectLabel.frame.origin.x, self.subjectLabel.frame.origin.y + self.subjectLabel.frame.size.height, self.subjectLabel.frame.size.width, 20.0f)];
         self.updatedLabel.textColor = [UIColor grayColor];
-        if (iPHONE_UI)  self.updatedLabel.font = ACFontDefault14;
-        else if (iPAD_UI)   self.updatedLabel.font = ACFontDefault16;
+        if (iPHONE_UI)  self.updatedLabel.font = ACFontDefault12;
+        else if (iPAD_UI)   self.updatedLabel.font = ACFontDefault14;
         
         [self.contentView addSubview:self.titleLabel];
         [self.contentView addSubview:self.subjectLabel];

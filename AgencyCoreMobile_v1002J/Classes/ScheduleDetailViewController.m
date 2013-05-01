@@ -6,16 +6,21 @@
 //  Copyright (c) 2013 Joy Tao. All rights reserved.
 //
 
-#import "VisitViewController.h"
+#import "ScheduleDetailViewController.h"
 #import "VisitHeaderView.h"
 #import "CommentsViewController.h"
 #import "NavigationToolBarController.h"
 
-@interface VisitViewController ()
+@interface ScheduleDetailViewController ()
 @property (nonatomic , strong) VisitHeaderView * visitHeaderView;
+@property (nonatomic , strong) UILabel * updatedLabel;
+
+@property (nonatomic , strong) UIActivityIndicatorView * activityIndicator;
+@property (nonatomic , strong) UIView * overlayView;
+
 @end
 
-@implementation VisitViewController
+@implementation ScheduleDetailViewController
 @synthesize taskObject = _taskObject;
 
 - (void) setTaskObject:(NSDictionary *)newObject
@@ -51,7 +56,17 @@
     self.visitHeaderView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.tableHeaderView = self.visitHeaderView;
 
-    self.navigationItem.title = @"Schedule";
+    self.navigationItem.title = @"My Schedule";
+    
+//    self.overlayView = [[UIView alloc]initWithFrame:Bounds_Screen];
+//    self.overlayView.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:self.overlayView];
+//    
+//    self.activityIndicator = [[UIActivityIndicatorView alloc]initWithFrame:Bounds_Screen];
+//    self.activityIndicator.hidden = YES;
+//    self.activityIndicator.hidesWhenStopped = YES;
+//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//    [self.view addSubview:self.activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,14 +76,12 @@
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     [nav.navToolBar setHidden:NO];
     
+//    UIBarButtonItem * syncItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(manualSyncData)];
+    
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
-    [updatedLabel setFont:ACFontDefaultBold14];
-    [updatedLabel setTextColor:[UIColor whiteColor]];
-    [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
-    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
-    [updatedLabel setBackgroundColor:[UIColor clearColor]];
-    UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
+    self.updatedLabel = [UILabel updatedLabelWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 8.0f, 10.0f, nav.navToolBar.frame.size.width / 8.0f))];
+    [self.updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
+    UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:self.updatedLabel];
     
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTask)];
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
@@ -86,6 +99,24 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Manual Sync Method
+
+//- (void) manualSyncData
+//{
+//    self.overlayView.backgroundColor = [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:0.4f];
+//    
+//    self.activityIndicator.hidden = NO;
+//    [self.activityIndicator startAnimating];
+//    [self performSelector:@selector(completeLoadingData) withObject:nil afterDelay:5.0f];
+//}
+//
+//- (void)completeLoadingData
+//{
+//    self.updatedLabel.text = [NSString updateLabelDateStringFromDate:[NSDate date]];
+//    [self.updatedLabel layoutIfNeeded];
+//    [self.activityIndicator stopAnimating];
+//    self.overlayView.backgroundColor = [UIColor clearColor];
+//}
 
 #pragma mark - Table view data source
 
@@ -115,6 +146,8 @@
     else if (indexPath.section == 1) cell.textLabel.text = @"Visit Comments";
     else cell.textLabel.text = @"Missed Visited Form";
     
+    if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold16;
+    else cell.textLabel.font = ACFontDefaultBold18;
     return cell;
 }
 #pragma mark - Table view delegate

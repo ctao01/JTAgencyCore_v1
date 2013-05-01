@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 
-@interface SampleTableViewController : UITableViewController <UITableViewDataSource, UITabBarControllerDelegate>
+@interface SampleTableViewController : UITableViewController
 - (IBAction)revealMenu:(id)sender;
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VisitViewController : UITableViewController
+@interface ScheduleDetailViewController : UITableViewController
 
 @property (nonatomic , assign) NSDictionary * taskObject;
 @end
