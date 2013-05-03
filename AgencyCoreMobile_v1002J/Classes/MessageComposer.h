@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "TITokenField.h"
 
+
+
 @interface MessageComposer : UIViewController < TITokenFieldDelegate , UITextViewDelegate , UITextFieldDelegate>
 @property (nonatomic , copy) NSString * selectedContact;
+
+@property (nonatomic , strong) NSDictionary * messageObject;
 @end

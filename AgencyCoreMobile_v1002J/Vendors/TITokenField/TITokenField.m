@@ -415,7 +415,8 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 - (void)setup {
 	
 	[self setBorderStyle:UITextBorderStyleNone];
-	[self setFont:[UIFont systemFontOfSize:14]];
+	if (iPHONE_UI)  [self setFont:ACFontDefault14];
+    else  [self setFont:ACFontDefault16];
 	[self setBackgroundColor:[UIColor whiteColor]];
 	[self setAutocorrectionType:UITextAutocorrectionTypeNo];
 	[self setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -516,7 +517,10 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 			[tokens enumerateObjectsUsingBlock:^(TIToken * token, NSUInteger idx, BOOL *stop){[titles addObject:token.title];}];
 			
 			untokenized = [self.tokenTitles componentsJoinedByString:@", "];
-			CGSize untokSize = [untokenized sizeWithFont:[UIFont systemFontOfSize:14]];
+			CGSize untokSize;
+            if (iPHONE_UI)  [untokenized sizeWithFont:ACFontDefault14];
+            else [untokenized sizeWithFont:ACFontDefault16];
+
 			CGFloat availableWidth = self.bounds.size.width - self.leftView.bounds.size.width - self.rightView.bounds.size.width;
 			
 			if (tokens.count > 1 && untokSize.width > availableWidth){

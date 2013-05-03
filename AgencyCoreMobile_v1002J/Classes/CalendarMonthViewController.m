@@ -9,6 +9,7 @@
 #import "CalendarMonthViewController.h"
 #import "NewTaskViewController.h"
 #import "BasicTwoLinesCell.h"
+#import "PatientProfileViewController.h"
 
 @interface CalendarMonthViewController ()
 
@@ -31,7 +32,12 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.navigationItem.title = @"Monthly View";
     
-    UIBarButtonItem * listItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(backToScheduleList)];
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
+    [button setBackgroundImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(backToScheduleList) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem * listItem = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = listItem;
     
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeNewTask)];
@@ -129,6 +135,7 @@
     cell.statusLabel.text = @"Upcoming";
 	
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 	
 }
@@ -138,6 +145,13 @@
 {
     return 60.0f;
 }
+
+- (void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    PatientProfileViewController * vc = [[PatientProfileViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void) generateDataForStartDate:(NSDate*)start endDate:(NSDate*)end
 {
     NSLog(@"%@",[NSDate dateWithoutTimePortionFromDate:[NSDate dateFromString:@"2013-04-18 16:33:24 +0000"]]);

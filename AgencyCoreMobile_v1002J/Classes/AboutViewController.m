@@ -73,7 +73,7 @@
         if (indexPath.row == 0 )
             cell.textLabel.text = @"Terms of Service";
         else if (indexPath.row == 1)
-            cell.textLabel.text = @"Privacy Police";
+            cell.textLabel.text = @"Privacy Policy";
     }
     else if (indexPath.section == 2)
     {

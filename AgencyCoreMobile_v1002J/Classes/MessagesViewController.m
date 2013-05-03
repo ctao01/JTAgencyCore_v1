@@ -35,12 +35,9 @@
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
-    [updatedLabel setFont:ACFontDefault14];
-    [updatedLabel setTextColor:[UIColor whiteColor]];
+    
+    UILabel * updatedLabel = [UILabel updatedLabelWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, 40.0f, 10.0f, 40.0f))];
     [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
-    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
-    [updatedLabel setBackgroundColor:[UIColor clearColor]];
     UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
 
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
@@ -59,13 +56,14 @@
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
 
-    self.navigationItem.title = @"Message";
+    self.navigationItem.title = @"My Messages";
     UIBarButtonItem * editButton = [[UIBarButtonItem alloc]initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editTable:)];
     self.navigationItem.rightBarButtonItem = editButton;
     self.editing = NO;
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f)];
-    self.searchBar.barStyle = UIBarStyleBlackOpaque;
+//    self.searchBar.barStyle = UIBarStyleBlackOpaque;
+    self.searchBar.tintColor = ACColorGray80;
     self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
@@ -163,13 +161,13 @@
 
 - (void) composeMessage
 {
-    
     MessageComposer * composer = [[MessageComposer alloc]init];
     UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:composer];
     [self presentViewController:nc animated:YES completion:^{
         [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+        composer.navigationItem.title = @"New Message";
     }];
-
+    
 }
 
 #pragma mark - UITableView Datasource
@@ -235,8 +233,8 @@
     messageCell.selectionStyle = UITableViewCellSelectionStyleGray;
     if (indexPath.row % 7 == 2)
     {
-        if (iPHONE_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"temp_bluedot_iPhone"];
-        else if (iPAD_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"temp_bluedot_ipad"];
+        if (iPHONE_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"icon_dot"];
+        else if (iPAD_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"icon_ipad_dot"];
 
     }
     

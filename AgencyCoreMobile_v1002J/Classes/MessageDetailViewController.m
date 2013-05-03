@@ -13,7 +13,7 @@
 #import "MessageComposer.h"
 
 @interface MessageDetailViewController ()
-
+@property (nonatomic , strong) UITextView * textView ;
 @end
 
 @implementation MessageDetailViewController
@@ -35,7 +35,7 @@
     
     UIBarButtonItem * trashItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:nil action:nil];
     UIBarButtonItem * forwardItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(forwardMessage)];
-    UIBarButtonItem * replyItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyMessage)];
+    UIBarButtonItem * replyItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyMessage:)];
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -47,24 +47,18 @@
 {
     [super viewDidLoad];
 
-    UITextView * textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 0.0f)];
-    NSString * message = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully. \nJoin the movement!Facebook: https://www.facebook.com/axxess \n Twitter: https://twitter.com/AxxessConsult \nLinkedin: http://www.linkedin.com/company/axxess-consult \nInstagram: http://instagram.com/axxessconsult \nSincerely, \nThe Axxess Team.";
-    textView.text = message;
-    if (iPHONE_UI)  textView.font = ACFontDefault14;
-    else if (iPAD_UI) textView.font = ACFontDefault16;
-    textView.editable = NO;
-    CGRect textFrame = textView.frame;
-    textView.contentSize = [message sizeWithFont:[textView font]
-                               constrainedToSize:CGSizeMake(self.tableView.frame.size.width, self.tableView.frame.size.height - 44 * 3)
-                                   lineBreakMode:UIViewAutoresizingFlexibleHeight];
-    
-    textFrame.size.height = textView.contentSize.height;
-    textView.frame = UIEdgeInsetsInsetRect(textFrame, UIEdgeInsetsMake(10.0f, 10.0f, 0.0f, 10.0f));
-    textView.tag = 30007;
+//    self.textView = [[UITextView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 0.0f)];
+    if (UserInterface_Portrait)
+        self.textView = [self messageTextViewFromFrame:CGRectMake(0.0f, 0.0f, width(self.view.frame), 0.0f)];
+    else if (UserInterface_Landscape)
+            self.textView = [self messageTextViewFromFrame:CGRectMake(0.0f, 0.0f, height(self.view.frame), 0.0f)];
    
-    UIView * headerView =[[UIView alloc]initWithFrame:textFrame];
-    [headerView addSubview:textView];
+    UIView * headerView =[[UIView alloc]initWithFrame:UIEdgeInsetsInsetRect(self.textView.frame, UIEdgeInsetsMake(0.0f, -10.0f, 0.0f, -10.0f))];
+    [headerView addSubview:self.textView];
+
     self.tableView.tableFooterView = headerView;
+    NSLog(@"self.tableView.tableFooterView:%@",NSStringFromCGRect(self.tableView.tableFooterView.frame));
+
     self.navigationItem.title = @"Message";
     
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
@@ -85,14 +79,43 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - 
+
+- (UITextView*) messageTextViewFromFrame:(CGRect)frame
+{
+    UITextView * tv = [[UITextView alloc]initWithFrame:frame];
+    tv.scrollEnabled = NO;
+    NSString * message = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully. \nJoin the movement!Facebook: https://www.facebook.com/axxess \n Twitter: https://twitter.com/AxxessConsult \nLinkedin: http://www.linkedin.com/company/axxess-consult \nInstagram: http://instagram.com/axxessconsult \nSincerely, \nThe Axxess Team.";
+    tv.text = message;
+    if (iPHONE_UI)  tv.font = ACFontDefault14;
+    else if (iPAD_UI) tv.font = ACFontDefault16;
+    tv.editable = NO;
+    CGRect textFrame = frame;
+    tv.contentSize = [message sizeWithFont:[tv font]
+                                    constrainedToSize:CGSizeMake(self.tableView.frame.size.width - 20.0f, height(Bounds_Screen))
+                                        lineBreakMode:UIViewAutoresizingFlexibleHeight];
+    
+    textFrame.size.height = tv.contentSize.height + UINAVIGATION_BAR_HEIGHT;
+    NSLog(@"origin:%@",NSStringFromCGRect(textFrame));
+
+    tv.frame = UIEdgeInsetsInsetRect(textFrame, UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f));
+    NSLog(@"tv.frame:%@",NSStringFromCGRect(tv.frame));
+
+    return tv;
+}
 
 #pragma mark - NSNotification 
 
 - (void) receiveTestNotification:(NSNotification*)notification
 {
-//    if ([[notification name]isEqualToString:@"TestNotification" ])
-//    {
-//    }
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+    {
+        self.textView = [self messageTextViewFromFrame:CGRectMake(0.0f, 0.0f, width(self.view.frame), 0.0f)];
+        UIView * headerView =[[UIView alloc]initWithFrame:UIEdgeInsetsInsetRect(self.textView.frame, UIEdgeInsetsMake(0.0f, -10.0f, 0.0f, -10.0f))];
+        [headerView addSubview:self.textView];
+        self.tableView.tableFooterView = headerView;
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - UIToolBar Actions
@@ -102,12 +125,13 @@
 //    UIActionSheet * sheet =
 //}
 
-- (void) replyMessage
+- (void) replyMessage:(id)sender
 {
     NavigationToolBarController * nav = (NavigationToolBarController *) self.navigationController;
 
-    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:nil cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Reply", @"Reply All", nil];
-    [sheet showFromToolbar:nav.navToolBar];
+    UIActionSheet * sheet = [[UIActionSheet alloc]initWithTitle:@"Reply" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Reply", @"Reply All", nil];
+    if (iPAD_UI)    [sheet showFromBarButtonItem:sender animated:YES];
+    else    [sheet showFromToolbar:nav.navToolBar];
 }
 
 - (void) composeMessage
@@ -117,8 +141,41 @@
     UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:composer];
     [self presentViewController:nc animated:YES completion:^{
         [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+        composer.navigationItem.title = @"New Message";
     }];
     
+}
+#pragma mark - Action Sheet Delegate
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex) return;
+    if ([actionSheet.title isEqualToString:@"Reply"])
+    {
+        NSMutableArray * senders;
+        if (buttonIndex == 0)
+            senders = [NSMutableArray arrayWithObjects:@"Axxess 1", nil];
+        else if (buttonIndex == 1)
+        {
+            senders = [[NSMutableArray alloc]init];
+            for (int count = 0; count < 7; count ++)
+                [senders addObject:[NSString stringWithFormat:@"Axxess %i",count]];
+        }
+        NSDictionary * dictionary = [[NSDictionary alloc]initWithObjectsAndKeys:
+                                     senders, @"sender",
+                                     @"joy Tao", @"receiver",
+                                     self.textView.text, @"content", nil];
+        MessageComposer * composer = [[MessageComposer alloc]init];
+        composer.title = @"Reply";
+        UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:composer];
+        [self presentViewController:nc animated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
+            composer.messageObject = dictionary;
+            NSLog(@"object%@",dictionary);
+        }];
+    }
 }
 
 #pragma mark - Table view data source

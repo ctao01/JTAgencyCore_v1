@@ -11,8 +11,9 @@
 #import "NavigationControllerWithoutRotation.h"
 #import "NavigationToolBarController.h"
 #import "BasicTwoLinesCell.h"
-#import "VisitViewController.h"
+#import "ScheduleDetailViewController.h"
 #import "NewTaskViewController.h"
+#import "PatientProfileViewController.h"
 
 
 @interface ScheduleViewController () <UISearchDisplayDelegate , UISearchBarDelegate>
@@ -85,12 +86,8 @@
     UIBarButtonItem * calItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoMontlyView)];
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UILabel * updatedLabel = [[UILabel alloc]initWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 5.0f, 10.0f, nav.navToolBar.frame.size.width / 5.0f))];
-    [updatedLabel setFont:ACFontDefaultBold14];
-    [updatedLabel setTextColor:[UIColor whiteColor]];
+    UILabel * updatedLabel = [UILabel updatedLabelWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, 40.0f, 10.0f, 40.0f))];
     [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
-    [updatedLabel setTextAlignment:NSTextAlignmentCenter];
-    [updatedLabel setBackgroundColor:[UIColor clearColor]];
     UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
     
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeTask)];
@@ -157,6 +154,7 @@
 { 
     isSearching = YES;
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, width(self.tableView.frame), 44.0f)];
+    self.searchBar.tintColor = ACColorGray80;
     self.searchController = [[UISearchDisplayController alloc]initWithSearchBar:self.searchBar contentsController:self];
     self.searchController.searchResultsDataSource = self;
     self.searchController.searchResultsDelegate = self;
@@ -269,7 +267,8 @@
         cell.statusLabel.text = @"Completed";
     }
 
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+//    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     return cell;
 }
 
@@ -282,8 +281,15 @@
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    cell.selectedBackgroundView = [[UIView alloc]init];
-//    cell.selectedBackgroundView.backgroundColor = ACColorRed;
+    UIView * view = [[UIView alloc]initWithFrame:cell.backgroundView.frame];
+    view.backgroundColor = ACColorGray80Alpha;
+    cell.selectedBackgroundView = view;
+}
+
+- (void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    PatientProfileViewController * vc = [[PatientProfileViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -294,7 +300,7 @@
     NSDictionary * object = [NSDictionary dictionaryWithObjectsAndKeys:cell.titleLabel.text, @"patient",cell.dateLabel.text, @"schedule_date",cell.taskLabel.text, @"task_title", cell.statusLabel.text, @"task_status",comment, @"task_notes" ,nil];
 //    NSLog(@"Task Object:%@",object);
     //
-    VisitViewController * vc = [[VisitViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    ScheduleDetailViewController * vc = [[ScheduleDetailViewController alloc]initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:vc animated:YES];
     [vc setTaskObject:object];
     

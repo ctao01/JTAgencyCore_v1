@@ -11,7 +11,6 @@
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
 #import "NSDictionary+Additions.h"
-#import "UISegmentedControl+Additions.h"
 #import "UINavigationController+Rotation.h"
 
 #ifndef AgencyCoreMobile_v1002J_AgecyCoreGlobal_h
@@ -42,7 +41,8 @@
 // ACTableViewController.h
 #define REFRESH_HEADER_HEIGHT 52.0f
 #define LOADMORE_FOOTER_HEIGHT 52.0f
-#define SEARCH_BAR__HEIGHT 44.0f
+#define UISEARCH_BAR_HEIGHT 44.0f
+#define UINAVIGATION_BAR_HEIGHT 44.0f
 
 
 // UIColor
@@ -54,6 +54,10 @@
 
 #define ACColorMenuSeparatorGray [UIColor colorWithRed:70.0f/255.0 green:70.0f/255.0 blue:70.0f/255.0 alpha:0.4f]
 #define ACColorGray80 [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:1.0f]
+#define ACColorGray80Alpha [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:0.5f]
+
+
+#define ACColorSystemBlue [UIColor colorWithRed:82.0f/255.0 green:102.0f/255.0 blue:145.0f/255.0 alpha:1.0f]
 
 // UIFont
 #define ACFontDefault8                      [UIFont fontWithName:@"HelveticaNeue" size:8.0f]

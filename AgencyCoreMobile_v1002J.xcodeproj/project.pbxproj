@@ -12,6 +12,28 @@
 		3D0D0B0A170C686400EE110D /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B09170C686400EE110D /* MenuViewController.m */; };
 		3D0D0B0D170CD0F900EE110D /* NavigationControllerWithoutRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */; };
 		3D3895A617305844009F30A6 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3895A517305844009F30A6 /* AboutViewController.m */; };
+		3D3895A91731809A009F30A6 /* PatientProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3895A81731809A009F30A6 /* PatientProfileHeaderView.m */; };
+		3D3895B01731AFFF009F30A6 /* PatientProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3895AF1731AFFF009F30A6 /* PatientProfileViewController.m */; };
+		3D3895B41732BCCF009F30A6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3895B31732BCCE009F30A6 /* MapKit.framework */; };
+		3D3895B71732C742009F30A6 /* PhysicianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3895B61732C742009F30A6 /* PhysicianViewController.m */; };
+		3D3895BA1732DABF009F30A6 /* logo_ipad_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895B81732DABF009F30A6 /* logo_ipad_portrait.png */; };
+		3D3895BB1732DABF009F30A6 /* logo_ipad_portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895B91732DABF009F30A6 /* logo_ipad_portrait@2x.png */; };
+		3D3895BE1732DC08009F30A6 /* logo_ipad_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895BC1732DC07009F30A6 /* logo_ipad_landscape.png */; };
+		3D3895BF1732DC08009F30A6 /* logo_ipad_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895BD1732DC07009F30A6 /* logo_ipad_landscape@2x.png */; };
+		3D3895C21732EABF009F30A6 /* icon_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C01732EABF009F30A6 /* icon_back.png */; };
+		3D3895C31732EABF009F30A6 /* icon_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C11732EABF009F30A6 /* icon_back@2x.png */; };
+		3D3895C81732FAF4009F30A6 /* icon_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C41732FAF4009F30A6 /* icon_dot.png */; };
+		3D3895C91732FAF4009F30A6 /* icon_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C51732FAF4009F30A6 /* icon_dot@2x.png */; };
+		3D3895CA1732FAF4009F30A6 /* icon_ipad_dot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C61732FAF4009F30A6 /* icon_ipad_dot.png */; };
+		3D3895CB1732FAF4009F30A6 /* icon_ipad_dot@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895C71732FAF4009F30A6 /* icon_ipad_dot@2x.png */; };
+		3D3895D21732FDE2009F30A6 /* icon_patient_iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895CE1732FDE2009F30A6 /* icon_patient_iphone.png */; };
+		3D3895D31732FDE2009F30A6 /* icon_patient_iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895CF1732FDE2009F30A6 /* icon_patient_iphone@2x.png */; };
+		3D3895D61732FE7D009F30A6 /* icon_patient_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895D41732FE7D009F30A6 /* icon_patient_ipad.png */; };
+		3D3895D71732FE7D009F30A6 /* icon_patient_ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895D51732FE7D009F30A6 /* icon_patient_ipad@2x.png */; };
+		3D3895DC1733F6F7009F30A6 /* btn_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895D81733F6F7009F30A6 /* btn_blue.png */; };
+		3D3895DD1733F6F7009F30A6 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895D91733F6F7009F30A6 /* btn_blue@2x.png */; };
+		3D3895DE1733F6F7009F30A6 /* btn_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895DA1733F6F7009F30A6 /* btn_green.png */; };
+		3D3895DF1733F6F7009F30A6 /* btn_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D3895DB1733F6F7009F30A6 /* btn_green@2x.png */; };
 		3D3A909C17131CC100D38D19 /* ObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A909B17131CC100D38D19 /* ObjectManager.m */; };
 		3D3A909E17131D6700D38D19 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3A909D17131D6700D38D19 /* CoreData.framework */; };
 		3D3A90A117132B2D00D38D19 /* AgecnyCoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D3A909F17132B2D00D38D19 /* AgecnyCoreModel.xcdatamodeld */; };
@@ -76,7 +98,6 @@
 		3D563809172888CB008F220C /* icon_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563805172888CB008F220C /* icon_calendar.png */; };
 		3D56380A172888CB008F220C /* icon_settings_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563806172888CB008F220C /* icon_settings_@2x.png */; };
 		3D56380B172888CB008F220C /* icon_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D563807172888CB008F220C /* icon_settings.png */; };
-		3D56381F1729C2C2008F220C /* UISegmentedControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */; };
 		3D72BCCE16FCB1BC00FE5D22 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */; };
 		3D72BCD016FCB5D600FE5D22 /* agencycore_dashboard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */; };
 		3D72BCD416FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D72BCD116FCEE9D00FE5D22 /* agencycore_bg-568h@2x.png */; };
@@ -192,6 +213,31 @@
 		3D0D0B0C170CD0F800EE110D /* NavigationControllerWithoutRotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationControllerWithoutRotation.m; path = Classes/NavigationControllerWithoutRotation.m; sourceTree = "<group>"; };
 		3D3895A417305844009F30A6 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = Classes/AboutViewController.h; sourceTree = "<group>"; };
 		3D3895A517305844009F30A6 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Classes/AboutViewController.m; sourceTree = "<group>"; };
+		3D3895A717318099009F30A6 /* PatientProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientProfileHeaderView.h; path = Classes/PatientProfileHeaderView.h; sourceTree = "<group>"; };
+		3D3895A81731809A009F30A6 /* PatientProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientProfileHeaderView.m; path = Classes/PatientProfileHeaderView.m; sourceTree = "<group>"; };
+		3D3895AE1731AFFF009F30A6 /* PatientProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PatientProfileViewController.h; path = Classes/PatientProfileViewController.h; sourceTree = "<group>"; };
+		3D3895AF1731AFFF009F30A6 /* PatientProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PatientProfileViewController.m; path = Classes/PatientProfileViewController.m; sourceTree = "<group>"; };
+		3D3895B31732BCCE009F30A6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3D3895B51732C742009F30A6 /* PhysicianViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhysicianViewController.h; path = Classes/PhysicianViewController.h; sourceTree = "<group>"; };
+		3D3895B61732C742009F30A6 /* PhysicianViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhysicianViewController.m; path = Classes/PhysicianViewController.m; sourceTree = "<group>"; };
+		3D3895B81732DABF009F30A6 /* logo_ipad_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ipad_portrait.png; path = Assets/logo_ipad_portrait.png; sourceTree = "<group>"; };
+		3D3895B91732DABF009F30A6 /* logo_ipad_portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_ipad_portrait@2x.png"; path = "Assets/logo_ipad_portrait@2x.png"; sourceTree = "<group>"; };
+		3D3895BC1732DC07009F30A6 /* logo_ipad_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_ipad_landscape.png; path = Assets/logo_ipad_landscape.png; sourceTree = "<group>"; };
+		3D3895BD1732DC07009F30A6 /* logo_ipad_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logo_ipad_landscape@2x.png"; path = "Assets/logo_ipad_landscape@2x.png"; sourceTree = "<group>"; };
+		3D3895C01732EABF009F30A6 /* icon_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_back.png; path = Assets/icon_back.png; sourceTree = "<group>"; };
+		3D3895C11732EABF009F30A6 /* icon_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_back@2x.png"; path = "Assets/icon_back@2x.png"; sourceTree = "<group>"; };
+		3D3895C41732FAF4009F30A6 /* icon_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_dot.png; path = Assets/icon_dot.png; sourceTree = "<group>"; };
+		3D3895C51732FAF4009F30A6 /* icon_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_dot@2x.png"; path = "Assets/icon_dot@2x.png"; sourceTree = "<group>"; };
+		3D3895C61732FAF4009F30A6 /* icon_ipad_dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_ipad_dot.png; path = Assets/icon_ipad_dot.png; sourceTree = "<group>"; };
+		3D3895C71732FAF4009F30A6 /* icon_ipad_dot@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_ipad_dot@2x.png"; path = "Assets/icon_ipad_dot@2x.png"; sourceTree = "<group>"; };
+		3D3895CE1732FDE2009F30A6 /* icon_patient_iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_patient_iphone.png; path = Assets/icon_patient_iphone.png; sourceTree = "<group>"; };
+		3D3895CF1732FDE2009F30A6 /* icon_patient_iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_patient_iphone@2x.png"; path = "Assets/icon_patient_iphone@2x.png"; sourceTree = "<group>"; };
+		3D3895D41732FE7D009F30A6 /* icon_patient_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_patient_ipad.png; path = Assets/icon_patient_ipad.png; sourceTree = "<group>"; };
+		3D3895D51732FE7D009F30A6 /* icon_patient_ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_patient_ipad@2x.png"; path = "Assets/icon_patient_ipad@2x.png"; sourceTree = "<group>"; };
+		3D3895D81733F6F7009F30A6 /* btn_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_blue.png; path = Assets/btn_blue.png; sourceTree = "<group>"; };
+		3D3895D91733F6F7009F30A6 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_blue@2x.png"; path = "Assets/btn_blue@2x.png"; sourceTree = "<group>"; };
+		3D3895DA1733F6F7009F30A6 /* btn_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn_green.png; path = Assets/btn_green.png; sourceTree = "<group>"; };
+		3D3895DB1733F6F7009F30A6 /* btn_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_green@2x.png"; path = "Assets/btn_green@2x.png"; sourceTree = "<group>"; };
 		3D3A909A17131CC100D38D19 /* ObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectManager.h; path = Classes/Objects/ObjectManager.h; sourceTree = "<group>"; };
 		3D3A909B17131CC100D38D19 /* ObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectManager.m; path = Classes/Objects/ObjectManager.m; sourceTree = "<group>"; };
 		3D3A909D17131D6700D38D19 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -278,8 +324,6 @@
 		3D563805172888CB008F220C /* icon_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_calendar.png; path = Assets/icon_calendar.png; sourceTree = "<group>"; };
 		3D563806172888CB008F220C /* icon_settings_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_settings_@2x.png"; path = "Assets/icon_settings_@2x.png"; sourceTree = "<group>"; };
 		3D563807172888CB008F220C /* icon_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_settings.png; path = Assets/icon_settings.png; sourceTree = "<group>"; };
-		3D56381D1729C2C2008F220C /* UISegmentedControl+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISegmentedControl+Additions.h"; path = "Categories/UISegmentedControl+Additions.h"; sourceTree = "<group>"; };
-		3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISegmentedControl+Additions.m"; path = "Categories/UISegmentedControl+Additions.m"; sourceTree = "<group>"; };
 		3D72BCCC16FCB1BC00FE5D22 /* UserListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListViewController.h; path = Classes/UserListViewController.h; sourceTree = "<group>"; };
 		3D72BCCD16FCB1BC00FE5D22 /* UserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListViewController.m; path = Classes/UserListViewController.m; sourceTree = "<group>"; };
 		3D72BCCF16FCB5D600FE5D22 /* agencycore_dashboard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = agencycore_dashboard_bg.png; path = Assets/agencycore_dashboard_bg.png; sourceTree = "<group>"; };
@@ -450,6 +494,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3895B41732BCCF009F30A6 /* MapKit.framework in Frameworks */,
 				3D3A909E17131D6700D38D19 /* CoreData.framework in Frameworks */,
 				3DFD314A1703829E001536D0 /* Security.framework in Frameworks */,
 				3DFD314817038299001536D0 /* AudioToolbox.framework in Frameworks */,
@@ -463,6 +508,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D3895AD1731AFB8009F30A6 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				3D3895B21732ACB3009F30A6 /* Physician */,
+				3D3895B11732ACA8009F30A6 /* Patient */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		3D3895B11732ACA8009F30A6 /* Patient */ = {
+			isa = PBXGroup;
+			children = (
+				3D3895AE1731AFFF009F30A6 /* PatientProfileViewController.h */,
+				3D3895AF1731AFFF009F30A6 /* PatientProfileViewController.m */,
+			);
+			name = Patient;
+			sourceTree = "<group>";
+		};
+		3D3895B21732ACB3009F30A6 /* Physician */ = {
+			isa = PBXGroup;
+			children = (
+				3D3895B51732C742009F30A6 /* PhysicianViewController.h */,
+				3D3895B61732C742009F30A6 /* PhysicianViewController.m */,
+			);
+			name = Physician;
+			sourceTree = "<group>";
+		};
 		3D3A909917131C9600D38D19 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,13 +614,6 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
-		3D563813172987DC008F220C /* Temp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Temp;
-			sourceTree = "<group>";
-		};
 		3D72BCC816FCB09E00FE5D22 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,8 +638,6 @@
 				3D46C404170098F000E4A112 /* NSString+Additions.m */,
 				3D53DB52170E18D000AE500F /* UINavigationController+Rotation.h */,
 				3D53DB53170E18D000AE500F /* UINavigationController+Rotation.m */,
-				3D56381D1729C2C2008F220C /* UISegmentedControl+Additions.h */,
-				3D56381E1729C2C2008F220C /* UISegmentedControl+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -624,6 +687,7 @@
 		3D768CCF16FA1C750000165A = {
 			isa = PBXGroup;
 			children = (
+				3D3895B31732BCCE009F30A6 /* MapKit.framework */,
 				3D0D0ADA170A273B00EE110D /* agencycore_icon_iPad@2x.png */,
 				3D0D0AD8170A273700EE110D /* agencycore_icon_iPad.png */,
 				3D46C4081700D4E800E4A112 /* agencycore_icon@2x.png */,
@@ -725,6 +789,12 @@
 		3D768D0816FA1DAB0000165A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				3D3895D81733F6F7009F30A6 /* btn_blue.png */,
+				3D3895D91733F6F7009F30A6 /* btn_blue@2x.png */,
+				3D3895DA1733F6F7009F30A6 /* btn_green.png */,
+				3D3895DB1733F6F7009F30A6 /* btn_green@2x.png */,
+				3D3895C01732EABF009F30A6 /* icon_back.png */,
+				3D3895C11732EABF009F30A6 /* icon_back@2x.png */,
 				3D563804172888CB008F220C /* icon_calendar_@2x.png */,
 				3D563805172888CB008F220C /* icon_calendar.png */,
 				3D563806172888CB008F220C /* icon_settings_@2x.png */,
@@ -746,6 +816,10 @@
 		3D768D0916FA1DB40000165A /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				3D3895BC1732DC07009F30A6 /* logo_ipad_landscape.png */,
+				3D3895BD1732DC07009F30A6 /* logo_ipad_landscape@2x.png */,
+				3D3895B81732DABF009F30A6 /* logo_ipad_portrait.png */,
+				3D3895B91732DABF009F30A6 /* logo_ipad_portrait@2x.png */,
 				3D45E795171DF6920091B4A9 /* agencycore_bg_ipad.png */,
 				3D45E796171DF6920091B4A9 /* agencycore_bg_ipad@2x.png */,
 				3D45E797171DF6920091B4A9 /* agencycore_bg_landscape_ipad.png */,
@@ -760,6 +834,14 @@
 		3D768D0A16FA1DBD0000165A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3D3895D41732FE7D009F30A6 /* icon_patient_ipad.png */,
+				3D3895D51732FE7D009F30A6 /* icon_patient_ipad@2x.png */,
+				3D3895CE1732FDE2009F30A6 /* icon_patient_iphone.png */,
+				3D3895CF1732FDE2009F30A6 /* icon_patient_iphone@2x.png */,
+				3D3895C41732FAF4009F30A6 /* icon_dot.png */,
+				3D3895C51732FAF4009F30A6 /* icon_dot@2x.png */,
+				3D3895C61732FAF4009F30A6 /* icon_ipad_dot.png */,
+				3D3895C71732FAF4009F30A6 /* icon_ipad_dot@2x.png */,
 				3D490036170F7C9300D46134 /* axxess_logo_white_ipad.png */,
 				3D490037170F7C9300D46134 /* axxess_logo_white_ipad@2x.png */,
 				3D490032170F760300D46134 /* axxess_logo_white_iphone.png */,
@@ -801,8 +883,9 @@
 				3D56380E17296A4E008F220C /* Home */,
 				3D46C4131702444E00E4A112 /* Account */,
 				3DBE75EE16FB57F0001755FE /* Messages */,
-				3DFD32A41705FE9A001536D0 /* MyScheduleTasks */,
+				3DFD32A41705FE9A001536D0 /* Schedules */,
 				3D765D7D17305769006F0F71 /* About */,
+				3D3895AD1731AFB8009F30A6 /* Users */,
 				3D768D5316FA1E9F0000165A /* UnderRightViewController.h */,
 				3D768D5416FA1E9F0000165A /* UnderRightViewController.m */,
 				3D768D4F16FA1E9F0000165A /* SampleTableViewController.h */,
@@ -843,6 +926,8 @@
 				3D3A90A61713395A00D38D19 /* VisitHeaderView.m */,
 				3D3A90AE17136A2100D38D19 /* VisitTextView.h */,
 				3D3A90AF17136A2100D38D19 /* VisitTextView.m */,
+				3D3895A717318099009F30A6 /* PatientProfileHeaderView.h */,
+				3D3895A81731809A009F30A6 /* PatientProfileHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -934,10 +1019,9 @@
 			path = TapkuLibrary;
 			sourceTree = "<group>";
 		};
-		3DFD32A41705FE9A001536D0 /* MyScheduleTasks */ = {
+		3DFD32A41705FE9A001536D0 /* Schedules */ = {
 			isa = PBXGroup;
 			children = (
-				3D563813172987DC008F220C /* Temp */,
 				3D768D5116FA1E9F0000165A /* ScheduleViewController.h */,
 				3D768D5216FA1E9F0000165A /* ScheduleViewController.m */,
 				3DFD32A51705FED0001536D0 /* CalendarMonthViewController.h */,
@@ -953,7 +1037,7 @@
 				3D3A90CC1715F82E00D38D19 /* TasksListTableViewController.h */,
 				3D3A90CD1715F82F00D38D19 /* TasksListTableViewController.m */,
 			);
-			name = MyScheduleTasks;
+			name = Schedules;
 			sourceTree = "<group>";
 		};
 		3DFD32A8170601E2001536D0 /* calendar */ = {
@@ -1120,6 +1204,24 @@
 				3D765D77172F03BB006F0F71 /* temp_bluedot_ipad@2x.png in Resources */,
 				3D765D78172F03BB006F0F71 /* temp_bluedot_iPhone.png in Resources */,
 				3D765D79172F03BB006F0F71 /* temp_bluedot_iPhone@2x.png in Resources */,
+				3D3895BA1732DABF009F30A6 /* logo_ipad_portrait.png in Resources */,
+				3D3895BB1732DABF009F30A6 /* logo_ipad_portrait@2x.png in Resources */,
+				3D3895BE1732DC08009F30A6 /* logo_ipad_landscape.png in Resources */,
+				3D3895BF1732DC08009F30A6 /* logo_ipad_landscape@2x.png in Resources */,
+				3D3895C21732EABF009F30A6 /* icon_back.png in Resources */,
+				3D3895C31732EABF009F30A6 /* icon_back@2x.png in Resources */,
+				3D3895C81732FAF4009F30A6 /* icon_dot.png in Resources */,
+				3D3895C91732FAF4009F30A6 /* icon_dot@2x.png in Resources */,
+				3D3895CA1732FAF4009F30A6 /* icon_ipad_dot.png in Resources */,
+				3D3895CB1732FAF4009F30A6 /* icon_ipad_dot@2x.png in Resources */,
+				3D3895D21732FDE2009F30A6 /* icon_patient_iphone.png in Resources */,
+				3D3895D31732FDE2009F30A6 /* icon_patient_iphone@2x.png in Resources */,
+				3D3895D61732FE7D009F30A6 /* icon_patient_ipad.png in Resources */,
+				3D3895D71732FE7D009F30A6 /* icon_patient_ipad@2x.png in Resources */,
+				3D3895DC1733F6F7009F30A6 /* btn_blue.png in Resources */,
+				3D3895DD1733F6F7009F30A6 /* btn_blue@2x.png in Resources */,
+				3D3895DE1733F6F7009F30A6 /* btn_green.png in Resources */,
+				3D3895DF1733F6F7009F30A6 /* btn_green@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,10 +1310,12 @@
 				3D7372E4172054CB00C54A8E /* ACTableViewController.m in Sources */,
 				3D5637FE172882FE008F220C /* NSDate+Additions.m in Sources */,
 				3D5637FF172882FE008F220C /* NSDictionary+Additions.m in Sources */,
-				3D56381F1729C2C2008F220C /* UISegmentedControl+Additions.m in Sources */,
 				3D765D6D172EDC17006F0F71 /* SyncOptionsListController.m in Sources */,
 				3D765D7C172F1800006F0F71 /* CleanOptionsListController.m in Sources */,
 				3D3895A617305844009F30A6 /* AboutViewController.m in Sources */,
+				3D3895A91731809A009F30A6 /* PatientProfileHeaderView.m in Sources */,
+				3D3895B01731AFFF009F30A6 /* PatientProfileViewController.m in Sources */,
+				3D3895B71732C742009F30A6 /* PhysicianViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

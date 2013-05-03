@@ -25,7 +25,7 @@
 @end
 
 @implementation MessageComposer
-
+@synthesize messageObject = _messageObject;
 #pragma mark -
 
 
@@ -43,35 +43,19 @@
 
 #pragma mark -
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        
-        
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
     [super viewDidLoad];
 
-    self.navigationItem.title = @"New Message";
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.view.backgroundColor = [UIColor whiteColor];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
 
     [self.view removeGestureRecognizer:nav.slidingViewController.panGesture];
-    
-	// You can call this on either the view on the field.
-	// They both do the same thing.
-//	[tokenFieldView becomeFirstResponder];
     
     UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelMessageComposer)];
     UIBarButtonItem * sendItem = [[UIBarButtonItem alloc]initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(sendMessage)];
@@ -83,7 +67,7 @@
     if (UserInterface_Portrait)
         tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y-20.0f, bounds.size.width, bounds.size.height)];
     else if (UserInterface_Landscape)
-        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x -20.0f, bounds.origin.y, bounds.size.height, bounds.size.width)];
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x- 20.0f, bounds.origin.y, bounds.size.height, bounds.size.width)];
     //	[tokenFieldView setSourceArray:[Names listOfNames]];
     [self.view addSubview:tokenFieldView];
     
@@ -100,13 +84,17 @@
     CGRect contentBounds = tokenFieldView.contentView.bounds;
     subjectField = [[MessageSubjectField alloc]initWithFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
     subjectField.delegate = self;
+    if (iPHONE_UI)  subjectField.font = ACFontDefault14;
+    else if (iPAD_UI)  subjectField.font = ACFontDefault16;
     [tokenFieldView.contentView addSubview:subjectField];
     
     messageView = [[UITextView alloc] initWithFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
     [messageView setAutoresizingMask:UIViewAutoresizingNone];
     [messageView setScrollEnabled:NO];
     [messageView setDelegate:self];
-    [messageView setFont:[UIFont systemFontOfSize:15]];
+//    [messageView setFont:[UIFont systemFontOfSize:15]];
+    if (iPHONE_UI)  [messageView setFont:ACFontDefault14];
+    else if (iPAD_UI)  [messageView setFont:ACFontDefault16];
     [messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
     [tokenFieldView.contentView addSubview:messageView];
 }
@@ -119,7 +107,18 @@
         [tokenFieldView.tokenField addTokenWithTitle:self.selectedContact];
         [tokenFieldView.tokenField layoutTokensAnimated:YES];
     }
+}
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+}
+
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -156,12 +155,30 @@
 	
 	CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
 	keyboardHeight = keyboardRect.size.height > keyboardRect.size.width ? keyboardRect.size.width : keyboardRect.size.height;
-	[self resizeViews];
+//    if (iPHONE_UI && UserInterface_Landscape) keyboardHeight = 60.0f;
+
+    [self resizeViews];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
 	keyboardHeight = 0;
 	[self resizeViews];
+}
+#pragma mark- 
+
+- (void) setMessageObject:(NSDictionary *)newObject
+{
+    if (_messageObject == newObject) return;
+    _messageObject = newObject;
+    
+    NSArray * contacts = [_messageObject objectForKey:@"sender"];
+    for (int count = 0 ; count < [contacts count]; count++)
+    {
+        [tokenFieldView.tokenField addTokenWithTitle:[contacts objectAtIndex:count]];
+        [tokenFieldView.tokenField layoutTokensAnimated:YES];
+
+    }
+    messageView.text = [_messageObject objectForKey:@"content"];
 }
 
 #pragma mark - 
@@ -186,6 +203,38 @@
     }];
 }
 
+#pragma mark -
+
+//- (void) animatedViewUp:(BOOL)UP
+//{
+//    const int movementDistance = 52.0f;
+//    
+//    int movement = (UP ? -movementDistance : movementDistance);
+//    
+//    [UIView animateWithDuration:0.3f
+//                     animations:^{
+//                         self.view.frame = CGRectOffset(self.view.frame, 0.0f, movement);
+//                     }
+//                     completion:^(BOOL successful){}];
+//    
+//}
+
+#pragma mark - UITextField Delegate
+
+- (BOOL) textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL) textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
 
 #pragma mark - TITokenFieldDelegate
 
@@ -194,8 +243,6 @@
 	if ([token.title isEqualToString:@"Tom Irving"]){
 		return NO;
 	}
-    
-	NSLog(@"%@",token.title);
 	return YES;
 }
 - (void)tokenField:(TITokenField *)tokenField didRemoveToken:(TIToken *)token
@@ -214,11 +261,12 @@
 - (void)tokenFieldFrameDidChange:(TITokenField *)tokenField {
 	[self textViewDidChange:messageView];
 }
-
-#pragma mark - UITextField Delegate
-
-
 #pragma mark - UITextView Delegate
+
+//-(void)textViewDidBeginEditing:(UITextView *)textView;
+//{
+//    if (iPHONE_UI && UserInterface_Landscape)[self animatedViewUp:YES];
+//}
 
 - (void)textViewDidChange:(UITextView *)textView {
 	
@@ -243,6 +291,8 @@
 }
 - (void) textViewDidEndEditing:(UITextView *)textView
 {
+//    if (iPHONE_UI && UserInterface_Landscape) [self animatedViewUp:NO];
+
     [textView resignFirstResponder];
 }
 

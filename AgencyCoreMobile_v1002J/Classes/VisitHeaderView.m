@@ -26,21 +26,26 @@
         self.backgroundColor = [UIColor clearColor];
         self.patientLabel = [[UILabel alloc]init];
         self.patientLabel.backgroundColor = [UIColor clearColor];
-        self.patientLabel.font = ACFontDefaultBold16;
+        if (iPHONE_UI)  self.patientLabel.font = ACFontDefaultBold16;
+        else self.patientLabel.font = ACFontDefaultBold18;
         
         self.dateLabel = [[UILabel alloc]init];
         self.dateLabel.backgroundColor = [UIColor clearColor];
-        self.dateLabel.font = ACFontDefaultBold14;
+        if (iPHONE_UI)  self.dateLabel.font = ACFontDefaultBold14;
+        else  self.dateLabel.font = ACFontDefaultBold16;
+
         self.dateLabel.textColor = ACColorRed;
         self.dateLabel.textAlignment = NSTextAlignmentRight;
         
         self.taskLabel = [[UILabel alloc]init];
         self.taskLabel.backgroundColor = [UIColor clearColor];
-        self.taskLabel.font = ACFontDefault16;
-        
+        if (iPHONE_UI)  self.taskLabel.font = ACFontDefault16;
+        else  self.taskLabel.font = ACFontDefault18;
+
         self.statusLabel = [[UILabel alloc]init];
         self.statusLabel.backgroundColor = [UIColor clearColor];
-        self.statusLabel.font = ACFontDefault14;
+        if (iPHONE_UI)  self.statusLabel.font = ACFontDefault14;
+        else self.statusLabel.font = ACFontDefault16;
         
         [self addSubview:self.patientLabel];
         [self addSubview:self.dateLabel];

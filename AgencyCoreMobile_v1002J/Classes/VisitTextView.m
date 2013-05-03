@@ -23,15 +23,17 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         descLabel = [[UILabel alloc]init];
-        descLabel.font = ACFontDefault16;
+        if (iPHONE_UI)  descLabel.font = ACFontDefault16;
+        else descLabel.font = ACFontDefault18;
         descLabel.text = @"Enter a Visit Comment below:";
         
         self.commentsField = [[UITextView alloc]init];
         self.commentsField.scrollEnabled = YES;
         self.commentsField.layer.cornerRadius = 1.0f;
-        self.commentsField.layer.borderColor = [[UIColor darkGrayColor] CGColor];
-        self.commentsField.layer.borderWidth = 2.0f;
-        self.commentsField.font = ACFontDefault16;
+        self.commentsField.layer.borderColor = [[UIColor grayColor] CGColor];
+        self.commentsField.layer.borderWidth = 1.0f;
+        if (iPHONE_UI) self.commentsField.font = ACFontDefault14;
+        else self.commentsField.font = ACFontDefault16;
         
         
         [self addSubview:descLabel];

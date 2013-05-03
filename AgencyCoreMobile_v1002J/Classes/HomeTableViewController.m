@@ -40,17 +40,24 @@
             self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.66f)];
         else
             self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.6f)];
-
     }
     else if (iPHONE_UI && UserInterface_Landscape)
         self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.45f)];
     else if (iPAD_UI && UserInterface_Portrait)
+    {
         self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.8f )];
+        self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ipad_portrait"]];
+//        UIImageView * bgImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo_ipad_portrait"]];
+//        [self.headerView addSubview:bgImageView];
 
+    }
     else if (iPAD_UI && UserInterface_Landscape)
+    {
         self.headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.75f)];
-       
-    self.headerView.backgroundColor = [UIColor grayColor];
+        self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ipad_landscape"]];
+
+    }
+//    self.headerView.backgroundColor = [UIColor clearColor];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.scrollEnabled = NO;
     NSLog(@"%@",NSStringFromCGRect(Bounds_Screen));
@@ -86,10 +93,16 @@
         else if (iPHONE_UI && UserInterface_Landscape)
             self.headerView.frame = CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.45f);
         else if (iPAD_UI && UserInterface_Portrait )
+        {
             self.headerView.frame = CGRectMake(0.0f, 0.0f, Bounds_Screen.size.width, Bounds_Screen.size.height * 0.8f);
+            self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ipad_portrait"]];
 
+        }
         else if (iPAD_UI && UserInterface_Landscape )
+        {
             self.headerView.frame = CGRectMake(0.0f, 0.0f, Bounds_Screen.size.height, Bounds_Screen.size.width * 0.75f);
+            self.headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"logo_ipad_landscape"]];
+        }
     }
     self.tableView.tableHeaderView = self.headerView;
 
