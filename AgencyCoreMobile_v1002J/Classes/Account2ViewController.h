@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileView.h"
+#import "PatientProfileHeaderView.h"
 
 @interface Account2ViewController : UITableViewController
 
-@property (nonatomic , strong) ProfileView * profilview;
+@property (nonatomic , strong) PatientProfileHeaderView * profilview;
 @end

@@ -31,21 +31,23 @@
     self.tableView.backgroundView = nil;
 	self.tableView.backgroundColor = [UIColor colorWithRed:62.0f/255.0f green:62.0f/255.0f blue:60.0f/255.0f alpha:1.0f];
     
-    CGRect rectProfile = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 215.0f);
-    self.profilview = [[ProfileView alloc]initWithFrame:UIEdgeInsetsInsetRect(rectProfile, UIEdgeInsetsMake(20.0f, 10.0f, 20.0f, 10.0f)) style:UITableViewStylePlain];
-    self.profilview.scrollEnabled = NO;
+    CGRect rectProfile;
+    if (iPAD_UI) rectProfile = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 200.0f);
+    else if (iPHONE_UI) rectProfile = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 170.0f);
+    self.profilview = [[PatientProfileHeaderView alloc]initWithFrame:UIEdgeInsetsInsetRect(rectProfile, UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f))];
+//    self.profilview.scrollEnabled = NO;
+//    
+//    self.profilview.layer.cornerRadius = 3.0f;
+//    self.profilview.layer.masksToBounds = YES;
+//    
+//    UIView * svProfile = [[UIView alloc]initWithFrame:rectProfile];
+//    svProfile.layer.shadowRadius = 8.0f;
+//    svProfile.layer.shadowOpacity = 0.8f;
+//    svProfile.layer.shadowColor = [[UIColor blackColor]CGColor];
+//    svProfile.layer.shadowOffset = CGSizeMake(0.0f, 4.0f);
+//    [svProfile addSubview:self.profilview];
     
-    self.profilview.layer.cornerRadius = 3.0f;
-    self.profilview.layer.masksToBounds = YES;
-    
-    UIView * svProfile = [[UIView alloc]initWithFrame:rectProfile];
-    svProfile.layer.shadowRadius = 8.0f;
-    svProfile.layer.shadowOpacity = 0.8f;
-    svProfile.layer.shadowColor = [[UIColor blackColor]CGColor];
-    svProfile.layer.shadowOffset = CGSizeMake(0.0f, 4.0f);
-    [svProfile addSubview:self.profilview];
-    
-    self.tableView.tableHeaderView = svProfile;
+    self.tableView.tableHeaderView = self.profilview;
     
 }
 
