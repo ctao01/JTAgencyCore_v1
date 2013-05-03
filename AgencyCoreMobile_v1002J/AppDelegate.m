@@ -41,6 +41,9 @@
     self.navigation = [[RootNavigationController alloc]initWithRootViewController:rv];
     self.window.rootViewController = self.navigation;
     
+    // Initialize TestFlight
+    [TestFlight takeOff:TESTFLIGHT_TEAM_TOKEN];
+    
     return YES;
 }
 							

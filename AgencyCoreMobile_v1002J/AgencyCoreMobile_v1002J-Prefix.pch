@@ -15,4 +15,6 @@
     #import <QuartzCore/QuartzCore.h>
 
     #import "AgencyCoreGlobal.h"
+
+    #import "TestFlight.h"
 #endif

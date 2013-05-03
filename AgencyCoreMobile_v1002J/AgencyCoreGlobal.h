@@ -44,6 +44,8 @@
 #define UISEARCH_BAR_HEIGHT 44.0f
 #define UINAVIGATION_BAR_HEIGHT 44.0f
 
+// NSString
+#define TESTFLIGHT_TEAM_TOKEN @"TEAM_TOKEN_GOES_HERE"
 
 // UIColor
 #define ACColorRed [UIColor colorWithRed:164.0/255.0 green:26.0f/255.0 blue:54.0f/255.0 alpha:1.0]
@@ -55,8 +57,6 @@
 #define ACColorMenuSeparatorGray [UIColor colorWithRed:70.0f/255.0 green:70.0f/255.0 blue:70.0f/255.0 alpha:0.4f]
 #define ACColorGray80 [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:1.0f]
 #define ACColorGray80Alpha [UIColor colorWithRed:80.0f/255.0 green:80.0f/255.0 blue:80.0f/255.0 alpha:0.5f]
-
-
 #define ACColorSystemBlue [UIColor colorWithRed:82.0f/255.0 green:102.0f/255.0 blue:145.0f/255.0 alpha:1.0f]
 
 // UIFont
