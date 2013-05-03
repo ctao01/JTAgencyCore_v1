@@ -32,11 +32,9 @@
 - (void)resizeViews {
     int tabBarOffset = self.tabBarController == nil ?  0.0f : self.tabBarController.tabBar.frame.size.height;
 	[tokenFieldView setFrame:((CGRect){tokenFieldView.frame.origin, {self.view.bounds.size.width, self.view.bounds.size.height + tabBarOffset - keyboardHeight}})];
-    NSLog(@"%@",NSStringFromCGRect(tokenFieldView.contentView.bounds));
 
     CGRect contentBounds = tokenFieldView.contentView.bounds;
     [subjectField setFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, subjectField.frame.size.height)];
-    NSLog(@"%@",NSStringFromCGRect(subjectField.frame));
 	[messageView setFrame:CGRectMake(contentBounds.origin.x, subjectField.frame.origin.y + subjectField.frame.size.height , contentBounds.size.width, contentBounds.size.height - subjectField.frame.size.height)];
 //    [messageView setFrame:tokenFieldView.contentView.bounds];
 }
@@ -138,7 +136,6 @@
 {
     if ([[notification name]isEqualToString:@"TestNotification"])
     {
-        NSLog(@"TestNotification:%@",NSStringFromCGRect(self.view.frame));
         [tokenFieldView setFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width,self.view.frame.size.height)];
         CGRect contentBounds = tokenFieldView.contentView.bounds;
         [subjectField setFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, 44)];
@@ -202,22 +199,6 @@
         self.selectedContact = nil;
     }];
 }
-
-#pragma mark -
-
-//- (void) animatedViewUp:(BOOL)UP
-//{
-//    const int movementDistance = 52.0f;
-//    
-//    int movement = (UP ? -movementDistance : movementDistance);
-//    
-//    [UIView animateWithDuration:0.3f
-//                     animations:^{
-//                         self.view.frame = CGRectOffset(self.view.frame, 0.0f, movement);
-//                     }
-//                     completion:^(BOOL successful){}];
-//    
-//}
 
 #pragma mark - UITextField Delegate
 

@@ -35,15 +35,14 @@
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    UILabel * updatedLabel = [UILabel updatedLabelWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, 40.0f, 10.0f, 40.0f))];
+    UILabel * updatedLabel = [UILabel updatedLabelWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 44.0f)];
     [updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
     UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:updatedLabel];
 
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
     
-
+    [self layoutIfRotated];
 }
 
 - (void) viewDidLoad
@@ -70,12 +69,13 @@
     self.searchController.delegate = self;
     
     self.tableView.tableHeaderView = self.searchBar;
+
 }
 
 - (void) viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+    [super viewDidAppear:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -85,10 +85,10 @@
     nav.navToolBar.items = nil;
 }
 
-- (void) viewDidUnload
+- (void) viewDidDisappear:(BOOL)animated
 {
-    [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidDisappear:YES];
 }
 
 #pragma mark - ACTableViewController Method
@@ -133,7 +133,9 @@
 - (void) receiveTestNotification:(NSNotification*)notification
 {
     if ([[notification name]isEqualToString:@"TestNotification" ])
-        [self layoutRotated];
+    {
+        [self layoutIfRotated];
+    }
 }
 
 #pragma mark - Editable Table Method
@@ -267,7 +269,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"UITableViewCellEditingStyleDelete");
 }
 
 - (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath

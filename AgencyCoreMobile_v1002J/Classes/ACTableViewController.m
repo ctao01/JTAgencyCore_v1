@@ -20,14 +20,6 @@
 @implementation ACTableViewController
 @synthesize refreshHeaderView, refreshLabel, refreshArrow, refreshSpinner ;
 @synthesize loadMoreFooter, loadMoreSpinner ,loadMoreLabel;
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -44,11 +36,12 @@
 }
 
 #pragma mark - Layout Rotation
-- (void) layoutRotated
+- (void) layoutIfRotated
 {
     refreshHeaderView.frame = CGRectMake(0, 0 - REFRESH_HEADER_HEIGHT, self.tableView.frame.size.width, REFRESH_HEADER_HEIGHT);
     refreshLabel.center = CGPointMake(refreshHeaderView.center.x, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
-
+    refreshSpinner.center = CGPointMake(refreshLabel.frame.origin.x - refreshSpinner.frame.size.width, refreshHeaderView.center.y + REFRESH_HEADER_HEIGHT);
+    
     loadMoreFooter.frame = CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, LOADMORE_FOOTER_HEIGHT);
     loadMoreLabel.center = loadMoreFooter.center;
     loadMoreSpinner.center = loadMoreFooter.center;
@@ -85,7 +78,9 @@
     isLoading = YES;
     // Show the header
     [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+        if (UserInterface_Portrait) self.tableView.contentInset = UIEdgeInsetsMake(REFRESH_HEADER_HEIGHT, 0, 0, 0);
+        else  self.tableView.contentInset = UIEdgeInsetsMake(26.0f, 0, 0, 0);
+
         refreshLabel.text = @"Loading...";
         refreshArrow.hidden = YES;
         [refreshSpinner startAnimating];
@@ -150,7 +145,6 @@
     isLoadingMore = YES;
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0, LOADMORE_FOOTER_HEIGHT, 0);
-        NSLog(@"startLoadingMore");
         loadMoreLabel.text = @"Loading More";
     }];
     [loadMoreSpinner startAnimating];
@@ -222,7 +216,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (isLoading) return;
     isDragging = NO;
-    if (scrollView.contentOffset.y <= -REFRESH_HEADER_HEIGHT - 49.0f) {
+    if (scrollView.contentOffset.y <= -REFRESH_HEADER_HEIGHT) {
         // Released above the header
         [self startLoading];
     }

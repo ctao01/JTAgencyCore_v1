@@ -57,7 +57,6 @@
     [headerView addSubview:self.textView];
 
     self.tableView.tableFooterView = headerView;
-    NSLog(@"self.tableView.tableFooterView:%@",NSStringFromCGRect(self.tableView.tableFooterView.frame));
 
     self.navigationItem.title = @"Message";
     
@@ -73,6 +72,13 @@
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
 }
+
+- (void) viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -96,10 +102,8 @@
                                         lineBreakMode:UIViewAutoresizingFlexibleHeight];
     
     textFrame.size.height = tv.contentSize.height + UINAVIGATION_BAR_HEIGHT;
-    NSLog(@"origin:%@",NSStringFromCGRect(textFrame));
 
     tv.frame = UIEdgeInsetsInsetRect(textFrame, UIEdgeInsetsMake(0.0f, 10.0f, 0.0f, 10.0f));
-    NSLog(@"tv.frame:%@",NSStringFromCGRect(tv.frame));
 
     return tv;
 }
@@ -173,7 +177,6 @@
         [self presentViewController:nc animated:YES completion:^{
             [[NSNotificationCenter defaultCenter] removeObserver:self.navigationController];
             composer.messageObject = dictionary;
-            NSLog(@"object%@",dictionary);
         }];
     }
 }

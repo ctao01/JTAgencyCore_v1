@@ -10,6 +10,7 @@
 #import "VisitHeaderView.h"
 #import "CommentsViewController.h"
 #import "NavigationToolBarController.h"
+#import "NewTaskViewController.h"
 
 @interface ScheduleDetailViewController ()
 @property (nonatomic , strong) VisitHeaderView * visitHeaderView;
@@ -57,16 +58,6 @@
     self.tableView.tableHeaderView = self.visitHeaderView;
 
     self.navigationItem.title = @"My Schedule";
-    
-//    self.overlayView = [[UIView alloc]initWithFrame:Bounds_Screen];
-//    self.overlayView.backgroundColor = [UIColor clearColor];
-//    [self.view addSubview:self.overlayView];
-//    
-//    self.activityIndicator = [[UIActivityIndicatorView alloc]initWithFrame:Bounds_Screen];
-//    self.activityIndicator.hidden = YES;
-//    self.activityIndicator.hidesWhenStopped = YES;
-//    self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-//    [self.view addSubview:self.activityIndicator];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,7 +70,7 @@
 //    UIBarButtonItem * syncItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(manualSyncData)];
     
     UIBarButtonItem * spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    self.updatedLabel = [UILabel updatedLabelWithFrame:UIEdgeInsetsInsetRect(nav.navToolBar.frame, UIEdgeInsetsMake(10.0f, nav.navToolBar.frame.size.width / 8.0f, 10.0f, nav.navToolBar.frame.size.width / 8.0f))];
+    self.updatedLabel = [UILabel updatedLabelWithFrame:CGRectMake(0.0f, 0.0f, 200.0f, 44.0f)];
     [self.updatedLabel setText:[NSString updateLabelDateStringFromDate:[NSDate date]]];
     UIBarButtonItem * labelItem = [[UIBarButtonItem alloc]initWithCustomView:self.updatedLabel];
     
@@ -99,6 +90,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -
+- (void) composeTask
+{
+    NewTaskViewController * vc = [[NewTaskViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    UINavigationController * nc = [[UINavigationController alloc]initWithRootViewController:vc];
+    
+    [self presentViewController:nc animated:YES completion:^{}];
+}
+
+
 #pragma mark - Manual Sync Method
 
 //- (void) manualSyncData
