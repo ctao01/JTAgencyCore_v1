@@ -172,6 +172,7 @@
     passwordField.delegate = (LogInViewController*)self.parentViewController;
     passwordField.tag = 2002;
     passwordField.placeholder = @"Password";
+    passwordField.secureTextEntry = YES;
     passwordField.returnKeyType = UIReturnKeyDone;
     [self addSubview:passwordField];
 }

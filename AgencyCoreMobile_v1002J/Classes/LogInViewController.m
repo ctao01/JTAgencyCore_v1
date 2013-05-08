@@ -95,9 +95,60 @@
 
 - (void) userSignIn
 {
-    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-    }];
+    UITextField * tf1 = (UITextField*)[self.view viewWithTag:2001];
+    if (tf1.text != nil) 
+        NSLog(@"%@",tf1.text);
+    UITextField * tf2 = (UITextField*)[self.view viewWithTag:2002];
+    if (tf2.text != nil)
+        NSLog(@"%@",tf2.text);
+    
+    // Synchronous NSURLConnection
+    
+    NSString * postString = [NSString stringWithFormat:@"http://10.0.1.41/Membership/Login?emailaddress=%@&password=%@",tf1.text, tf2.text];
+//    NSString * postString = @"http://strong-earth-32.heroku.com/stores.aspx";
+
+    NSLog(@"postString%@",postString);
+    NSURLResponse * response = nil;
+    NSError * error = nil;
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
+    [urlRequest setHTTPMethod:@"POST"];
+    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+    
+    NSLog(@"postData:%@",receivedData);
+
+    if (error == nil)
+    {
+        NSString * responseString = [[NSString alloc]initWithData:receivedData encoding:NSUTF8StringEncoding];
+        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
+        NSLog(@"responseString%@",responseString);
+        NSLog(@"result%@",result);
+        
+        NSDictionary * resultDict = (NSDictionary*)result;
+        if ([[resultDict objectForKey:@"IsSuccessful"] boolValue] == YES)
+        {
+            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
+            [[NSUserDefaults standardUserDefaults]setObject:[resultDict objectForKey:@"TokenId"] forKey:@"User_Token"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                
+            }];
+
+        }
+
+    }
+//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//
+//    }];
+    
+    
 }
 
 - (void) userForgotPwd
@@ -153,6 +204,7 @@
     }
     return YES;
 }
+
 
 -(BOOL) textFieldShouldEndEditing:(UITextField *)textField
 {
