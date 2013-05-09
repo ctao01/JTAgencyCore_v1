@@ -41,6 +41,19 @@
     self.navigation = [[RootNavigationController alloc]initWithRootViewController:rv];
     self.window.rootViewController = self.navigation;
     
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"udidKey"])
+    {
+        CFUUIDRef identifierObject = CFUUIDCreate(kCFAllocatorDefault);
+        
+        // Convert the CFUUID to a string
+        NSString * identifierString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, identifierObject);
+        CFRelease((CFTypeRef) identifierObject);
+        
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:identifierString forKey:@"udidKey"];
+        [defaults synchronize];
+    }
+    
     return YES;
 }
 							
