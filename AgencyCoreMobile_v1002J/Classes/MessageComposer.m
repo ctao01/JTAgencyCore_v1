@@ -65,7 +65,7 @@
     if (UserInterface_Portrait)
         tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y-20.0f, bounds.size.width, bounds.size.height)];
     else if (UserInterface_Landscape)
-        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x- 20.0f, bounds.origin.y, bounds.size.height, bounds.size.width)];
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width)];
     //	[tokenFieldView setSourceArray:[Names listOfNames]];
     [self.view addSubview:tokenFieldView];
     
