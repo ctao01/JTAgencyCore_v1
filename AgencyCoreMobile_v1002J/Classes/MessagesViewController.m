@@ -81,6 +81,22 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
+    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?tokenid=%@&deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1",[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"],[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
+    
+    NSURLResponse * response = nil;
+    NSError * error = nil;
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
+    [urlRequest setHTTPMethod:@"POST"];
+    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if (error == nil)
+    {
+        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
+        NSLog(@"result%@",result);
+        
+    }
+    
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
 }

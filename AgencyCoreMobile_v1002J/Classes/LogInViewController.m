@@ -104,7 +104,7 @@
     
     // Synchronous NSURLConnection
     
-    NSString * postString = [NSString stringWithFormat:@"http://10.0.1.41/Membership/Login?emailaddress=%@&password=%@&deviceid",tf1.text, tf2.text,[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
+    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Membership/Login?emailaddress=%@&password=%@&deviceid=%@",tf1.text, tf2.text,[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
 //    NSString * postString = @"http://strong-earth-32.heroku.com/stores.aspx";
 
     NSLog(@"postString%@",postString);
