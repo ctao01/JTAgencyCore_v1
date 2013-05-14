@@ -95,7 +95,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return 6;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -104,13 +104,15 @@
     if (section == 1 || section == 3) return 2;
     else if (section == 2) return 2;
     else if (section == 4) return 1;
+    else if (section == 5) return 1;
     else return 0;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell * cell;
-    
+    static NSString * CellIdentifier5 = @"ButtonStyleCell";
+
     if (indexPath.section == 0)
     {
         
@@ -205,18 +207,18 @@
         {
             cell.textLabel.text = @"Auto-Sync";
             cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults]integerForKey:@"AutoSyncDuration"] ? [NSString stringWithFormat:@"%i Minutes",[[NSUserDefaults standardUserDefaults]integerForKey:@"AutoSyncDuration"]]:@"";
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         else
         {
             cell.textLabel.text = @"Schedule Clean Up Storage";
             cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults]integerForKey:@"CleanUpStorageFreq"] ? [NSString stringWithFormat:@"Every %i Days",[[NSUserDefaults standardUserDefaults]integerForKey:@"CleanUpStorageFreq"]]:@"";
-            cell.selectionStyle = UITableViewCellSelectionStyleGray;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold14;
         else cell.textLabel.font = ACFontDefaultBold16;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+
     }
     
     else if (indexPath.section == 3)
@@ -238,16 +240,27 @@
         if (iPHONE_UI) cell.textLabel.font = ACFontDefaultBold14;
         else cell.textLabel.font = ACFontDefaultBold16;
     }
-    
+
     else if (indexPath.section == 4)
     {
-        static NSString * CellIdentifier5 = @"LogoutsCell";
+        cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier5];
+        if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier5];
+        cell.textLabel.text = @"Reset";
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+
+    }
+    else if (indexPath.section == 5)
+    {
+        
         cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier5];
         if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier5];
         cell.textLabel.text = @"Log Out";
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
+
     }
     return cell;
 }
@@ -299,7 +312,7 @@
         [self.navigationController pushViewController:pSettings animated:YES];
     }
     
-    else if (indexPath.section == 4)
+    else if (indexPath.section == 5)
     {
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
         [[NSUserDefaults standardUserDefaults]synchronize];
@@ -320,13 +333,22 @@
     if (indexPath.section == 4)
     {
         cell.backgroundView = [[UIImageView alloc]init];
-        cell.selectedBackgroundView = [[UIImageView alloc]init];
         ((UIImageView*) cell.backgroundView).image = nil;
-        ((UIImageView*) cell.selectedBackgroundView).image = nil;
-        UIImage * backgroundImage = [[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
-        UIImage * selectedBackgroundImage = [[UIImage imageNamed:@"btn_Gray"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
+        UIImage * backgroundImage = [[UIImage imageNamed:@"btn_blue"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
         ((UIImageView*) cell.backgroundView).image = backgroundImage;
-        ((UIImageView*) cell.selectedBackgroundView).image = selectedBackgroundImage;
+        cell.selectedBackgroundView = [[UIView alloc]initWithFrame:[((UIImageView*) cell.backgroundView) frame]];
+        cell.selectedBackgroundView.backgroundColor = ACColorGray80Alpha;
+
+    }
+    
+    else if (indexPath.section == 5)
+    {
+        cell.backgroundView = [[UIImageView alloc]init];
+        ((UIImageView*) cell.backgroundView).image = nil;
+        UIImage * backgroundImage = [[UIImage imageNamed:@"btn_Red"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 6.0f, 0.0f, 6.0f)];
+        ((UIImageView*) cell.backgroundView).image = backgroundImage;
+        cell.selectedBackgroundView = [[UIView alloc]initWithFrame:[((UIImageView*) cell.backgroundView) frame]];
+        cell.selectedBackgroundView.backgroundColor = ACColorGray80Alpha;
     }
 }
 @end
