@@ -946,13 +946,13 @@
 		3DBE75EE16FB57F0001755FE /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				3D768D4B16FA1E9F0000165A /* MessagesViewController.h */,
+				3D768D4C16FA1E9F0000165A /* MessagesViewController.m */,
 				3D72BCC816FCB09E00FE5D22 /* Contacts */,
 				3DBE75EF16FB5820001755FE /* MessageComposer.h */,
 				3DBE75F016FB5820001755FE /* MessageComposer.m */,
 				3D768D4716FA1E9F0000165A /* MessageDetailViewController.h */,
 				3D768D4816FA1E9F0000165A /* MessageDetailViewController.m */,
-				3D768D4B16FA1E9F0000165A /* MessagesViewController.h */,
-				3D768D4C16FA1E9F0000165A /* MessagesViewController.m */,
 			);
 			name = Messages;
 			sourceTree = "<group>";

@@ -134,15 +134,13 @@
             [[NSUserDefaults standardUserDefaults]setObject:[resultDict objectForKey:@"TokenId"] forKey:@"User_Token"];
             [[NSUserDefaults standardUserDefaults]synchronize];
 
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                
-            }];
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 
         }
         else
         {
-            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"IsSuccessful:false,ErrorMessage:null" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            NSString * errorMessage = [resultDict objectForKey:@"ErrorMessage"];
+            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [av show];
         }
 
@@ -152,7 +150,8 @@
         UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Log In Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [av show];
     }
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     
 //    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
 //    [[NSUserDefaults standardUserDefaults]synchronize];

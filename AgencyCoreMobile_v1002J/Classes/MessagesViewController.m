@@ -41,15 +41,14 @@
 
     UIBarButtonItem * composeItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeMessage)];
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
-    
+
     [self layoutIfRotated];
 }
 
 - (void) viewDidLoad
 {
     self.counts = [[NSMutableArray alloc]initWithObjects:@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z", nil];
-    
-    [super viewDidLoad];
+
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
@@ -69,6 +68,7 @@
     self.searchController.delegate = self;
     
     self.tableView.tableHeaderView = self.searchBar;
+    [super viewDidLoad];
 
 }
 
@@ -81,22 +81,6 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?tokenid=%@&deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1",[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"],[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
-    
-    NSURLResponse * response = nil;
-    NSError * error = nil;
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
-    [urlRequest setHTTPMethod:@"POST"];
-    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-    if (error == nil)
-    {
-        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
-        NSLog(@"result%@",result);
-        
-    }
-    
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
 }
