@@ -130,20 +130,29 @@
         NSDictionary * resultDict = (NSDictionary*)result;
         if ([[resultDict objectForKey:@"IsSuccessful"] boolValue] == YES)
         {
-//            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
-//            [[NSUserDefaults standardUserDefaults]setObject:[resultDict objectForKey:@"TokenId"] forKey:@"User_Token"];
-//            [[NSUserDefaults standardUserDefaults]synchronize];
+            [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
+            [[NSUserDefaults standardUserDefaults]setObject:[resultDict objectForKey:@"TokenId"] forKey:@"User_Token"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
 
-//            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//                
-//            }];
-//            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Choose Account" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Account1",@"Account2", nil];
-//            [av show];
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                
+            }];
 
+        }
+        else
+        {
+            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"IsSuccessful:false,ErrorMessage:null" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [av show];
         }
 
     }
+    else
+    {
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Log In Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+    
     
 //    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
 //    [[NSUserDefaults standardUserDefaults]synchronize];
