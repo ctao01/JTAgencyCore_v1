@@ -22,10 +22,10 @@
         self.leftView = subjectLabel;
         self.leftViewMode = UITextFieldViewModeAlways;
         
-        UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-        addButton.frame = CGRectMake(0.0f, 0.0f, 32.0f, 32.0f);
-        self.rightView = addButton;
-        self.rightViewMode = UITextFieldViewModeAlways;
+//        UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//        addButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+//        self.rightView = addButton;
+//        self.rightViewMode = UITextFieldViewModeAlways;
 
         self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.inputView.frame = UIEdgeInsetsInsetRect(self.inputView.frame, UIEdgeInsetsMake(0.0f, 5.0f, 0.0f, 30.0f));
@@ -47,4 +47,6 @@
     [seperator setLineWidth:1.0f];
     [seperator stroke];
 }
+
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AboutViewController.h"
+#import "AxxessContactCell.h"
+#import "HelpViewController.h"
 
 @interface AboutViewController ()
 
@@ -36,10 +38,24 @@
     [super viewDidLoad];
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];    
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(receiveTestNotification:) name:@"TestNotification" object:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - NSNotificationCenter 
+
+- (void) receiveTestNotification:(NSNotification*)notification
+{
+    if ([[notification name]isEqualToString:@"TestNotification" ])
+        [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -53,7 +69,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return 1; // Version
-    else if (section == 1 || section == 2) return 2;
+    else if (section == 1) return 1;
+    else if (section == 2) return 2;
     else if (section == 3) return 3;
     else return 4;
 }
@@ -70,10 +87,7 @@
     }
     else if (indexPath.section == 1)
     {
-        if (indexPath.row == 0 )
-            cell.textLabel.text = @"Terms of Service";
-        else if (indexPath.row == 1)
-            cell.textLabel.text = @"Privacy Policy";
+        cell = [[AxxessContactCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Axxess_Contact_Cell"];
     }
     else if (indexPath.section == 2)
     {
@@ -108,10 +122,31 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) return 90.0f;
+    else return 42.0f;
+}
+
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 1) return @"About Axxess Home Health";
     else if (section == 3) return @"Contact Us";
     else return @"";
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2)
+    {
+        if (indexPath.row == 0 )
+        {
+            HelpViewController * vc = [[HelpViewController alloc]initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            
+        
+    }
+}
+
 @end

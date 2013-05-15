@@ -102,7 +102,7 @@
     if (tf2.text != nil)
         NSLog(@"%@",tf2.text);
     
-    // Synchronous NSURLConnection
+    /* Synchronous NSURLConnection
     
     NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Membership/Login?emailaddress=%@&password=%@&deviceid=%@",tf1.text, tf2.text,[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
 //    NSString * postString = @"http://strong-earth-32.heroku.com/stores.aspx";
@@ -143,11 +143,15 @@
 
         }
 
-    }
-//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//
-//    }];
+    }*/
+    
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+    }];
     
     
 }

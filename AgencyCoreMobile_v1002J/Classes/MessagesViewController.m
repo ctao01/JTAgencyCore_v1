@@ -82,20 +82,20 @@
 {
     [super viewWillDisappear:animated];
     
-    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?tokenid=%@&deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1",[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"],[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
-    
-    NSURLResponse * response = nil;
-    NSError * error = nil;
-    
-    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
-    [urlRequest setHTTPMethod:@"POST"];
-    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-    if (error == nil)
-    {
-        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
-        NSLog(@"result%@",result);
-        
-    }
+//    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?tokenid=%@&deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1",[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"],[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
+//    
+//    NSURLResponse * response = nil;
+//    NSError * error = nil;
+//    
+//    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
+//    [urlRequest setHTTPMethod:@"POST"];
+//    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+//    if (error == nil)
+//    {
+//        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
+//        NSLog(@"result%@",result);
+//        
+//    }
     
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;
@@ -206,7 +206,6 @@
     static NSString * iPhone_landscape_cell = @"iPhone_Landscape_Cell";
     static NSString * iPad_portrait_cell = @"iPad_Portrait_Cell";
     static NSString * iPad_landscape_cell = @"iPad_Landscape_Cell";
-//    static NSString * cellID = @"iPad_Landscape_Cell";    
     BasicMessageCell * messageCell ;
     if (iPHONE_UI && UserInterface_Portrait)
         messageCell = [tableView dequeueReusableCellWithIdentifier:iPhone_portrait_cell];
@@ -230,8 +229,7 @@
         else
             messageCell = nil;
     }
-        
-        
+   
     messageCell.senderLabel.text = [NSString stringWithFormat:@"Sender:%@",[self.counts objectAtIndex:indexPath.row]];
     messageCell.subjectLabel.text = @"Subject1234567890";
     messageCell.messageLabel.text = @"Dear Customer,Axxess is social!Follow us on Twitter, Facebook, LinkedIn, and Instagram to network with thousands of Home Health professionals, receive updates on what Axxess is up to, as well as obtain the latest industry information and trends to keep you running your agency efficiently and successfully.";
@@ -249,12 +247,11 @@
     messageCell.dateLabel.text = [NSString customizedCellDateStringFromDate:[NSDate date]];
     messageCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     messageCell.selectionStyle = UITableViewCellSelectionStyleGray;
-    if (indexPath.row % 7 == 2)
-    {
-        if (iPHONE_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"icon_dot"];
-        else if (iPAD_UI) messageCell.statusImageView.image = [UIImage imageNamed:@"icon_ipad_dot"];
-
-    }
+    if (indexPath.row == 0 )
+        messageCell.statusImageView.hidden = NO;
+    
+    if (indexPath.row % 3 == 0)
+        messageCell.attachedImageView.hidden = NO;
     
     
     return messageCell;

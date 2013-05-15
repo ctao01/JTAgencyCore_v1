@@ -12,13 +12,15 @@
 #import "UserListViewController.h"
 #import "NavigationControllerWithoutRotation.h"
 
-@interface MessageComposer ()
+@interface MessageComposer () < UIActionSheetDelegate >
 {
     TITokenFieldView * tokenFieldView;
     MessageSubjectField * subjectField;
 	UITextView * messageView;
 	
 	CGFloat keyboardHeight;
+    
+    BOOL isAttached;
 }
 - (void)resizeViews;
 
@@ -32,11 +34,11 @@
 - (void)resizeViews {
     int tabBarOffset = self.tabBarController == nil ?  0.0f : self.tabBarController.tabBar.frame.size.height;
 	[tokenFieldView setFrame:((CGRect){tokenFieldView.frame.origin, {self.view.bounds.size.width, self.view.bounds.size.height + tabBarOffset - keyboardHeight}})];
-
+    
     CGRect contentBounds = tokenFieldView.contentView.bounds;
     [subjectField setFrame:CGRectMake(contentBounds.origin.x, contentBounds.origin.y, contentBounds.size.width, subjectField.frame.size.height)];
 	[messageView setFrame:CGRectMake(contentBounds.origin.x, subjectField.frame.origin.y + subjectField.frame.size.height , contentBounds.size.width, contentBounds.size.height - subjectField.frame.size.height)];
-//    [messageView setFrame:tokenFieldView.contentView.bounds];
+    //    [messageView setFrame:tokenFieldView.contentView.bounds];
 }
 
 #pragma mark -
@@ -44,15 +46,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    //	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
-
+    
     [self.view removeGestureRecognizer:nav.slidingViewController.panGesture];
     
     UIBarButtonItem * cancelItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelMessageComposer)];
@@ -60,12 +62,17 @@
     sendItem.enabled = NO;
     self.navigationItem.leftBarButtonItem = cancelItem;
     self.navigationItem.rightBarButtonItem = sendItem;
-
+    
     CGRect bounds = self.view.frame;
-    if (UserInterface_Portrait)
-        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y-20.0f, bounds.size.width, bounds.size.height)];
-    else if (UserInterface_Landscape)
+    if (UserInterface_Portrait && iPHONE_UI)
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y - 20.0f, bounds.size.width, bounds.size.height)];
+    else if (UserInterface_Portrait && iPAD_UI)
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y - 20.0f, bounds.size.width, bounds.size.height)];
+    else if (UserInterface_Landscape && iPAD_UI)
+        tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x- 20.0f , bounds.origin.y, bounds.size.height, bounds.size.width)];
+    else
         tokenFieldView = [[TITokenFieldView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.height, bounds.size.width)];
+
     //	[tokenFieldView setSourceArray:[Names listOfNames]];
     [self.view addSubview:tokenFieldView];
     
@@ -73,7 +80,8 @@
     [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:TITokenFieldControlEventFrameDidChange];
     [tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;."]]; // Default is a comma
     
-    UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+    UIButton * addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
     [addButton addTarget:self action:@selector(showContactsPicker) forControlEvents:UIControlEventTouchUpInside];
     [tokenFieldView.tokenField setRightView:addButton];
     [tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldChangedEditing:) forControlEvents:UIControlEventEditingDidBegin];
@@ -84,13 +92,23 @@
     subjectField.delegate = self;
     if (iPHONE_UI)  subjectField.font = ACFontDefault14;
     else if (iPAD_UI)  subjectField.font = ACFontDefault16;
+    
+    UIButton * attachButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage * image = [UIImage imageNamed:@"icon_attachment_grey"];
+    attachButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+    [attachButton setBackgroundImage:image forState:UIControlStateNormal];
+
+    [attachButton addTarget:self action:@selector(attach) forControlEvents:UIControlEventTouchUpInside];
+    
+    subjectField.rightView = attachButton;
+    subjectField.rightViewMode = UITextFieldViewModeAlways;
     [tokenFieldView.contentView addSubview:subjectField];
     
     messageView = [[UITextView alloc] initWithFrame:CGRectMake(contentBounds.origin.x, 44, contentBounds.size.width, contentBounds.size.height - 44)];
     [messageView setAutoresizingMask:UIViewAutoresizingNone];
     [messageView setScrollEnabled:NO];
     [messageView setDelegate:self];
-//    [messageView setFont:[UIFont systemFontOfSize:15]];
+    //    [messageView setFont:[UIFont systemFontOfSize:15]];
     if (iPHONE_UI)  [messageView setFont:ACFontDefault14];
     else if (iPAD_UI)  [messageView setFont:ACFontDefault16];
     [messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
@@ -130,6 +148,63 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+
+- (void) attach
+{
+    if (!isAttached)
+    {
+        isAttached = YES;
+        
+        UIButton * attachButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        attachButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+//        attachButton.frame = UIEdgeInsetsInsetRect(attachedView.frame, UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 5.0f))
+        ;
+        [attachButton setBackgroundImage:[UIImage imageNamed:@"icon_attachment_red"]  forState:UIControlStateNormal];
+        [attachButton addTarget:self action:@selector(attach) forControlEvents:UIControlEventTouchUpInside];
+        
+//        [attachedView addSubview:attachButton];
+        
+        subjectField.rightView = attachButton;
+        subjectField.rightViewMode = UITextFieldViewModeAlways;
+
+        //        [messageView setText:[NSString stringWithFormat:@"%@ \nAdd an attachment",messageView.text]];
+    }
+    else
+    {
+        
+        UIActionSheet * as = [[UIActionSheet alloc]initWithTitle:@"Attachment" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Remove" otherButtonTitles:@"Download", @"Change", nil];
+        //        isAttached = NO;
+        //        UIButton * attachButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        //        attachButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+        //        [attachButton addTarget:self action:@selector(attach) forControlEvents:UIControlEventTouchUpInside];
+        //
+        //        subjectField.rightView = attachButton;
+        //        subjectField.rightViewMode = UITextFieldViewModeAlways;
+        
+       [as showInView:self.view];
+    }
+}
+
+#pragma mark - UIActionSheet Delegate Method
+
+- (void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.cancelButtonIndex) return;
+    else if (buttonIndex == actionSheet.destructiveButtonIndex)
+    {
+        isAttached = NO;
+        UIButton * attachButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        attachButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+        [attachButton setBackgroundImage:[UIImage imageNamed:@"icon_attachment_grey"] forState:UIControlStateNormal];
+
+        [attachButton addTarget:self action:@selector(attach) forControlEvents:UIControlEventTouchUpInside];
+        
+        subjectField.rightView = attachButton;
+        subjectField.rightViewMode = UITextFieldViewModeAlways;
+    }
+}
+
 #pragma mark - UINotification Method
 
 - (void) receiveTestNotification:(NSNotification*)notification
@@ -143,8 +218,6 @@
         [tokenFieldView resignFirstResponder];
         [messageView resignFirstResponder];
         [subjectField resignFirstResponder];
-       
-
     }
 }
 
@@ -152,8 +225,8 @@
 	
 	CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
 	keyboardHeight = keyboardRect.size.height > keyboardRect.size.width ? keyboardRect.size.width : keyboardRect.size.height;
-//    if (iPHONE_UI && UserInterface_Landscape) keyboardHeight = 60.0f;
-
+    //    if (iPHONE_UI && UserInterface_Landscape) keyboardHeight = 60.0f;
+    
     [self resizeViews];
 }
 
@@ -161,7 +234,7 @@
 	keyboardHeight = 0;
 	[self resizeViews];
 }
-#pragma mark- 
+#pragma mark-
 
 - (void) setMessageObject:(NSDictionary *)newObject
 {
@@ -173,16 +246,16 @@
     {
         [tokenFieldView.tokenField addTokenWithTitle:[contacts objectAtIndex:count]];
         [tokenFieldView.tokenField layoutTokensAnimated:YES];
-
+        
     }
     messageView.text = [_messageObject objectForKey:@"content"];
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (void) cancelMessageComposer
 {
-//    [self.navigationController popViewControllerAnimated:YES];
+    //    [self.navigationController popViewControllerAnimated:YES];
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
@@ -272,8 +345,8 @@
 }
 - (void) textViewDidEndEditing:(UITextView *)textView
 {
-//    if (iPHONE_UI && UserInterface_Landscape) [self animatedViewUp:NO];
-
+    //    if (iPHONE_UI && UserInterface_Landscape) [self animatedViewUp:NO];
+    
     [textView resignFirstResponder];
 }
 

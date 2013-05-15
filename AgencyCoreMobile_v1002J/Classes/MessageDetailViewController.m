@@ -225,13 +225,51 @@
         cell2.titleLabel.text = @"Subject";
         cell2.subjectLabel.text = @"Recently Axxess Subject";
         cell2.updatedLabel.text = [NSString detailDateStringFromDate:[NSDate date]];
+        
+        UIButton * attachButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        attachButton.selected = NO;
+         attachButton.frame = CGRectMake(0.0f, 0.0f, 24.0f, 24.0f);
+        [attachButton setBackgroundImage:[UIImage imageNamed:@"icon_attachment_grey"] forState:UIControlStateNormal];
+        [attachButton setBackgroundImage:[UIImage imageNamed:@"icon_attachment_red"] forState:UIControlStateSelected];
+        [attachButton addTarget:self action:@selector(attachmentButtonTapped:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+        cell2.accessoryView = attachButton; 
+        
         cell = cell2;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
+
+
 #pragma mark - Table view delegate
+- (void) attachmentButtonTapped:(UIControl*)button withEvent:(UIEvent*)event
+{
+    NSSet * touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentTouchPosition];
+    if (indexPath != nil)
+    {
+        [self tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIButton * button = (UIButton *) cell.accessoryView;
+    if (! button.selected)
+    {
+        [button setBackgroundImage:[UIImage imageNamed:@"icon_attachment_red"]  forState:UIControlStateSelected];
+        [button setSelected:YES];
+    }
+    else
+    {
+        [button setBackgroundImage:[UIImage imageNamed:@"icon_attachment_grey"]  forState:UIControlStateNormal];
+        [button setSelected:NO];
+    }
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

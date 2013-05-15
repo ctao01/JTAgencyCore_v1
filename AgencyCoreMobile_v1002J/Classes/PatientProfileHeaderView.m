@@ -23,29 +23,28 @@
 
 @implementation PatientProfileHeaderView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        CGRect imageRect;
-        if (iPHONE_UI)
-        {
-            imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
-            imageRect.size.height = 60.0f;
-            imageRect.size.width = 60.0f;
-        }
-        else
-        {
-            imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
-            imageRect.size.height = 90.0f;
-            imageRect.size.width = 90.0f;
-        }
-        [self addThumbImageFromRect:imageRect];
-        
-        
-    }
-    return self;
-}
+//- (id)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        CGRect imageRect;
+//        if (iPHONE_UI)
+//        {
+//            imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
+//            imageRect.size.height = 60.0f;
+//            imageRect.size.width = 60.0f;
+//        }
+//        else
+//        {
+//            imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
+//            imageRect.size.height = 90.0f;
+//            imageRect.size.width = 90.0f;
+//        }
+//
+//
+//    }
+//    return self;
+//}
 
 - (void) addUpperSubviewsFromRect:(CGRect)rect
 {
@@ -101,32 +100,6 @@
     [self addSubview:self.iIDLabel];
 }
 
-- (void) addThumbImageFromRect:(CGRect)rect
-{
-    UIImage * placeholderImage;
-    if (iPHONE_UI) placeholderImage = [UIImage imageNamed:@"icon_patient_iphone"];
-    else placeholderImage = [UIImage imageNamed:@"icon_patient_ipad"];
-    //    self.patientImage =[[UIImageView alloc]initWithFrame:rect];
-    //    [self.patientImage setImage:placeholderImage];
-    //
-    //    self.patientImage.layer.cornerRadius = 6.0f;
-    //    self.patientImage.layer.borderWidth = 2.0f;
-    //    self.patientImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-    //    [self addSubview:self.patientImage];
-    self.patientButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.patientButton setFrame:rect];
-    [self.patientButton setBackgroundImage:placeholderImage forState:UIControlStateNormal];
-    
-    PatientProfileViewController * vc = (PatientProfileViewController*)self.displayController;
-    [self.patientButton addTarget:vc action:@selector(changePatientPhoto) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.patientButton.layer.cornerRadius = 6.0f;
-    self.patientButton.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-    self.patientButton.layer.borderWidth = 2.0f;
-    self.patientButton.clipsToBounds = YES;
-    [self addSubview:self.patientButton];
-}
-
 - (void) layoutSubviews
 {
     [super layoutSubviews];
@@ -142,6 +115,11 @@
         UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:frame cornerRadius:RADIUS];
         [[UIColor whiteColor] setFill];
         [path fill];
+        
+        CGRect imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
+        imageRect.size.height = 60.0f;
+        imageRect.size.width = 60.0f;
+        [self drawThumbViewWithRect:imageRect];
         
         CGRect upperRightRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(0.0f, 90.0f, 30.0f, 0.0f));
         [self drawUpperVeriticalLine:upperRightRect];
@@ -159,10 +137,10 @@
         [[UIColor whiteColor] setFill];
         [path fill];
         
-//        CGRect imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
-//        imageRect.size.height = 90.0f;
-//        imageRect.size.width = 90.0f;
-//        [self drawThumbViewWithRect:imageRect];
+        CGRect imageRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(15.0f, 15.0f, 45.0f, 0.0f));
+        imageRect.size.height = 90.0f;
+        imageRect.size.width = 90.0f;
+        [self drawThumbViewWithRect:imageRect];
         
         CGRect upperRightRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(0.0f, 120.0f, 34.0f, 0.0f));
         [self drawUpperVeriticalLine:upperRightRect];
@@ -173,34 +151,23 @@
         [self drawLowerHorizontalLine:lowerRect];
         [self drawLowerVeriticalLine:lowerRect];
     }
-
+    
 }
 //
 - (void) drawThumbViewWithRect:(CGRect)rect
 {
-//    UIBezierPath * pathThumbImg = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:RADIUS];
-//    [pathThumbImg setLineWidth:4.0f];
-//    [[UIColor lightGrayColor] setStroke];
-//    [pathThumbImg stroke];
-//    [pathThumbImg fill];
+    if (self.patientButton) [self.patientButton removeFromSuperview];
     
     UIImage * placeholderImage;
     if (iPHONE_UI) placeholderImage = [UIImage imageNamed:@"icon_patient_iphone"];
     else placeholderImage = [UIImage imageNamed:@"icon_patient_ipad"];
-//    self.patientImage =[[UIImageView alloc]initWithFrame:rect];
-//    [self.patientImage setImage:placeholderImage];
-//    
-//    self.patientImage.layer.cornerRadius = 6.0f;
-//    self.patientImage.layer.borderWidth = 2.0f;
-//    self.patientImage.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-//    [self addSubview:self.patientImage];
     self.patientButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.patientButton setFrame:rect];
     [self.patientButton setBackgroundImage:placeholderImage forState:UIControlStateNormal];
     
     PatientProfileViewController * vc = (PatientProfileViewController*)self.displayController;
     [self.patientButton addTarget:vc action:@selector(changePatientPhoto) forControlEvents:UIControlEventTouchUpInside];
-
+    
     self.patientButton.layer.cornerRadius = 6.0f;
     self.patientButton.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     self.patientButton.layer.borderWidth = 2.0f;
@@ -249,7 +216,7 @@
     else [line setLineWidth:1.0f];
     [[UIColor lightGrayColor] setStroke];
     [line stroke];
-
+    
 }
 
 - (void) drawUpperVeriticalLine:(CGRect)rect

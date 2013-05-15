@@ -14,5 +14,8 @@
 @property (nonatomic , strong) UILabel * subjectLabel;
 @property (nonatomic , strong) UILabel * messageLabel;
 @property (nonatomic , strong) UILabel * dateLabel;
+
 @property (nonatomic , strong) UIImageView * statusImageView;
+@property (nonatomic , strong) UIImageView * attachedImageView;
+
 @end

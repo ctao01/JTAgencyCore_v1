@@ -413,7 +413,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="pdf-gm-2nC">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="Tbj-Z9-nbi">
+                        <barButtonItem key="leftBarButtonItem" image="icon_menu.png" id="Tbj-Z9-nbi">
                             <connections>
                                 <action selector="revealMenu:" destination="7DD-HY-zAF" id="SeE-Y3-362"/>
                             </connections>
@@ -477,7 +477,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_menu.png" width="32" height="32"/>
+        <image name="icon_menu.png" width="20" height="20"/>
     </resources>
     <classes>
         <class className="ACTableViewController" superclassName="UITableViewController">
@@ -486,6 +486,7 @@
         <class className="AboutViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AboutViewController.h"/>
             <relationships>
+                <relationship kind="action" name="revealMenu:"/>
                 <relationship kind="action" name="revealUnderRight:"/>
             </relationships>
         </class>
