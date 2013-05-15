@@ -18,13 +18,11 @@
 - (void)awakeFromNib
 {
 //    self.menuItems = [NSArray arrayWithObjects:@"Home", @"Account", @"Messages", @"Schedule", @"Notes",@"About", nil];
-    NSArray * menuItems = [NSArray arrayWithObjects:@"Home", @"Account", @"Messages", @"Schedule", @"Notes",@"About", nil];
-    NSArray * iconItems = [NSArray arrayWithObjects:[UIImage imageNamed:@"menu_home"],
-                           [UIImage imageNamed:@"menu_account"],
+    NSArray * menuItems = [NSArray arrayWithObjects: @"Account", @"Messages", @"Schedule", @"Notes", nil];
+    NSArray * iconItems = [NSArray arrayWithObjects:[UIImage imageNamed:@"menu_account"],
                            [UIImage imageNamed:@"menu_messages"],
                            [UIImage imageNamed:@"menu_schedule"],
-                           [UIImage imageNamed:@"menu_notes"],
-                           [UIImage imageNamed:@"menu_more"],nil];
+                           [UIImage imageNamed:@"menu_notes"],nil];
     
     self.menuDictionary = [NSDictionary dictionaryWithObjectsAndKeys:menuItems,@"Menu_Items",iconItems, @"Icon_Items", nil];
     
@@ -83,13 +81,15 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
-  if (sectionIndex == 0) return [[self.menuDictionary objectForKey:@"Menu_Items"] count];
-  else return 1;
+    if (sectionIndex == 0) return 1;
+    else if (sectionIndex == 1) return [[self.menuDictionary objectForKey:@"Menu_Items"] count];
+    else if (sectionIndex == 2) return 1;
+    else return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -121,10 +121,15 @@
 
     if (indexPath.section == 0)
     {
+        cell.textLabel.text = @"Home";
+        cell.imageView.image = [UIImage imageNamed:@"menu_home"];
+    }
+    else if (indexPath.section == 1)
+    {
         cell.textLabel.text = [[self.menuDictionary objectForKey:@"Menu_Items"] objectAtIndex:indexPath.row];
         cell.imageView.image = [[self.menuDictionary objectForKey:@"Icon_Items"] objectAtIndex:indexPath.row];
         
-        if (indexPath.row == 2)
+        if (indexPath.row == 1)
         {
             badgeLabel.text = @"4";
             if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 70.0f, 10.0f);
@@ -132,7 +137,7 @@
             [cell.contentView addSubview:badgeLabel];
 
         }
-        else if (indexPath.row == 3)
+        else if (indexPath.row == 2)
         {
             badgeLabel.text = @"11";
             if (iPHONE_UI) badgeLabel.frame = CGRectOffset(badgeLabel.frame, width(Bounds_Screen) - 70.0f, 10.0f);
@@ -141,6 +146,12 @@
 
         }
     }
+    else if (indexPath.section == 2)
+    {
+        cell.textLabel.text = @"About Us";
+        cell.imageView.image = [UIImage imageNamed:@"menu_about"];
+    }
+    
     else
     {
         cell.textLabel.text = @"Log Out";
@@ -203,16 +214,21 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 1) return 20.0f;
+    if (!section == 0) return 24.0f;
     else return 0.0f;
 }
 
 - (UIView*) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section == 1)
+    if (!section == 0)
     {
-        UIView * headerView = [[UIView alloc]initWithFrame:CGRectZero];
+        UILabel * headerView = [[UILabel alloc]initWithFrame:CGRectZero];
         headerView.backgroundColor = ACColorGray80Alpha;
+        if (section == 1) headerView.text = [NSString stringWithFormat:@"\t\t\tAgencyCore"];
+        else if (section == 2) headerView.text = [NSString stringWithFormat:@"\t\t\tAbout Axxess"];
+        headerView.textColor = [UIColor lightGrayColor];
+        if (iPAD_UI) headerView.font = ACFontDefaultBold14;
+        else if (iPHONE_UI) headerView.font = ACFontDefaultBold12;
         return headerView;
     }
     else return nil;
@@ -227,15 +243,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1)
+    if (indexPath.section == 3)
     {
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
         [[NSUserDefaults standardUserDefaults]synchronize];
         AppDelegate * delegate = (AppDelegate*)[[UIApplication sharedApplication]delegate];
         [delegate.navigation viewDidAppear:YES];
     }
-    else {
-        NSString *identifier = [[self.menuDictionary objectForKey:@"Menu_Items"] objectAtIndex:indexPath.row];
+    else  
+    {
+        NSString *identifier;
+        if (indexPath.section == 1) identifier = [[self.menuDictionary objectForKey:@"Menu_Items"] objectAtIndex:indexPath.row];
+        else if (indexPath.section == 0) identifier = @"Home";
+        else if (indexPath.section == 2) identifier = @"About";
         UIViewController *newTopViewController = [self.storyboard instantiateViewControllerWithIdentifier:identifier];
       
         [self.slidingViewController anchorTopViewOffScreenTo:ECRight animations:nil onComplete:^{

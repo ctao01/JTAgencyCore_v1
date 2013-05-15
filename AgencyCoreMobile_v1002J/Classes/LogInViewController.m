@@ -102,9 +102,9 @@
     if (tf2.text != nil)
         NSLog(@"%@",tf2.text);
     
-    // Synchronous NSURLConnection
+    /* Synchronous NSURLConnection
     
-    NSString * postString = [NSString stringWithFormat:@"http://10.0.1.41/Membership/Login?emailaddress=%@&password=%@&deviceid=%@",tf1.text, tf2.text,[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
+    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Membership/Login?emailaddress=%@&password=%@&deviceid=%@",tf1.text, tf2.text,[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
 //    NSString * postString = @"http://strong-earth-32.heroku.com/stores.aspx";
 
     NSLog(@"postString%@",postString);
@@ -118,13 +118,13 @@
     NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    NSLog(@"postData:%@",receivedData);
+//    NSLog(@"postData:%@",receivedData);
 
     if (error == nil)
     {
         NSString * responseString = [[NSString alloc]initWithData:receivedData encoding:NSUTF8StringEncoding];
         id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
-        NSLog(@"responseString%@",responseString);
+//        NSLog(@"responseString%@",responseString);
         NSLog(@"result%@",result);
         
         NSDictionary * resultDict = (NSDictionary*)result;
@@ -134,31 +134,24 @@
             [[NSUserDefaults standardUserDefaults]setObject:[resultDict objectForKey:@"TokenId"] forKey:@"User_Token"];
             [[NSUserDefaults standardUserDefaults]synchronize];
 
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
-
-        }
-        else
-        {
-            NSString * errorMessage = [resultDict objectForKey:@"ErrorMessage"];
-            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//                
+//            }];
+            UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Choose Account" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Account1",@"Account2", nil];
             [av show];
+
         }
 
-    }
-    else
-    {
-        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"Warning" message:@"Log In Failed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [av show];
-    }
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
+    }*/
     
-//    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
-//    [[NSUserDefaults standardUserDefaults]synchronize];
-//    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//
-//    }];
+    [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"HasLoggedIn"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+    }];
     
     
 }

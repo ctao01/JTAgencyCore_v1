@@ -10,6 +10,7 @@
 #import "UILabel+Additons.h"
 #import "NSString+Additions.h"
 #import "NSDate+Additions.h"
+#import "UIImageView+Additions.h"
 #import "NSDictionary+Additions.h"
 #import "UINavigationController+Rotation.h"
 

@@ -15,18 +15,21 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         CGRect innerRect ;
-    innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 30.0f, 10.0f, 20.0f));
+        innerRect = UIEdgeInsetsInsetRect(self.contentView.frame, UIEdgeInsetsMake(10.0f, 30.0f, 10.0f, 20.0f));
+        self.statusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
         if (iPAD_UI)
-        {
-            self.statusImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 20.0f, 20.0f)];
             self.statusImageView.center = CGPointMake(self.statusImageView.center.x, 55.0f);
-        }
         else if (iPHONE_UI)
-        {
-            self.statusImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, 16.0f, 16.0f)];
             self.statusImageView.center = CGPointMake(self.statusImageView.center.x, 45.0f);
-        }
         self.statusImageView.frame = CGRectOffset(self.statusImageView.frame, 5.0f, 0.0f);
+        self.statusImageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.statusImageView.image = [UIImage imageNamed:@"icon_dot"];
+//        self.statusImageView.image = [UIImage imageNamed:@"icon_dot"];
+
+//        if (iPHONE_UI) self.statusImageView.image = [UIImage imageNamed:@"icon_dot"];
+//        else if (iPAD_UI) self.statusImageView.image = [UIImage imageNamed:@"icon_iphone_dot"];
+        self.statusImageView.hidden = YES;
+
         [self.contentView addSubview:self.statusImageView];
 
         
@@ -58,6 +61,15 @@
         if (iPHONE_UI) [self.subjectLabel  setFont:ACFontDefault14];
         else if (iPAD_UI) [self.subjectLabel setFont:ACFontDefault16];
         [self.contentView addSubview:self.subjectLabel];
+        
+        
+        //Attachment Image
+        UIImage * image = [UIImage imageNamed:@"icon_attachment_red"];
+        self.attachedImageView = [[UIImageView alloc]initWithFrame:CGRectMake(origin_x(self.dateLabel.frame)+ width(self.dateLabel.frame) - image.size.width, origin_y(self.subjectLabel.frame) , image.size.width, image.size.height)];
+        self.attachedImageView.image = image;
+        self.attachedImageView.hidden = YES;
+        [self.contentView addSubview:self.attachedImageView];
+    
         
         self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(innerRect.origin.x, self.subjectLabel.frame.origin.y + labelHeight , self.senderLabel.frame.size.width, 40.0f)];
         // Message Label:

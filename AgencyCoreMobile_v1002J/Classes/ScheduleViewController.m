@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, 49.0f, 0.0f);
     self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
-    self.navigationItem.title = @"Scheduled";
+    self.navigationItem.title = @"Schedule";
 
     UIBarButtonItem * search = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearchDisplayController)];
     self.navigationItem.rightBarButtonItem = search;
