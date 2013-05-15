@@ -43,6 +43,21 @@
     nav.navToolBar.items = [NSArray arrayWithObjects:spaceItem,labelItem,spaceItem,composeItem, nil];
     
     [self layoutIfRotated];
+    
+    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1&TokenId=%@",[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"],[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"]];
+    NSLog(@"fetch message: Post %@",postString);
+    NSURLResponse * response = nil;
+    NSError * error = nil;
+    
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
+    [urlRequest setHTTPMethod:@"POST"];
+    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if (error == nil)
+    {
+        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
+        NSLog(@"result%@",result);
+        
+    }
 }
 
 - (void) viewDidLoad
@@ -82,20 +97,7 @@
 {
     [super viewWillDisappear:animated];
     
-//    NSString * postString = [NSString stringWithFormat:@"http://mobileapi.axxessweb.com/Messaging/Fetch?tokenid=%@&deviceid=%@&inboxtype=0&pagesize=30&pagenumber=1",[[NSUserDefaults standardUserDefaults]objectForKey:@"User_Token"],[[NSUserDefaults standardUserDefaults]objectForKey:@"udidKey"]];
-//    
-//    NSURLResponse * response = nil;
-//    NSError * error = nil;
-//    
-//    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString]];
-//    [urlRequest setHTTPMethod:@"POST"];
-//    NSData * receivedData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
-//    if (error == nil)
-//    {
-//        id result = [NSJSONSerialization JSONObjectWithData:receivedData options:NSJSONReadingMutableContainers error:&error];
-//        NSLog(@"result%@",result);
-//        
-//    }
+   
     
     NavigationToolBarController * nav = (NavigationToolBarController*)self.navigationController;
     nav.navToolBar.items = nil;

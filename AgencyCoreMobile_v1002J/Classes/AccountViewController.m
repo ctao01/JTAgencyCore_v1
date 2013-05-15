@@ -95,16 +95,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 7;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) return 4;
-    if (section == 1 || section == 3) return 2;
-    else if (section == 2) return 2;
-    else if (section == 4) return 1;
-    else if (section == 5) return 1;
+    if (section == 1 || section == 2 || section == 3 || section == 4) return 2;
+    else if (section == 5 || section == 6) return 1;
     else return 0;
 }
 
@@ -223,6 +221,18 @@
     
     else if (indexPath.section == 3)
     {
+        static NSString * DataLoadingCellID = @"DataLoadingCell";
+        cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:DataLoadingCellID];
+        if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:DataLoadingCellID];
+
+        if (indexPath.row == 0)
+            cell.textLabel.text = @"Message Loading";
+        else 
+            cell.textLabel.text = @"Schedule Loading";
+    }
+    
+    else if (indexPath.section == 4)
+    {
         static NSString * CellIdentifier4 = @"DeviceSettingsCell";
         cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier4];
         if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier4];
@@ -241,7 +251,7 @@
         else cell.textLabel.font = ACFontDefaultBold16;
     }
 
-    else if (indexPath.section == 4)
+    else if (indexPath.section == 5)
     {
         cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier5];
         if (cell == nil) cell = (UITableViewCell*)[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier5];
@@ -251,7 +261,7 @@
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
 
     }
-    else if (indexPath.section == 5)
+    else if (indexPath.section == 6)
     {
         
         cell = (UITableViewCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier5];
@@ -305,14 +315,14 @@
         }
     }
     
-    else if (indexPath.section == 3 && indexPath.row == 0)
+    else if (indexPath.section == 4 && indexPath.row == 0)
     {
         PasscodeSettingsViewController * pSettings = [[PasscodeSettingsViewController alloc]initWithStyle:UITableViewStyleGrouped];
         pSettings.delegate = self;
         [self.navigationController pushViewController:pSettings animated:YES];
     }
     
-    else if (indexPath.section == 5)
+    else if (indexPath.section == 6)
     {
         [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"HasLoggedIn"];
         [[NSUserDefaults standardUserDefaults]synchronize];
@@ -330,7 +340,7 @@
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 4)
+    if (indexPath.section == 5)
     {
         cell.backgroundView = [[UIImageView alloc]init];
         ((UIImageView*) cell.backgroundView).image = nil;
@@ -341,7 +351,7 @@
 
     }
     
-    else if (indexPath.section == 5)
+    else if (indexPath.section == 6)
     {
         cell.backgroundView = [[UIImageView alloc]init];
         ((UIImageView*) cell.backgroundView).image = nil;
